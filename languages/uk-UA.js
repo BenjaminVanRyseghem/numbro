@@ -2,6 +2,8 @@
 // language : Ukrainian for the Ukraine (uk-UA)
 // author : Michael Piefel : https://github.com/piefel (with help from Tetyana Kuzmenko)
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ' ',

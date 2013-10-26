@@ -2,6 +2,7 @@ var fs = require('fs');
 var path = require('path');
 
 module.exports = function(grunt) {
+    'use strict';
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
@@ -15,7 +16,7 @@ module.exports = function(grunt) {
             },
         },
         uglify: {
-            my_target: {
+            target: {
                 files: [
                     { src: [ 'dist/languages.js' ], dest: 'dist/min/languages.min.js', },
                     { src: [ 'numbro.js' ], dest: 'dist/min/numbro.min.js', },
@@ -69,26 +70,14 @@ module.exports = function(grunt) {
             all: ['tests/**/*.js'],
         },
         jshint: {
+            options: {
+                jshintrc : '.jshintrc'
+            },
             all: [
                 'Gruntfile.js',
                 'numbro.js',
                 'languages/**/*.js'
-            ],
-            options: {
-                'node': true,
-                'browser': true,
-                'curly': true,
-                'devel': false,
-                'eqeqeq': true,
-                'eqnull': true,
-                'newcap': true,
-                'noarg': true,
-                'onevar': true,
-                'undef': true,
-                'sub': true,
-                'strict': false,
-                'quotmark': 'single'
-            }
+            ]
         }
     });
 

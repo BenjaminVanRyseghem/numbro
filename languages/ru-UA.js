@@ -2,6 +2,8 @@
 // language : Russian for the Ukraine (ru-UA)
 // author : Anatoli Papirovski : https://github.com/apapirovski
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ' ',
