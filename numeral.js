@@ -232,6 +232,7 @@
             signed = false,
             optDec = false,
             abbr = '',
+			i,
             abbrK = false, // force abbreviation to thousands
             abbrM = false, // force abbreviation to millions
             abbrB = false, // force abbreviation to billions
@@ -244,7 +245,9 @@
             min,
             max,
             power,
+			pow,
             w,
+			intPrecision,
             precision,
             thousands,
             d = '',
@@ -266,6 +269,9 @@
 
             // see if abbreviation is wanted
             if (format.indexOf('a') > -1) {
+				intPrecision = format.split('.')[0].match(/0/g) || [];
+				intPrecision = intPrecision.length;
+
                 // check if abbreviation is specified
                 abbrK = format.indexOf('aK') >= 0;
                 abbrM = format.indexOf('aM') >= 0;
@@ -280,6 +286,16 @@
                 } else {
                     format = format.replace('a', '');
                 }
+
+				pow = ~~(Math.max(intPrecision - 3, 0) / 3);
+				abs = abs / Math.pow(10, 3 * pow);
+
+				if (format.indexOf('.') === -1 && intPrecision > 3){
+					format += '[.]';
+					for (i = 0; i < intPrecision % 3; i++){
+						format += '0';
+					}
+				}
 
                 if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
                     // trillion
