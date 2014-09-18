@@ -289,7 +289,8 @@
             min,
             max,
             power,
-            pow,
+            length,
+			pow,
             w,
             intPrecision,
             precision,
@@ -340,14 +341,22 @@
                     format = format.replace('a', '');
                 }
 
-                pow = ~~(Math.max(intPrecision - 3, 0) / 3);
-                abs = abs / Math.pow(10, 3 * pow);
+				pow = ~~(intPrecision / 3);
+				pow = Math.max(pow - 1, 0);
+				abs = abs / Math.pow(10, 3 * pow);
 
                 if (format.indexOf('.') === -1 && intPrecision > 3){
                     format += '[.]';
-					size = (intPrecision % 3) - ((Math.floor(Math.log(abs) / Math.LN10) + 1) % 3);
+
+					length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
+					size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
 					size = size < 0 ? size + 3 : size;
-                    for (i = 0; i < size; i++){
+					size = size === 0 && abs === value ? 3 : size;
+					//debugger;
+					//size = (intPrecision % 3) - ((Math.floor(Math.log(abs) / Math.LN10) + 1) % 3);
+
+
+					for (i = 0; i < size; i++){
                         format += '0';
                     }
                 }
