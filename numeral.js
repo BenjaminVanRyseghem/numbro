@@ -357,7 +357,7 @@
                     }
                 }
 
-				if (Math.floor(Math.log(value) / Math.LN10) + 1 !== intPrecision){
+				if (Math.floor(Math.log(Math.abs(value)) / Math.LN10) + 1 !== intPrecision){
 					if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
 						// trillion
 						abbr = abbr + languages[currentLanguage].abbreviations.trillion;
