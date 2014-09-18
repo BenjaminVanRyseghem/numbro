@@ -344,40 +344,38 @@
 				pow = ~~(intPrecision / 3);
 				pow = Math.max(pow - 1, 0);
 				abs = abs / Math.pow(10, 3 * pow);
+				length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
 
                 if (format.indexOf('.') === -1 && intPrecision > 3){
                     format += '[.]';
 
-					length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
 					size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
 					size = size < 0 ? size + 3 : size;
-					size = size === 0 && abs === value ? 3 : size;
-					//debugger;
-					//size = (intPrecision % 3) - ((Math.floor(Math.log(abs) / Math.LN10) + 1) % 3);
-
 
 					for (i = 0; i < size; i++){
                         format += '0';
                     }
                 }
 
-                if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
-                    // trillion
-                    abbr = abbr + languages[currentLanguage].abbreviations.trillion;
-                    value = value / Math.pow(10, 12);
-                } else if (abs < Math.pow(10, 12) && abs >= Math.pow(10, 9) && !abbrForce || abbrB) {
-                    // billion
-                    abbr = abbr + languages[currentLanguage].abbreviations.billion;
-                    value = value / Math.pow(10, 9);
-                } else if (abs < Math.pow(10, 9) && abs >= Math.pow(10, 6) && !abbrForce || abbrM) {
-                    // million
-                    abbr = abbr + languages[currentLanguage].abbreviations.million;
-                    value = value / Math.pow(10, 6);
-                } else if (abs < Math.pow(10, 6) && abs >= Math.pow(10, 3) && !abbrForce || abbrK) {
-                    // thousand
-                    abbr = abbr + languages[currentLanguage].abbreviations.thousand;
-                    value = value / Math.pow(10, 3);
-                }
+				if (Math.floor(Math.log(value) / Math.LN10) + 1 !== intPrecision){
+					if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
+						// trillion
+						abbr = abbr + languages[currentLanguage].abbreviations.trillion;
+						value = value / Math.pow(10, 12);
+					} else if (abs < Math.pow(10, 12) && abs >= Math.pow(10, 9) && !abbrForce || abbrB) {
+						// billion
+						abbr = abbr + languages[currentLanguage].abbreviations.billion;
+						value = value / Math.pow(10, 9);
+					} else if (abs < Math.pow(10, 9) && abs >= Math.pow(10, 6) && !abbrForce || abbrM) {
+						// million
+						abbr = abbr + languages[currentLanguage].abbreviations.million;
+						value = value / Math.pow(10, 6);
+					} else if (abs < Math.pow(10, 6) && abs >= Math.pow(10, 3) && !abbrForce || abbrK) {
+						// thousand
+						abbr = abbr + languages[currentLanguage].abbreviations.thousand;
+						value = value / Math.pow(10, 3);
+					}
+				}
             }
 
             // see if we are formatting bytes
