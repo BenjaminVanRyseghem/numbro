@@ -289,7 +289,9 @@
             min,
             max,
             power,
+			totalLength,
             length,
+			minimumPrecision,
 			pow,
             w,
             intPrecision,
@@ -341,22 +343,30 @@
                     format = format.replace('a', '');
                 }
 
-				pow = ~~(intPrecision / 3);
-				pow = Math.max(pow - 1, 0);
-				abs = abs / Math.pow(10, 3 * pow);
-				length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
+				totalLength = Math.floor(Math.log(abs) / Math.LN10) + 1;
 
-                if (format.indexOf('.') === -1 && intPrecision > 3){
-                    format += '[.]';
+				minimumPrecision = totalLength %3;
+				minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
 
-					size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
-					size = size < 0 ? size + 3 : size;
+				if(intPrecision >= minimumPrecision) {
 
-					for (i = 0; i < size; i++){
-                        format += '0';
-                    }
-                }
+					length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
 
+					pow = 3 * ~~((Math.min(intPrecision, totalLength) - minimumPrecision) / 3);
+
+					abs = abs / Math.pow(10, pow);
+
+					if (format.indexOf('.') === -1 && intPrecision > 3) {
+						format += '[.]';
+
+						size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
+						size = size < 0 ? size + 3 : size;
+
+						for (i = 0; i < size; i++) {
+							format += '0';
+						}
+					}
+				}
 				if (Math.floor(Math.log(Math.abs(value)) / Math.LN10) + 1 !== intPrecision){
 					if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
 						// trillion
