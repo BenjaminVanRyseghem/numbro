@@ -299,6 +299,7 @@
             forcedNeg = false,
             neg = false,
             indexOpenP = -1,
+			size,
             indexMinus = -1,
             paren = '';
 
@@ -344,7 +345,9 @@
 
                 if (format.indexOf('.') === -1 && intPrecision > 3){
                     format += '[.]';
-                    for (i = 0; i < intPrecision % 3; i++){
+					size = (intPrecision % 3) - ((Math.floor(Math.log(abs) / Math.LN10) + 1) % 3);
+					size = size < 0 ? size + 3 : size;
+                    for (i = 0; i < size; i++){
                         format += '0';
                     }
                 }
