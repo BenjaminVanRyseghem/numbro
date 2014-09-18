@@ -140,13 +140,13 @@
         if(format.indexOf('$') === -1){
             // Use defaults instead of the format provided
             if (languages[currentLanguage].currency.position === 'infix') {
-				decimalSeparator = languages[currentLanguage].currency.symbol;
-				if (languages[currentLanguage].currency.spaceSeparated) {
-					decimalSeparator = ' ' + decimalSeparator + ' ';
-				}
+                decimalSeparator = languages[currentLanguage].currency.symbol;
+                if (languages[currentLanguage].currency.spaceSeparated) {
+                    decimalSeparator = ' ' + decimalSeparator + ' ';
+                }
             } else if (languages[currentLanguage].currency.spaceSeparated) {
-				space = ' ';
-			}
+                space = ' ';
+            }
         } else {
             // check for space before or after currency
             if (format.indexOf(' $') > -1) {
@@ -276,6 +276,7 @@
             signed = false,
             optDec = false,
             abbr = '',
+            i,
             abbrK = false, // force abbreviation to thousands
             abbrM = false, // force abbreviation to millions
             abbrB = false, // force abbreviation to billions
@@ -288,16 +289,18 @@
             min,
             max,
             power,
+            pow,
             w,
+            intPrecision,
             precision,
-			prefix,
+            prefix,
             thousands,
             d = '',
             forcedNeg = false,
             neg = false,
-			indexOpenP = -1,
-			indexMinus = -1,
-			paren = '';
+            indexOpenP = -1,
+            indexMinus = -1,
+            paren = '';
 
         // check if number is zero and a custom zero format has been set
         if (value === 0 && zeroFormat !== null) {
@@ -318,6 +321,9 @@
 
             // see if abbreviation is wanted
             if (format.indexOf('a') > -1) {
+                intPrecision = format.split('.')[0].match(/0/g) || [];
+                intPrecision = intPrecision.length;
+
                 // check if abbreviation is specified
                 abbrK = format.indexOf('aK') >= 0;
                 abbrM = format.indexOf('aM') >= 0;
@@ -331,6 +337,16 @@
                     format = format.replace(' a', '');
                 } else {
                     format = format.replace('a', '');
+                }
+
+                pow = ~~(Math.max(intPrecision - 3, 0) / 3);
+                abs = abs / Math.pow(10, 3 * pow);
+
+                if (format.indexOf('.') === -1 && intPrecision > 3){
+                    format += '[.]';
+                    for (i = 0; i < intPrecision % 3; i++){
+                        format += '0';
+                    }
                 }
 
                 if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
@@ -437,14 +453,14 @@
                 w = '';
             }
 
-			indexOpenP = format.indexOf('(');
-			indexMinus = format.indexOf('-');
+            indexOpenP = format.indexOf('(');
+            indexMinus = format.indexOf('-');
 
-			if(indexOpenP < indexMinus) {
-				paren = ((negP && neg) ? '(' : '') + (((forcedNeg && neg) || (!negP && neg)) ? '-' : '');
-			} else {
-				paren = (((forcedNeg && neg) || (!negP && neg)) ? '-' : '') + ((negP && neg) ? '(' : '');
-			}
+            if(indexOpenP < indexMinus) {
+                paren = ((negP && neg) ? '(' : '') + (((forcedNeg && neg) || (!negP && neg)) ? '-' : '');
+            } else {
+                paren = (((forcedNeg && neg) || (!negP && neg)) ? '-' : '') + ((negP && neg) ? '(' : '');
+            }
 
 
             return paren + ((!neg && signed) ? '+' : '') + w + d + ((ord) ? ord : '') + ((abbr && !sep) ? abbr : '') + ((bytes) ? bytes : '') + ((negP && neg) ? ')' : '');
