@@ -2,7 +2,7 @@
 
 A javascript library for formatting and manipulating numbers.
 
-[Website and documentation](http://numeraljs.com/)
+[Website and documentation](http://foretagsplatsen.github.io/Numeral-js)
 
 
 # Travis Build Status
