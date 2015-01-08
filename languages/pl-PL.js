@@ -1,7 +1,7 @@
 /*! 
  * numeral.js language configuration
- * language : french (fr)
- * author : Adam Draper : https://github.com/adamwdraper
+ * language : polish (pl)
+ * author : Dominik Bulaj : https://github.com/dominikbulaj
  */
 (function () {
     var language = {
@@ -10,16 +10,16 @@
             decimal: ','
         },
         abbreviations: {
-            thousand: 'k',
-            million: 'm',
-            billion: 'b',
-            trillion: 't'
+            thousand: 'tys.',
+            million: 'mln',
+            billion: 'mld',
+            trillion: 'bln'
         },
-        ordinal : function (number) {
-            return number === 1 ? 'er' : 'e';
+        ordinal: function (number) {
+            return '.';
         },
         currency: {
-            symbol: '€',
+            symbol: 'PLN',
             position: 'postfix'
         },
         defaults: {
@@ -38,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fr', language);
+        this.numeral.language('pl-PL', language);
     }
 }());

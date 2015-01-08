@@ -1,33 +1,33 @@
 /*! 
  * numeral.js language configuration
- * language : japanese
- * author : teppeis : https://github.com/teppeis
+ * language : french (fr)
+ * author : Adam Draper : https://github.com/adamwdraper
  */
 (function () {
     var language = {
         delimiters: {
-            thousands: ',',
-            decimal: '.'
+            thousands: ' ',
+            decimal: ','
         },
         abbreviations: {
-            thousand: '千',
-            million: '百万',
-            billion: '十億',
-            trillion: '兆'
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
         },
-        ordinal: function (number) {
-            return '.';
+        ordinal : function (number) {
+            return number === 1 ? 'er' : 'e';
         },
         currency: {
-            symbol: '¥',
-            position: 'prefix'
+            symbol: '€',
+            position: 'postfix'
         },
         defaults: {
             currencyFormat: ',0000 a'
         },
         formats: {
             fourDigits: '0000 a',
-            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
@@ -38,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('ja', language);
+        this.numeral.language('fr-FR', language);
     }
 }());

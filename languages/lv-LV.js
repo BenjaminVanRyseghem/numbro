@@ -1,25 +1,25 @@
-/*! 
+/*!
  * numeral.js language configuration
- * language : thai (th)
- * author : Sathit Jittanupat : https://github.com/jojosati
+ * language : Latvian (lv)
+ * author : Lauris Bukšis-Haberkorns : https://github.com/Lafriks
  */
 (function () {
     var language = {
         delimiters: {
-            thousands: ',',
-            decimal: '.'
+            thousands: ' ',
+            decimal: ','
         },
         abbreviations: {
-            thousand: 'พัน',
-            million: 'ล้าน',
-            billion: 'พันล้าน',
-            trillion: 'ล้านล้าน'
+            thousand: ' tūkst.',
+            million: ' milj.',
+            billion: ' mljrd.',
+            trillion: ' trilj.'
         },
         ordinal: function (number) {
             return '.';
         },
         currency: {
-            symbol: '฿',
+            symbol: '€',
             position: 'postfix'
         },
         defaults: {
@@ -31,13 +31,12 @@
             fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
-
     // Node
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('th', language);
+        this.numeral.language('lv-LV', language);
     }
 }());

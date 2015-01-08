@@ -1,36 +1,33 @@
 /*! 
  * numeral.js language configuration
- * language : Estonian
- * author : Illimar Tambek : https://github.com/ragulka
- *
- * Note: in Estonian, abbreviations are always separated
- * from numbers with a space
+ * language : simplified chinese
+ * author : badplum : https://github.com/badplum
  */
 (function () {
     var language = {
         delimiters: {
-            thousands: ' ',
-            decimal: ','
+            thousands: ',',
+            decimal: '.'
         },
         abbreviations: {
-            thousand: ' tuh',
-            million: ' mln',
-            billion: ' mld',
-            trillion: ' trl'
+            thousand: '千',
+            million: '百万',
+            billion: '十亿',
+            trillion: '兆'
         },
         ordinal: function (number) {
             return '.';
         },
         currency: {
-            symbol: '€',
-            position: 'postfix'
+            symbol: '¥',
+            position: 'prefix'
         },
         defaults: {
             currencyFormat: ',0000 a'
         },
         formats: {
             fourDigits: '0000 a',
-            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
@@ -41,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('et', language);
+        this.numeral.language('zh-CN', language);
     }
 }());

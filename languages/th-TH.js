@@ -1,25 +1,25 @@
-/*!
+/*! 
  * numeral.js language configuration
- * language : Hungarian (hu)
- * author : Peter Bakondy : https://github.com/pbakondy
+ * language : thai (th)
+ * author : Sathit Jittanupat : https://github.com/jojosati
  */
 (function () {
     var language = {
         delimiters: {
-            thousands: ' ',
-            decimal: ','
+            thousands: ',',
+            decimal: '.'
         },
         abbreviations: {
-            thousand: 'E',  // ezer
-            million: 'M',   // millió
-            billion: 'Mrd', // milliárd
-            trillion: 'T'   // trillió
+            thousand: 'พัน',
+            million: 'ล้าน',
+            billion: 'พันล้าน',
+            trillion: 'ล้านล้าน'
         },
         ordinal: function (number) {
             return '.';
         },
         currency: {
-            symbol: ' Ft',
+            symbol: '฿',
             position: 'postfix'
         },
         defaults: {
@@ -38,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('hu', language);
+        this.numeral.language('th-TH', language);
     }
 }());

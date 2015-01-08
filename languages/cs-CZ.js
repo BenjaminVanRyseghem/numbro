@@ -1,7 +1,7 @@
 /*!
  * numeral.js language configuration
- * language : slovak (sk)
- * author : Ahmed Al Hafoudh : http://www.freevision.sk
+ * language : czech (cs)
+ * author : Anatoli Papirovski : https://github.com/apapirovski
  */
 (function () {
     var language = {
@@ -19,7 +19,7 @@
             return '.';
         },
         currency: {
-            symbol: '€',
+            symbol: 'Kč',
             position: 'postfix'
         },
         defaults: {
@@ -38,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('sk', language);
+        this.numeral.language('cs-CZ', language);
     }
 }());

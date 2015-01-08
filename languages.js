@@ -1,91 +1,3 @@
-/*! 
- * numeral.js language configuration
- * language : belgium-dutch (be-nl)
- * author : Dieter Luypaert : https://github.com/moeriki
- */
-(function () {
-    var language = {
-        delimiters: {
-            thousands: ' ',
-            decimal  : ','
-        },
-        abbreviations: {
-            thousand : 'k',
-            million  : ' mln',
-            billion  : ' mld',
-            trillion : ' bln'
-        },
-        ordinal : function (number) {
-            var remainder = number % 100;
-            return (number !== 0 && remainder <= 1 || remainder === 8 || remainder >= 20) ? 'ste' : 'de';
-        },
-        currency: {
-            symbol: '€',
-            position: 'postfix'
-        },
-        defaults: {
-            currencyFormat: ',0000 a'
-        },
-        formats: {
-            fourDigits: '0000 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00'
-        }
-    };
-
-    // Node
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
-    }
-    // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('be-nl', language);
-    }
-}());
-/*! 
- * numeral.js language configuration
- * language : simplified chinese
- * author : badplum : https://github.com/badplum
- */
-(function () {
-    var language = {
-        delimiters: {
-            thousands: ',',
-            decimal: '.'
-        },
-        abbreviations: {
-            thousand: '千',
-            million: '百万',
-            billion: '十亿',
-            trillion: '兆'
-        },
-        ordinal: function (number) {
-            return '.';
-        },
-        currency: {
-            symbol: '¥',
-            position: 'prefix'
-        },
-        defaults: {
-            currencyFormat: ',0000 a'
-        },
-        formats: {
-            fourDigits: '0000 a',
-            fullWithTwoDecimals: '$ ,0.00',
-            fullWithTwoDecimalsNoCurrency: ',0.00'
-        }
-    };
-
-    // Node
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
-    }
-    // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('chs', language);
-    }
-}());
-
 /*!
  * numeral.js language configuration
  * language : czech (cs)
@@ -126,7 +38,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('cs', language);
+        this.numeral.language('cs-CZ', language);
     }
 }());
 
@@ -170,50 +82,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('da-dk', language);
-    }
-}());
-/*! 
- * numeral.js language configuration
- * language : German in Switzerland (de-ch)
- * author : Michael Piefel : https://github.com/piefel (based on work from Marco Krage : https://github.com/sinky)
- */ 
-(function () {
-    var language = {
-        delimiters: {
-            thousands: ' ',
-            decimal: ','
-        },
-        abbreviations: {
-            thousand: 'k',
-            million: 'm',
-            billion: 'b',
-            trillion: 't'
-        },
-        ordinal: function (number) {
-            return '.';
-        },
-        currency: {
-            symbol: 'CHF',
-            position: 'postfix'
-        },
-        defaults: {
-            currencyFormat: ',0000 a'
-        },
-        formats: {
-            fourDigits: '0000 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00'
-        }
-    };
-
-    // Node
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
-    }
-    // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('de-ch', language);
+        this.numeral.language('da-DK', language);
     }
 }());
 /*! 
@@ -256,7 +125,50 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('de', language);
+        this.numeral.language('de-DE', language);
+    }
+}());
+/*! 
+ * numeral.js language configuration
+ * language : German in Switzerland (de-ch)
+ * author : Michael Piefel : https://github.com/piefel (based on work from Marco Krage : https://github.com/sinky)
+ */ 
+(function () {
+    var language = {
+        delimiters: {
+            thousands: ' ',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+            return '.';
+        },
+        currency: {
+            symbol: 'CHF',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
+        }
+    };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
+        this.numeral.language('de-CH', language);
     }
 }());
 /*! 
@@ -303,58 +215,9 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('en-gb', language);
+        this.numeral.language('en-GB', language);
     }
 }());
-/*! 
- * numeral.js language configuration
- * language : spanish Spain
- * author : Hernan Garcia : https://github.com/hgarcia
- */
-(function () {
-    var language = {
-        delimiters: {
-            thousands: '.',
-            decimal: ','
-        },
-        abbreviations: {
-            thousand: 'k',
-            million: 'mm',
-            billion: 'b',
-            trillion: 't'
-        },
-        ordinal: function (number) {
-            var b = number % 10;
-            return (b === 1 || b === 3) ? 'er' :
-                (b === 2) ? 'do' :
-                    (b === 7 || b === 0) ? 'mo' :
-                        (b === 8) ? 'vo' :
-                            (b === 9) ? 'no' : 'to';
-        },
-        currency: {
-            symbol: '€',
-            position: 'postfix'
-        },
-        defaults: {
-            currencyFormat: ',0000 a'
-        },
-        formats: {
-            fourDigits: '0000 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00'
-        }
-    };
-
-    // Node
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
-    }
-    // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('es', language);
-    }
-}());
-
 /*! 
  * numeral.js language configuration
  * language : spanish
@@ -382,6 +245,55 @@
         },
         currency: {
             symbol: '$',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
+        }
+    };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
+        this.numeral.language('es-AR', language);
+    }
+}());
+
+/*! 
+ * numeral.js language configuration
+ * language : spanish Spain
+ * author : Hernan Garcia : https://github.com/hgarcia
+ */
+(function () {
+    var language = {
+        delimiters: {
+            thousands: '.',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'mm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+            var b = number % 10;
+            return (b === 1 || b === 3) ? 'er' :
+                (b === 2) ? 'do' :
+                    (b === 7 || b === 0) ? 'mo' :
+                        (b === 8) ? 'vo' :
+                            (b === 9) ? 'no' : 'to';
+        },
+        currency: {
+            symbol: '€',
             position: 'postfix'
         },
         defaults: {
@@ -447,7 +359,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('et', language);
+        this.numeral.language('et-EE', language);
     }
 }());
 
@@ -491,7 +403,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fi', language);
+        this.numeral.language('fi-FI', language);
     }
 }());
 
@@ -578,7 +490,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fr-ch', language);
+        this.numeral.language('fr-CH', language);
     }
 }());
 
@@ -622,7 +534,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fr', language);
+        this.numeral.language('fr-FR', language);
     }
 }());
 /*!
@@ -665,7 +577,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('hu', language);
+        this.numeral.language('hu-HU', language);
     }
 }());
 /*! 
@@ -708,7 +620,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('it', language);
+        this.numeral.language('it-IT', language);
     }
 }());
 /*! 
@@ -751,7 +663,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('ja', language);
+        this.numeral.language('ja-JP', language);
     }
 }());
 
@@ -794,10 +706,54 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('lv', language);
+        this.numeral.language('lv-LV', language);
     }
 }());
 
+/*! 
+ * numeral.js language configuration
+ * language : belgium-dutch (be-nl)
+ * author : Dieter Luypaert : https://github.com/moeriki
+ */
+(function () {
+    var language = {
+        delimiters: {
+            thousands: ' ',
+            decimal  : ','
+        },
+        abbreviations: {
+            thousand : 'k',
+            million  : ' mln',
+            billion  : ' mld',
+            trillion : ' bln'
+        },
+        ordinal : function (number) {
+            var remainder = number % 100;
+            return (number !== 0 && remainder <= 1 || remainder === 8 || remainder >= 20) ? 'ste' : 'de';
+        },
+        currency: {
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
+        }
+    };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
+        this.numeral.language('nl-BE', language);
+    }
+}());
 /*! 
  * numeral.js language configuration
  * language : netherlands-dutch (nl-nl)
@@ -839,7 +795,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('nl-nl', language);
+        this.numeral.language('nl-NL', language);
     }
 }());
 /*! 
@@ -882,7 +838,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pl', language);
+        this.numeral.language('pl-PL', language);
     }
 }());
 /*! 
@@ -925,7 +881,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pt-br', language);
+        this.numeral.language('pt-BR', language);
     }
 }());
 /*! 
@@ -968,7 +924,54 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pt-pt', language);
+        this.numeral.language('pt-PT', language);
+    }
+}());
+
+/*! 
+ * numeral.js language configuration
+ * language : russian (ru)
+ * author : Anatoli Papirovski : https://github.com/apapirovski
+ */
+(function () {
+    var language = {
+        delimiters: {
+            thousands: ' ',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 'тыс.',
+            million: 'млн',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function () {
+            // not ideal, but since in Russian it can taken on 
+            // different forms (masculine, feminine, neuter)
+            // this is all we can do
+            return '.'; 
+        },
+        currency: {
+            symbol: 'руб.',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
+        }
+    };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
+        this.numeral.language('ru-RU', language);
     }
 }());
 
@@ -1017,53 +1020,6 @@
     }
 }());
 
-/*! 
- * numeral.js language configuration
- * language : russian (ru)
- * author : Anatoli Papirovski : https://github.com/apapirovski
- */
-(function () {
-    var language = {
-        delimiters: {
-            thousands: ' ',
-            decimal: ','
-        },
-        abbreviations: {
-            thousand: 'тыс.',
-            million: 'млн',
-            billion: 'b',
-            trillion: 't'
-        },
-        ordinal: function () {
-            // not ideal, but since in Russian it can taken on 
-            // different forms (masculine, feminine, neuter)
-            // this is all we can do
-            return '.'; 
-        },
-        currency: {
-            symbol: 'руб.',
-            position: 'postfix'
-        },
-        defaults: {
-            currencyFormat: ',0000 a'
-        },
-        formats: {
-            fourDigits: '0000 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00'
-        }
-    };
-
-    // Node
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
-    }
-    // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('ru', language);
-    }
-}());
-
 /*!
  * numeral.js language configuration
  * language : slovak (sk)
@@ -1104,7 +1060,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('sk', language);
+        this.numeral.language('sk-SK', language);
     }
 }());
 
@@ -1188,7 +1144,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('th', language);
+        this.numeral.language('th-TH', language);
     }
 }());
 
@@ -1265,7 +1221,7 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('tr', language);
+        this.numeral.language('tr-TR', language);
     }
 }());
 
@@ -1311,5 +1267,49 @@
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
         this.numeral.language('uk-UA', language);
+    }
+}());
+
+/*! 
+ * numeral.js language configuration
+ * language : simplified chinese
+ * author : badplum : https://github.com/badplum
+ */
+(function () {
+    var language = {
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: '千',
+            million: '百万',
+            billion: '十亿',
+            trillion: '兆'
+        },
+        ordinal: function (number) {
+            return '.';
+        },
+        currency: {
+            symbol: '¥',
+            position: 'prefix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
+        }
+    };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
+        this.numeral.language('zh-CN', language);
     }
 }());

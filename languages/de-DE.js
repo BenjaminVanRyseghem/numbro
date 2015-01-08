@@ -1,7 +1,7 @@
 /*! 
  * numeral.js language configuration
- * language : russian (ru)
- * author : Anatoli Papirovski : https://github.com/apapirovski
+ * language : German (de) – generally useful in Germany, Austria, Luxembourg, Belgium
+ * author : Marco Krage : https://github.com/sinky
  */
 (function () {
     var language = {
@@ -10,19 +10,16 @@
             decimal: ','
         },
         abbreviations: {
-            thousand: 'тыс.',
-            million: 'млн',
+            thousand: 'k',
+            million: 'm',
             billion: 'b',
             trillion: 't'
         },
-        ordinal: function () {
-            // not ideal, but since in Russian it can taken on 
-            // different forms (masculine, feminine, neuter)
-            // this is all we can do
-            return '.'; 
+        ordinal: function (number) {
+            return '.';
         },
         currency: {
-            symbol: 'руб.',
+            symbol: '€',
             position: 'postfix'
         },
         defaults: {
@@ -41,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('ru', language);
+        this.numeral.language('de-DE', language);
     }
 }());

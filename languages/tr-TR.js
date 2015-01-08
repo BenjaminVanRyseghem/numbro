@@ -71,6 +71,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('tr', language);
+        this.numeral.language('tr-TR', language);
     }
 }());

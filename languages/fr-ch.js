@@ -38,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fr-ch', language);
+        this.numeral.language('fr-CH', language);
     }
 }());

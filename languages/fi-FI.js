@@ -1,7 +1,7 @@
-/*!
+/*! 
  * numeral.js language configuration
- * language : Latvian (lv)
- * author : Lauris Bukšis-Haberkorns : https://github.com/Lafriks
+ * language : Finnish
+ * author : Sami Saada : https://github.com/samitheberber
  */
 (function () {
     var language = {
@@ -10,10 +10,10 @@
             decimal: ','
         },
         abbreviations: {
-            thousand: ' tūkst.',
-            million: ' milj.',
-            billion: ' mljrd.',
-            trillion: ' trilj.'
+            thousand: 'k',
+            million: 'M',
+            billion: 'G',
+            trillion: 'T'
         },
         ordinal: function (number) {
             return '.';
@@ -31,12 +31,13 @@
             fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
+
     // Node
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('lv', language);
+        this.numeral.language('fi-FI', language);
     }
 }());

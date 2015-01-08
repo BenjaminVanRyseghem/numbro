@@ -1,7 +1,7 @@
-/*! 
+/*!
  * numeral.js language configuration
- * language : polish (pl)
- * author : Dominik Bulaj : https://github.com/dominikbulaj
+ * language : Hungarian (hu)
+ * author : Peter Bakondy : https://github.com/pbakondy
  */
 (function () {
     var language = {
@@ -10,16 +10,16 @@
             decimal: ','
         },
         abbreviations: {
-            thousand: 'tys.',
-            million: 'mln',
-            billion: 'mld',
-            trillion: 'bln'
+            thousand: 'E',  // ezer
+            million: 'M',   // millió
+            billion: 'Mrd', // milliárd
+            trillion: 'T'   // trillió
         },
         ordinal: function (number) {
             return '.';
         },
         currency: {
-            symbol: 'PLN',
+            symbol: ' Ft',
             position: 'postfix'
         },
         defaults: {
@@ -38,6 +38,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pl', language);
+        this.numeral.language('hu-HU', language);
     }
 }());

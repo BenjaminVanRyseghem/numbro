@@ -1,25 +1,30 @@
 /*! 
  * numeral.js language configuration
- * language : Finnish
- * author : Sami Saada : https://github.com/samitheberber
+ * language : spanish
+ * author : Hernan Garcia : https://github.com/hgarcia
  */
 (function () {
     var language = {
         delimiters: {
-            thousands: ' ',
+            thousands: '.',
             decimal: ','
         },
         abbreviations: {
             thousand: 'k',
-            million: 'M',
-            billion: 'G',
-            trillion: 'T'
+            million: 'mm',
+            billion: 'b',
+            trillion: 't'
         },
         ordinal: function (number) {
-            return '.';
+            var b = number % 10;
+            return (b === 1 || b === 3) ? 'er' :
+                (b === 2) ? 'do' :
+                (b === 7 || b === 0) ? 'mo' : 
+		(b === 8) ? 'vo' :
+		(b === 9) ? 'no' : 'to';
         },
         currency: {
-            symbol: '€',
+            symbol: '$',
             position: 'postfix'
         },
         defaults: {
@@ -38,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fi', language);
+        this.numeral.language('es-AR', language);
     }
 }());

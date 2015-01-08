@@ -1,30 +1,28 @@
 /*! 
  * numeral.js language configuration
- * language : spanish
- * author : Hernan Garcia : https://github.com/hgarcia
+ * language : russian (ru)
+ * author : Anatoli Papirovski : https://github.com/apapirovski
  */
 (function () {
     var language = {
         delimiters: {
-            thousands: '.',
+            thousands: ' ',
             decimal: ','
         },
         abbreviations: {
-            thousand: 'k',
-            million: 'mm',
+            thousand: 'тыс.',
+            million: 'млн',
             billion: 'b',
             trillion: 't'
         },
-        ordinal: function (number) {
-            var b = number % 10;
-            return (b === 1 || b === 3) ? 'er' :
-                (b === 2) ? 'do' :
-                (b === 7 || b === 0) ? 'mo' : 
-		(b === 8) ? 'vo' :
-		(b === 9) ? 'no' : 'to';
+        ordinal: function () {
+            // not ideal, but since in Russian it can taken on 
+            // different forms (masculine, feminine, neuter)
+            // this is all we can do
+            return '.'; 
         },
         currency: {
-            symbol: '$',
+            symbol: 'руб.',
             position: 'postfix'
         },
         defaults: {
@@ -43,6 +41,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('es', language);
+        this.numeral.language('ru-RU', language);
     }
 }());
