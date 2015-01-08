@@ -20,7 +20,16 @@
             return (number !== 0 && remainder <= 1 || remainder === 8 || remainder >= 20) ? 'ste' : 'de';
         },
         currency: {
-            symbol: '€ '
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -54,7 +63,16 @@
             return '.';
         },
         currency: {
-            symbol: '¥'
+            symbol: '¥',
+            position: 'prefix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -89,7 +107,16 @@
             return '.';
         },
         currency: {
-            symbol: 'Kč'
+            symbol: 'Kč',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -124,7 +151,16 @@
             return '.';
         },
         currency: {
-            symbol: 'DKK'
+            symbol: 'DKK',
+            postfix: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -158,7 +194,16 @@
             return '.';
         },
         currency: {
-            symbol: 'CHF'
+            symbol: 'CHF',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -192,7 +237,16 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -230,7 +284,16 @@
                 (b === 3) ? 'rd' : 'th';
         },
         currency: {
-            symbol: '£'
+            symbol: '£',
+            position: 'prefix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -269,7 +332,16 @@
                             (b === 9) ? 'no' : 'to';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -309,7 +381,16 @@
 		(b === 9) ? 'no' : 'to';
         },
         currency: {
-            symbol: '$'
+            symbol: '$',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -347,7 +428,16 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -382,7 +472,16 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -417,7 +516,16 @@
             return number === 1 ? 'er' : 'e';
         },
         currency: {
-            symbol: '$'
+            symbol: '$',
+            position: 'prefix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -451,7 +559,16 @@
             return number === 1 ? 'er' : 'e';
         },
         currency: {
-            symbol: 'CHF'
+            symbol: 'CHF',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -486,7 +603,16 @@
             return number === 1 ? 'er' : 'e';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -520,7 +646,16 @@
             return '.';
         },
         currency: {
-            symbol: ' Ft'
+            symbol: ' Ft',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -554,7 +689,16 @@
             return 'º';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -588,7 +732,16 @@
             return '.';
         },
         currency: {
-            symbol: '¥'
+            symbol: '¥',
+            position: 'prefix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -623,7 +776,16 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
     // Node
@@ -658,7 +820,16 @@
             return (number !== 0 && remainder <= 1 || remainder === 8 || remainder >= 20) ? 'ste' : 'de';
         },
         currency: {
-            symbol: '€ '
+            symbol: '€ ',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -692,7 +863,16 @@
             return '.';
         },
         currency: {
-            symbol: 'PLN'
+            symbol: 'PLN',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -726,7 +906,16 @@
             return 'º';
         },
         currency: {
-            symbol: 'R$'
+            symbol: 'R$',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -760,7 +949,16 @@
             return 'º';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -796,7 +994,16 @@
             return '.'; 
         },
         currency: {
-            symbol: '\u20B4'
+            symbol: '\u20B4',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -834,7 +1041,16 @@
             return '.'; 
         },
         currency: {
-            symbol: 'руб.'
+            symbol: 'руб.',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -869,7 +1085,16 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -883,6 +1108,46 @@
     }
 }());
 
+/*!
+ * numeral.js language configuration
+ * language : swedish - Sweden
+ * author : Benjamin Van Ryseghem (benjamin.vanryseghem.com)
+ */
+(function() {
+	var language = {
+		delimiters: {
+			thousands: ' ',
+			decimal: ','
+		},
+		abbreviations: {
+			thousand: 't',
+			million: 'M',
+			billion: 'md',
+			trillion: 't'
+		},
+		currency: {
+			symbol: 'kr',
+			position: 'postfix'
+		},
+		defaults: {
+			currencyFormat: ',0000 a'
+		},
+		formats: {
+			fourDigits: '0000 a',
+			fullWithTwoDecimals: ',0.00 $',
+			fullWithTwoDecimalsNoCurrency: ',0.00'
+		}
+	};
+
+	// Node
+	if (typeof module !== 'undefined' && module.exports) {
+		module.exports = language;
+	}
+	// Browser
+	if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
+		this.numeral.language('sv-SE', language);
+	}
+}());
 /*! 
  * numeral.js language configuration
  * language : thai (th)
@@ -904,7 +1169,16 @@
             return '.';
         },
         currency: {
-            symbol: '฿'
+            symbol: '฿',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
@@ -972,7 +1246,16 @@
               return suffixes[a] || suffixes[b] || suffixes[c];
             },
             currency: {
-                symbol: '\u20BA'
+                symbol: '\u20BA',
+                position: 'postfix'
+            },
+            defaults: {
+                currencyFormat: ',0000 a'
+            },
+            formats: {
+                fourDigits: '0000 a',
+                fullWithTwoDecimals: ',0.00 $',
+                fullWithTwoDecimalsNoCurrency: ',0.00'
             }
         };
 
@@ -1008,7 +1291,16 @@
             return ''; 
         },
         currency: {
-            symbol: '\u20B4'
+            symbol: '\u20B4',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
         }
     };
 
