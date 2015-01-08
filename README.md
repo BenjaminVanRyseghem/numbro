@@ -40,7 +40,7 @@ When naming language files use the [ISO 639-1 language codes](http://en.wikipedi
 
 ### Language translations will not be merged without unit tests.
 
-See [the english unit tests](https://github.com/adamwdraper/Numeral-js/blob/master/tests/languages/en-GB2.js) for an example.
+See [the english unit tests](https://github.com/adamwdraper/Numeral-js/blob/master/tests/languages/en-GB.js) for an example.
 
 
 # Changelog
@@ -93,7 +93,7 @@ Bug fix: Fix typo for trillion
 
 ### 1.4.6
 
-Bug fix: remove ' from unformatting regex that was causing an error with fr-CH2.js
+Bug fix: remove ' from unformatting regex that was causing an error with fr-CH.js
 
 ### 1.4.5
 
