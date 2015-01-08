@@ -1,5 +1,5 @@
 var numeral = require('../../numeral'),
-    language = require('../../languages/nl-NL');
+    language = require('../../languages/nl-NL2');
 
 numeral.language('nl-nl', language);
 
