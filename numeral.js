@@ -540,6 +540,17 @@
         return numeral;
     };
 
+	// This function allow the user to set a new language with a fallback if
+	// the language does not exist. If no fallback language is provided,
+	// it fallbacks to english.
+	numeral.setLanguage = function(newLanguage, fallbackLanguage) {
+		var key = newLanguage;
+		if (!languages[key]) {
+			key = fallbackLanguage || 'en';
+		}
+		numeral.language(key);
+	};
+
     // This function provides access to the loaded language data.  If
     // no arguments are passed in, it will simply return the current
     // global language object.
