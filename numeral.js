@@ -544,9 +544,16 @@
 	// the language does not exist. If no fallback language is provided,
 	// it fallbacks to english.
 	numeral.setLanguage = function(newLanguage, fallbackLanguage) {
-		var key = newLanguage;
+		var key = newLanguage,
+			prefix = newLanguage.split('-')[0],
+			matchingLanguage = null;
 		if (!languages[key]) {
-			key = fallbackLanguage || 'en';
+			languages.forEach(function(language) {
+				if (language.split('-')[0] === prefix){
+					matchingLanguage = language;
+				}
+			});
+			key = matchingLanguage || fallbackLanguage || 'en';
 		}
 		numeral.language(key);
 	};
