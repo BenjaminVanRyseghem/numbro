@@ -549,7 +549,7 @@
 			matchingLanguage = null;
 		if (!languages[key]) {
 			Object.keys(languages).forEach(function(language) {
-				if (language.split('-')[0] === prefix){
+				if (!matchingLanguage && language.split('-')[0] === prefix){
 					matchingLanguage = language;
 				}
 			});
