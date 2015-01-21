@@ -548,7 +548,7 @@
 			prefix = newLanguage.split('-')[0],
 			matchingLanguage = null;
 		if (!languages[key]) {
-			languages.forEach(function(language) {
+			Object.keys(languages).forEach(function(language) {
 				if (language.split('-')[0] === prefix){
 					matchingLanguage = language;
 				}
