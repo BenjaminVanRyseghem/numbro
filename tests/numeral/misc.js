@@ -100,7 +100,7 @@ exports.misc = {
             newCurrencyVal = cNew + '100';
         
         test.strictEqual(numeral.languageData().currency.symbol, cOld, 'Current language currency is ' + cOld);
-        test.strictEqual(numeral.languageData('en').currency.symbol, cOld, 'English language currency is ' + cOld);
+        test.strictEqual(numeral.languageData('en-US').currency.symbol, cOld, 'English language currency is ' + cOld);
         
         numeral.languageData().currency.symbol = cNew;
         test.strictEqual(numeral.languageData().currency.symbol, cNew, 'Current language currency is changed to ' + cNew);
@@ -110,11 +110,11 @@ exports.misc = {
         test.strictEqual(numeral.languageData().currency.symbol, '$', 'Current language currency is reset to ' + cOld);
         test.strictEqual(formatTestVal(), oldCurrencyVal, 'Format uses old currency');
         
-        numeral.languageData('en').currency.symbol = cNew;
+        numeral.languageData('en-US').currency.symbol = cNew;
         test.strictEqual(numeral.languageData().currency.symbol, cNew, 'English language currency is changed to ' + cNew);
         test.strictEqual(formatTestVal(), newCurrencyVal, 'Format uses new currency');
         
-        numeral.languageData('en').currency.symbol = cOld;
+        numeral.languageData('en-US').currency.symbol = cOld;
         test.strictEqual(numeral.languageData().currency.symbol, cOld, 'English language currency is reset to ' + cOld);
         test.strictEqual(formatTestVal(), oldCurrencyVal, 'Format uses old currency');
         

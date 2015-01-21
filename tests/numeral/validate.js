@@ -1,5 +1,5 @@
 var numeral = require('../../numeral'),
-	language = 'en';
+	language = 'en-US';
 
 //All the tests are for en or en-US
 exports.validate = {

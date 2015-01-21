@@ -553,7 +553,7 @@
 					matchingLanguage = language;
 				}
 			});
-			key = matchingLanguage || fallbackLanguage || 'en';
+			key = matchingLanguage || fallbackLanguage || 'en-US';
 		}
 		numeral.language(key);
 	};
@@ -573,7 +573,7 @@
         return languages[key];
     };
 
-    numeral.language('en', {
+    numeral.language('en-US', {
         delimiters: {
             thousands: ',',
             decimal: '.'

@@ -10,7 +10,7 @@ exports['language:chs'] = {
     },
 
     tearDown: function (callback) {
-        numeral.language('en');
+        numeral.language('en-US');
         callback();
     },
 

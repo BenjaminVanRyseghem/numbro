@@ -10,7 +10,7 @@ exports['language:pt-br'] = {
     },
 
     tearDown: function (callback) {
-        numeral.language('en');
+        numeral.language('en-US');
         callback();
     },
 
