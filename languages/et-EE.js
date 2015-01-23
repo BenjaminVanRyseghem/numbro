@@ -31,7 +31,8 @@
         formats: {
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00'
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+			fullWithNoDecimals: ',0 $'
         }
     };
 
