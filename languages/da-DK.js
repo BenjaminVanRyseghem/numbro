@@ -20,7 +20,7 @@
         },
         currency: {
             symbol: 'DKK',
-            postfix: 'postfix'
+			position: 'postfix'
         },
         defaults: {
             currencyFormat: ',0000 a'
