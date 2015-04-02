@@ -16,7 +16,7 @@
         VERSION = '1.5.3',
         // internal storage for language config files
         languages = {},
-        currentLanguage = 'en',
+        currentLanguage = 'en-US',
         zeroFormat = null,
         defaultFormat = '0,0',
         defaultCurrencyFormat = '0$',
