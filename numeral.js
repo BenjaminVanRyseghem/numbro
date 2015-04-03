@@ -309,6 +309,8 @@
         // check if number is zero and a custom zero format has been set
         if (value === 0 && zeroFormat !== null) {
             return zeroFormat;
+        } else if (!isFinite(value)) {
+            return '' + value;
         } else {
             // see if we should use parentheses for negative number or if we should prefix with a sign
             // if both are present we default to parentheses

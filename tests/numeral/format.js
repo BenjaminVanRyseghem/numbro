@@ -24,7 +24,7 @@ exports.format = {
             i;
 
         test.expect(test.length);
-        
+
         for (i = 0; i < tests.length; i++) {
             format = n.format(test[i]);
             test.strictEqual(n.value(), value, 'value unchanged after format' + test[i]);
@@ -97,7 +97,12 @@ exports.format = {
 				[188235.85, '000000 a', '188236 '],
 				[1882357.85, '000000 a', '1882.36 k'],
 				[18823578.85, '000000 a', '18823.6 k'],
-				[188235773.85, '000000 a', '188236 k']
+				[188235773.85, '000000 a', '188236 k'],
+
+        // Non-finite numbers
+        [Infinity, '0.0', 'Infinity'],
+        [-Infinity, '0.0', '-Infinity'],
+        [NaN, '0.0', 'NaN']
 
 			],
             i;
@@ -467,7 +472,7 @@ exports.format = {
 
         test.done();
     },
-    
+
     rounding: function (test) {
       var tests = [
             // value, format string, expected w/ floor, expected w/ ceil
@@ -478,19 +483,19 @@ exports.format = {
             [-0.433,'0 %','-44 %', '-43 %']
         ],
         i;
-      
+
       test.expect(tests.length * 2);
-      
+
       for (i = 0; i < tests.length; i++) {
           // floor
           test.strictEqual(numeral(tests[i][0]).format(tests[i][1], Math.floor), tests[i][2], tests[i][1] + ", floor");
-          
+
           // ceil
-          test.strictEqual(numeral(tests[i][0]).format(tests[i][1], Math.ceil), tests[i][3], tests[i][1] + ", ceil"); 
-         
+          test.strictEqual(numeral(tests[i][0]).format(tests[i][1], Math.ceil), tests[i][3], tests[i][1] + ", ceil");
+
       }
-      
+
       test.done();
-      
+
     }
 };
