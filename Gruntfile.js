@@ -1,77 +1,91 @@
+var fs = require('fs');
+
 module.exports = function(grunt) {
 
-    // Project configuration.
-    grunt.initConfig({
-        pkg: grunt.file.readJSON('package.json'),
-        sass: {
-            dev: {
-                files: {
-                    'css/dev/style.css': 'scss/style.scss'
-                }
-            },
-            build: {
-                options: {
-                    style: 'compressed'
-                },
-                files: {
-                    'css/build/style.css': 'scss/style.scss'
-                }
-            }
-        },
-        watch: {
-            files: 'scss/**/*',
-            tasks: [
-                'sass:dev'
+    var minifiedFiles = {
+            'min/numeral.min.js' : [
+                'numeral.js'
+            ],
+            'min/languages.min.js': [
+                'languages.js'
             ]
+        };
+
+    // all the lang files need to be added manually
+    fs.readdirSync('./languages').forEach(function (path) {
+        var file = path.slice(0, -3),
+            destination = 'min/languages/' + file + '.min.js',
+            src = ['languages/' + path];
+
+        minifiedFiles[destination] = src;
+    });
+
+    grunt.initConfig({
+        nodeunit : {
+            all : ['tests/**/*.js']
         },
         uglify: {
-            build: {
-                files: {
-                    'js/min/site.min.js': [
-                        'js/respond.js',
-                        'js/numeral.js',
-                        'js/languages.js',
-                        'js/site.js'
-                    ]
-                }
+            my_target: {
+                files: minifiedFiles
+            },
+            options: {
+                preserveComments: 'some'
+            }
+        },
+        concat: {
+            languages: {
+                src: [
+                    'languages/**/*.js'
+                ],
+                dest: 'languages.js'
             }
         },
         jshint: {
             all: [
-                'js/site.js'
+                'Gruntfile.js',
+                'numeral.js',
+                'languages/**/*.js'
             ],
             options: {
-                node: true,
-                browser: true,
-                curly: true,
-                devel: false,
-                eqeqeq: true,
-                eqnull: true,
-                newcap: true,
-                noarg: true,
-                sub: true,
-                globals: {
-                    define: false,
-                    requirejs: false
-                },
-                strict: false
+                'node': true,
+                'browser': true,
+                'curly': true,
+                'devel': false,
+                'eqeqeq': true,
+                'eqnull': true,
+                'newcap': true,
+                'noarg': true,
+                'onevar': true,
+                'undef': true,
+                'sub': true,
+                'strict': false,
+                'quotmark': 'single'
             }
         }
     });
 
-    grunt.loadNpmTasks('grunt-contrib-sass');
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-nodeunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     grunt.registerTask('default', [
-        'sass:dev',
-        'watch'
+        'test'
     ]);
 
-    grunt.registerTask('build', [
-        'sass:build',
+    grunt.registerTask('test', [
         'jshint',
-        'uglify:build'
+        'nodeunit'
     ]);
+
+    // P
+    grunt.registerTask('build', [
+        'jshint',
+        'nodeunit',
+        'concat',
+        'uglify'
+    ]);
+
+    // Travis CI task.
+    grunt.registerTask('travis', ['test']);
 };
