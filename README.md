@@ -54,5 +54,3 @@ Copyright © 2015 Företagsplatsen AB
 Distributed under the MIT license. If you want to know more, see the `LICENSE` file.
 
 The original license file for `Numeral.js` can be found in `LICENSE-Numeraljs`
-
-`numbro` is distributed under the MIT license.
