@@ -44,7 +44,7 @@
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : danish denmark (dk)
  * author : Michael Storgaard : https://github.com/mstorgaard
  */
@@ -83,12 +83,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('da-DK', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('da-DK', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : German (de) – generally useful in Germany, Austria, Luxembourg, Belgium
  * author : Marco Krage : https://github.com/sinky
  */
@@ -127,12 +127,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('de-DE', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('de-DE', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : German in Switzerland (de-ch)
  * author : Michael Piefel : https://github.com/piefel (based on work from Marco Krage : https://github.com/sinky)
  */ 
@@ -171,12 +171,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('de-CH', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('de-CH', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : english united kingdom (uk)
  * author : Dan Ristic : https://github.com/dristic
  */
@@ -219,12 +219,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('en-GB', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('en-GB', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : spanish
  * author : Hernan Garcia : https://github.com/hgarcia
  */
@@ -268,13 +268,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('es-AR', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('es-AR', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : spanish Spain
  * author : Hernan Garcia : https://github.com/hgarcia
  */
@@ -318,13 +318,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('es', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('es', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : Estonian
  * author : Illimar Tambek : https://github.com/ragulka
  *
@@ -366,13 +366,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('et-EE', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('et-EE', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : Finnish
  * author : Sami Saada : https://github.com/samitheberber
  */
@@ -411,13 +411,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fi-FI', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fi-FI', language);
     }
 }());
 
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : french (Canada) (fr-CA)
  * author : Léo Renaud-Allaire : https://github.com/renaudleo
  */
@@ -456,12 +456,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fr-CA', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fr-CA', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : french (fr-ch)
  * author : Adam Draper : https://github.com/adamwdraper
  */
@@ -500,13 +500,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fr-CH', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fr-CH', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : french (fr)
  * author : Adam Draper : https://github.com/adamwdraper
  */
@@ -545,12 +545,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fr-FR', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fr-FR', language);
     }
 }());
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : Hungarian (hu)
  * author : Peter Bakondy : https://github.com/pbakondy
  */
@@ -589,12 +589,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('hu-HU', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('hu-HU', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : italian Italy (it)
  * author : Giacomo Trombi : http://cinquepunti.it
  */
@@ -633,12 +633,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('it-IT', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('it-IT', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : japanese
  * author : teppeis : https://github.com/teppeis
  */
@@ -677,13 +677,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('ja-JP', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('ja-JP', language);
     }
 }());
 
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : Latvian (lv)
  * author : Lauris Bukšis-Haberkorns : https://github.com/Lafriks
  */
@@ -721,13 +721,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('lv-LV', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('lv-LV', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : norwegian
  * author : Benjamin Van Ryseghem
  */
@@ -763,12 +763,12 @@
 		module.exports = language;
 	}
 	// Browser
-	if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-		this.numeral.language('nb-NO', language);
+	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+		this.numbro.language('nb-NO', language);
 	}
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : belgium-dutch (be-nl)
  * author : Dieter Luypaert : https://github.com/moeriki
  */
@@ -808,12 +808,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('nl-BE', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('nl-BE', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : netherlands-dutch (nl-nl)
  * author : Dave Clayton : https://github.com/davedx
  */
@@ -853,12 +853,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('nl-NL', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('nl-NL', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : polish (pl)
  * author : Dominik Bulaj : https://github.com/dominikbulaj
  */
@@ -897,12 +897,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pl-PL', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('pl-PL', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : portuguese brazil (pt-br)
  * author : Ramiro Varandas Jr : https://github.com/ramirovjr
  */
@@ -941,12 +941,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pt-BR', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('pt-BR', language);
     }
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : portuguese (pt-pt)
  * author : Diogo Resende : https://github.com/dresende
  */
@@ -985,13 +985,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('pt-PT', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('pt-PT', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : russian (ru)
  * author : Anatoli Papirovski : https://github.com/apapirovski
  */
@@ -1033,12 +1033,12 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('ru-RU', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('ru-RU', language);
     }
 }());
 
-// numeral.js language configuration
+// numbro.js language configuration
 // language : Russian for the Ukraine (ru-UA)
 // author : Anatoli Papirovski : https://github.com/apapirovski
 (function () {
@@ -1079,13 +1079,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('ru-UA', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('ru-UA', language);
     }
 }());
 
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : slovak (sk)
  * author : Ahmed Al Hafoudh : http://www.freevision.sk
  */
@@ -1124,13 +1124,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('sk-SK', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('sk-SK', language);
     }
 }());
 
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : swedish - Sweden
  * author : Benjamin Van Ryseghem (benjamin.vanryseghem.com)
  */
@@ -1166,12 +1166,12 @@
 		module.exports = language;
 	}
 	// Browser
-	if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-		this.numeral.language('sv-SE', language);
+	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+		this.numbro.language('sv-SE', language);
 	}
 }());
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : thai (th)
  * author : Sathit Jittanupat : https://github.com/jojosati
  */
@@ -1210,13 +1210,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('th-TH', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('th-TH', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : turkish (tr)
  * author : Ecmel Ercan : https://github.com/ecmel, Erhan Gundogan : https://github.com/erhangundogan, Burak Yiğit Kaya: https://github.com/BYK
  */
@@ -1288,12 +1288,12 @@
 		module.exports = language;
 	}
 	// Browser
-	if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-		this.numeral.language('tr-TR', language);
+	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+		this.numbro.language('tr-TR', language);
 	}
 }());
 
-// numeral.js language configuration
+// numbro.js language configuration
 // language : Ukrainian for the Ukraine (uk-UA)
 // author : Michael Piefel : https://github.com/piefel (with help from Tetyana Kuzmenko)
 (function () {
@@ -1334,13 +1334,13 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('uk-UA', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('uk-UA', language);
     }
 }());
 
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : simplified chinese
  * author : badplum : https://github.com/badplum
  */
@@ -1379,7 +1379,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('zh-CN', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('zh-CN', language);
     }
 }());
