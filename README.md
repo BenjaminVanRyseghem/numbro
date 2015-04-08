@@ -1,4 +1,4 @@
-# [numbro](https://numbro-js.com/)
+# [numbro](https://numbrojs.com/)
 
 A javascript library for formatting and manipulating numbers.
 
