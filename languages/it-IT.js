@@ -1,5 +1,5 @@
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : italian Italy (it)
  * author : Giacomo Trombi : http://cinquepunti.it
  */
@@ -38,7 +38,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('it-IT', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('it-IT', language);
     }
 }());

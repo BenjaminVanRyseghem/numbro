@@ -3,8 +3,8 @@ var fs = require('fs');
 module.exports = function(grunt) {
 
     var minifiedFiles = {
-            'min/numeral.min.js' : [
-                'numeral.js'
+            'min/numbro.min.js' : [
+                'numbro.js'
             ],
             'min/languages.min.js': [
                 'languages.js'
@@ -43,7 +43,7 @@ module.exports = function(grunt) {
         jshint: {
             all: [
                 'Gruntfile.js',
-                'numeral.js',
+                'numbro.js',
                 'languages/**/*.js'
             ],
             options: {
