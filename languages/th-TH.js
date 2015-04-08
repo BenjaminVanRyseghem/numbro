@@ -1,5 +1,5 @@
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : thai (th)
  * author : Sathit Jittanupat : https://github.com/jojosati
  */
@@ -38,7 +38,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('th-TH', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('th-TH', language);
     }
 }());

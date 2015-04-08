@@ -1,5 +1,5 @@
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : German (de) – generally useful in Germany, Austria, Luxembourg, Belgium
  * author : Marco Krage : https://github.com/sinky
  */
@@ -38,7 +38,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('de-DE', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('de-DE', language);
     }
 }());

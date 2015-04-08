@@ -1,4 +1,4 @@
-// numeral.js language configuration
+// numbro.js language configuration
 // language : Ukrainian for the Ukraine (uk-UA)
 // author : Michael Piefel : https://github.com/piefel (with help from Tetyana Kuzmenko)
 (function () {
@@ -39,7 +39,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('uk-UA', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('uk-UA', language);
     }
 }());

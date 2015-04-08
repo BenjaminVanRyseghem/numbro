@@ -1,5 +1,5 @@
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : Finnish
  * author : Sami Saada : https://github.com/samitheberber
  */
@@ -38,7 +38,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fi-FI', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fi-FI', language);
     }
 }());

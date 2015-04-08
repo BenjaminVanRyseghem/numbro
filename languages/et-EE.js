@@ -1,5 +1,5 @@
 /*! 
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : Estonian
  * author : Illimar Tambek : https://github.com/ragulka
  *
@@ -41,7 +41,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('et-EE', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('et-EE', language);
     }
 }());
