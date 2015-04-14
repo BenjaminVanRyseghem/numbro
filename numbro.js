@@ -1,9 +1,9 @@
 /*!
- * numeral.js
- * version : 1.5.3
- * author : Adam Draper
+ * numbro.js
+ * version : 1.0.0
+ * author : Företagsplatsen AB
  * license : MIT
- * http://adamwdraper.github.com/Numeral-js/
+ * http://www.foretagsplatsen.se
  */
 
 (function() {
@@ -12,8 +12,8 @@
         Constants
     ************************************/
 
-    var numeral,
-        VERSION = '1.5.3',
+    var numbro,
+        VERSION = '1.0.4',
         // internal storage for language config files
         languages = {},
         currentLanguage = 'en-US',
@@ -29,8 +29,8 @@
     ************************************/
 
 
-    // Numeral prototype object
-    function Numeral(number) {
+    // Numbro prototype object
+    function Numbro(number) {
         this._value = number;
     }
 
@@ -62,7 +62,7 @@
     ************************************/
 
     // determine what type of formatting we need to do
-    function formatNumeral(n, format, roundingFunction) {
+    function formatNumbro(n, format, roundingFunction) {
         var output;
 
         // figure out what kind of format we are dealing with
@@ -81,7 +81,7 @@
     }
 
     // revert to number
-    function unformatNumeral(n, string) {
+    function unformatNumbro(n, string) {
         var stringOriginal = string,
             thousandRegExp,
             millionRegExp,
@@ -493,30 +493,30 @@
         Top Level Functions
     ************************************/
 
-    numeral = function(input) {
-        if (numeral.isNumeral(input)) {
+    numbro = function(input) {
+        if (numbro.isNumbro(input)) {
             input = input.value();
         } else if (input === 0 || typeof input === 'undefined') {
             input = 0;
         } else if (!Number(input)) {
-            input = numeral.fn.unformat(input);
+            input = numbro.fn.unformat(input);
         }
 
-        return new Numeral(Number(input));
+        return new Numbro(Number(input));
     };
 
     // version number
-    numeral.version = VERSION;
+    numbro.version = VERSION;
 
-    // compare numeral object
-    numeral.isNumeral = function(obj) {
-        return obj instanceof Numeral;
+    // compare numbro object
+    numbro.isNumbro = function(obj) {
+        return obj instanceof Numbro;
     };
 
     // This function will load languages and then set the global language.  If
     // no arguments are passed in, it will simply return the current global
     // language key.
-    numeral.language = function(key, values) {
+    numbro.language = function(key, values) {
         if (!key) {
             return currentLanguage;
         }
@@ -528,10 +528,10 @@
             currentLanguage = key;
             var defaults = languages[key].defaults;
             if(defaults && defaults.format){
-                numeral.defaultFormat(defaults.format);
+                numbro.defaultFormat(defaults.format);
             }
             if(defaults && defaults.currencyFormat){
-                numeral.defaultCurrencyFormat(defaults.currencyFormat);
+                numbro.defaultCurrencyFormat(defaults.currencyFormat);
             }
         }
 
@@ -539,13 +539,13 @@
             loadLanguage(key, values);
         }
 
-        return numeral;
+        return numbro;
     };
 
 	// This function allow the user to set a new language with a fallback if
 	// the language does not exist. If no fallback language is provided,
 	// it fallbacks to english.
-	numeral.setLanguage = function(newLanguage, fallbackLanguage) {
+	numbro.setLanguage = function(newLanguage, fallbackLanguage) {
 		var key = newLanguage,
 			prefix = newLanguage.split('-')[0],
 			matchingLanguage = null;
@@ -557,13 +557,13 @@
 			});
 			key = matchingLanguage || fallbackLanguage || 'en-US';
 		}
-		numeral.language(key);
+		numbro.language(key);
 	};
 
     // This function provides access to the loaded language data.  If
     // no arguments are passed in, it will simply return the current
     // global language object.
-    numeral.languageData = function(key) {
+    numbro.languageData = function(key) {
         if (!key) {
             return languages[currentLanguage];
         }
@@ -575,7 +575,7 @@
         return languages[key];
     };
 
-    numeral.language('en-US', {
+    numbro.language('en-US', {
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -607,19 +607,19 @@
 		}
     });
 
-    numeral.zeroFormat = function(format) {
+    numbro.zeroFormat = function(format) {
         zeroFormat = typeof(format) === 'string' ? format : null;
     };
 
-    numeral.defaultFormat = function(format) {
+    numbro.defaultFormat = function(format) {
         defaultFormat = typeof(format) === 'string' ? format : '0.0';
     };
 
-    numeral.defaultCurrencyFormat = function (format) {
+    numbro.defaultCurrencyFormat = function (format) {
         defaultCurrencyFormat = typeof(format) === 'string' ? format : '0$';
     };
 
-    numeral.validate = function(val, culture) {
+    numbro.validate = function(val, culture) {
 
         var _decimalSep,
             _thousandSep,
@@ -634,7 +634,7 @@
         if (typeof val !== 'string') {
             val += '';
             if (console.warn) {
-                console.warn('Numeral.js: Value is not string. It has been co-erced to: ', val);
+                console.warn('Numbro.js: Value is not string. It has been co-erced to: ', val);
             }
         }
 
@@ -651,12 +651,12 @@
             return false;
         }
 
-        //get the decimal and thousands separator from numeral.languageData
+        //get the decimal and thousands separator from numbro.languageData
         try {
-            //check if the culture is understood by numeral. if not, default it to current language
-            languageData = numeral.languageData(culture);
+            //check if the culture is understood by numbro. if not, default it to current language
+            languageData = numbro.languageData(culture);
         } catch (e) {
-            languageData = numeral.languageData(numeral.language());
+            languageData = numbro.languageData(numbro.language());
         }
 
         //setup the delimiters and currency symbol based on culture/language
@@ -802,18 +802,18 @@
 
 
     /************************************
-        Numeral Prototype
+        Numbro Prototype
     ************************************/
 
 
-    numeral.fn = Numeral.prototype = {
+    numbro.fn = Numbro.prototype = {
 
         clone: function() {
-            return numeral(this);
+            return numbro(this);
         },
 
         format: function(inputString, roundingFunction) {
-            return formatNumeral(this,
+            return formatNumbro(this,
                 inputString ? inputString : defaultFormat, (roundingFunction !== undefined) ? roundingFunction : Math.round
             );
         },
@@ -829,7 +829,7 @@
             if (Object.prototype.toString.call(inputString) === '[object Number]') {
                 return inputString;
             }
-            return unformatNumeral(this, inputString ? inputString : defaultFormat);
+            return unformatNumbro(this, inputString ? inputString : defaultFormat);
         },
 
         value: function() {
@@ -885,32 +885,32 @@
         },
 
         difference: function(value) {
-            return Math.abs(numeral(this._value).subtract(value).value());
+            return Math.abs(numbro(this._value).subtract(value).value());
         }
 
     };
 
     /************************************
-        Exposing Numeral
+        Exposing Numbro
     ************************************/
 
     // CommonJS module is defined
     if (hasModule) {
-        module.exports = numeral;
+        module.exports = numbro;
     }
 
     /*global ender:false */
     if (typeof ender === 'undefined') {
         // here, `this` means `window` in the browser, or `global` on the server
-        // add `numeral` as a global object via a string identifier,
+        // add `numbro` as a global object via a string identifier,
         // for Closure Compiler 'advanced' mode
-        this['numeral'] = numeral;
+        this['numbro'] = numbro;
     }
 
     /*global define:false */
     if (typeof define === 'function' && define.amd) {
         define([], function() {
-            return numeral;
+            return numbro;
         });
     }
 }).call(this);

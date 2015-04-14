@@ -1,16 +1,16 @@
-var numeral = require('../../numeral'),
+var numbro = require('../../numbro'),
     language = require('../../languages/fi-FI');
 
-numeral.language('fi', language);
+numbro.language('fi', language);
 
 exports['language:fi'] = {
     setUp: function (callback) {
-        numeral.language('fi');
+        numbro.language('fi');
         callback();
     },
 
     tearDown: function (callback) {
-        numeral.language('en-US');
+        numbro.language('en-US');
         callback();
     },
 
@@ -37,7 +37,7 @@ exports['language:fi'] = {
         ];
 
         for (var i = 0; i < tests.length; i++) {
-            test.strictEqual(numeral(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
+            test.strictEqual(numbro(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
         }
 
         test.done();
@@ -54,7 +54,7 @@ exports['language:fi'] = {
         ];
 
         for (var i = 0; i < tests.length; i++) {
-            test.strictEqual(numeral(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
+            test.strictEqual(numbro(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
         }
 
         test.done();
@@ -71,7 +71,7 @@ exports['language:fi'] = {
         ];
 
         for (var i = 0; i < tests.length; i++) {
-            test.strictEqual(numeral(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
+            test.strictEqual(numbro(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
         }
 
         test.done();
@@ -93,7 +93,7 @@ exports['language:fi'] = {
         ];
 
         for (var i = 0; i < tests.length; i++) {
-            test.strictEqual(numeral().unformat(tests[i][0]), tests[i][1], tests[i][0]);
+            test.strictEqual(numbro().unformat(tests[i][0]), tests[i][1], tests[i][0]);
         }
 
         test.done();

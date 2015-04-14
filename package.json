@@ -1,31 +1,32 @@
 {
-  "name": "numeral",
-  "version": "1.5.3",
+  "name": "numbro",
+  "version": "1.0.4",
   "description": "Format and manipulate numbers.",
-  "homepage": "http://numeraljs.com",
+  "homepage": "http://numbro-js.com",
   "author": {
-    "name": "Adam Draper",
-    "email": "adamwdraper@gmail.com",
-    "url": "http://github.com/adamwdraper"
+    "name": "Företagsplatsen AB",
+    "email": "contact@foretagsplatsen.se",
+    "url": "http://www.foretagsplatsen.se"
   },
   "keywords": [
     "numeral",
+    "numbro",
     "number",
     "format",
     "time",
     "money",
     "percentage"
   ],
-  "main": "./numeral.js",
+  "main": "./numbro.js",
   "engines": {
     "node": "*"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/adamwdraper/Numeral-js"
+    "url": "https://github.com/foretagsplatsen/numbro"
   },
   "bugs": {
-    "url": "https://github.com/adamwdraper/Numeral-js/issues"
+    "url": "https://github.com/foretagsplatsen/numbro/issues"
   },
   "licenses": [
     {
@@ -44,7 +45,7 @@
     "test": "grunt"
   },
   "ender": "./ender.js",
-  "readme": "[Numeral.js](http://numeraljs.com)\n=======================================================\n\nA javascript library for formatting and manipulating numbers.\n\n[Website and documentation](http://numeraljs.com)\n\nChangelog\n=========\n\n### 1.5.2\nBug fix: Unformat should pass through if given a number\n\nAdded a mechanism to control rounding behaviour\n\nAdded languageData() for getting and setting language props at runtime### 1.5.1\nBug fix: Make sure values aren't changed during formatting### 1.5.0\nAdd defaultFormat(). numeral().format() uses the default to format if no string is provided\n\n.unformat() returns 0 when passed no string\n\nAdded languages.js that contains all languages\n\nBug fix: Fix bug while unformatting ordinals\n\nAdd format option to always show signed value\n\nAdded ability to instantiate numeral with a string value of a number\n### 1.4.9\nBug fix: Fix bug while unformatting ordinals\n### 1.4.8\nBug fix: Throw error if language is not defined\n### 1.4.7\nBug fix: Fix typo for trillion\n### 1.4.6\nBug fix: remove ' from unformatting regex that was causing an error with fr-ch.js\n### 1.4.5\nAdd zeroFormat() function that accepts a string for custom formating of zeros\n\nAdd valueOf() function\n\nChain functionality to language function\n\nMake all minified files have the same .min.js filename ending\n### 1.4.1\nBug fix: Bytes not formatting correctly\n### 1.4.0\nAdd optional format for all decimals\n### 1.3.4\nRemove AMD module id. (This is encouraged by require.js to make the module more portable, and keep it from creating a global)\n### 1.3.3\nAMD define() compatibility.\n### 1.3.2\nBug fix: Formatting some numbers results in the wrong value. Issue #21\n### 1.3.1\nBug fix: Minor fix to unformatting parser\n### 1.3.0\nAdd support for spaces before/after $, a, o, b in a format string\nBug fix: Fix unformat for languages that use '.' in ordinals\nBug fix: Fix round up floating numbers with no precision correctly.\nBug fix: Fix currency signs at the end in unformat\n### 1.2.6\nAdd support for optional decimal places\n### 1.2.5\nAdd support for appending currency symbol\n### 1.2.4\nAdd support for humanized filesizes\n### 1.2.2\nChanged language definition property 'money' to 'currency'\n### 1.2.1\nBug fix: Fix unformatting non-negative abbreviations\n### 1.2.3\nBug Fix: Fix unformatting for languages that use '.' as thousands delimiter\n### 1.2.0\nAdd localization language support\n\nUpdate testing for to include languages\n### 1.1.0\nAdd Tests\n\nBug fix: Fix difference returning negative values\n### 1.0.4\nBug fix: Non negative numbers were displaying as negative when using parentheses\n### 1.0.3\nAdd ordinal formatting using 'o' in the format\n### 1.0.2\nAdd clone functionality\n### 1.0.1\n\nAdded abbreviations for thousands and millions using 'a' in the format\n\n### 1.0.0\n\nInitial release\n\nAcknowlegements\n===============\n\nNumeral.js, while less complex, was inspired by and heavily borrowed from [Moment.js](http://momentjs.com)\n\nLicense\n=======\nNumeral.js is freely distributable under the terms of the MIT license.\nCopyright (c) 2012 Adam Draper\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the \"Software\"), to deal in the Software without restriction, including without limitation the rights to use,copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:\nThe above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.",
-  "_id": "numeral@1.5.2",
-  "_from": "numeral"
+  "readme": "# [numbro](https:\/\/numbro-js.com\/)\r\n\r\nA javascript library for formatting and manipulating numbers.\r\n\r\n[Website and documentation](http:\/\/foretagsplatsen.github.io\/numbro)\r\n\r\n\r\n# Travis Build Status\r\n\r\nMaster [![Build Status](https:\/\/api.travis-ci.org\/foretagsplatsen\/numbro.png)](https:\/\/travis-ci.org\/foretagsplatsen\/numbro)\r\n\r\nDevelop [![Build Status](https:\/\/travis-ci.org\/foretagsplatsen\/numbro.png?branch=develop)](https:\/\/travis-ci.org\/foretagsplatsen\/numbro)\r\n\r\n# NPM\r\n\r\n[![NPM](https:\/\/nodei.co\/npm\/numeral.png?downloads=true)](https:\/\/nodei.co\/npm\/numbro\/)\r\n\r\n# Contributing\r\n\r\nPlease submit all pull requests to the `develop` branch.\r\n\r\n1. Fork the library\r\n\r\n2. [Install grunt](http:\/\/gruntjs.com\/getting-started#installing-the-cli)\r\n\r\n3. Run `npm install` to install dependencies\r\n\r\n4. Add your tests to the files in `\/tests`\r\n\r\n5. To test your tests, run `grunt`\r\n\r\n6. When all your tests are passing, run `grunt build` to minify all files\r\n\r\n7. Submit a pull request to the `develop` branch.\r\n\r\n\r\n### Languages \r\n\r\nLanguages names follows the Microsoft culture name convention as found [here](https:\/\/msdn.microsoft.com\/en-us\/library\/ee825488.aspx).\r\n\r\n### Language translations will not be merged without unit tests.\r\n\r\nSee [the english unit tests](https:\/\/github.com\/foretagsplatsen\/numbro\/blob\/master\/tests\/languages\/en-GB.js) for an example.\r\n\r\n\r\n# Acknowlegements\r\n\r\n`numbro` is forked from [Adam Draper](https:\/\/github.com\/adamwdraper)\\'s project [Numeral.js](http:\/\/numeraljs.com\/).\r\n\r\n# License\r\n\r\nCopyright \u00A9 2015 F\u00F6retagsplatsen AB\r\n\r\nDistributed under the MIT license. If you want to know more, see the `LICENSE` file.\r\n\r\nThe original license file for `Numeral.js` can be found in `LICENSE-Numeraljs`\r\n\r\n`numbro` is distributed under the MIT license.",
+  "_id": "numbro@1.0.4",
+  "_from": "numbro"
 }

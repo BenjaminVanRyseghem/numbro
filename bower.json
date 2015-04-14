@@ -1,16 +1,17 @@
 {
-  "name": "numeral",
-  "repo": "adamwdraper/Numeral-js",
-  "version": "1.5.3",
+  "name": "numbro",
+  "repo": "foretagsplatsen/numbro",
+  "version": "1.0.4",
   "description": "Format and manipulate numbers.",
   "keywords": [
     "numeral",
+    "numbro",
     "number",
     "format",
     "time",
     "money",
     "percentage"
   ],
-  "scripts": [ "numeral.js" ],
-  "main": "numeral.js"
+  "scripts": [ "numbro.js" ],
+  "main": "numbro.js"
 }
