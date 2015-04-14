@@ -1,5 +1,5 @@
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : czech (cs)
  * author : Anatoli Papirovski : https://github.com/apapirovski
  */
@@ -38,8 +38,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('cs-CZ', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('cs-CZ', language);
     }
 }());
 
