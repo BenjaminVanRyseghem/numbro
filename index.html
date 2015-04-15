@@ -111,19 +111,19 @@
 	</div>
 </div>
 <div class="content xl-over-thrd l-over-thrd thrd2 m-full s-full">
-<div class="inner">
+	<div class="inner">
 
-<h3>Use it</h3>
-<h4>In the Browser</h4>
+		<h3>Use it</h3>
+		<h4>In the Browser</h4>
 <pre>
 &lt;script src=&quot;numbro.min.js&quot;&gt;&lt;/script&gt;
 </pre>
-or include from cdnjs.com
+		or include from cdnjs.com
 <pre>
 &lt;script
     src=&quot;//cdnjs.cloudflare.com/ajax/libs/numbro.js/1.5.3/numbro.min.js&quot;&gt;&lt;/script&gt;
 </pre>
-<h4>In Node.js</h4>
+		<h4>In Node.js</h4>
 <pre>
 npm install numbro
 </pre>
@@ -131,116 +131,116 @@ npm install numbro
 var numbro = require('numbro');
 </pre>
 
-<h3>Format</h3>
+		<h3>Format</h3>
 
-<p>
-	Numbers can be formatted to look like currency, percentages, times, or even
-	plain old numbers with decimal places, thousands, and abbreviations.
-</p>
+		<p>
+			Numbers can be formatted to look like currency, percentages, times, or even
+			plain old numbers with decimal places, thousands, and abbreviations.
+		</p>
 <pre>
 var string = numbro(1000).format('0,0');
 // '1,000'
 </pre>
-<h4>Numbers</h4>
-<table id="format-numbers" class="table striped bordered">
-	<thead>
-	<tr>
-		<th>Number</th>
-		<th>Format</th>
-		<th>String</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<h4>Currency</h4>
-<table id="format-currency" class="table striped bordered">
-	<thead>
-	<tr>
-		<th>Number</th>
-		<th>Format</th>
-		<th>String</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<h4>Bytes</h4>
-<table id="format-bytes" class="table striped bordered">
-	<thead>
-	<tr>
-		<th>Number</th>
-		<th>Format</th>
-		<th>String</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<h4>Percentages</h4>
-<table id="format-percentage" class="table striped bordered">
-	<thead>
-	<tr>
-		<th>Number</th>
-		<th>Format</th>
-		<th>String</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<h4>Time</h4>
-<table id="format-time" class="table striped bordered">
-	<thead>
-	<tr>
-		<th>Number</th>
-		<th>Format</th>
-		<th>String</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<h3>Unformat</h3>
+		<h4>Numbers</h4>
+		<table id="format-numbers" class="table striped bordered">
+			<thead>
+			<tr>
+				<th>Number</th>
+				<th>Format</th>
+				<th>String</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<h4>Currency</h4>
+		<table id="format-currency" class="table striped bordered">
+			<thead>
+			<tr>
+				<th>Number</th>
+				<th>Format</th>
+				<th>String</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<h4>Bytes</h4>
+		<table id="format-bytes" class="table striped bordered">
+			<thead>
+			<tr>
+				<th>Number</th>
+				<th>Format</th>
+				<th>String</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<h4>Percentages</h4>
+		<table id="format-percentage" class="table striped bordered">
+			<thead>
+			<tr>
+				<th>Number</th>
+				<th>Format</th>
+				<th>String</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<h4>Time</h4>
+		<table id="format-time" class="table striped bordered">
+			<thead>
+			<tr>
+				<th>Number</th>
+				<th>Format</th>
+				<th>String</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<h3>Unformat</h3>
 
-<p>
-	Got a formatted string? Use the unformat function to make it useful again.
-</p>
+		<p>
+			Got a formatted string? Use the unformat function to make it useful again.
+		</p>
 <pre>
 var string = numbro().unformat('($10,000.00)');
 // -10000
 </pre>
-<table id="unformat-all" class="table striped bordered">
-	<thead>
-	<tr>
-		<th>String</th>
-		<th>Function</th>
-		<th>Number</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<h3>Manipulate</h3>
+		<table id="unformat-all" class="table striped bordered">
+			<thead>
+			<tr>
+				<th>String</th>
+				<th>Function</th>
+				<th>Number</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<h3>Manipulate</h3>
 
-<p>
-	Not that you will use these often, but they're there when you need them.
-</p>
+		<p>
+			Not that you will use these often, but they're there when you need them.
+		</p>
 <pre>
 var number = numbro(1000);
 
 var added = number.add(10);
 // 1010
 </pre>
-<table id="manipulate" class="table striped bordered">
-	<thead>
-	<tr>
-		<th>Before</th>
-		<th>Function</th>
-		<th>After</th>
-	</tr>
-	</thead>
-	<tbody></tbody>
-</table>
-<h3>Value</h3>
+		<table id="manipulate" class="table striped bordered">
+			<thead>
+			<tr>
+				<th>Before</th>
+				<th>Function</th>
+				<th>After</th>
+			</tr>
+			</thead>
+			<tbody></tbody>
+		</table>
+		<h3>Value</h3>
 
-<p>
-	The value is always available.
-</p>
+		<p>
+			The value is always available.
+		</p>
 <pre>
 var number = numbro(1000);
 
@@ -250,11 +250,11 @@ var string = number.format('0,0');
 var value = number.value();
 // 1000
 </pre>
-<h3>Set</h3>
+		<h3>Set</h3>
 
-<p>
-	Set the value of your numbro object.
-</p>
+		<p>
+			Set the value of your numbro object.
+		</p>
 <pre>
 var number = numbro();
 
@@ -263,11 +263,11 @@ number.set(1000);
 var value = number.value();
 // 1000
 </pre>
-<h3>Difference</h3>
+		<h3>Difference</h3>
 
-<p>
-	Find the difference between your numbro object and a value
-</p>
+		<p>
+			Find the difference between your numbro object and a value
+		</p>
 <pre>
 var number = numbro(1000),
     value = 100;
@@ -275,13 +275,13 @@ var number = numbro(1000),
 var difference = number.difference(value);
 // 900
 </pre>
-<h3>Default Formatting</h3>
+		<h3>Default Formatting</h3>
 
-<p>
-	Set a default format so you can use .format() without a string. The default
-	format to '0,0'.
-	<br>This value can be set when defining a language.
-</p>
+		<p>
+			Set a default format so you can use .format() without a string. The default
+			format to '0,0'.
+			<br>This value can be set when defining a language.
+		</p>
 <pre>
 var number = numbro(1000);
 
@@ -293,13 +293,13 @@ numbro.defaultFormat('$0,0.00');
 number.format();
 // '$1,000.00'
 </pre>
-<h3>Currency Default Formatting</h3>
+		<h3>Currency Default Formatting</h3>
 
-<p>
-	Set a default currency format so you can use .formatCurrency() without a
-	string. The default format to '0.00'.
-	<br>This value can be set when defining a language.
-</p>
+		<p>
+			Set a default currency format so you can use .formatCurrency() without a
+			string. The default format to '0.00'.
+			<br>This value can be set when defining a language.
+		</p>
 <pre>
 var number = numbro(1000);
 
@@ -311,11 +311,11 @@ numbro.defaultFormat('$0,0.00');
 number.formatCurrency();
 // '$1,000.00'
 </pre>
-<h3>Custom Zero Formatting</h3>
+		<h3>Custom Zero Formatting</h3>
 
-<p>
-	Set a custom output when formatting numerals with a value of 0
-</p>
+		<p>
+			Set a custom output when formatting numerals with a value of 0
+		</p>
 <pre>
 var number = numbro(0);
 
@@ -324,11 +324,11 @@ numbro.zeroFormat('N/A');
 var zero = number.format('0.0')
 // 'N/A'
 </pre>
-<h3>Clone</h3>
+		<h3>Clone</h3>
 
-<p>
-	Go ahead and clone any numbro object while you're at it.
-</p>
+		<p>
+			Go ahead and clone any numbro object while you're at it.
+		</p>
 <pre>
 var a = numbro(1000);
 var b = numbro(a);
@@ -343,11 +343,11 @@ var bVal = b.value();
 var cVal = c.add(10).value();
 // 1010
 </pre>
-<h3>Languages</h3>
+		<h3>Languages</h3>
 
-<p>
-	Lets make this useable all over the place!
-</p>
+		<p>
+			Lets make this useable all over the place!
+		</p>
 <pre>
 // load a language
 numbro.language('fr', {
@@ -378,29 +378,26 @@ numbro.language('fr', {
 // switch between languages
 numbro.language('fr');
 </pre>
-<p>
-	As I am not fluent in every language on the planet, please feel free to
-	create language files of your own by submitting a pull request. Don't forget
-	to create both the language file (example: languages/fr.js) and the language
-	test (example: tests/languages/fr.js). Thanks for helping out.
-</p>
+		<p>
+			As I am not fluent in every language on the planet, please feel free to
+			create language files of your own by submitting a pull request. Don't forget
+			to create both the language file (example: languages/fr.js) and the language
+			test (example: tests/languages/fr.js). Thanks for helping out.
+		</p>
 
-<h3>Acknowlegements</h3>
+		<h3>Acknowlegements</h3>
 
-<p>
-	Numbro.js, while less complex, was inspired by and heavily borrowed from <a
-		href="http://momentjs.com/">Moment.js</a>
-</p>
+		<p>
+			<code>numbro</code> is forked from <a href="https://github.com/adamwdraper">Adam Draper</a>'s project <a href="http://numeraljs.com/">Numeral.js</a>, which was in turn inspired by and heavily borrowed from <a href="http://momentjs.com">Moment.js</a>.
+		</p>
 
-</div>
+	</div>
 </div>
 
 <div class="footer l-thrd xl-thrd full">
 	<div class="inner">
 		<p>
-			This is a project by <a href ="https://github.com/adamwdraper/Numbro-js">Företagsplatsen</a> forked from
-			<a href="http://github.com/adamwdraper">adamwdraper</a>/<a href="https://github.com/adamwdraper/Numbro-js">Numbro-js</a>
-
+			This is a project by <a href="www.foretagsplatsen.se">Företagsplatsen</a>
 		</p>
 	</div>
 </div>
