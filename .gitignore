@@ -1,7 +1,7 @@
 # --------------------
 # OSX Files
 # --------------------
-.DS_Store
+**/.DS_Store
 .AppleDouble
 .LSOverride
 Icon
