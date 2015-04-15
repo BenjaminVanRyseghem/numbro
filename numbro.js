@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.0.0
+ * version : 1.0.4
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
