@@ -11,7 +11,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-	<title>Numeral.js</title>
+	<title>Numbro.js</title>
 	<meta name="description"
 		  content="A javascript library for formatting and manipulating numbers.">
 	<meta name="author" content="">
@@ -52,7 +52,7 @@
 <div class="sidebar thrd m-full s-full">
 	<div class="inner">
 		<h1 class="logo">
-			Numeral.js
+			Numbro.js
 		</h1>
 
 		<p class="tagline">
@@ -65,13 +65,13 @@
 		<div id="nav" class="nav"></div>
 		<div class="github-links">
 			<a class="button flat"
-			   href="https://github.com/adamwdraper/Numeral-js"><i
+			   href="https://github.com/adamwdraper/Numbro-js"><i
 					aria-hidden="true" class="icon-github"></i> Github</a>
 			<a class="button flat download"
-			   href="https://github.com/adamwdraper/Numeral-js/zipball/master"><i
+			   href="https://github.com/adamwdraper/Numbro-js/zipball/master"><i
 					aria-hidden="true" class="icon-download"></i> .ZIP</a>
 			<a class="button flat download"
-			   href="https://github.com/adamwdraper/Numeral-js/tarball/master"><i
+			   href="https://github.com/adamwdraper/Numbro-js/tarball/master"><i
 					aria-hidden="true" class="icon-download"></i> .TGZ</a>
 		</div>
 		<label for="language-select">Language</label>
@@ -116,19 +116,19 @@
 <h3>Use it</h3>
 <h4>In the Browser</h4>
 <pre>
-&lt;script src=&quot;numeral.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;numbro.min.js&quot;&gt;&lt;/script&gt;
 </pre>
 or include from cdnjs.com
 <pre>
 &lt;script
-    src=&quot;//cdnjs.cloudflare.com/ajax/libs/numeral.js/1.5.3/numeral.min.js&quot;&gt;&lt;/script&gt;
+    src=&quot;//cdnjs.cloudflare.com/ajax/libs/numbro.js/1.5.3/numbro.min.js&quot;&gt;&lt;/script&gt;
 </pre>
 <h4>In Node.js</h4>
 <pre>
-npm install numeral
+npm install numbro
 </pre>
 <pre>
-var numeral = require('numeral');
+var numbro = require('numbro');
 </pre>
 
 <h3>Format</h3>
@@ -138,7 +138,7 @@ var numeral = require('numeral');
 	plain old numbers with decimal places, thousands, and abbreviations.
 </p>
 <pre>
-var string = numeral(1000).format('0,0');
+var string = numbro(1000).format('0,0');
 // '1,000'
 </pre>
 <h4>Numbers</h4>
@@ -202,7 +202,7 @@ var string = numeral(1000).format('0,0');
 	Got a formatted string? Use the unformat function to make it useful again.
 </p>
 <pre>
-var string = numeral().unformat('($10,000.00)');
+var string = numbro().unformat('($10,000.00)');
 // -10000
 </pre>
 <table id="unformat-all" class="table striped bordered">
@@ -221,7 +221,7 @@ var string = numeral().unformat('($10,000.00)');
 	Not that you will use these often, but they're there when you need them.
 </p>
 <pre>
-var number = numeral(1000);
+var number = numbro(1000);
 
 var added = number.add(10);
 // 1010
@@ -242,7 +242,7 @@ var added = number.add(10);
 	The value is always available.
 </p>
 <pre>
-var number = numeral(1000);
+var number = numbro(1000);
 
 var string = number.format('0,0');
 // '1,000'
@@ -253,10 +253,10 @@ var value = number.value();
 <h3>Set</h3>
 
 <p>
-	Set the value of your numeral object.
+	Set the value of your numbro object.
 </p>
 <pre>
-var number = numeral();
+var number = numbro();
 
 number.set(1000);
 
@@ -266,10 +266,10 @@ var value = number.value();
 <h3>Difference</h3>
 
 <p>
-	Find the difference between your numeral object and a value
+	Find the difference between your numbro object and a value
 </p>
 <pre>
-var number = numeral(1000),
+var number = numbro(1000),
     value = 100;
 
 var difference = number.difference(value);
@@ -283,12 +283,12 @@ var difference = number.difference(value);
 	<br>This value can be set when defining a language.
 </p>
 <pre>
-var number = numeral(1000);
+var number = numbro(1000);
 
 number.format();
 // '1,000'
 
-numeral.defaultFormat('$0,0.00');
+numbro.defaultFormat('$0,0.00');
 
 number.format();
 // '$1,000.00'
@@ -301,12 +301,12 @@ number.format();
 	<br>This value can be set when defining a language.
 </p>
 <pre>
-var number = numeral(1000);
+var number = numbro(1000);
 
 number.formatCurrency();
 // '1,000.00'
 
-numeral.defaultFormat('$0,0.00');
+numbro.defaultFormat('$0,0.00');
 
 number.formatCurrency();
 // '$1,000.00'
@@ -317,9 +317,9 @@ number.formatCurrency();
 	Set a custom output when formatting numerals with a value of 0
 </p>
 <pre>
-var number = numeral(0);
+var number = numbro(0);
 
-numeral.zeroFormat('N/A');
+numbro.zeroFormat('N/A');
 
 var zero = number.format('0.0')
 // 'N/A'
@@ -327,11 +327,11 @@ var zero = number.format('0.0')
 <h3>Clone</h3>
 
 <p>
-	Go ahead and clone any numeral object while you're at it.
+	Go ahead and clone any numbro object while you're at it.
 </p>
 <pre>
-var a = numeral(1000);
-var b = numeral(a);
+var a = numbro(1000);
+var b = numbro(a);
 var c = a.clone();
 
 var aVal = a.set(2000).value();
@@ -350,7 +350,7 @@ var cVal = c.add(10).value();
 </p>
 <pre>
 // load a language
-numeral.language('fr', {
+numbro.language('fr', {
     delimiters: {
         thousands: ' ',
         decimal: ','
@@ -376,7 +376,7 @@ numeral.language('fr', {
 });
 
 // switch between languages
-numeral.language('fr');
+numbro.language('fr');
 </pre>
 <p>
 	As I am not fluent in every language on the planet, please feel free to
@@ -388,7 +388,7 @@ numeral.language('fr');
 <h3>Acknowlegements</h3>
 
 <p>
-	Numeral.js, while less complex, was inspired by and heavily borrowed from <a
+	Numbro.js, while less complex, was inspired by and heavily borrowed from <a
 		href="http://momentjs.com/">Moment.js</a>
 </p>
 
@@ -398,8 +398,8 @@ numeral.language('fr');
 <div class="footer l-thrd xl-thrd full">
 	<div class="inner">
 		<p>
-			This is a project by <a href ="https://github.com/adamwdraper/Numeral-js">Företagsplatsen</a> forked from
-			<a href="http://github.com/adamwdraper">adamwdraper</a>/<a href="https://github.com/adamwdraper/Numeral-js">Numeral-js</a>
+			This is a project by <a href ="https://github.com/adamwdraper/Numbro-js">Företagsplatsen</a> forked from
+			<a href="http://github.com/adamwdraper">adamwdraper</a>/<a href="https://github.com/adamwdraper/Numbro-js">Numbro-js</a>
 
 		</p>
 	</div>

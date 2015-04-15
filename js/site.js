@@ -9,12 +9,12 @@ $(function() {
 });
 
 function addVersion () {
-    $('#version').text(numeral.version);
+    $('#version').text(numbro.version);
 }
 
 function updateFormats () {
     // get language
-    numeral.language($('#language-select').val());
+    numbro.language($('#language-select').val());
 
     formatNumbers();
     formatCurrency();
@@ -71,7 +71,7 @@ function formatNumbers () {
         ];
 
     for (var i = 0; i < nums.length; i++) {
-        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numeral(nums[i]).format(formats[i]) + '</td></tr>';
+        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numbro(nums[i]).format(formats[i]) + '</td></tr>';
     }
 
     $body.empty().html(html);
@@ -100,7 +100,7 @@ function formatCurrency () {
         ];
 
     for (var i = 0; i < nums.length; i++) {
-        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numeral(nums[i]).format(formats[i]) + '</td></tr>';
+        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numbro(nums[i]).format(formats[i]) + '</td></tr>';
     }
 
     $body.empty().html(html);
@@ -123,7 +123,7 @@ function formatBytes () {
         ];
 
     for (var i = 0; i < nums.length; i++) {
-        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numeral(nums[i]).format(formats[i]) + '</td></tr>';
+        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numbro(nums[i]).format(formats[i]) + '</td></tr>';
     }
 
     $body.empty().html(html);
@@ -146,7 +146,7 @@ function formatPercentage () {
         ];
 
     for (var i = 0; i < nums.length; i++) {
-        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numeral(nums[i]).format(formats[i]) + '</td></tr>';
+        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numbro(nums[i]).format(formats[i]) + '</td></tr>';
     }
 
     $body.empty().html(html);
@@ -167,7 +167,7 @@ function formatTime () {
         ];
 
     for (var i = 0; i < nums.length; i++) {
-        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numeral(nums[i]).format(formats[i]) + '</td></tr>';
+        html += '<tr><td>' + nums[i] + '</td><td>\'' + formats[i] + '\'</td><td>' + numbro(nums[i]).format(formats[i]) + '</td></tr>';
     }
 
     $body.empty().html(html);
@@ -177,19 +177,19 @@ function unformatAll () {
     var html = '',
         $body = $('#unformat-all tbody'),
         formats = [
-            numeral(10000.123).format('0,0.000'),
-            numeral(0.12345).format('0.00000'),
-            numeral(1234000).format('0.00a'),
-            numeral(23).format('0o'),
-            numeral(10000).format('$0,0.00'),
-            numeral(100).format('0b'),
-            numeral(3467479682787).format('0.000b'),
-            numeral(-0.76).format('0%'),
+            numbro(10000.123).format('0,0.000'),
+            numbro(0.12345).format('0.00000'),
+            numbro(1234000).format('0.00a'),
+            numbro(23).format('0o'),
+            numbro(10000).format('$0,0.00'),
+            numbro(100).format('0b'),
+            numbro(3467479682787).format('0.000b'),
+            numbro(-0.76).format('0%'),
             '2:23:57'
         ];
 
     for (var i = 0; i < formats.length; i++) {
-        html += '<tr><td>\'' + formats[i] + '\'</td><td>.unformat(\'' + formats[i] + '\')</td><td>' + numeral().unformat(formats[i]) + '</td></tr>';
+        html += '<tr><td>\'' + formats[i] + '\'</td><td>.unformat(\'' + formats[i] + '\')</td><td>' + numbro().unformat(formats[i]) + '</td></tr>';
     }
     
     $body.empty().html(html);
@@ -198,7 +198,7 @@ function unformatAll () {
 function manipulate () {
     var html = '',
         $body = $('#manipulate tbody'),
-        num = numeral(1000);
+        num = numbro(1000);
 
     html += '<tr><td>' + num.value() + '</td><td>.add(100)</td><td>' + num.add(100).value() + '</td></tr>';
     html += '<tr><td>' + num.value() + '</td><td>.subtract(100)</td><td>' + num.subtract(100).value() + '</td></tr>';

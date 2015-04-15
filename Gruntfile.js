@@ -29,7 +29,7 @@ module.exports = function(grunt) {
                 files: {
                     'js/min/site.min.js': [
                         'js/respond.js',
-                        'js/numeral.js',
+                        'js/numbro.js',
                         'js/languages.js',
                         'js/site.js'
                     ]
