@@ -21,7 +21,7 @@ exports.validate = {
 			['1.000,123', false],
 			['1000.', false],
 			['1000,', false],
-			['10..00', false],			
+			['10..00', false],
 			['10,,00', false],
 			['10, 00', false]
 		];

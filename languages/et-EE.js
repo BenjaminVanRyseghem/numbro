@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : Estonian
  * author : Illimar Tambek : https://github.com/ragulka
