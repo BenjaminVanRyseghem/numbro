@@ -1,5 +1,5 @@
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : Farsi Iran
  * author : neo13 : https://github.com/neo13
  */
@@ -28,7 +28,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fa-IR', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fa-IR', language);
     }
 }());
