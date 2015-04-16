@@ -33,6 +33,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fil-ph', language);
+        this.numeral.language('fil-PH', language);
     }
 }());
