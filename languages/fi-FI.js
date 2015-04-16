@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : Finnish
  * author : Sami Saada : https://github.com/samitheberber
