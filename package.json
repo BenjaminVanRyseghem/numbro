@@ -42,7 +42,7 @@
     "grunt-contrib-concat": "latest"
   },
   "scripts": {
-    "test": "grunt"
+    "test": "grunt test"
   },
   "ender": "./ender.js",
   "_id": "numbro@1.0.4",
