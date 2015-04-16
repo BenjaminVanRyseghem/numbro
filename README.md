@@ -34,9 +34,10 @@ Please submit all pull requests to the `develop` branch.
 7. Submit a pull request to the `develop` branch.
 
 
-### Languages 
+### Languages
 
-Languages names follows the Microsoft culture name convention as found [here](https://msdn.microsoft.com/en-us/library/ee825488.aspx).
+Languages names follows the Microsoft culture name convention as found
+[here](https://msdn.microsoft.com/en-us/library/ee825488.aspx).
 
 ### Language translations will not be merged without unit tests.
 
@@ -50,7 +51,9 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 # Acknowlegements
 
-`numbro` is forked from [Adam Draper](https://github.com/adamwdraper)'s project [Numeral.js](http://numeraljs.com/), which was in turn inspired by and heavily borrowed from [Moment.js](http://momentjs.com).
+`numbro` is forked from [Adam Draper](https://github.com/adamwdraper)'s project
+[Numeral.js](http://numeraljs.com/), which was in turn inspired by and heavily borrowed from
+[Moment.js](http://momentjs.com).
 
 
 # License
