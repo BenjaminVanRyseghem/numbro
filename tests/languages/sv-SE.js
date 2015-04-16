@@ -1,3 +1,5 @@
+'use strict';
+
 /*!
  * numbro.js language configuration
  * language : swedish - Sweden

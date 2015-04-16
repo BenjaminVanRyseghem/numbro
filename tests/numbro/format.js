@@ -1,3 +1,5 @@
+'use strict';
+
 var numbro = require('../../numbro');
 
 exports.format = {
@@ -488,10 +490,10 @@ exports.format = {
 
       for (i = 0; i < tests.length; i++) {
           // floor
-          test.strictEqual(numbro(tests[i][0]).format(tests[i][1], Math.floor), tests[i][2], tests[i][1] + ", floor");
+          test.strictEqual(numbro(tests[i][0]).format(tests[i][1], Math.floor), tests[i][2], tests[i][1] + ', floor');
 
           // ceil
-          test.strictEqual(numbro(tests[i][0]).format(tests[i][1], Math.ceil), tests[i][3], tests[i][1] + ", ceil");
+          test.strictEqual(numbro(tests[i][0]).format(tests[i][1], Math.ceil), tests[i][3], tests[i][1] + ', ceil');
 
       }
 

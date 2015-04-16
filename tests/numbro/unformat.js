@@ -1,3 +1,5 @@
+'use strict';
+
 var numbro = require('../../numbro');
 
 exports.unformat = {
@@ -17,7 +19,7 @@ exports.unformat = {
                 ['31st', 31],
                 ['1.23t', 1230000000000],
                 ['N/A', 0],
-                [, 0],
+                [undefined, 0],
                 ['', 0],
 
                 // Pass Through for Numbers

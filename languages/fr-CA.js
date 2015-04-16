@@ -4,6 +4,8 @@
  * author : Léo Renaud-Allaire : https://github.com/renaudleo
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ' ',

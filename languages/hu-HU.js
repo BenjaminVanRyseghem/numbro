@@ -4,6 +4,8 @@
  * author : Peter Bakondy : https://github.com/pbakondy
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ' ',
@@ -15,7 +17,7 @@
             billion: 'Mrd', // milliárd
             trillion: 'T'   // trillió
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {

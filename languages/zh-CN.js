@@ -4,6 +4,8 @@
  * author : badplum : https://github.com/badplum
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ',',
@@ -15,7 +17,7 @@
             billion: '十亿',
             trillion: '兆'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {

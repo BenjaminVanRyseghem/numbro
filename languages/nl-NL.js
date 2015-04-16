@@ -4,6 +4,8 @@
  * author : Dave Clayton : https://github.com/davedx
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: '.',

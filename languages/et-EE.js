@@ -7,6 +7,8 @@
  * from numbers with a space
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ' ',
@@ -18,7 +20,7 @@
             billion: ' mld',
             trillion: ' trl'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {

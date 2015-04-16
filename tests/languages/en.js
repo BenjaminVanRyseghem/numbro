@@ -1,3 +1,5 @@
+'use strict';
+
 var numbro = require('../../numbro');
 
 exports['language:en'] = {

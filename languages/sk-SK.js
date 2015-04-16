@@ -4,6 +4,8 @@
  * author : Ahmed Al Hafoudh : http://www.freevision.sk
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ' ',

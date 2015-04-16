@@ -455,7 +455,8 @@
                 if (precision.indexOf('[') > -1) {
                     precision = precision.replace(']', '');
                     precision = precision.split('[');
-                    d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction, precision[1].length);
+                    d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction,
+                            precision[1].length);
                 } else {
                     d = toFixed(value, precision.length, roundingFunction);
                 }
@@ -707,7 +708,8 @@
         temp = val.match(/[^\d]+$/);
         if (temp !== null) {
             val = val.slice(0, -1);
-            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million && temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
+            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million &&
+                    temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
                 return false;
             }
         }
@@ -723,9 +725,13 @@
                     return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
                 } else {
                     if (_valArray[0].length === 1) {
-                        return ( !! _valArray[0].match(/^\d+$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                        return ( !! _valArray[0].match(/^\d+$/) &&
+                            !_valArray[0].match(_thousandRegEx) &&
+                            !! _valArray[1].match(/^\d+$/));
                     } else {
-                        return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                        return ( !! _valArray[0].match(/^\d+.*\d$/) &&
+                            !_valArray[0].match(_thousandRegEx) &&
+                            !! _valArray[1].match(/^\d+$/));
                     }
                 }
             }
@@ -754,8 +760,7 @@
      * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Compatibility
      */
     if ('function' !== typeof Array.prototype.reduce) {
-        Array.prototype.reduce = function(callback, opt_initialValue) {
-            'use strict';
+        Array.prototype.reduce = function(callback, optInitialValue) {
 
             if (null === this || 'undefined' === typeof this) {
                 // At the moment all modern browsers, that support strict mode, have
@@ -774,7 +779,7 @@
                 isValueSet = false;
 
             if (1 < arguments.length) {
-                value = opt_initialValue;
+                value = optInitialValue;
                 isValueSet = true;
             }
 
@@ -839,7 +844,8 @@
 
         format: function(inputString, roundingFunction) {
             return formatNumbro(this,
-                inputString ? inputString : defaultFormat, (roundingFunction !== undefined) ? roundingFunction : Math.round
+                inputString ? inputString : defaultFormat,
+                (roundingFunction !== undefined) ? roundingFunction : Math.round
             );
         },
 
@@ -873,7 +879,7 @@
         add: function(value) {
             var corrFactor = correctionFactor.call(null, this._value, value);
 
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 return accum + corrFactor * curr;
             }
             this._value = [this._value, value].reduce(cback, 0) / corrFactor;
@@ -883,7 +889,7 @@
         subtract: function(value) {
             var corrFactor = correctionFactor.call(null, this._value, value);
 
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 return accum - corrFactor * curr;
             }
             this._value = [value].reduce(cback, this._value * corrFactor) / corrFactor;
@@ -891,7 +897,7 @@
         },
 
         multiply: function(value) {
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 var corrFactor = correctionFactor(accum, curr);
                 return (accum * corrFactor) * (curr * corrFactor) /
                     (corrFactor * corrFactor);
@@ -901,7 +907,7 @@
         },
 
         divide: function(value) {
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 var corrFactor = correctionFactor(accum, curr);
                 return (accum * corrFactor) / (curr * corrFactor);
             }
