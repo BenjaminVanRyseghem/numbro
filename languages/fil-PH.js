@@ -1,5 +1,5 @@
 /*!
- * numeral.js language configuration
+ * numbro.js language configuration
  * language : filipino philippines (ph)
  * author : Michael Abadilla : https://github.com/mjmaix
  */
@@ -32,7 +32,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numeral && this.numeral.language) {
-        this.numeral.language('fil-PH', language);
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fil-PH', language);
     }
 }());
