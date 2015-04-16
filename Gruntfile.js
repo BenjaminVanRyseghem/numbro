@@ -1,44 +1,36 @@
 var fs = require('fs');
+var path = require('path');
 
 module.exports = function(grunt) {
 
-    var minifiedFiles = {
-            'min/numbro.min.js' : [
-                'numbro.js'
-            ],
-            'min/languages.min.js': [
-                'languages.js'
-            ]
-        };
-
-    // all the lang files need to be added manually
-    fs.readdirSync('./languages').forEach(function (path) {
-        var file = path.slice(0, -3),
-            destination = 'min/languages/' + file + '.min.js',
-            src = ['languages/' + path];
-
-        minifiedFiles[destination] = src;
-    });
-
     grunt.initConfig({
-        nodeunit : {
-            all : ['tests/**/*.js']
-        },
-        uglify: {
-            my_target: {
-                files: minifiedFiles
-            },
-            options: {
-                preserveComments: 'some'
-            }
-        },
         concat: {
             languages: {
                 src: [
-                    'languages/**/*.js'
+                    'languages/**/*.js',
                 ],
-                dest: 'languages.js'
-            }
+                dest: 'dist/languages.js',
+            },
+        },
+        uglify: {
+            my_target: {
+                files: [
+                    { src: [ 'dist/languages.js' ], dest: 'dist/min/languages.min.js', },
+                    { src: [ 'numbro.js' ], dest: 'dist/min/numbro.min.js', },
+                ].concat( fs.readdirSync('./languages').map(function (fileName) {
+                    var lang = path.basename(fileName, '.js');
+                    return {
+                        src: [path.join('languages/', fileName)],
+                        dest: path.join('dist/min/languages/', lang + '.min.js'),
+                    };
+                }))
+            },
+            options: {
+                preserveComments: 'some',
+            },
+        },
+        nodeunit: {
+            all: ['tests/**/*.js'],
         },
         jshint: {
             all: [
@@ -78,10 +70,8 @@ module.exports = function(grunt) {
         'nodeunit'
     ]);
 
-    // P
     grunt.registerTask('build', [
-        'jshint',
-        'nodeunit',
+        'test',
         'concat',
         'uglify'
     ]);
