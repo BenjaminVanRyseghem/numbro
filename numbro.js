@@ -609,7 +609,7 @@
         },
         ordinal: function(number) {
             var b = number % 10;
-            return (Math.floor(number % 100 / 10) === 1) ? 'th' :
+            return (~~(number % 100 / 10) === 1) ? 'th' :
                 (b === 1) ? 'st' :
                 (b === 2) ? 'nd' :
                 (b === 3) ? 'rd' : 'th';
