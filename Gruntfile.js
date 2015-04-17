@@ -4,6 +4,8 @@ var path = require('path');
 module.exports = function(grunt) {
 
     grunt.initConfig({
+        pkg: grunt.file.readJSON('package.json'),
+
         concat: {
             languages: {
                 src: [
@@ -27,6 +29,40 @@ module.exports = function(grunt) {
             },
             options: {
                 preserveComments: 'some',
+            },
+        },
+        bump: {
+            options: {
+                files: [
+                    'package.json',
+                    'bower.json',
+                    'component.json',
+                ],
+                updateConfigs: ['pkg'],
+                commit: false,
+                createTag: false,
+                push: false,
+            },
+        },
+        confirm: {
+            release: {
+                options: {
+                    question: 'Are you sure you want to publish a new release' +
+                        ' with version <%= pkg.version %>? (yes/no)',
+                    continue: function(answer) {
+                        return answer.toLowerCase() === 'yes';
+                    }
+                }
+            }
+        },
+        release:{
+            options: {
+                bump: false,
+                additionalFiles: [
+                    'bower.json',
+                    'component.json',
+                ],
+                tagName: 'v<%= version %>',
             },
         },
         nodeunit: {
@@ -60,6 +96,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-bump');
+    grunt.loadNpmTasks('grunt-confirm');
+    grunt.loadNpmTasks('grunt-release');
+
 
     grunt.registerTask('default', [
         'test'
@@ -75,6 +115,22 @@ module.exports = function(grunt) {
         'concat',
         'uglify'
     ]);
+
+    // wrap grunt-release with confirmation
+    [
+        'patch',
+        'minor',
+        'major',
+        'prerelease'
+    ].forEach(function (detail) {
+        grunt.registerTask('publish:'+detail, [
+            'bump:'+detail,
+            'confirm:release',
+            'release',
+        ]);
+    });
+    grunt.registerTask('publish', ['publish:patch']);
+
 
     // Travis CI task.
     grunt.registerTask('travis', ['test']);
