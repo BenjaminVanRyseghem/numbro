@@ -1,4 +1,6 @@
-_This is the historical changelog for the [`numeral-js` project](https://github.com/adamwdraper/Numeral-js), which `numbro` is built upon. The `numbro` changelog is at [CHANGELOG.md](CHANGELOG.md)._
+_This is the historical changelog for the [`numeral-js`
+project](https://github.com/adamwdraper/Numeral-js), which `numbro` is built upon. The `numbro`
+changelog is at [CHANGELOG.md](CHANGELOG.md)._
 
 
 ### 1.5.3

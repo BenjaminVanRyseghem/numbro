@@ -27,16 +27,19 @@ Please submit all pull requests to the `develop` branch.
 
 4. Add your tests to the files in `/tests`
 
-5. To test your tests, run `grunt`
+5. To test your tests, run `grunt test`
 
-6. When all your tests are passing, run `grunt build` to minify all files
-
-7. Submit a pull request to the `develop` branch.
+6. When all your tests are passing, submit a pull request to the `develop` branch.
 
 
-### Languages 
+### Languages
 
-Languages names follows the Microsoft culture name convention as found [here](https://msdn.microsoft.com/en-us/library/ee825488.aspx).
+Languages names follows the Microsoft culture name convention as found
+[here](https://msdn.microsoft.com/en-us/library/ee825488.aspx). If Microsoft does not have a code
+for the country/locale combination, use the format `lang-locale` where the language code is a 2
+letter abbreviation from the list of [ISO 639-1 language
+codes](http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) and the `localecode` is from the list
+of [ISO 3166-1 country codes](http://en.wikipedia.org/wiki/ISO_3166-1)
 
 ### Language translations will not be merged without unit tests.
 
@@ -50,7 +53,9 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 # Acknowlegements
 
-`numbro` is forked from [Adam Draper](https://github.com/adamwdraper)'s project [Numeral.js](http://numeraljs.com/), which was in turn inspired by and heavily borrowed from [Moment.js](http://momentjs.com).
+`numbro` is forked from [Adam Draper](https://github.com/adamwdraper)'s project
+[Numeral.js](http://numeraljs.com/), which was in turn inspired by and heavily borrowed from
+[Moment.js](http://momentjs.com).
 
 
 # License
