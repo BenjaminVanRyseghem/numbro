@@ -1,0 +1,66 @@
+// Bootstrap 3.3.4
+@import "../bower_components/bootstrap/less/bootstrap.less";
+// Font Awesome 4.2.0
+@import "../bower_components/fontawesome/less/font-awesome";
+
+@fa-font-path: "../bower_components/fontawesome/fonts";
+
+// Variables
+@import "./variables";
+
+// Imports
+@import "./sticky_footer.less";
+@import "./index.less";
+
+// Global
+a, a.btn {
+  color: @numbro-brand-color;
+
+  &:hover {
+    color: @numbro-brand-color-dark;
+    border-color: @numbro-brand-color-dark;
+  }
+
+  &:visited {
+    color: @numbro-brand-color-darker;
+    border-color: @numbro-brand-color-darker;
+  }
+}
+
+// Navbar
+.navbar {
+  margin-bottom: 0;
+  background-color: @numbro-brand-color-complementary;
+  border-top-color: transparent;
+
+  .container-fluid {
+    @media (min-width: @screen-sm-min) {
+      margin-left: @content-margin;
+      margin-right: @content-margin;
+    }
+  }
+
+  .navbar-brand {
+    color: @numbro-brand-color;
+
+    &:hover {
+      color: @numbro-brand-color-darker;
+    }
+  }
+}
+
+// Footer
+.footer {
+  .container {
+    margin-top: 20px;
+    text-align: center;
+
+    p {
+      margin-bottom: 0;
+
+      .fa-heart {
+        color: red;
+      }
+    }
+  }
+}

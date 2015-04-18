@@ -1,0 +1,111 @@
+@import "./variables";
+
+.index {
+  .home {
+    background: @numbro-brand-color;
+    color: @numbro-brand-color-complementary;
+    padding: 20px;
+    text-align: center;
+
+    @media (min-width: @screen-sm-min) {
+      padding: 80px 20px;
+    }
+
+    .numbro-logo {
+      font-size: 80px;
+      margin-bottom: 30px;
+
+      @media (min-width: @screen-sm-min) {
+        font-size: 120px;
+      }
+    }
+
+    .punchline {
+      width: 100%;
+      margin-left: 0;
+      font-size: 20px;
+
+      @media (min-width: @screen-md-min) {
+        font-size: 30px;
+        width: 80%;
+        margin-left: 10%;
+      }
+    }
+
+    .btn {
+      color: @numbro-brand-color-complementary;
+      border: 1px solid @numbro-brand-color-complementary;
+      margin: 30px 0 10px 0;
+      font-size: 16px;
+
+      @media (min-width: @screen-sm-min) {
+        font-size: 20px;
+      }
+    }
+
+    .download {
+      color: @numbro-brand-color-darker;
+    }
+  }
+
+  .description {
+    text-align: center;
+    padding: 40px 20px;
+
+    @media (min-width: @screen-sm-min) {
+      padding: 100px 80px 80px 80px;
+    }
+
+    h3 {
+      font-size: 20px;
+
+      @media (min-width: @screen-md-min) {
+        font-size: 30px;
+      }
+    }
+
+    > p {
+      font-size: 16px;
+      margin-bottom: 20px;
+
+      @media (min-width: @screen-md-min) {
+        font-size: 20px;
+        width: 80%;
+        margin-left: 10%;
+        margin-bottom: 40px;
+      }
+    }
+
+    .box {
+      margin: 10px 0;
+
+      @media (min-width: @screen-md-min) {
+        margin: 20px 0;
+      }
+
+      i {
+        font-size: 40px;
+        margin-bottom: 10px;
+
+        @media (min-width: @screen-md-min) {
+          font-size: 80px;
+          margin-bottom: 20px;
+        }
+      }
+    }
+
+    a.btn {
+      border: 1px solid @numbro-brand-color;
+      margin: 10px 0;
+      font-size: 16px;
+
+      @media (min-width: @screen-md-min) {
+        font-size: 20px;
+      }
+    }
+  }
+  //
+  //hr {
+  //  width: 60%;
+  //}
+}
