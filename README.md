@@ -7,7 +7,7 @@ A javascript library for formatting and manipulating numbers.
 
 # Travis Build Status
 
-Master [![Build Status](https://api.travis-ci.org/foretagsplatsen/numbro.png)](https://travis-ci.org/foretagsplatsen/numbro)
+Master [![Build Status](https://travis-ci.org/foretagsplatsen/numbro.svg?branch=master)](https://travis-ci.org/foretagsplatsen/numbro)
 
 Develop [![Build Status](https://travis-ci.org/foretagsplatsen/numbro.png?branch=develop)](https://travis-ci.org/foretagsplatsen/numbro)
 
