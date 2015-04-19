@@ -70,14 +70,130 @@
 </nav>
 
     <div class="page-content">
-      <div class="wrapper">
-        <div class="home">
+        <div class="getting-started">
+	<div class="header">
+		<h3>Getting Started</h3>
 
-	Welcome
+		<p class="short-description">An overview of Numbro, how to downland and use it, how to contribute to it, and more.</p>
+	</div>
+	<div class="container-fluid">
+		<div class="row wrapper">
+			<div class="col-md-9 content">
+				<div id="download" class="section">
+	<h4>
+		Download
+	</h4>
 
+	<p>
+		Numbro can easily and quickly be installed via several ways to let you choose the one which fits the best to your needs.
+	</p>
+
+	<div id="bower" class="sub-section">
+		<h4>Bower</h4>
+
+		<p>
+			<a href="//bower.io/" target="_blank">Bower</a> is a simple package manager for javascript projects.
+			Numbro can be installed using the following command:
+		</p>
+
+		<div class="highlight"><pre><code class="language-bash" data-lang="bash">~ <span class="nv">$ </span>bower install numbro</code></pre></div>
+
+		<p>
+			You should then include the numbro javascript file in your webpage using a snippet like:
+		</p>
+
+		<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;./bower_components/numbro/min/numbro.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+	</div>
+
+	<div id="npm" class="sub-section">
+		<h4>NPM</h4>
+		<p>
+			<a href="//www.npmjs.com/" target="_blank">npm</a> is a package manager for node projects.
+		</p>
+	</div>
+
+	<div id="cdnjs" class="sub-section">
+		<h4>cdnjs</h4>
+	</div>
+
+	<div id="github" class="sub-section">
+		<h4>GitHub</h4>
+	</div>
+
+	<p>Numbro can be downloaded here!</p>
 </div>
 
-      </div>
+<div id="download2" class="section">
+	<h4>
+		Download2
+		<a class="anchorjs" href="#download2"></a>
+	</h4>
+
+	<p>Numbro can be downloaded here!</p>
+</div>
+
+<div id="download3" class="section">
+	<h4>
+		Download3
+		<a class="anchorjs" href="#download3"></a>
+	</h4>
+
+	<p>Numbro can be downloaded here!</p>
+</div>
+
+			</div>
+			<div id="side-nav" class="col-md-3 hidden-sm hidden-xs" role="navigation">
+				<ul class="nav nav-list">
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function() {
+		var scrollTreshold = 300;
+		var sidemenu = jQuery("#side-nav").find("ul");
+		var body = $("body");
+		jQuery(".section").each(function(index, each) {
+			var $each = $(each);
+			var text = $each.find("h4").get(0).innerText;
+			var href = each.id;
+
+
+			var subs = $each.find(".sub-section");
+			if (subs) {
+				var li = $("<li><a href=#" + href + ">" + text + "</a>").appendTo(sidemenu);
+				var ul = $('<ul class="nav nav-stacked submenu">').appendTo(li);
+				subs.each(function(index, sub) {
+					var text = $(sub).find("h4").get(0).innerText;
+					var href = sub.id;
+					ul.append("<li><a href=#" + href + ">" + text + "</a></li>");
+				});
+				sidemenu.append("</ul></li>");
+			} else {
+				sidemenu.append("<li><a href=#" + href + ">" + text + "</a></li>");
+			}
+		});
+
+		body.scrollspy({
+			target: "#side-nav",
+			offset: 20
+		});
+
+		$(window).scroll(function() {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < scrollTreshold) {
+				sidemenu.removeClass("affix");
+			} else {
+				sidemenu.addClass("affix");
+				sidemenu.get(0).style.top = "64px";
+			}
+		});
+	});
+</script>
+
+
     </div>
 
     <script src="./js/index.js"></script>

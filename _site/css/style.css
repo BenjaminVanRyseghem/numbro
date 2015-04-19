@@ -8472,6 +8472,81 @@ body > .page-content {
     font-size: 20px;
   }
 }
+/* all links */
+#side-nav .nav > li > a {
+  color: #999;
+  border-left: 2px solid transparent;
+  padding: 4px 20px;
+  font-size: 13px;
+  font-weight: 400;
+}
+/* nested links */
+#side-nav .nav .nav > li > a {
+  padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 30px;
+  font-size: 12px;
+}
+/* active & hover links */
+#side-nav .nav > .active > a,
+#side-nav .nav > li > a:hover,
+#side-nav .nav > li > a:focus {
+  color: #09a4c0;
+  text-decoration: none;
+  background-color: transparent;
+  border-left-color: #09a4c0;
+}
+/* all active links */
+#side-nav .nav > .active > a,
+#side-nav .nav > .active:hover > a,
+#side-nav .nav > .active:focus > a {
+  font-weight: 700;
+}
+/* nested active links */
+#side-nav .nav .nav > .active > a,
+#side-nav .nav .nav > .active:hover > a,
+#side-nav .nav .nav > .active:focus > a {
+  font-weight: 500;
+}
+/* hide inactive nested list */
+#side-nav .nav ul.nav {
+  display: none;
+}
+/* show active nested list */
+#side-nav .nav > .active > ul.nav {
+  display: block;
+}
+div.highlight {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+div.highlight pre {
+  text-align: left;
+  margin: 0;
+  font-family: Menlo, Consolas, "Courier New", Courier, "Liberation Mono", monospace;
+  font-size: 14px;
+  padding: 1.5em;
+  line-height: 1.8em;
+  background: #444;
+}
+div.highlight pre .language-bash {
+  color: #d3d3cd;
+  white-space: pre;
+  display: inline-block;
+  background-color: transparent;
+}
+div.highlight pre .language-bash .nv {
+  color: #ffcd8e;
+}
+div.highlight pre .language-html .nt {
+  color: #cbaaf5;
+}
+div.highlight pre .language-html .na {
+  color: #ffcd8e;
+}
+div.highlight pre .language-html .s {
+  color: #789771;
+}
 a,
 a.btn {
   color: #09a4c0;
@@ -8486,16 +8561,32 @@ a.btn:visited {
   color: #00718d;
   border-color: #00718d;
 }
+.wrapper {
+  margin: 20px 0 20px 20px;
+}
+@media (min-width: 768px) {
+  .wrapper {
+    margin: 50px 0 50px 50px;
+  }
+}
+.wrapper .content {
+  position: relative;
+}
 .navbar {
   margin-bottom: 0;
   background-color: white;
-  border-top-color: transparent;
+  border: 0 none;
 }
 @media (min-width: 768px) {
   .navbar .container-fluid {
     margin-left: 50px;
     margin-right: 50px;
   }
+}
+.navbar .container-fluid li.active a,
+.navbar .container-fluid li.active a:hover {
+  color: white;
+  background-color: #09a4c0;
 }
 .navbar .navbar-brand {
   color: #09a4c0;
@@ -8512,4 +8603,76 @@ a.btn:visited {
 }
 .footer .container p .fa-heart {
   color: red;
+}
+.header {
+  background: #09a4c0;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .header {
+    text-align: left;
+    padding: 60px 50px;
+  }
+}
+.header h3 {
+  font-size: 50px;
+}
+@media (min-width: 768px) {
+  .header h3 {
+    font-size: 70px;
+  }
+}
+.header .short-description {
+  font-size: 16px;
+  color: #beeaf2;
+}
+@media (min-width: 992px) {
+  .header .short-description {
+    font-size: 20px;
+  }
+}
+.section h4 {
+  font-size: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 5px;
+}
+@media (min-width: 992px) {
+  .section h4 {
+    font-size: 30px;
+  }
+}
+.section p {
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+@media (min-width: 992px) {
+  .section p {
+    font-size: 20px;
+    margin-bottom: 30px;
+  }
+}
+.section .sub-section {
+  margin-top: 16px;
+  margin-bottom: 16px;
+}
+@media (min-width: 992px) {
+  .section .sub-section {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}
+.section .sub-section h4 {
+  font-size: 20px;
+  border-bottom: 0 none;
+  padding-bottom: 0;
+}
+@media (min-width: 992px) {
+  .section .sub-section h4 {
+    font-size: 30px;
+  }
+}
+.section .sub-section p {
+  margin-bottom: 0;
 }

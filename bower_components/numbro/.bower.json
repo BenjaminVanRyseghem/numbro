@@ -23,7 +23,6 @@
     "commit": "13dce9d89cb500e940252867b54070b8c6eab70e"
   },
   "_source": "git://github.com/foretagsplatsen/numbro.git",
-  "_target": "~1.0.4",
-  "_originalSource": "numbro",
-  "_direct": true
+  "_target": "*",
+  "_originalSource": "numbro"
 }

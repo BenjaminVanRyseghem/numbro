@@ -1,7 +1,11 @@
 // Bootstrap 3.3.4
 @import "../bower_components/bootstrap/less/bootstrap.less";
+
 // Font Awesome 4.2.0
 @import "../bower_components/fontawesome/less/font-awesome";
+
+// Pygments 2.0.2
+//@import "../bower_components/pygments/css/fruity.css";
 
 @fa-font-path: "../bower_components/fontawesome/fonts";
 
@@ -11,6 +15,8 @@
 // Imports
 @import "./sticky_footer.less";
 @import "./index.less";
+@import "./sidemenu.less";
+@import "./highlight.less";
 
 // Global
 a, a.btn {
@@ -27,16 +33,38 @@ a, a.btn {
   }
 }
 
+// Wrapper
+.wrapper {
+  margin: @content-margin-sm 0 @content-margin-sm @content-margin-sm;
+
+  @media (min-width: @screen-sm-min) {
+    margin: @content-margin 0 @content-margin @content-margin;
+  }
+
+  .content {
+    position: relative;
+  }
+}
+
+// Side navbar
+#side-nav {
+}
+
 // Navbar
 .navbar {
   margin-bottom: 0;
   background-color: @numbro-brand-color-complementary;
-  border-top-color: transparent;
+  border: 0 none;
 
   .container-fluid {
     @media (min-width: @screen-sm-min) {
       margin-left: @content-margin;
       margin-right: @content-margin;
+    }
+
+    li.active a, li.active a:hover {
+      color: @numbro-brand-color-complementary;
+      background-color: @numbro-brand-color;
     }
   }
 
@@ -61,6 +89,84 @@ a, a.btn {
       .fa-heart {
         color: red;
       }
+    }
+  }
+}
+
+// Header
+
+.header {
+  background: @numbro-brand-color;
+  color: @numbro-brand-color-complementary;
+  padding: 20px;
+  text-align: center;
+
+  @media (min-width: @screen-sm-min) {
+    text-align: left;
+    padding: 60px @content-margin;
+  }
+
+  h3 {
+    font-size: 50px;;
+
+    @media (min-width: @screen-sm-min) {
+      font-size: 70px;;
+    }
+  }
+
+  .short-description {
+    font-size: 16px;
+    color: @numbro-brand-color-whitey;
+
+    @media (min-width: @screen-md-min) {
+      font-size: 20px;
+    }
+  }
+}
+
+// Section
+.section {
+  h4 {
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+
+    @media (min-width: @screen-md-min) {
+      font-size: 30px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+
+    @media (min-width: @screen-md-min) {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .sub-section {
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    @media (min-width: @screen-md-min) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    h4 {
+      font-size: 20px;
+      border-bottom: 0 none;
+      padding-bottom: 0;
+
+      @media (min-width: @screen-md-min) {
+        font-size: 30px;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
     }
   }
 }
