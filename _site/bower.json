@@ -21,7 +21,6 @@
   "dependencies": {
     "bootstrap": "~3.3.4",
     "numbro": "latest",
-    "fontawesome": "~4.3.0",
-    "pygments": "~2.0.2"
+    "fontawesome": "~4.3.0"
   }
 }

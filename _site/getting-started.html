@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible">
 
-	<title>Numbro.js</title>
+	<title>numbro.js</title>
 	<meta name="description" content="A javascript library for formatting and manipulating numbers.">
 	<meta name="author" content="Benjamin Van Ryseghem">
 
@@ -22,8 +22,9 @@
 	<!-- Bootstrap 3.3.4 -->
 	<script src="./bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
 
-	<!-- Numbro 1.0.4 -->
+	<!-- numbro 1.0.4 -->
 	<script src="./bower_components/numbro/min/numbro.min.js"></script>
+	<script src="./bower_components/numbro/min/languages.min.js"></script>
 </head>
 
   <body>
@@ -38,7 +39,7 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="./index.html">Numbro</a>
+			<a class="navbar-brand" href="./index.html">numbro</a>
 		</div>
 
 		<!-- Collect the nav links, forms, and other content for toggling -->
@@ -74,19 +75,28 @@
 	<div class="header">
 		<h3>Getting Started</h3>
 
-		<p class="short-description">An overview of Numbro, how to downland and use it, how to contribute to it, and more.</p>
+		<p class="short-description">An overview of numbro, how to downland and use it, how to contribute to it, and more.</p>
 	</div>
 	<div class="container-fluid">
 		<div class="row wrapper">
 			<div class="col-md-9 content">
 				<div id="download" class="section">
-	<h4>
-		Download
-	</h4>
-
+	<h4>Download</h4>
 	<p>
 		Numbro can easily and quickly be installed via several ways to let you choose the one which fits the best to your needs.
 	</p>
+
+	<div id="cdnjs" class="sub-section">
+		<h4>cdnjs</h4>
+
+		<p>
+			<a href="//cdnjs.com" target="_blank">cdnjs</a> provides the simplest way to use Numbro as you only need to embed the following
+			script:
+		</p>
+
+		<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;//cdnjs.cloudflare.com/ajax/libs/numbro/1.0.4/numbro.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+
+	</div>
 
 	<div id="bower" class="sub-section">
 		<h4>Bower</h4>
@@ -99,46 +109,92 @@
 		<div class="highlight"><pre><code class="language-bash" data-lang="bash">~ <span class="nv">$ </span>bower install numbro</code></pre></div>
 
 		<p>
-			You should then include the numbro javascript file in your webpage using a snippet like:
+			You should then include the Numbro javascript file in your webpage using a snippet like:
 		</p>
 
 		<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;./bower_components/numbro/min/numbro.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
 	</div>
 
-	<div id="npm" class="sub-section">
-		<h4>NPM</h4>
+	<div id="node" class="sub-section">
+		<h4>Node.js</h4>
 		<p>
 			<a href="//www.npmjs.com/" target="_blank">npm</a> is a package manager for node projects.
+			Numbro can be installed vie npm using the following command:
 		</p>
-	</div>
 
-	<div id="cdnjs" class="sub-section">
-		<h4>cdnjs</h4>
+		<div class="highlight"><pre><code class="language-bash" data-lang="bash">~ <span class="nv">$ </span>npm install numbro</code></pre></div>
+
+		<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">numeral</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">&quot;numeral&quot;</span><span class="p">);</span></code></pre></div>
+
+
+		<p>
+			You should then include the Numbro javascript file in your webpage using a snippet like:
+		</p>
+
+		<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;./node_modules/numbro/min/numbro.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
 	</div>
 
 	<div id="github" class="sub-section">
 		<h4>GitHub</h4>
-	</div>
 
-	<p>Numbro can be downloaded here!</p>
+		<p>
+			If you are an advanced user, you can clone the git repository of numbro with the following command:
+		</p>
+
+		<div class="highlight"><pre><code class="language-bash" data-lang="bash">~ <span class="nv">$ </span>git clone https://github.com/foretagsplatsen/numbro.git .</code></pre></div>
+
+		<p>
+			And finally use numbro in your page with:
+		</p>
+
+		<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">&quot;./numbro/min/numbro.min.js&quot;</span><span class="nt">&gt;&lt;/script&gt;</span></code></pre></div>
+	</div>
 </div>
 
-<div id="download2" class="section">
-	<h4>
-		Download2
-		<a class="anchorjs" href="#download2"></a>
-	</h4>
+<div id="community" class="section">
+	<h4>Community</h4>
 
-	<p>Numbro can be downloaded here!</p>
+	<p>
+		numbro is heavily driven by its community with the goal to provide a stable and reliable library for companies.
+	</p>
+
+	<ul>
+		<li>All the numbro code is hosted, managed and developed on GitHub <sup><a href="//github.com/foretagsplatsen/numbro" target="_blank"><i class="fa fa-github-alt"></i></a></sup>.</li>
+		<li>Any contribution is welcome. Every pull requests will be enthusiastically reviewed <i class="fa fa-smile-o"></i>.</li>
+		<li>All reported issues can be found on <a href="//github.com/foretagsplatsen/numbro/issues" target="_blank">github</a>. If you experience an issue with numbro, or if you have a question, do not hesitate to report it <a href="//github.com/foretagsplatsen/numbro/issues/new" target="_blank">here</a>.</li>
+
+	</ul>
 </div>
 
 <div id="download3" class="section">
-	<h4>
-		Download3
-		<a class="anchorjs" href="#download3"></a>
-	</h4>
+	<h4>License</h4>
 
-	<p>Numbro can be downloaded here!</p>
+	<h3>It requires you to:</h3>
+	<ul>
+		<li>Keep the license and copyright notice included in numbro's files when you use them in your works</li>
+	</ul>
+	<h3>It permits you to:</h3>
+	<ul>
+		<li>Freely download and use numbro, in whole or in part, for personal, private, company internal, or commercial purposes</li>
+		<li>Use numbro in packages or distributions that you create</li>
+		<li>Modify the source code</li>
+		<li>Grant a sublicense to modify and distribute numbro to third parties not included in the license</li>
+	</ul>
+	<h3>It forbids you to:</h3>
+	<ul>
+		<li>Hold the authors and license owners liable for damages as numbro is provided without warranty</li>
+		<li>Hold the creators or copyright holders of numbro liable</li>
+		<li>Redistribute any piece of numbro without proper attribution</li>
+		<li>Use any marks owned by Twitter in any way that might state or imply that Twitter endorses your distribution</li>
+		<li>Use any marks owned by Twitter in any way that might state or imply that you created the Twitter software in question</li>
+	</ul>
+	<h3>It does not require you to:</h3>
+	<ul>
+		<li>Include the source of numbro itself, or of any modifications you may have made to it, in any redistribution you may assemble that includes it</li>
+		<li>Submit changes that you make to numbro back to the numbro project (though such feedback is encouraged)</li>
+	</ul>
+	The full numbro license is located in the <a href="//github.com/foretagsplatsen/numbro/blob/master/LICENSE" target="_blank">project repository</a> for more information.
+
 </div>
 
 			</div>

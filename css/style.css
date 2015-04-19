@@ -8412,7 +8412,7 @@ body > .page-content {
     font-size: 20px;
   }
 }
-.index .home .download {
+.index .home .version {
   color: #00718d;
 }
 .index .description {
@@ -8538,6 +8538,19 @@ div.highlight pre .language-bash {
 div.highlight pre .language-bash .nv {
   color: #ffcd8e;
 }
+div.highlight pre .language-javascript {
+  color: #d3d3cd;
+  white-space: pre;
+  display: inline-block;
+  background-color: transparent;
+}
+div.highlight pre .language-javascript .kd {
+  color: #ffcd8e;
+}
+div.highlight pre .language-javascript .s1,
+div.highlight pre .language-javascript .s2 {
+  color: #789771;
+}
 div.highlight pre .language-html .nt {
   color: #cbaaf5;
 }
@@ -8632,6 +8645,9 @@ a.btn:visited {
   .header .short-description {
     font-size: 20px;
   }
+}
+.section {
+  margin-bottom: 40px;
 }
 .section h4 {
   font-size: 20px;
