@@ -8370,7 +8370,7 @@ body > .page-content {
   background-color: #f5f5f5;
 }
 .index .home {
-  background: #09a4c0;
+  background: #70a6c2;
   color: white;
   padding: 20px;
   text-align: center;
@@ -8413,7 +8413,7 @@ body > .page-content {
   }
 }
 .index .home .version {
-  color: #00718d;
+  color: #3d738f;
 }
 .index .description {
   text-align: center;
@@ -8463,7 +8463,7 @@ body > .page-content {
   }
 }
 .index .description a.btn {
-  border: 1px solid #09a4c0;
+  border: 1px solid #70a6c2;
   margin: 10px 0;
   font-size: 16px;
 }
@@ -8491,10 +8491,10 @@ body > .page-content {
 #side-nav .nav > .active > a,
 #side-nav .nav > li > a:hover,
 #side-nav .nav > li > a:focus {
-  color: #09a4c0;
+  color: #70a6c2;
   text-decoration: none;
   background-color: transparent;
-  border-left-color: #09a4c0;
+  border-left-color: #70a6c2;
 }
 /* all active links */
 #side-nav .nav > .active > a,
@@ -8527,52 +8527,52 @@ div.highlight pre {
   font-size: 14px;
   padding: 1.5em;
   line-height: 1.8em;
-  background: #444;
+  background: #eee;
 }
 div.highlight pre .language-bash {
-  color: #d3d3cd;
+  color: #444;
   white-space: pre;
   display: inline-block;
   background-color: transparent;
 }
 div.highlight pre .language-bash .nv {
-  color: #ffcd8e;
+  color: #cb8951;
 }
 div.highlight pre .language-javascript {
-  color: #d3d3cd;
+  color: #444;
   white-space: pre;
   display: inline-block;
   background-color: transparent;
 }
 div.highlight pre .language-javascript .kd {
-  color: #ffcd8e;
+  color: #cb8951;
 }
 div.highlight pre .language-javascript .s1,
 div.highlight pre .language-javascript .s2 {
-  color: #789771;
+  color: #47B02F;
 }
 div.highlight pre .language-html .nt {
-  color: #cbaaf5;
+  color: #8C3EEF;
 }
 div.highlight pre .language-html .na {
-  color: #ffcd8e;
+  color: #cb8951;
 }
 div.highlight pre .language-html .s {
-  color: #789771;
+  color: #47B02F;
 }
 a,
 a.btn {
-  color: #09a4c0;
+  color: #70a6c2;
 }
 a:hover,
 a.btn:hover {
-  color: #008ba7;
-  border-color: #008ba7;
+  color: #578da9;
+  border-color: #578da9;
 }
 a:visited,
 a.btn:visited {
-  color: #00718d;
-  border-color: #00718d;
+  color: #3d738f;
+  border-color: #3d738f;
 }
 .wrapper {
   margin: 20px 0 20px 20px;
@@ -8599,13 +8599,13 @@ a.btn:visited {
 .navbar .container-fluid li.active a,
 .navbar .container-fluid li.active a:hover {
   color: white;
-  background-color: #09a4c0;
+  background-color: #70a6c2;
 }
 .navbar .navbar-brand {
-  color: #09a4c0;
+  color: #70a6c2;
 }
 .navbar .navbar-brand:hover {
-  color: #00718d;
+  color: #3d738f;
 }
 .footer .container {
   margin-top: 20px;
@@ -8618,7 +8618,7 @@ a.btn:visited {
   color: red;
 }
 .header {
-  background: #09a4c0;
+  background: #70a6c2;
   color: white;
   padding: 20px;
   text-align: center;
@@ -8639,7 +8639,7 @@ a.btn:visited {
 }
 .header .short-description {
   font-size: 16px;
-  color: #beeaf2;
+  color: #cfe5f0;
 }
 @media (min-width: 992px) {
   .header .short-description {
