@@ -37,11 +37,14 @@ module.exports = function(grunt) {
                     'package.json',
                     'bower.json',
                     'component.json',
+                    'numbro.js',
                 ],
                 updateConfigs: ['pkg'],
                 commit: false,
                 createTag: false,
                 push: false,
+                globalReplace: true,
+                regExp: new RegExp('([\'|\"]?version[\'|\"]?[ ]*[:=][ ]*[\'|\"]?)(\\d+\\.\\d+\\.\\d+(-\\.\\d+)?(-\\d+)?)[\\d||A-a|.|-]*([\'|\"]?)')
             },
         },
         confirm: {
