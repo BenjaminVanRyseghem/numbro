@@ -1,9 +1,137 @@
 ---
-layout: default
+layout: page
+id: manipulate
+title: Manipulate
+description: How to manupulate numbro numbers (not used often, but still useful).
 ---
 
-<div class="home">
+<div id="operations" class="section">
 
-	Welcome
+	<h4>Operations</h4>
+
+	<p>
+		numbro provides a set of basic operations to apply to numbers.
+	</p>
+
+	{% highlight javascript %}
+var number = numeral(1000);
+
+var added = number.add(10);
+// 1010
+	{% endhighlight %}
+
+	<table id="manipulate" class="table table-striped table-bordered demo-table">
+		<thead>
+		<tr>
+			<th>Before</th>
+			<th>Function</th>
+			<th>After</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1000</td>
+			<td>.add(100)</td>
+			<td>1100</td>
+		</tr>
+		<tr>
+			<td>1100</td>
+			<td>.subtract(100)</td>
+			<td>1000</td>
+		</tr>
+		<tr>
+			<td>1000</td>
+			<td>.multiply(100)</td>
+			<td>100000</td>
+		</tr>
+		<tr>
+			<td>100000</td>
+			<td>.divide(100)</td>
+			<td>1000</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="value" class="section">
+	<h4>Value</h4>
+	<p>
+		The value of a numbro is always available via the <code>value</code> function.
+	</p>
+
+
+	{% highlight javascript %}
+var number = numeral(1000);
+
+var string = number.format('0,0');
+// '1,000'
+
+var value = number.value();
+// 1000
+	{% endhighlight %}
 
 </div>
+
+<div id="set" class="section">
+	<h4>Set</h4>
+
+	<p>
+		Set the value of a numbro.
+	</p>
+
+
+	{% highlight javascript %}
+var number = numeral(10);
+
+number.set(1000);
+
+var value = number.value();
+// 1000
+	{% endhighlight %}
+
+</div>
+
+<div id="difference" class="section">
+	<h4>Difference</h4>
+
+	<p>
+		Find the difference between your numeral object and a numeric value.
+	</p>
+
+
+	{% highlight javascript %}
+var number = numeral(1000),
+value = 100;
+
+var difference = number.difference(value);
+// 900
+	{% endhighlight %}
+
+</div>
+
+
+<div id="clone" class="section">
+	<h4>Clone</h4>
+
+	<p>
+		Clone any numbro as easy as using <code>clone</code>.
+	</p>
+
+
+	{% highlight javascript %}
+var a = numeral(1000);
+var b = numeral(a);
+var c = a.clone();
+
+var aVal = a.set(2000).value();
+// 2000
+
+var bVal = b.value();
+// 1000
+
+var cVal = c.add(10).value();
+// 1010
+	{% endhighlight %}
+
+</div>
+

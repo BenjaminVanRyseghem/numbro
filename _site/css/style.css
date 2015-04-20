@@ -8554,6 +8554,9 @@ div.highlight pre .language-javascript .s2 {
 div.highlight pre .language-javascript .c1 {
   color: #5373B6;
 }
+div.highlight pre .language-javascript .mi {
+  color: #b63557;
+}
 div.highlight pre .language-html .nt {
   color: #8C3EEF;
 }

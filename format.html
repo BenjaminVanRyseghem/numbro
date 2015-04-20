@@ -349,4 +349,55 @@ var string = numbro().unformat('($10,000.00)');
 		</tbody>
 	</table>
 </div>
+
+<div id="defaults" class="section">
+	<h4>Defaults</h4>
+
+	<p>
+		numbro allows you to the default format to use, as well as how to format 0.
+	</p>
+
+	<div id="default-format" class="sub-section">
+		<h4>Default format</h4>
+
+		<p>
+			Set a default format so you can use <code>.format()</code> without a string. The default format to <code>'0,0'</code>.
+		</p>
+
+		{% highlight javascript %}
+var number = numeral(1000);
+
+number.format();
+// '1,000'
+
+numeral.defaultFormat('$0,0.00');
+
+number.format();
+// '$1,000.00'
+		{% endhighlight %}
+
+	</div>
+
+	<div id="default-zero" class="sub-section">
+		<h4>Default zero</h4>
+
+		<p>
+			Set a custom output when formatting numerals with a value of <code>0</code>.
+		</p>
+
+
+		{% highlight javascript %}
+var number = numeral(0);
+
+numeral.zeroFormat('N/A');
+
+var zero = number.format('0.0')
+// 'N/A'
+		{% endhighlight %}
+
+	</div>
+</div>
+
+
+
 {% include js/insert-table.html %}

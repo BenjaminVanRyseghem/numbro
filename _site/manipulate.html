@@ -71,11 +71,188 @@
 </nav>
 
     <div class="page-content">
-        <div class="home">
+        <div class="manipulate">
+	<div class="header">
+		<h3>Manipulate</h3>
 
-	Welcome
+		<p class="short-description">How to manupulate numbro numbers (not used often, but still useful).</p>
+	</div>
+	<div class="container-fluid">
+		<div class="row wrapper">
+			<div class="col-md-9 content">
+				<div id="operations" class="section">
+
+	<h4>Operations</h4>
+
+	<p>
+		numbro provides a set of basic operations to apply to numbers.
+	</p>
+
+	<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="nx">numeral</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">added</span> <span class="o">=</span> <span class="nx">number</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<span class="c1">// 1010</span></code></pre></div>
+
+	<table id="manipulate" class="table table-striped table-bordered demo-table">
+		<thead>
+		<tr>
+			<th>Before</th>
+			<th>Function</th>
+			<th>After</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr>
+			<td>1000</td>
+			<td>.add(100)</td>
+			<td>1100</td>
+		</tr>
+		<tr>
+			<td>1100</td>
+			<td>.subtract(100)</td>
+			<td>1000</td>
+		</tr>
+		<tr>
+			<td>1000</td>
+			<td>.multiply(100)</td>
+			<td>100000</td>
+		</tr>
+		<tr>
+			<td>100000</td>
+			<td>.divide(100)</td>
+			<td>1000</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<div id="value" class="section">
+	<h4>Value</h4>
+	<p>
+		The value of a numbro is always available via the <code>value</code> function.
+	</p>
+
+
+	<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="nx">numeral</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">string</span> <span class="o">=</span> <span class="nx">number</span><span class="p">.</span><span class="nx">format</span><span class="p">(</span><span class="s1">&#39;0,0&#39;</span><span class="p">);</span>
+<span class="c1">// &#39;1,000&#39;</span>
+
+<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">number</span><span class="p">.</span><span class="nx">value</span><span class="p">();</span>
+<span class="c1">// 1000</span></code></pre></div>
 
 </div>
+
+<div id="set" class="section">
+	<h4>Set</h4>
+
+	<p>
+		Set the value of a numbro.
+	</p>
+
+
+	<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="nx">numeral</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+
+<span class="nx">number</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">value</span> <span class="o">=</span> <span class="nx">number</span><span class="p">.</span><span class="nx">value</span><span class="p">();</span>
+<span class="c1">// 1000</span></code></pre></div>
+
+</div>
+
+<div id="difference" class="section">
+	<h4>Difference</h4>
+
+	<p>
+		Find the difference between your numeral object and a numeric value.
+	</p>
+
+
+	<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">number</span> <span class="o">=</span> <span class="nx">numeral</span><span class="p">(</span><span class="mi">1000</span><span class="p">),</span>
+<span class="nx">value</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+
+<span class="kd">var</span> <span class="nx">difference</span> <span class="o">=</span> <span class="nx">number</span><span class="p">.</span><span class="nx">difference</span><span class="p">(</span><span class="nx">value</span><span class="p">);</span>
+<span class="c1">// 900</span></code></pre></div>
+
+</div>
+
+
+<div id="clone" class="section">
+	<h4>Clone</h4>
+
+	<p>
+		Clone any numbro as easy as using <code>clone</code>.
+	</p>
+
+
+	<div class="highlight"><pre><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">numeral</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">b</span> <span class="o">=</span> <span class="nx">numeral</span><span class="p">(</span><span class="nx">a</span><span class="p">);</span>
+<span class="kd">var</span> <span class="nx">c</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">clone</span><span class="p">();</span>
+
+<span class="kd">var</span> <span class="nx">aVal</span> <span class="o">=</span> <span class="nx">a</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="mi">2000</span><span class="p">).</span><span class="nx">value</span><span class="p">();</span>
+<span class="c1">// 2000</span>
+
+<span class="kd">var</span> <span class="nx">bVal</span> <span class="o">=</span> <span class="nx">b</span><span class="p">.</span><span class="nx">value</span><span class="p">();</span>
+<span class="c1">// 1000</span>
+
+<span class="kd">var</span> <span class="nx">cVal</span> <span class="o">=</span> <span class="nx">c</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">value</span><span class="p">();</span>
+<span class="c1">// 1010</span></code></pre></div>
+
+</div>
+
+
+			</div>
+			<div id="side-nav" class="col-md-3 hidden-sm hidden-xs" role="navigation">
+				<ul class="nav nav-list">
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$(function() {
+		var scrollTreshold = 300;
+		var sidemenu = jQuery("#side-nav").find("ul");
+		var body = $("body");
+		jQuery(".section").each(function(index, each) {
+			var $each = $(each);
+			var text = $each.find("h4").get(0).innerText;
+			var href = each.id;
+
+
+			var subs = $each.find(".sub-section");
+			if (subs) {
+				var li = $("<li><a href=#" + href + ">" + text + "</a>").appendTo(sidemenu);
+				var ul = $('<ul class="nav nav-stacked submenu">').appendTo(li);
+				subs.each(function(index, sub) {
+					var text = $(sub).find("h4").get(0).innerText;
+					var href = sub.id;
+					ul.append("<li><a href=#" + href + ">" + text + "</a></li>");
+				});
+				sidemenu.append("</ul></li>");
+			} else {
+				sidemenu.append("<li><a href=#" + href + ">" + text + "</a></li>");
+			}
+		});
+
+		body.scrollspy({
+			target: "#side-nav",
+			offset: 20
+		});
+
+		$(window).scroll(function() {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < scrollTreshold) {
+				sidemenu.removeClass("affix");
+			} else {
+				sidemenu.addClass("affix");
+				sidemenu.get(0).style.top = "64px";
+			}
+		});
+	});
+</script>
+
 
     </div>
 
