@@ -1,0 +1,27 @@
+<script>
+	$(function() {
+		$(".demo-table").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				tds[2].innerText = numbro(tds[0].innerText).format(tds[1].innerText.split("'")[1]);
+			});
+		});
+
+		$("#unformat-table").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var value = tds[0].innerText.split("'")[1];
+				tds[1].innerText = ".unformat(\"" + value + "\")";
+				tds[2].innerText = numbro().unformat(value);
+			});
+		});
+	});
+</script>

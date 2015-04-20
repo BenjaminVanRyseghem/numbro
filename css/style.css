@@ -8551,6 +8551,9 @@ div.highlight pre .language-javascript .s1,
 div.highlight pre .language-javascript .s2 {
   color: #47B02F;
 }
+div.highlight pre .language-javascript .c1 {
+  color: #5373B6;
+}
 div.highlight pre .language-html .nt {
   color: #8C3EEF;
 }
@@ -8691,4 +8694,20 @@ a.btn:visited {
 }
 .section .sub-section p {
   margin-bottom: 0;
+}
+.demo-table {
+  text-align: center;
+}
+.demo-table th,
+.demo-table td {
+  width: 33%;
+}
+@media (min-width: 992px) {
+  .demo-table {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+}
+.demo-table th {
+  text-align: center;
 }
