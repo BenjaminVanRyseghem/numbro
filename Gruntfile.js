@@ -50,7 +50,7 @@ module.exports = function(grunt) {
                     question: 'Are you sure you want to publish a new release' +
                         ' with version <%= pkg.version %>? (yes/no)',
                     continue: function(answer) {
-                        return answer.toLowerCase() === 'yes';
+                        return ['yes', 'y'].indexOf(answer.toLowerCase()) !== -1;
                     }
                 }
             }
