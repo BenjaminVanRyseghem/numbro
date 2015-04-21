@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : danish denmark (dk)
  * author : Michael Storgaard : https://github.com/mstorgaard
@@ -19,7 +19,7 @@
             return '.';
         },
         currency: {
-            symbol: 'DKK',
+            symbol: 'kr',
 			position: 'postfix'
         },
         defaults: {

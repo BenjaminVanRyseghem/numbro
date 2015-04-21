@@ -89,35 +89,35 @@ exports.misc = {
 
         test.done();
     },
-    
+
     languageData: function(test) {
         test.expect(10);
-        
+
         var cOld = '$',
             cNew = '!',
             formatTestVal = function() { return numbro('100').format('$0,0') },
             oldCurrencyVal = cOld + '100',
             newCurrencyVal = cNew + '100';
-        
+
         test.strictEqual(numbro.languageData().currency.symbol, cOld, 'Current language currency is ' + cOld);
         test.strictEqual(numbro.languageData('en-US').currency.symbol, cOld, 'English language currency is ' + cOld);
-        
+
         numbro.languageData().currency.symbol = cNew;
         test.strictEqual(numbro.languageData().currency.symbol, cNew, 'Current language currency is changed to ' + cNew);
         test.strictEqual(formatTestVal(), newCurrencyVal, 'Format uses new currency');
-        
+
         numbro.languageData().currency.symbol = cOld;
         test.strictEqual(numbro.languageData().currency.symbol, '$', 'Current language currency is reset to ' + cOld);
         test.strictEqual(formatTestVal(), oldCurrencyVal, 'Format uses old currency');
-        
+
         numbro.languageData('en-US').currency.symbol = cNew;
         test.strictEqual(numbro.languageData().currency.symbol, cNew, 'English language currency is changed to ' + cNew);
         test.strictEqual(formatTestVal(), newCurrencyVal, 'Format uses new currency');
-        
+
         numbro.languageData('en-US').currency.symbol = cOld;
         test.strictEqual(numbro.languageData().currency.symbol, cOld, 'English language currency is reset to ' + cOld);
         test.strictEqual(formatTestVal(), oldCurrencyVal, 'Format uses old currency');
-        
+
         test.done();
     }
 };

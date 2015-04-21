@@ -1,7 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : english united kingdom (uk)
- * author : Dan Ristic : https://github.com/dristic
+ * language : filipino philippines (ph)
+ * author : Michael Abadilla : https://github.com/mjmaix
  */
 (function () {
     var language = {
@@ -23,17 +23,7 @@
                 (b === 3) ? 'rd' : 'th';
         },
         currency: {
-            symbol: '£',
-            position: 'prefix'
-        },
-        defaults: {
-            currencyFormat: ',0000 a'
-        },
-        formats: {
-            fourDigits: '0000 a',
-            fullWithTwoDecimals: '$ ,0.00',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: '$ ,0'
+            symbol: '₱'
         }
     };
 
@@ -43,6 +33,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('en-GB', language);
+        this.numbro.language('fil-PH', language);
     }
 }());

@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : polish (pl)
  * author : Dominik Bulaj : https://github.com/dominikbulaj
