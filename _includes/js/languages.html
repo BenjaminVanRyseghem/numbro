@@ -1,0 +1,50 @@
+<script>
+	$(function() {
+		var $table = $($(".culture-table").find("tbody").get(0));
+
+		var countryCodes = {
+			"cs-CZ": "Czech",
+			"da-DK": "Danish",
+			"de-CH": "German (Switzerland)",
+			"de-DE": "German (Standard)",
+			"en-US": "English (United States)",
+			"en-GB": "English (United Kingdom)",
+			"es": "Spanish (Spain)",
+			"es-AR": "Spanish (Argentina)",
+			"es-ES": "Spanish (Spain)",
+			"et-EE": "Estonian (Estonia)",
+			"fa-IR": "Farsi (Iran)",
+			"fi-FI": "Finnish (Finland)",
+			"nl-BE": "Dutch (Belgium)",
+			"fr-CA": "French (Canada)",
+			"fr-CH": "French (Switzerland)",
+			"fr-FR": "French (Standard)",
+			"hu-HU": "Hungarian (Hungary)",
+			"it-IT": "Italian (Standard)",
+			"ja-JP": "Japanese",
+			"lv-LV": "Latvian (Latvia)",
+			"nb-NO": "Norwegian (Norway)",
+			"nl-NL": "Dutch (The Netherlands)",
+			"pl-PL": "Polish (Poland)",
+			"pt-BR": "Portuguese (Brazil)",
+			"pt-PT": "Portuguese (Portugal)",
+			"ru-RU": "Russian (Russia)",
+			"ru-UA": "Russian (Ukraine)",
+			"sk-SK": "Slovak",
+			"sv-SE": "Swedish",
+			"th-TH": "Thai",
+			"tr-TR": "Turkish",
+			"uk-UA": "Ukrainian",
+			"zh-CN": "Chinese (PRC)"
+		};
+		Object.keys(numbro.languages()).sort().forEach(function(each) {
+			var name = countryCodes[each] || "Unknown Code";
+			if (each === numbro.language()) {
+				$table.append("<tr class=\"info\"><td>" + name + "</td><td>" + each + "</td>");
+			} else {
+				$table.append("<tr><td>" + name + "</td><td>" + each + "</td>");
+			}
+		});
+	});
+
+</script>
