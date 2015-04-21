@@ -607,6 +607,10 @@
 		}
     });
 
+    numbro.languages = function() {
+        return languages;
+    };
+
     numbro.zeroFormat = function(format) {
         zeroFormat = typeof(format) === 'string' ? format : null;
     };
