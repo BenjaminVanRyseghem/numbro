@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : simplified chinese
  * author : badplum : https://github.com/badplum

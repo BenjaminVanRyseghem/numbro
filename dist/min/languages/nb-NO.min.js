@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : norwegian
  * author : Benjamin Van Ryseghem

@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : french (fr-ch)
  * author : Adam Draper : https://github.com/adamwdraper

@@ -64,7 +64,7 @@
             return '.';
         },
         currency: {
-            symbol: 'DKK',
+            symbol: 'kr',
 			position: 'postfix'
         },
         defaults: {
@@ -87,6 +87,7 @@
         this.numbro.language('da-DK', language);
     }
 }());
+
 /*!
  * numbro.js language configuration
  * language : German (de) – generally useful in Germany, Austria, Luxembourg, Belgium
@@ -373,6 +374,41 @@
 
 /*!
  * numbro.js language configuration
+ * language : Farsi Iran
+ * author : neo13 : https://github.com/neo13
+ */
+(function () {
+    var language = {
+        delimiters: {
+            thousands: '،',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'هزار',
+            million: 'میلیون',
+            billion: 'میلیارد',
+            trillion: 'تریلیون'
+        },
+        ordinal: function (number) {
+            return 'ام';
+        },
+        currency: {
+            symbol: '﷼'
+        }
+    };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fa-IR', language);
+    }
+}());
+
+/*!
+ * numbro.js language configuration
  * language : Finnish
  * author : Sami Saada : https://github.com/samitheberber
  */
@@ -413,6 +449,45 @@
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
         this.numbro.language('fi-FI', language);
+    }
+}());
+
+/*!
+ * numbro.js language configuration
+ * language : filipino philippines (ph)
+ * author : Michael Abadilla : https://github.com/mjmaix
+ */
+(function () {
+    var language = {
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+            var b = number % 10;
+            return (~~ (number % 100 / 10) === 1) ? 'th' :
+                (b === 1) ? 'st' :
+                (b === 2) ? 'nd' :
+                (b === 3) ? 'rd' : 'th';
+        },
+        currency: {
+            symbol: '₱'
+        }
+    };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('fil-PH', language);
     }
 }());
 

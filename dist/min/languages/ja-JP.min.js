@@ -1,4 +1,4 @@
-/*! 
+/*!
  * numbro.js language configuration
  * language : japanese
  * author : teppeis : https://github.com/teppeis
