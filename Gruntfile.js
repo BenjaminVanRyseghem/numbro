@@ -61,10 +61,7 @@ module.exports = function(grunt) {
         release:{
             options: {
                 bump: false,
-                additionalFiles: [
-                    'bower.json',
-                    'component.json',
-                ],
+                commit: false,
                 tagName: 'v<%= version %>',
             },
         },
@@ -120,19 +117,10 @@ module.exports = function(grunt) {
     ]);
 
     // wrap grunt-release with confirmation
-    [
-        'patch',
-        'minor',
-        'major',
-        'prerelease'
-    ].forEach(function (detail) {
-        grunt.registerTask('publish:'+detail, [
-            'bump:'+detail,
-            'confirm:release',
-            'release',
-        ]);
-    });
-    grunt.registerTask('publish', ['publish:patch']);
+    grunt.registerTask('publish', [
+        'confirm:release',
+        'release',
+    ]);
 
 
     // Travis CI task.
