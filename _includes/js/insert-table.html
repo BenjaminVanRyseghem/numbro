@@ -7,7 +7,9 @@
 				}
 
 				var tds = $(tr).find("td");
-				tds[2].innerText = numbro(tds[0].innerText).format(tds[1].innerText.split("'")[1]);
+				var number = $(tds[0]).text();
+				var format = $(tds[1]).text().split("'")[1];
+				$(tds[2]).text(numbro(number).format(format));
 			});
 		});
 
@@ -18,9 +20,9 @@
 				}
 
 				var tds = $(tr).find("td");
-				var value = tds[0].innerText.split("'")[1];
-				tds[1].innerText = ".unformat(\"" + value + "\")";
-				tds[2].innerText = numbro().unformat(value);
+				var value = $(tds[0]).text().split("'")[1];
+				$(tds[1]).text(".unformat(\"" + value + "\")");
+				$(tds[2]).text(numbro().unformat(value));
 			});
 		});
 	});

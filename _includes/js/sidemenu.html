@@ -1,20 +1,20 @@
 <script>
 	$(function() {
 		var scrollTreshold = 300;
-		var sidemenu = jQuery("#side-nav").find("ul");
+		var sidemenu = $("#side-nav").find("ul");
 		var body = $("body");
-		jQuery(".section").each(function(index, each) {
+		$(".section").each(function(index, each) {
 			var $each = $(each);
-			var text = $each.find("h4").get(0).innerText;
+			var text = $($each.find("h4").get(0)).text();
 			var href = each.id;
 
 
 			var subs = $each.find(".sub-section");
-			if (subs) {
+			if (subs.length) {
 				var li = $("<li><a href=#" + href + ">" + text + "</a>").appendTo(sidemenu);
 				var ul = $('<ul class="nav nav-stacked submenu">').appendTo(li);
 				subs.each(function(index, sub) {
-					var text = $(sub).find("h4").get(0).innerText;
+					var text = $($(sub).find("h4").get(0)).text();
 					var href = sub.id;
 					ul.append("<li><a href=#" + href + ">" + text + "</a></li>");
 				});
