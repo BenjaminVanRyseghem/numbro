@@ -110,9 +110,11 @@
 
                 // see if bytes are there so that we can multiply to the correct number
                 for (power = 0; power <= binarySuffixes.length && !bytesMultiplier; power++) {
-                    if (string.indexOf(binarySuffixes[power]) > -1) { bytesMultiplier = Math.pow(1024, power + 1); }
-                    else if (string.indexOf(decimalSuffixes[power]) > -1) { bytesMultiplier = Math.pow(1000, power + 1); }
-                    else { bytesMultiplier = false; }
+                    if (string.indexOf(binarySuffixes[power]) > -1) {
+                        bytesMultiplier = Math.pow(1024, power + 1);
+                    } else if (string.indexOf(decimalSuffixes[power]) > -1) {
+                        bytesMultiplier = Math.pow(1000, power + 1);
+                    }
                 }
 
                 // do some math to create our number
@@ -426,7 +428,7 @@
 
                 for (power = 0; power <= decimalSuffixes.length; power++) {
                     min = Math.pow(1000, power);
-                    max = Math.pow(1000, power+1);
+                    max = Math.pow(1000, power + 1);
 
                     if (value >= min && value < max) {
                         bytes = bytes + decimalSuffixes[power];
