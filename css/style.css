@@ -8613,6 +8613,15 @@ a.btn:visited {
 .navbar .navbar-brand:hover {
   color: #3d738f;
 }
+@media (min-width: 768px) {
+  .navbar .iconic-link {
+    font-size: 30px;
+  }
+  .navbar .iconic-link a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}
 .footer .container {
   margin-top: 20px;
   text-align: center;

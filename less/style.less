@@ -43,10 +43,6 @@ a, a.btn {
   }
 }
 
-// Side navbar
-#side-nav {
-}
-
 // Navbar
 .navbar {
   margin-bottom: 0;
@@ -70,6 +66,17 @@ a, a.btn {
 
     &:hover {
       color: @numbro-brand-color-darker;
+    }
+  }
+
+  .iconic-link {
+    @media (min-width: @screen-sm-min) {
+      font-size: 30px;
+
+      a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
     }
   }
 }
