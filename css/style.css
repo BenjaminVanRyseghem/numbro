@@ -8601,6 +8601,11 @@ div.highlight pre .language-html .s {
   padding-left: 0;
   padding-right: 0;
 }
+@media (max-width: 420px) {
+  .try-me .numbro-input form input {
+    width: 90px;
+  }
+}
 .try-me .numbro-input form .form-button {
   display: block;
   margin-top: 10px;
