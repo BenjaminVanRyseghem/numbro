@@ -1,0 +1,100 @@
+<script>
+	$(function() {
+		var countryCodes = {
+			"cs-CZ": "Czech",
+			"da-DK": "Danish",
+			"de-CH": "German (Switzerland)",
+			"de-DE": "German (Standard)",
+			"en-US": "English (United States)",
+			"en-GB": "English (United Kingdom)",
+			"es": "Spanish (Spain)",
+			"es-AR": "Spanish (Argentina)",
+			"es-ES": "Spanish (Spain)",
+			"et-EE": "Estonian (Estonia)",
+			"fa-IR": "Farsi (Iran)",
+			"fi-FI": "Finnish (Finland)",
+			"fil-PH": "Filipino",
+			"fr-CA": "French (Canada)",
+			"fr-CH": "French (Switzerland)",
+			"fr-FR": "French (France)",
+			"hu-HU": "Hungarian (Hungary)",
+			"it-IT": "Italian (Standard)",
+			"ja-JP": "Japanese",
+			"lv-LV": "Latvian (Latvia)",
+			"nb-NO": "Norwegian (Norway)",
+			"nl-BE": "Dutch (Belgium)",
+			"nl-NL": "Dutch (The Netherlands)",
+			"pl-PL": "Polish (Poland)",
+			"pt-BR": "Portuguese (Brazil)",
+			"pt-PT": "Portuguese (Portugal)",
+			"ru-RU": "Russian (Russia)",
+			"ru-UA": "Russian (Ukraine)",
+			"sk-SK": "Slovak",
+			"sv-SE": "Swedish",
+			"th-TH": "Thai",
+			"tr-TR": "Turkish",
+			"uk-UA": "Ukrainian",
+			"zh-CN": "Chinese (PRC)"
+		};
+		
+		var countryNames = {
+			"Czech": "cs-CZ",
+			"Danish": "da-DK",
+			"German (Switzerland)": "de-CH",
+			"German (Standard)": "de-DE",
+			"English (United States)": "en-US",
+			"English (United Kingdom)": "en-GB",
+			"Spanish (Argentina)": "es-AR",
+			"Spanish (Spain)": "es-ES",
+			"Estonian (Estonia)": "et-EE",
+			"Farsi (Iran)": "fa-IR",
+			"Finnish (Finland)": "fi-FI",
+			"Filipino": "fil-PH",
+			"French (Canada)": "fr-CA",
+			"French (Switzerland)": "fr-CH",
+			"French (France)": "fr-FR",
+			"Hungarian (Hungary)": "hu-HU",
+			"Italian (Standard)": "it-IT",
+			"Japanese": "ja-JP",
+			"Latvian (Latvia)": "lv-LV",
+			"Norwegian (Norway)": "nb-NO",
+			"Dutch (Belgium)": "nl-BE",
+			"Dutch (The Netherlands)": "nl-NL",
+			"Polish (Poland)": "pl-PL",
+			"Portuguese (Brazil)": "pt-BR",
+			"Portuguese (Portugal)": "pt-PT",
+			"Russian (Russia)": "ru-RU",
+			"Russian (Ukraine)": "ru-UA",
+			"Slovak": "sk-SK",
+			"Swedish": "sv-SE",
+			"Thai": "th-TH",
+			"Turkish": "tr-TR",
+			"Ukrainian": "uk-UA",
+			"Chinese (PRC)": "zh-CN"
+		};
+
+		Object.keys(numbro.languages()).sort().forEach(function(each) {
+			var name = countryCodes[each] || "Unknown code";
+			var node = "<option data-subtext=\"" + each + "\">" + name + "</option>";
+			if (each === numbro.language()) {
+				node = "<option selected=\"selected\" data-subtext=\"" + each + "\">" + name + "</option>";
+			}
+
+			$($("#lang-numbro").get(0)).append(node);
+		});
+		$('#lang-numbro').selectpicker();
+
+		$($("#format-numbro").get(0)).click(function(e) {
+			e.preventDefault();
+
+			var lang = countryNames[$($("#lang-numbro").get(0)).val()] || "en-US";
+			var number = $($("#input-numbro").get(0)).val();
+			var format = $($("#format-string-numbro").get(0)).val();
+			var textarea = $($("#format-result").get(0));
+			numbro.language(lang);
+			textarea.val(numbro(number).format(format));
+
+			return false;
+		});
+	});
+</script>

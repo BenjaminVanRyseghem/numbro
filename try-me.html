@@ -1,0 +1,37 @@
+---
+layout: page
+id: try-me
+title: Try me
+description: Have the opportunity to try the latest version of numbro live.
+---
+
+<div class="section-no-nav">
+	<h4>Live numbro</h4>
+
+	<div class="language-chooser">
+		<select id="lang-numbro" class="show-tick" data-container="body">
+		</select>
+	</div>
+
+	<div class="numbro-input">
+		<form class="form-inline">
+			<div class="form-group">
+				<label for="input-numbro">numbro(</label>
+				<input type="text" class="form-control" id="input-numbro" placeholder="12345">
+			</div>
+			<div class="form-group">
+				<label for="format-string-numbro">).format("</label>
+				<input type="text" class="form-control" id="format-string-numbro" placeholder="0[.]00">
+				<label for="format-string-numbro">");</label>
+			</div>
+			<div class="form-button">
+				<button type="submit" class="btn btn-default" id="format-numbro">Format</button>
+			</div>
+		</form>
+	</div>
+
+	<textarea disabled id="format-result"></textarea>
+
+</div>
+
+{% include js/format.html %}

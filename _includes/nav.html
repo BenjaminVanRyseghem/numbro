@@ -40,8 +40,19 @@
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><hr></li>
-				<li><a href="#">Try me</a></li>
-				<li><a href="#">News</a></li>
+
+				{% if page.url == "/try-me.html" %}
+				<li class="active"><a href="/try-me.html">Try me <span class="sr-only">(current)</span></a></li>
+				{% else %}
+				<li><a href="/try-me.html">Try me</a></li>
+				{% endif %}
+
+				{% if page.url == "/news.html" %}
+				<li class="active"><a href="/news.html">News <span class="sr-only">(current)</span></a></li>
+				{% else %}
+				<li><a href="/news.html">News</a></li>
+				{% endif %}
+
 				<li class="iconic-link">
 					<a href="//github.com/foretagsplatsen/numbro" target="_blank">
 						<span class="hidden-lg hidden-md">GitHub</span>
