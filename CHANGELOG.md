@@ -1,3 +1,8 @@
+### 1.1.1
+
+- Fixes minified version number. Thanks @BenjaminVanRyseghem
+- Removes old minified files. Thanks @Graham42
+
 ### 1.1.0
 
 - Adds `languages` to expose all registered languages. Thanks @NicolasPetton

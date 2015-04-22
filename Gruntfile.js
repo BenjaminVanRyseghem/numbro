@@ -62,7 +62,7 @@ module.exports = function(grunt) {
             options: {
                 bump: false,
                 commit: false,
-                tagName: 'v<%= version %>',
+                tagName: '<%= version %>',
             },
         },
         nodeunit: {
