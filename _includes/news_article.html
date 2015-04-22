@@ -1,0 +1,26 @@
+<div id="{{ post.title | slugify }}" class="section clearfix">
+
+	<h4>{{ post.title }}</h4>
+
+	<div class="post post-date">
+		{{ post.date | date_to_string }}
+	</div>
+
+	<div class="post post-meta">
+		<div id="post_author">
+			<div class="post-avatar">
+				<a href="https://github.com/{{ post.author }}" class="post-author">
+					<img src="https://github.com/{{ post.author }}.png" class="avatar" alt="{{ post.author }}"/>
+				</a>
+			</div>
+			<div class="post-authorname">
+				<a href="https://github.com/{{ post.author }}" class="post-author">
+					{{ post.author }}
+				</a>
+			</div>
+		</div>
+	</div>
+	<div class="post-content">
+		{{ post.content }}
+	</div>
+</div>

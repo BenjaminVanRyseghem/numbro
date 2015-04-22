@@ -1,0 +1,10 @@
+---
+layout: page
+id: news
+title: News
+description: What is happening in the numbro's world.
+---
+
+{% for post in site.posts %}
+	{% include news_article.html %}
+{% endfor %}

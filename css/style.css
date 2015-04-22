@@ -8630,6 +8630,32 @@ div.highlight pre .language-html .s {
   border: 1px solid #CCC;
   height: 34px;
 }
+.news .post-date {
+  position: absolute;
+  top: 10px;
+  right: 0;
+  color: #999;
+}
+.news .post-meta {
+  height: 150px;
+  width: 150px;
+  float: right;
+  text-align: right;
+  margin-left: 50px;
+  margin-bottom: 50px;
+}
+.news .post-meta .post-authorname {
+  text-align: center;
+}
+.news .post-meta .post-author img {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+}
+.news .section p {
+  font-size: 14px;
+  margin-bottom: initial;
+}
 a,
 a.btn {
   color: #70a6c2;
@@ -8739,6 +8765,7 @@ a.btn:visited {
 .section,
 .section-no-nav {
   margin-bottom: 40px;
+  position: relative;
 }
 .section h4,
 .section-no-nav h4 {
