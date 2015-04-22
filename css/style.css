@@ -8567,9 +8567,19 @@ div.highlight pre .language-html .na {
 div.highlight pre .language-html .s {
   color: #47B02F;
 }
+.try-me .section-no-nav {
+  padding-top: 40px;
+}
 .try-me .numbro-input form {
   margin-top: 10px;
   margin-bottom: 10px;
+  width: 100%;
+}
+@media (max-width: 768px) {
+  .try-me .numbro-input form {
+    display: inline-block;
+    height: 30px;
+  }
 }
 @media (min-width: 768px) {
   .try-me .numbro-input form {
@@ -8577,7 +8587,11 @@ div.highlight pre .language-html .s {
     margin-bottom: 20px;
   }
 }
+.try-me .numbro-input form .form-group {
+  display: inline-block;
+}
 .try-me .numbro-input form input {
+  display: inline-block;
   height: 26px;
   border: 0 none;
   box-shadow: none;
@@ -8594,12 +8608,23 @@ div.highlight pre .language-html .s {
   position: relative;
 }
 .try-me .numbro-input form .form-button button {
+  display: inline-block;
   position: absolute;
-  left: 360px;
+  right: 0;
   top: 10px;
 }
-.try-me textarea {
-  width: 345px;
+@media (max-width: 768px) {
+  .try-me .numbro-input form .form-button button {
+    top: -12px;
+  }
+}
+.try-me .numbro-result {
+  position: absolute;
+  left: 15px;
+  right: 100px;
+}
+.try-me .numbro-result textarea {
+  width: 100%;
   resize: none;
   border-radius: 4px;
   border: 1px solid #CCC;
@@ -8619,23 +8644,34 @@ a.btn:visited {
   color: #3d738f;
   border-color: #3d738f;
 }
-.wrapper {
+.wrapper,
+.wrapper-no-nav {
   margin: 20px 0 20px 20px;
 }
 @media (min-width: 768px) {
-  .wrapper {
+  .wrapper,
+  .wrapper-no-nav {
     margin: 50px 0 50px 50px;
   }
 }
-.wrapper .content {
+.wrapper .content,
+.wrapper-no-nav .content {
   position: relative;
+}
+.wrapper-no-nav {
+  margin: 20px;
+}
+@media (min-width: 768px) {
+  .wrapper-no-nav {
+    margin: 50px;
+  }
 }
 .navbar {
   margin-bottom: 0;
   background-color: white;
   border: 0 none;
 }
-@media (min-width: 768px) {
+@media (min-width: 800px) {
   .navbar .container-fluid {
     margin-left: 50px;
     margin-right: 50px;
@@ -8695,7 +8731,7 @@ a.btn:visited {
   font-size: 16px;
   color: #cfe5f0;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .header .short-description {
     font-size: 20px;
   }
@@ -8710,7 +8746,7 @@ a.btn:visited {
   border-bottom: 1px solid #eee;
   padding-bottom: 5px;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .section h4,
   .section-no-nav h4 {
     font-size: 30px;
@@ -8721,7 +8757,7 @@ a.btn:visited {
   font-size: 16px;
   margin-bottom: 20px;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .section p,
   .section-no-nav p {
     font-size: 20px;
@@ -8733,7 +8769,7 @@ a.btn:visited {
   margin-top: 16px;
   margin-bottom: 16px;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .section .sub-section,
   .section-no-nav .sub-section {
     margin-top: 20px;
@@ -8746,7 +8782,7 @@ a.btn:visited {
   border-bottom: 0 none;
   padding-bottom: 0;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .section .sub-section h4,
   .section-no-nav .sub-section h4 {
     font-size: 30px;
@@ -8763,7 +8799,7 @@ a.btn:visited {
 .demo-table td {
   width: 33%;
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .demo-table {
     margin-top: 30px;
     margin-bottom: 30px;

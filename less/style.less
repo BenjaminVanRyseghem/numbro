@@ -1,5 +1,6 @@
 // Bootstrap 3.3.4
 @import "../bower_components/bootstrap/less/bootstrap.less";
+
 @icon-font-path: "../bower_components/bootstrap/fonts/";
 
 // Font Awesome 4.2.0
@@ -35,7 +36,7 @@ a, a.btn {
 }
 
 // Wrapper
-.wrapper {
+.wrapper, .wrapper-no-nav {
   margin: @content-margin-sm 0 @content-margin-sm @content-margin-sm;
 
   @media (min-width: @screen-sm-min) {
@@ -47,6 +48,14 @@ a, a.btn {
   }
 }
 
+.wrapper-no-nav {
+  margin: @content-margin-sm;
+
+  @media (min-width: @screen-sm-min) {
+    margin: @content-margin;
+  }
+}
+
 // Navbar
 .navbar {
   margin-bottom: 0;
@@ -54,7 +63,7 @@ a, a.btn {
   border: 0 none;
 
   .container-fluid {
-    @media (min-width: @screen-sm-min) {
+    @media (min-width: 800px) {
       margin-left: @content-margin;
       margin-right: @content-margin;
     }
@@ -126,7 +135,7 @@ a, a.btn {
     font-size: 16px;
     color: @numbro-brand-color-whitey;
 
-    @media (min-width: @screen-md-min) {
+    @media (min-width: @screen-sm-min) {
       font-size: 20px;
     }
   }
@@ -141,7 +150,7 @@ a, a.btn {
     border-bottom: 1px solid #eee;
     padding-bottom: 5px;
 
-    @media (min-width: @screen-md-min) {
+    @media (min-width: @screen-sm-min) {
       font-size: 30px;
     }
   }
@@ -150,7 +159,7 @@ a, a.btn {
     font-size: 16px;
     margin-bottom: 20px;
 
-    @media (min-width: @screen-md-min) {
+    @media (min-width: @screen-sm-min) {
       font-size: 20px;
       margin-bottom: 30px;
     }
@@ -160,7 +169,7 @@ a, a.btn {
     margin-top: 16px;
     margin-bottom: 16px;
 
-    @media (min-width: @screen-md-min) {
+    @media (min-width: @screen-sm-min) {
       margin-top: 20px;
       margin-bottom: 20px;
     }
@@ -170,15 +179,15 @@ a, a.btn {
       border-bottom: 0 none;
       padding-bottom: 0;
 
-      @media (min-width: @screen-md-min) {
+      @media (min-width: @screen-sm-min) {
         font-size: 30px;
       }
-      }
+    }
 
     p {
       margin-bottom: 0;
     }
-    }
+  }
 }
 
 // Tables
@@ -189,7 +198,7 @@ a, a.btn {
     width: 33%;
   }
 
-  @media (min-width: @screen-md-min) {
+  @media (min-width: @screen-sm-min) {
     margin-top: 30px;
     margin-bottom: 30px;
   }
