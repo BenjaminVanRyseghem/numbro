@@ -1,0 +1,42 @@
+<script>
+	$(function() {
+		var scrollTreshold = 300;
+		var sidemenu = $("#side-nav").find("ul");
+		var body = $("body");
+		$(".section").each(function(index, each) {
+			var $each = $(each);
+			var text = $($each.find("h4").get(0)).text();
+			var href = each.id;
+
+
+			var subs = $each.find(".sub-section");
+			if (subs.length) {
+				var li = $("<li><a href=#" + href + ">" + text + "</a>").appendTo(sidemenu);
+				var ul = $('<ul class="nav nav-stacked submenu">').appendTo(li);
+				subs.each(function(index, sub) {
+					var text = $($(sub).find("h4").get(0)).text();
+					var href = sub.id;
+					ul.append("<li><a href=#" + href + ">" + text + "</a></li>");
+				});
+				sidemenu.append("</ul></li>");
+			} else {
+				sidemenu.append("<li><a href=#" + href + ">" + text + "</a></li>");
+			}
+		});
+
+		body.scrollspy({
+			target: "#side-nav",
+			offset: 20
+		});
+
+		$(window).scroll(function() {
+			var scrollTop = $(window).scrollTop();
+			if (scrollTop < scrollTreshold) {
+				sidemenu.removeClass("affix");
+			} else {
+				sidemenu.addClass("affix");
+				sidemenu.get(0).style.top = "64px";
+			}
+		});
+	});
+</script>

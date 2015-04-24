@@ -1,83 +1,84 @@
-<!doctype html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+---
+layout: default
+---
 
-	<title>Numbro.js</title>
-	<meta name="description"
-		  content="A javascript library for formatting and manipulating numbers.">
-	<meta name="author" content="">
+<div class="index">
+	<div class="home">
 
-	<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
-	<link rel="icon" href="/favicon.ico" type="image/x-icon">
+		<img class=" numbro-logo" src="./img/raccoon_blue.png"/>
 
-	<meta name="viewport"
-		  content="initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<p class="punchline">numbro is a Javascript library for converting, formatting, and manipulating all your numbers, in more than 30 languages.</p>
 
-	<link rel="stylesheet" href="css/build/style.css">
+		<a class="btn" href="/getting-started.html#download">Download numbro</a>
 
-	<script type="text/javascript">
+		<p class="version">Currently v<span class="insert-version"></span></p>
 
-		var _gaq = _gaq || [];
-		_gaq.push(['_setAccount', 'UA-35249784-1']);
-		_gaq.push(['_setDomainName', 'numeraljs.com']);
-		_gaq.push(['_setAllowLinker', true]);
-		_gaq.push(['_trackPageview']);
-
-		(function() {
-			var ga = document.createElement('script');
-			ga.type = 'text/javascript';
-			ga.async = true;
-			ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-			var s = document.getElementsByTagName('script')[0];
-			s.parentNode.insertBefore(ga, s);
-		})();
-
-	</script>
-</head>
-<body class="cf">
-<!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a
-		href="http://browsehappy.com/">Upgrade to a different browser</a> or <a
-		href="http://www.google.com/chromeframe/?redirect=true">install Google
-	Chrome Frame</a> to experience this site.</p><![endif]-->
-<div class="header-bar full"></div>
-<div class="sidebar thrd m-full s-full">
-	<div class="inner">
-		<h1 class="logo">
-			Numbro
-		</h1>
-
-		<p class="tagline">
-			A javascript library for formatting and manipulating numbers.
-		</p>
-
-		<div id="nav" class="nav"></div>
-		<div class="github-links">
-			<a class="button flat"
-			   href="https://github.com/foretagsplatsen/numbro"><i
-					aria-hidden="true" class="icon-github"></i> Github</a>
-		</div>
 	</div>
-</div>
-<div class="content xl-over-thrd l-over-thrd thrd2 m-full s-full">
-	<div class="inner">
 
-		<h3>Coming soon...</h3>
+	<div class="description clearfix">
+
+		<h3>Any number, in any language.</h3>
+
 		<p>
-			The page is under heavy construction, and should be available pretty soon.
+			numbro is designed to help every developer to display any numerical value, for any culture, the simplest way possible.
 		</p>
+
+		<div class="box format col-sm-4">
+			<i class="fa fa-wrench"></i>
+			<h4>Formatting</h4>
+
+			<p>
+				numbro provides a simple way to format any number to produce the expected output.
+				Shipped with numerous predefined formats, numbro supports extensions to let you defined your own.
+			</p>
+		</div>
+
+		<div class="box language col-sm-4">
+			<i class="fa fa-language"></i>
+			<h4>Languages</h4>
+
+			<p>
+				Shipped with more than 30 languages supported, numbro can easily format your numbers the way the expect it to be.
+				Whether you need ordinals or unit prefixes, it will be output according to the language and culture specifications.
+			</p>
+		</div>
+
+		<div class="box currency col-sm-4">
+			<i class="fa fa-usd"></i>
+			<h4>Currency</h4>
+
+			<p>numbro supports multiple ways of formatting currencies based on the current language and culture.
+				Postfix, prefix and infix currencies are supported to ensure a better output.
+			</p>
+		</div>
+
+	</div>
+
+	<hr>
+
+	<div class="description clearfix">
+
+		<h3>Free as in <em>free beer</em>, but also free as in <em>freedom</em>.</h3>
+
+		<p>
+			numbro is an open-source software distributed under the <a href="//raw.githubusercontent.com/foretagsplatsen/numbro/master/LICENSE" target="_blank">MIT license</a>, and driven but its community.
+			All the code for numbro can be found on GitHub.
+		</p>
+
+		<div class="go-github col-sm-6">
+			<a class="btn" href="//github.com/foretagsplatsen/numbro" target="_blank">
+				See on GitHub
+				<i class="fa fa-github-square"></i>
+			</a>
+		</div>
+
+		<div class="report-issue col-sm-6">
+			<a class="btn" href="//github.com/foretagsplatsen/numbro/issues/new" target="_blank">
+				Report an issue
+				<i class="fa fa-exclamation"></i>
+			</a>
+		</div>
+
 	</div>
 </div>
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.1/jquery.min.js"></script>
-<script src="./js/min/site.min.js"></script>
-</body>
-</html>
+{% include js/version.html %}

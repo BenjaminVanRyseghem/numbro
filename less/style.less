@@ -1,0 +1,211 @@
+// Bootstrap 3.3.4
+@import "../bower_components/bootstrap/less/bootstrap.less";
+
+@icon-font-path: "../bower_components/bootstrap/fonts/";
+
+// Font Awesome 4.2.0
+@import "../bower_components/fontawesome/less/font-awesome.less";
+@fa-font-path: "../bower_components/fontawesome/fonts";
+
+// Bootstrap-select 1.6.5
+@import "../bower_components/bootstrap-select/dist/css/bootstrap-select.min.css";
+
+// Variables
+@import "./variables";
+
+// Imports
+@import "./sticky_footer.less";
+@import "./index.less";
+@import "./sidemenu.less";
+@import "./highlight.less";
+@import "./try-me.less";
+@import "./news.less";
+
+// Global
+a, a.btn {
+  color: @numbro-brand-color;
+
+  &:hover {
+    color: @numbro-brand-color-dark;
+    border-color: @numbro-brand-color-dark;
+  }
+
+  &:visited {
+    color: @numbro-brand-color-darker;
+    border-color: @numbro-brand-color-darker;
+  }
+}
+
+// Wrapper
+.wrapper, .wrapper-no-nav {
+  margin: @content-margin-sm 0 @content-margin-sm @content-margin-sm;
+
+  @media (min-width: @screen-sm-min) {
+    margin: @content-margin 0 @content-margin @content-margin;
+  }
+
+  .content {
+    position: relative;
+  }
+}
+
+.wrapper-no-nav {
+  margin: @content-margin-sm;
+
+  @media (min-width: @screen-sm-min) {
+    margin: @content-margin;
+  }
+}
+
+// Navbar
+.navbar {
+  margin-bottom: 0;
+  background-color: @numbro-brand-color-complementary;
+  border: 0 none;
+
+  .container-fluid {
+    @media (min-width: 800px) {
+      margin-left: @content-margin;
+      margin-right: @content-margin;
+    }
+
+    li.active a, li.active a:hover {
+      color: @numbro-brand-color-complementary;
+      background-color: @numbro-brand-color;
+    }
+  }
+
+  .navbar-brand {
+    color: @numbro-brand-color;
+
+    &:hover {
+      color: @numbro-brand-color-darker;
+    }
+  }
+
+  .iconic-link {
+    @media (min-width: @screen-sm-min) {
+      font-size: 30px;
+
+      a {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+    }
+  }
+}
+
+// Footer
+.footer {
+  .container {
+    margin-top: 20px;
+    text-align: center;
+
+    p {
+      margin-bottom: 0;
+
+      .fa-heart {
+        color: red;
+      }
+    }
+  }
+}
+
+// Header
+
+.header {
+  background: @numbro-brand-color;
+  color: @numbro-brand-color-complementary;
+  padding: 20px;
+  text-align: center;
+
+  @media (min-width: @screen-sm-min) {
+    text-align: left;
+    padding: 60px @content-margin;
+  }
+
+  h3 {
+    font-size: 50px;;
+
+    @media (min-width: @screen-sm-min) {
+      font-size: 70px;;
+    }
+  }
+
+  .short-description {
+    font-size: 16px;
+    color: @numbro-brand-color-whitey;
+
+    @media (min-width: @screen-sm-min) {
+      font-size: 20px;
+    }
+  }
+}
+
+// Section
+.section, .section-no-nav {
+  margin-bottom: 40px;
+  position: relative;
+
+  h4 {
+    font-size: 20px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+
+    @media (min-width: @screen-sm-min) {
+      font-size: 30px;
+    }
+  }
+
+  p {
+    font-size: 16px;
+    margin-bottom: 20px;
+
+    @media (min-width: @screen-sm-min) {
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+  }
+
+  .sub-section {
+    margin-top: 16px;
+    margin-bottom: 16px;
+
+    @media (min-width: @screen-sm-min) {
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    h4 {
+      font-size: 20px;
+      border-bottom: 0 none;
+      padding-bottom: 0;
+
+      @media (min-width: @screen-sm-min) {
+        font-size: 30px;
+      }
+    }
+
+    p {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// Tables
+.demo-table {
+  text-align: center;
+
+  th, td {
+    width: 33%;
+  }
+
+  @media (min-width: @screen-sm-min) {
+    margin-top: 30px;
+    margin-bottom: 30px;
+  }
+
+  th {
+    text-align: center;
+  }
+}

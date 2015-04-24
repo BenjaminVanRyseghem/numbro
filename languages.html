@@ -1,0 +1,81 @@
+---
+layout: page
+id: languages
+title: Languages
+description: Supported languages and how to change the language to use.
+---
+
+<div id="supported-languages" class="section">
+	<h4>Supported languages</h4>
+
+	<p>
+		The supported languages and cultures a registered following the Microsoft's <a href="//msdn.microsoft.com/en-us/library/ee825488.aspx" target="_blank">Culture Names</a>.
+	</p>
+	<table class="table table-striped table-bordered demo-table culture-table">
+		<thead>
+		<tr>
+			<th>Culture</th>
+			<th>Code</th>
+		</tr>
+		</thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>
+
+<div id="define-language" class="section">
+	<h4>Define a new language</h4>
+
+	<p>
+		You can easily define your own language if you can find what yuo want in the list of supported languages.
+	</p>
+
+	{% highlight javascript %}
+// define a language
+numbro.language('fr-BE', {
+    delimiters: {
+        thousands: ' ',
+        decimal: ','
+    },
+    abbreviations: {
+        thousand: 'k',
+        million: 'm',
+        billion: 'b',
+        trillion: 't'
+    },
+    ordinal : function (number) {
+        return number === 1 ? 'er' : 'ème';
+    },
+    currency: {
+        symbol: '€',
+        position: 'postfix'
+    },
+    defaults: {
+        currencyFormat: ',0000 a'
+    },
+    formats: {
+        fourDigits: '0000 a',
+        fullWithTwoDecimals: ',0.00 $',
+        fullWithTwoDecimalsNoCurrency: ',0.00',
+        fullWithNoDecimals: ',0 $'
+    }
+});
+	{% endhighlight %}
+
+    If you lack a language, please help us to improve numbro by submitting a <a href="//github.com/foretagsplatsen/numbro/issues" target="_blank">pull request</a>.
+</div>
+
+<div id="change-language" class="section">
+    <h4>Change language</h4>
+
+    <p>
+        To change the language to use, you only need to use the <code>language</code> function with the culture code of the language needed.
+    </p>
+
+    {% highlight javascript %}
+// switch between languages
+numeral.language('fr-BE');
+    {% endhighlight %}
+</div>
+
+{%  include js/languages.html %}

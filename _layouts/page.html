@@ -1,0 +1,26 @@
+---
+layout: default
+---
+
+
+<div class="{{ page.id }}">
+	<div class="header">
+		<h3>{{ page.title }}</h3>
+
+		<p class="short-description">{{ page.description }}</p>
+	</div>
+	<div class="container-fluid">
+		<div class="row wrapper">
+			<div class="col-md-9 content">
+				{{ content }}
+			</div>
+			<div id="side-nav" class="col-md-3 hidden-sm hidden-xs" role="navigation">
+				<ul class="nav nav-list">
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% include js/sidemenu.html%}
+

@@ -1,0 +1,79 @@
+// Bootstrap 3.3.4
+@import "../bower_components/bootstrap/less/bootstrap.less";
+@import "./variables.less";
+
+.try-me {
+  .section-no-nav {
+    padding-top: 40px;
+  }
+
+  .numbro-input {
+    form {
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+
+      @media (max-width: @screen-sm-min) {
+        display: inline-block;
+        height: 30px;
+      }
+
+      @media (min-width: @screen-sm-min) {
+        margin-top: 20px;
+        margin-bottom: 20px;
+      }
+
+      .form-group {
+        display: inline-block;
+      }
+
+      input {
+        display: inline-block;
+        height: 26px;
+        border: 0 none;
+        box-shadow: none;
+        border-bottom: 1px solid #ccc;
+        border-radius: 0;
+        width: 100px;
+        padding-left: 0;
+        padding-right: 0;
+
+        @media (max-width: 420px) {
+          width: 90px;
+        }
+      }
+
+      .form-button {
+        display: block;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        position: relative;
+
+        button {
+          @media (max-width: @screen-sm-min) {
+            top: -12px;
+          }
+
+          display: inline-block;
+          position: absolute;
+          right: 0;
+          top: 10px;
+        }
+      }
+    }
+  }
+
+  .numbro-result {
+    position: absolute;
+    left: 15px;
+    right: 100px;
+
+    textarea {
+      width: 100%;
+      resize: none;
+      border-radius: 4px;
+      border: 1px solid #CCC;
+      height: 34px;
+    }
+  }
+}

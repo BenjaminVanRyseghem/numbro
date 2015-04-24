@@ -1,0 +1,27 @@
+{
+  "name": "numbro-webpage",
+  "version": "1.0.0",
+  "homepage": "https://numbrojs.com",
+  "authors": [
+    "Benjamin Van Ryseghem <benjamin.vanryseghem@gmail.com>"
+  ],
+  "description": "webpage for Numbro",
+  "main": "index.html",
+  "keywords": [
+    "webpage"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "numbro": "latest",
+    "fontawesome": "~4.3.0",
+    "bootstrap-select": "~1.6.5"
+  }
+}

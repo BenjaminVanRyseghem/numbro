@@ -1,0 +1,59 @@
+<script>
+	$(function() {
+		$(".demo-table").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var number = $(tds[0]).text();
+				var format = $(tds[1]).text().split("'")[1];
+				$(tds[2]).text(numbro(number).format(format));
+			});
+		});
+
+		$("#currency-table").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var value = $(tds[0]).text();
+				var lang = $(tds[1]).text();
+				numbro.language(lang);
+				$(tds[2]).text(numbro(value).formatCurrency());
+				numbro.language("en-US");
+			});
+		});
+
+		$("#currency-table2").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var value = $(tds[0]).text();
+				var lang = $(tds[1]).text();
+				numbro.language(lang);
+				$(tds[2]).text(numbro(value).formatCurrency("0[.]00"));
+				numbro.language("en-US");
+			});
+		});
+
+		$("#unformat-table").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var value = $(tds[0]).text().split("'")[1];
+				$(tds[1]).text(".unformat(\"" + value + "\")");
+				$(tds[2]).text(numbro().unformat(value));
+			});
+		});
+	});
+</script>
