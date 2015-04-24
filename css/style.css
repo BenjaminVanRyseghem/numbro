@@ -8382,12 +8382,11 @@ body > .page-content {
   }
 }
 .index .home .numbro-logo {
-  font-size: 80px;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 @media (min-width: 768px) {
   .index .home .numbro-logo {
-    font-size: 120px;
+    margin-bottom: 40px;
   }
 }
 .index .home .punchline {
