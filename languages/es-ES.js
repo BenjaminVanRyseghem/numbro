@@ -46,6 +46,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('es', language);
+        this.numbro.language('es-ES', language);
     }
 }());
