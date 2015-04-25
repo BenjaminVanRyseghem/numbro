@@ -3,7 +3,7 @@
 var numbro = require('../../numbro');
 var language = require('../../languages/zh-CN');
 
-numbro.language('chs', language);
+numbro.language(language.langLocaleCode, language);
 
 exports['language:chs'] = {
     setUp: function (callback) {

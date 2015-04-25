@@ -8,6 +8,7 @@
     'use strict';
 
     var language = {
+        langLocaleCode: 'fil-PH',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -36,6 +37,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('fil-PH', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

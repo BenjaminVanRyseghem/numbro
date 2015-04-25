@@ -8,6 +8,7 @@
     'use strict';
 
     var language = {
+        langLocaleCode: 'ru-RU',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -45,6 +46,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('ru-RU', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

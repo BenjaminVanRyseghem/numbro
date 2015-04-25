@@ -3,7 +3,7 @@
 var numbro = require('../../numbro'),
     language = require('../../languages/ru-RU');
 
-numbro.language('ru', language);
+numbro.language(language.langLocaleCode, language);
 
 exports['language:ru'] = {
     setUp: function (callback) {

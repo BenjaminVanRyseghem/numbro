@@ -8,6 +8,7 @@
     'use strict';
 
     var language = {
+        langLocaleCode: 'fr-FR',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -42,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('fr-FR', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

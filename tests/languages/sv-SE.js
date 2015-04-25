@@ -38,6 +38,6 @@
   }
   // Browser
   if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-    this.numbro.language('sv-SE', language);
+    this.numbro.language(language.langLocaleCode, language);
   }
 }());

@@ -8,6 +8,7 @@
     'use strict';
 
     var language = {
+        langLocaleCode: 'lv-LV',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +42,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('lv-LV', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

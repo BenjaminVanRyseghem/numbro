@@ -35,6 +35,7 @@
 			90: '\'ıncı'
 		},
 		language = {
+			langLocaleCode: 'tr-TR',
 			delimiters: {
 				thousands: '.',
 				decimal: ','
@@ -77,6 +78,6 @@
 	}
 	// Browser
 	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-		this.numbro.language('tr-TR', language);
+		this.numbro.language(language.langLocaleCode, language);
 	}
 }());
