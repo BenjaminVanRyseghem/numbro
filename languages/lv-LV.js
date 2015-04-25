@@ -4,6 +4,8 @@
  * author : Lauris Bukšis-Haberkorns : https://github.com/Lafriks
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ' ',
@@ -15,7 +17,7 @@
             billion: ' mljrd.',
             trillion: ' trilj.'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {

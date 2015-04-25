@@ -6,7 +6,8 @@
  * http://www.foretagsplatsen.se
  */
 
-(function() {
+(function () {
+    'use strict';
 
     /************************************
         Constants
@@ -103,10 +104,14 @@
                 }
 
                 // see if abbreviations are there so that we can multiply to the correct number
-                thousandRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.thousand + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
-                millionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.million + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
-                billionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.billion + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
-                trillionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.trillion + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                thousandRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.thousand +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                millionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.million +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                billionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.billion +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                trillionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.trillion +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
 
                 // see if bytes are there so that we can multiply to the correct number
                 for (power = 0; power <= binarySuffixes.length && !bytesMultiplier; power++) {
@@ -118,7 +123,15 @@
                 }
 
                 // do some math to create our number
-                n._value = ((bytesMultiplier) ? bytesMultiplier : 1) * ((stringOriginal.match(thousandRegExp)) ? Math.pow(10, 3) : 1) * ((stringOriginal.match(millionRegExp)) ? Math.pow(10, 6) : 1) * ((stringOriginal.match(billionRegExp)) ? Math.pow(10, 9) : 1) * ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) * ((string.indexOf('%') > -1) ? 0.01 : 1) * (((string.split('-').length + Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) * Number(string.replace(/[^0-9\.]+/g, ''));
+                n._value = ((bytesMultiplier) ? bytesMultiplier : 1) *
+                    ((stringOriginal.match(thousandRegExp)) ? Math.pow(10, 3) : 1) *
+                    ((stringOriginal.match(millionRegExp)) ? Math.pow(10, 6) : 1) *
+                    ((stringOriginal.match(billionRegExp)) ? Math.pow(10, 9) : 1) *
+                    ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) *
+                    ((string.indexOf('%') > -1) ? 0.01 : 1) *
+                    (((string.split('-').length +
+                        Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) *
+                    Number(string.replace(/[^0-9\.]+/g, ''));
 
                 // round if we are talking about bytes
                 n._value = (bytesMultiplier) ? Math.ceil(n._value) : n._value;
@@ -249,7 +262,9 @@
         var hours = Math.floor(n._value / 60 / 60),
             minutes = Math.floor((n._value - (hours * 60 * 60)) / 60),
             seconds = Math.round(n._value - (hours * 60 * 60) - (minutes * 60));
-        return hours + ':' + ((minutes < 10) ? '0' + minutes : minutes) + ':' + ((seconds < 10) ? '0' + seconds : seconds);
+        return hours + ':' +
+            ((minutes < 10) ? '0' + minutes : minutes) + ':' +
+            ((seconds < 10) ? '0' + seconds : seconds);
     }
 
     function unformatTime(string) {
@@ -466,7 +481,8 @@
                 if (precision.indexOf('[') > -1) {
                     precision = precision.replace(']', '');
                     precision = precision.split('[');
-                    d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction, precision[1].length);
+                    d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction,
+                            precision[1].length);
                 } else {
                     d = toFixed(value, precision.length, roundingFunction);
                 }
@@ -494,7 +510,8 @@
             }
 
             if (thousands > -1) {
-                w = w.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + languages[currentLanguage].delimiters.thousands);
+                w = w.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' +
+                    languages[currentLanguage].delimiters.thousands);
             }
 
             if (format.indexOf('.') === 0) {
@@ -511,7 +528,12 @@
             }
 
 
-            return paren + ((!neg && signed) ? '+' : '') + w + d + ((ord) ? ord : '') + ((abbr && !sep) ? abbr : '') + ((bytes) ? bytes : '') + ((negP && neg) ? ')' : '');
+            return paren + ((!neg && signed) ? '+' : '') +
+                w + d +
+                ((ord) ? ord : '') +
+                ((abbr && !sep) ? abbr : '') +
+                ((bytes) ? bytes : '') +
+                ((negP && neg) ? ')' : '');
         }
     }
 
@@ -712,7 +734,8 @@
         temp = val.match(/[^\d]+$/);
         if (temp !== null) {
             val = val.slice(0, -1);
-            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million && temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
+            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million &&
+                    temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
                 return false;
             }
         }
@@ -728,9 +751,13 @@
                     return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
                 } else {
                     if (_valArray[0].length === 1) {
-                        return ( !! _valArray[0].match(/^\d+$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                        return ( !! _valArray[0].match(/^\d+$/) &&
+                            !_valArray[0].match(_thousandRegEx) &&
+                            !! _valArray[1].match(/^\d+$/));
                     } else {
-                        return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                        return ( !! _valArray[0].match(/^\d+.*\d$/) &&
+                            !_valArray[0].match(_thousandRegEx) &&
+                            !! _valArray[1].match(/^\d+$/));
                     }
                 }
             }
@@ -759,8 +786,7 @@
      * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Compatibility
      */
     if ('function' !== typeof Array.prototype.reduce) {
-        Array.prototype.reduce = function(callback, opt_initialValue) {
-            'use strict';
+        Array.prototype.reduce = function(callback, optInitialValue) {
 
             if (null === this || 'undefined' === typeof this) {
                 // At the moment all modern browsers, that support strict mode, have
@@ -779,7 +805,7 @@
                 isValueSet = false;
 
             if (1 < arguments.length) {
-                value = opt_initialValue;
+                value = optInitialValue;
                 isValueSet = true;
             }
 
@@ -844,7 +870,8 @@
 
         format: function(inputString, roundingFunction) {
             return formatNumbro(this,
-                inputString ? inputString : defaultFormat, (roundingFunction !== undefined) ? roundingFunction : Math.round
+                inputString ? inputString : defaultFormat,
+                (roundingFunction !== undefined) ? roundingFunction : Math.round
             );
         },
 
@@ -878,7 +905,7 @@
         add: function(value) {
             var corrFactor = correctionFactor.call(null, this._value, value);
 
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 return accum + corrFactor * curr;
             }
             this._value = [this._value, value].reduce(cback, 0) / corrFactor;
@@ -888,7 +915,7 @@
         subtract: function(value) {
             var corrFactor = correctionFactor.call(null, this._value, value);
 
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 return accum - corrFactor * curr;
             }
             this._value = [value].reduce(cback, this._value * corrFactor) / corrFactor;
@@ -896,7 +923,7 @@
         },
 
         multiply: function(value) {
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 var corrFactor = correctionFactor(accum, curr);
                 return (accum * corrFactor) * (curr * corrFactor) /
                     (corrFactor * corrFactor);
@@ -906,7 +933,7 @@
         },
 
         divide: function(value) {
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 var corrFactor = correctionFactor(accum, curr);
                 return (accum * corrFactor) / (curr * corrFactor);
             }
@@ -934,7 +961,7 @@
         // here, `this` means `window` in the browser, or `global` on the server
         // add `numbro` as a global object via a string identifier,
         // for Closure Compiler 'advanced' mode
-        this['numbro'] = numbro;
+        this.numbro = numbro;
     }
 
     /*global define:false */

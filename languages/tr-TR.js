@@ -1,9 +1,13 @@
 /*!
  * numbro.js language configuration
  * language : turkish (tr)
- * author : Ecmel Ercan : https://github.com/ecmel, Erhan Gundogan : https://github.com/erhangundogan, Burak Yiğit Kaya: https://github.com/BYK
+ * author : Ecmel Ercan : https://github.com/ecmel,
+ *          Erhan Gundogan : https://github.com/erhangundogan,
+ *          Burak Yiğit Kaya: https://github.com/BYK
  */
 (function() {
+	'use strict';
+
 	var suffixes = {
 			1: '\'inci',
 			5: '\'inci',

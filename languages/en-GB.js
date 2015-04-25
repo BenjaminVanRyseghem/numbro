@@ -4,6 +4,8 @@
  * author : Dan Ristic : https://github.com/dristic
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ',',

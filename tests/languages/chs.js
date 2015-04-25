@@ -1,3 +1,5 @@
+'use strict';
+
 var numbro = require('../../numbro');
 var language = require('../../languages/zh-CN');
 

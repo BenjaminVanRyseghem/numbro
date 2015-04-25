@@ -4,6 +4,8 @@
  * author : Michael Abadilla : https://github.com/mjmaix
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: ',',

@@ -1,3 +1,5 @@
+'use strict';
+
 var numbro = require('../../numbro'),
 	language = 'en-US';
 
@@ -27,7 +29,8 @@ exports.validate = {
 		];
 		test.expect(tests.length);
 		for(var i=0; i<tests.length; i++){
-			test.strictEqual(numbro.validate(tests[i][0], language), tests[i][1], tests[i][0]+' should validate to '+tests[i][1]);
+			test.strictEqual(numbro.validate(tests[i][0], language), tests[i][1],
+				tests[i][0]+' should validate to '+tests[i][1]);
 		}
 		test.done();
 	},
@@ -63,7 +66,8 @@ exports.validate = {
 		];
 		test.expect(tests.length);
 		for(var i=0; i<tests.length; i++){
-			test.strictEqual(numbro.validate(tests[i][0], language), tests[i][1], tests[i][0]+' should validate to '+tests[i][1]);
+			test.strictEqual(numbro.validate(tests[i][0], language), tests[i][1],
+				tests[i][0]+' should validate to '+tests[i][1]);
 		}
 		test.done();
 	}

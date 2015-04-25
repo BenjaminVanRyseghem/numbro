@@ -4,6 +4,8 @@
  * author : neo13 : https://github.com/neo13
  */
 (function () {
+    'use strict';
+
     var language = {
         delimiters: {
             thousands: '،',
@@ -15,7 +17,7 @@
             billion: 'میلیارد',
             trillion: 'تریلیون'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return 'ام';
         },
         currency: {

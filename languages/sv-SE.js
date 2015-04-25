@@ -4,6 +4,8 @@
  * author : Benjamin Van Ryseghem (benjamin.vanryseghem.com)
  */
 (function() {
+	'use strict';
+
 	var language = {
 		delimiters: {
 			thousands: ' ',
