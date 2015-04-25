@@ -1,7 +1,10 @@
 /*!
  * numbro.js language configuration
- * language : German (de) – generally useful in Germany, Austria, Luxembourg, Belgium
+ * language : German
+ * locale: Germany
  * author : Marco Krage : https://github.com/sinky
+ *
+ * Generally useful in Germany, Austria, Luxembourg, Belgium
  */
 (function () {
     'use strict';

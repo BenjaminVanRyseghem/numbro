@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : thai (th)
+ * language : Thai
+ * locale : Thailand
  * author : Sathit Jittanupat : https://github.com/jojosati
  */
 (function () {

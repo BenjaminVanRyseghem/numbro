@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : polish (pl)
+ * language : Polish
+ * locale : Poland
  * author : Dominik Bulaj : https://github.com/dominikbulaj
  */
 (function () {

@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
  * language : Finnish
+ * locale: Finland
  * author : Sami Saada : https://github.com/samitheberber
  */
 (function () {

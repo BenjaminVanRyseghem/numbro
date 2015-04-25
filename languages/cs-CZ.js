@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : czech (cs)
+ * language : Czech
+ * locale: Czech Republic
  * author : Anatoli Papirovski : https://github.com/apapirovski
  */
 (function () {

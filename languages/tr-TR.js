@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : turkish (tr)
+ * language : Turkish
+ * locale : Turkey
  * author : Ecmel Ercan : https://github.com/ecmel,
  *          Erhan Gundogan : https://github.com/erhangundogan,
  *          Burak Yiğit Kaya: https://github.com/BYK

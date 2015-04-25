@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : russian (ru)
+ * language : Russian
+ * locale : Russsia
  * author : Anatoli Papirovski : https://github.com/apapirovski
  */
 (function () {

@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : portuguese brazil (pt-br)
+ * language : Portuguese
+ * locale : Brazil
  * author : Ramiro Varandas Jr : https://github.com/ramirovjr
  */
 (function () {

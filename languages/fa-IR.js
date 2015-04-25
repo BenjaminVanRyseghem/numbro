@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : Farsi Iran
+ * language : Farsi
+ * locale: Iran
  * author : neo13 : https://github.com/neo13
  */
 (function () {

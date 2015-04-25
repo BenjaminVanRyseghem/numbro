@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : belgium-dutch (be-nl)
+ * language : Dutch
+ * locale: Belgium
  * author : Dieter Luypaert : https://github.com/moeriki
  */
 (function () {

@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : norwegian
+ * language: Norwegian Bokmål
+ * locale: Norway
  * author : Benjamin Van Ryseghem
  */
 (function() {

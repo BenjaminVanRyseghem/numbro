@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : German in Switzerland (de-ch)
+ * language : German
+ * locale: Switzerland
  * author : Michael Piefel : https://github.com/piefel (based on work from Marco Krage : https://github.com/sinky)
  */
 (function () {

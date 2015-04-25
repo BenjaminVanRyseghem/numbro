@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : filipino philippines (ph)
+ * language : Filipino (Pilipino)
+ * locale: Philippines
  * author : Michael Abadilla : https://github.com/mjmaix
  */
 (function () {

@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : portuguese (pt-pt)
+ * language : Portuguese
+ * locale : Portugal
  * author : Diogo Resende : https://github.com/dresende
  */
 (function () {

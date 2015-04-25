@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : swedish - Sweden
+ * language : Swedish
+ * locale : Sweden
  * author : Benjamin Van Ryseghem (benjamin.vanryseghem.com)
  */
 (function() {

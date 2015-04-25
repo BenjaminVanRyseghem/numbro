@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : french (fr)
+ * language : French
+ * locale: France
  * author : Adam Draper : https://github.com/adamwdraper
  */
 (function () {

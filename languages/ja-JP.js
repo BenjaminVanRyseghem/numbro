@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : japanese
+ * language : Japanese
+ * locale: Japan
  * author : teppeis : https://github.com/teppeis
  */
 (function () {

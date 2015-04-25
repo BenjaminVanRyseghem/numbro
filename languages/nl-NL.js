@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : netherlands-dutch (nl-nl)
+ * language : Dutch
+ * locale: Netherlands
  * author : Dave Clayton : https://github.com/davedx
  */
 (function () {

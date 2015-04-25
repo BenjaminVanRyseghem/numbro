@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : Hungarian (hu)
+ * language : Hungarian
+ * locale: Hungary
  * author : Peter Bakondy : https://github.com/pbakondy
  */
 (function () {

@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
  * language : Estonian
+ * locale: Estonia
  * author : Illimar Tambek : https://github.com/ragulka
  *
  * Note: in Estonian, abbreviations are always separated

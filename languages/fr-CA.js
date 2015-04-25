@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : french (Canada) (fr-CA)
+ * language : French
+ * locale: Canada
  * author : Léo Renaud-Allaire : https://github.com/renaudleo
  */
 (function () {

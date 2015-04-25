@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : spanish Spain
+ * language : Spanish
+ * locale: Spain
  * author : Hernan Garcia : https://github.com/hgarcia
  */
 (function () {

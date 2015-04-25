@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : Latvian (lv)
+ * language : Latvian
+ * locale: Latvia
  * author : Lauris Bukšis-Haberkorns : https://github.com/Lafriks
  */
 (function () {

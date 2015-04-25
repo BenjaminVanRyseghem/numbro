@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : danish denmark (dk)
+ * language : Danish
+ * locale: Denmark
  * author : Michael Storgaard : https://github.com/mstorgaard
  */
 (function () {

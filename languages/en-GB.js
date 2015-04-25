@@ -1,6 +1,7 @@
 /*!
  * numbro.js language configuration
- * language : english united kingdom (uk)
+ * language : English
+ * locale: United Kingdom of Great Britain and Northern Ireland
  * author : Dan Ristic : https://github.com/dristic
  */
 (function () {
