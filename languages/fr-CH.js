@@ -16,7 +16,7 @@
             trillion: 't'
         },
         ordinal : function (number) {
-            return number === 1 ? 'er' : 'e';
+            return number === 1 ? 'er' : 'ème';
         },
         currency: {
             symbol: 'CHF',
