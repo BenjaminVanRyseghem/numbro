@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : Hungarian (hu)
+ * language : Hungarian
+ * locale: Hungary
  * author : Peter Bakondy : https://github.com/pbakondy
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'hu-HU',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('hu-HU', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

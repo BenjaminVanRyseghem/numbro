@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : spanish Spain
+ * language : Spanish
+ * locale: Spain
  * author : Hernan Garcia : https://github.com/hgarcia
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'es-ES',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -46,6 +48,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('es-ES', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

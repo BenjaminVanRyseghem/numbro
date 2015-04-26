@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : German in Switzerland (de-ch)
+ * language : German
+ * locale: Switzerland
  * author : Michael Piefel : https://github.com/piefel (based on work from Marco Krage : https://github.com/sinky)
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'de-CH',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('de-CH', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

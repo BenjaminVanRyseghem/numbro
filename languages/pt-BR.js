@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : portuguese brazil (pt-br)
+ * language : Portuguese
+ * locale : Brazil
  * author : Ramiro Varandas Jr : https://github.com/ramirovjr
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'pt-BR',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('pt-BR', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

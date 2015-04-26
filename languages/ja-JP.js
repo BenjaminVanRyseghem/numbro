@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : japanese
+ * language : Japanese
+ * locale: Japan
  * author : teppeis : https://github.com/teppeis
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'ja-JP',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('ja-JP', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

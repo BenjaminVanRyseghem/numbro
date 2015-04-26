@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : portuguese (pt-pt)
+ * language : Portuguese
+ * locale : Portugal
  * author : Diogo Resende : https://github.com/dresende
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'pt-PT',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('pt-PT', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

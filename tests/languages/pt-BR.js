@@ -1,13 +1,13 @@
 'use strict';
 
 var numbro = require('../../numbro'),
-    language = require('../../languages/tr-TR');
+    language = require('../../languages/pt-BR');
 
-numbro.language('tr', language);
+numbro.language(language.langLocaleCode, language);
 
-exports['language:tr'] = {
+exports['language:pt-BR'] = {
     setUp: function (callback) {
-        numbro.language('tr');
+        numbro.language('pt-BR');
         callback();
     },
 
@@ -28,13 +28,13 @@ exports['language:tr'] = {
             [-0.23,'.00','-,23'],
             [-0.23,'(.00)','(,23)'],
             [0.23,'0.00000','0,23000'],
-            [1230974,'0.0a','1,2milyon'],
-            [1460,'0a','1bin'],
-            [-104000,'0a','-104bin'],
-            [1,'0o','1\'inci'],
-            [52,'0o','52\'nci'],
-            [23,'0o','23\'üncü'],
-            [100,'0o','100\'üncü'],
+            [1230974,'0.0a','1,2milhões'],
+            [1460,'0a','1mil'],
+            [-104000,'0a','-104mil'],
+            [1,'0o','1º'],
+            [52,'0o','52º'],
+            [23,'0o','23º'],
+            [100,'0o','100º'],
             [1,'0[.]0','1']
         ];
 
@@ -49,10 +49,10 @@ exports['language:tr'] = {
         test.expect(4);
 
         var tests = [
-            [1000.234,'$0,0.00','\u20BA1.000,23'],
-            [-1000.234,'($0,0)','(\u20BA1.000)'],
-            [-1000.234,'$0.00','-\u20BA1000,23'],
-            [1230974,'($0.00a)','\u20BA1,23milyon']
+            [1000.234,'$0,0.00','R$1.000,23'],
+            [-1000.234,'($0,0)','(R$1.000)'],
+            [-1000.234,'$0.00','-R$1000,23'],
+            [1230974,'($0.00a)','R$1,23milhões']
         ];
 
         for (var i = 0; i < tests.length; i++) {
@@ -85,11 +85,11 @@ exports['language:tr'] = {
         var tests = [
             ['10.000,123',10000.123],
             ['(0,12345)',-0.12345],
-            ['(\u20BA1,23milyon)',-1230000],
-            ['10bin',10000],
-            ['-10bin',-10000],
-            ['23üncü',23],
-            ['\u20BA10.000,00',10000],
+            ['(R$1,23milhões)',-1230000],
+            ['10mil',10000],
+            ['-10mil',-10000],
+            ['23º',23],
+            ['R$10.000,00',10000],
             ['-76%',-0.76],
             ['2:23:57',8637]
         ];

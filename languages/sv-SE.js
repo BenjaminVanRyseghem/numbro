@@ -1,13 +1,15 @@
 /*!
  * numbro.js language configuration
- * language : swedish - Sweden
+ * language : Swedish
+ * locale : Sweden
  * author : Benjamin Van Ryseghem (benjamin.vanryseghem.com)
  */
 (function() {
 	'use strict';
 
 	var language = {
-		delimiters: {
+		langLocaleCode: 'sv-SE',
+        delimiters: {
 			thousands: ' ',
 			decimal: ','
 		},
@@ -38,6 +40,6 @@
 	}
 	// Browser
 	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-		this.numbro.language('sv-SE', language);
+		this.numbro.language(language.langLocaleCode, language);
 	}
 }());

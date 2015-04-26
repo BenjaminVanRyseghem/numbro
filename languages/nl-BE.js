@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : belgium-dutch (be-nl)
+ * language : Dutch
+ * locale: Belgium
  * author : Dieter Luypaert : https://github.com/moeriki
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'nl-BE',
         delimiters: {
             thousands: ' ',
             decimal  : ','
@@ -42,6 +44,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('nl-BE', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

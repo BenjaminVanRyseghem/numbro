@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : danish denmark (dk)
+ * language : Danish
+ * locale: Denmark
  * author : Michael Storgaard : https://github.com/mstorgaard
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'da-DK',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('da-DK', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

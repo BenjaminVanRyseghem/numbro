@@ -1,12 +1,16 @@
 /*!
  * numbro.js language configuration
- * language : German (de) – generally useful in Germany, Austria, Luxembourg, Belgium
+ * language : German
+ * locale: Germany
  * author : Marco Krage : https://github.com/sinky
+ *
+ * Generally useful in Germany, Austria, Luxembourg, Belgium
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'de-DE',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +45,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('de-DE', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

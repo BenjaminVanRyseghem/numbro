@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : czech (cs)
+ * language : Czech
+ * locale: Czech Republic
  * author : Anatoli Papirovski : https://github.com/apapirovski
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'cs-CZ',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('cs-CZ', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

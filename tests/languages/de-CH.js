@@ -1,13 +1,13 @@
 'use strict';
 
 var numbro = require('../../numbro'),
-    language = require('../../languages/nl-BE');
+    language = require('../../languages/de-CH');
 
-numbro.language('be-nl', language);
+numbro.language(language.langLocaleCode, language);
 
-exports['language:be-nl'] = {
+exports['language:de-CH'] = {
     setUp: function (callback) {
-        numbro.language('be-nl');
+        numbro.language('de-CH');
         callback();
     },
 
@@ -17,7 +17,7 @@ exports['language:be-nl'] = {
     },
 
     format: function (test) {
-        test.expect(22);
+        test.expect(16);
 
         var tests = [
             [10000,'0,0.0000','10 000,0000'],
@@ -28,19 +28,13 @@ exports['language:be-nl'] = {
             [-0.23,'.00','-,23'],
             [-0.23,'(.00)','(,23)'],
             [0.23,'0.00000','0,23000'],
-            [1230974,'0.0a','1,2mln'],
+            [1230974,'0.0a','1,2m'],
             [1460,'0a','1k'],
             [-104000,'0a','-104k'],
-            [0,'0o','0de'],
-            [1,'0o','1ste'],
-            [2,'0o','2de'],
-            [8,'0o','8ste'],
-            [19,'0o','19de'],
-            [20,'0o','20ste'],
-            [100,'0o','100ste'],
-            [102,'0o','102de'],
-            [108,'0o','108ste'],
-            [109,'0o','109de'],
+            [1,'0o','1.'],
+            [52,'0o','52.'],
+            [23,'0o','23.'],
+            [100,'0o','100.'],
             [1,'0[.]0','1']
         ];
 
@@ -55,10 +49,10 @@ exports['language:be-nl'] = {
         test.expect(4);
 
         var tests = [
-            [1000.234,'0,0.00$','1 000,23€'],
-            [-1000.234,'(0,0$)','(1 000€)'],
-            [-1000.234,'0.00$','-1000,23€'],
-            [1230974,'(0.00a$)','1,23mln€']
+            [1000.234,'$0,0.00','CHF1 000,23'],
+            [-1000.234,'($0,0)','(CHF1 000)'],
+            [-1000.234,'$0.00','-CHF1000,23'],
+            [1230974,'($0.00a)','CHF1,23m']
         ];
 
         for (var i = 0; i < tests.length; i++) {
@@ -91,11 +85,11 @@ exports['language:be-nl'] = {
         var tests = [
             ['10 000,123',10000.123],
             ['(0,12345)',-0.12345],
-            ['(€ 1,23 mln)',-1230000],
+            ['(CHF1,23m)',-1230000],
             ['10k',10000],
             ['-10k',-10000],
-            ['23e',23],
-            ['€ 10 000,00',10000],
+            ['23.',23],
+            ['CHF10 000,00',10000],
             ['-76%',-0.76],
             ['2:23:57',8637]
         ];

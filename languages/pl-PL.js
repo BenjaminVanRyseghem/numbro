@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : polish (pl)
+ * language : Polish
+ * locale : Poland
  * author : Dominik Bulaj : https://github.com/dominikbulaj
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'pl-PL',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('pl-PL', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

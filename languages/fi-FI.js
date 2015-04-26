@@ -1,12 +1,14 @@
 /*!
  * numbro.js language configuration
  * language : Finnish
+ * locale: Finland
  * author : Sami Saada : https://github.com/samitheberber
  */
 (function () {
     'use strict';
 
     var language = {
+        langLocaleCode: 'fi-FI',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -41,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('fi-FI', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

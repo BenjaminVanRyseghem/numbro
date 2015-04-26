@@ -1,13 +1,13 @@
 'use strict';
 
 var numbro = require('../../numbro'),
-    language = require('../../languages/lv-LV');
+    language = require('../../languages/fi-FI');
 
-numbro.language('lv', language);
+numbro.language(language.langLocaleCode, language);
 
-exports['language:lv'] = {
+exports['language:fi-FI'] = {
     setUp: function (callback) {
-        numbro.language('lv');
+        numbro.language('fi-FI');
         callback();
     },
 
@@ -28,9 +28,9 @@ exports['language:lv'] = {
             [-0.23,'.00','-,23'],
             [-0.23,'(.00)','(,23)'],
             [0.23,'0.00000','0,23000'],
-            [1230974,'0.0a','1,2 milj.'],
-            [1460,'0a','1 tūkst.'],
-            [-104000,'0a','-104 tūkst.'],
+            [1230974,'0.0a','1,2M'],
+            [1460,'0a','1k'],
+            [-104000,'0a','-104k'],
             [1,'0o','1.'],
             [52,'0o','52.'],
             [23,'0o','23.'],
@@ -52,7 +52,7 @@ exports['language:lv'] = {
             [1000.234,'$0,0.00','€1 000,23'],
             [-1000.234,'($0,0)','(€1 000)'],
             [-1000.234,'$0.00','-€1000,23'],
-            [1230974,'($0.00a)','€1,23 milj.']
+            [1230974,'($0.00a)','€1,23M']
         ];
 
         for (var i = 0; i < tests.length; i++) {
@@ -83,13 +83,13 @@ exports['language:lv'] = {
         test.expect(9);
 
         var tests = [
-            ['10 000,123',10000.123],
+            ['10.000,123',10000.123],
             ['(0,12345)',-0.12345],
-            ['(€1,23 milj.)',-1230000],
-            ['10 tūkst.',10000],
-            ['-10 tūkst.',-10000],
+            ['(€1,23M)',-1230000],
+            ['10k',10000],
+            ['-10k',-10000],
             ['23.',23],
-            ['€10 000,00',10000],
+            ['€10.000,00',10000],
             ['-76%',-0.76],
             ['2:23:57',8637]
         ];

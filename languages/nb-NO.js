@@ -1,13 +1,15 @@
 /*!
  * numbro.js language configuration
- * language : norwegian
+ * language: Norwegian Bokmål
+ * locale: Norway
  * author : Benjamin Van Ryseghem
  */
 (function() {
 	'use strict';
 
 	var language = {
-		delimiters: {
+		langLocaleCode: 'nb-NO',
+        delimiters: {
 			thousands: ' ',
 			decimal: ','
 		},
@@ -38,6 +40,6 @@
 	}
 	// Browser
 	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-		this.numbro.language('nb-NO', language);
+		this.numbro.language(language.langLocaleCode, language);
 	}
 }());
