@@ -1,13 +1,13 @@
 'use strict';
 
 var numbro = require('../../numbro'),
-    language = require('../../languages/pl-PL');
+    language = require('../../languages/et-EE');
 
 numbro.language(language.langLocaleCode, language);
 
-exports['language:pl'] = {
+exports['language:et-EE'] = {
     setUp: function (callback) {
-        numbro.language('pl');
+        numbro.language('et-EE');
         callback();
     },
 
@@ -28,9 +28,9 @@ exports['language:pl'] = {
             [-0.23,'.00','-,23'],
             [-0.23,'(.00)','(,23)'],
             [0.23,'0.00000','0,23000'],
-            [1230974,'0.0a','1,2mln'],
-            [1460,'0a','1tys.'],
-            [-104000,'0a','-104tys.'],
+            [1230974,'0.0a','1,2 mln'],
+            [1460,'0a','1 tuh'],
+            [-104000,'0a','-104 tuh'],
             [1,'0o','1.'],
             [52,'0o','52.'],
             [23,'0o','23.'],
@@ -49,10 +49,10 @@ exports['language:pl'] = {
         test.expect(4);
 
         var tests = [
-            [1000.234,'0,0.00$','1 000,23PLN'],
-            [-1000.234,'(0,0$)','(1 000PLN)'],
-            [-1000.234,'0.00$','-1000,23PLN'],
-            [1230974,'(0.00a$)','1,23mlnPLN']
+            [1000.234,'$0,0.00','€1 000,23'],
+            [-1000.234,'($0,0)','(€1 000)'],
+            [-1000.234,'$0.00','-€1000,23'],
+            [1230974,'($0.00a)','€1,23 mln']
         ];
 
         for (var i = 0; i < tests.length; i++) {
@@ -80,17 +80,16 @@ exports['language:pl'] = {
     },
 
     unformat: function (test) {
-        test.expect(10);
+        test.expect(9);
 
         var tests = [
-            ['10 000,123',10000.123],
+            ['10.000,123',10000.123],
             ['(0,12345)',-0.12345],
-            ['(1,23mlnPLN)',-1230000],
-            ['1,23mlnPLN',1230000],
-            ['10tys.',10000],
-            ['-10tys.',-10000],
+            ['(€1,23 mln)',-1230000],
+            ['10 tuh',10000],
+            ['-10 tuh',-10000],
             ['23.',23],
-            ['10 000,00PLN',10000],
+            ['€10.000,00',10000],
             ['-76%',-0.76],
             ['2:23:57',8637]
         ];

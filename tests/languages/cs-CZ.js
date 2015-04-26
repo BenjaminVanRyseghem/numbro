@@ -1,13 +1,13 @@
 'use strict';
 
 var numbro = require('../../numbro'),
-    language = require('../../languages/de-DE');
+    language = require('../../languages/cs-CZ');
 
 numbro.language(language.langLocaleCode, language);
 
-exports['language:de'] = {
+exports['language:cs-CZ'] = {
     setUp: function (callback) {
-        numbro.language('de');
+        numbro.language('cs-CZ');
         callback();
     },
 
@@ -28,9 +28,9 @@ exports['language:de'] = {
             [-0.23,'.00','-,23'],
             [-0.23,'(.00)','(,23)'],
             [0.23,'0.00000','0,23000'],
-            [1230974,'0.0a','1,2m'],
-            [1460,'0a','1k'],
-            [-104000,'0a','-104k'],
+            [1230974,'0.0a','1,2mil.'],
+            [1460,'0a','1tis.'],
+            [-104000,'0a','-104tis.'],
             [1,'0o','1.'],
             [52,'0o','52.'],
             [23,'0o','23.'],
@@ -49,10 +49,10 @@ exports['language:de'] = {
         test.expect(4);
 
         var tests = [
-            [1000.234,'$0,0.00','€1 000,23'],
-            [-1000.234,'($0,0)','(€1 000)'],
-            [-1000.234,'$0.00','-€1000,23'],
-            [1230974,'($0.00a)','€1,23m']
+            [1000.234,'0,0.00$','1 000,23Kč'],
+            [-1000.234,'(0,0$)','(1 000Kč)'],
+            [-1000.234,'0.00$','-1000,23Kč'],
+            [1230974,'(0.00a$)','1,23mil.Kč']
         ];
 
         for (var i = 0; i < tests.length; i++) {
@@ -80,16 +80,17 @@ exports['language:de'] = {
     },
 
     unformat: function (test) {
-        test.expect(9);
+        test.expect(10);
 
         var tests = [
             ['10 000,123',10000.123],
             ['(0,12345)',-0.12345],
-            ['(€1,23m)',-1230000],
-            ['10k',10000],
-            ['-10k',-10000],
+            ['(1,23mil.Kč)',-1230000],
+            ['1,23mil.Kč',1230000],
+            ['10tis.',10000],
+            ['-10tis.',-10000],
             ['23.',23],
-            ['€10 000,00',10000],
+            ['10 000,00Kč',10000],
             ['-76%',-0.76],
             ['2:23:57',8637]
         ];

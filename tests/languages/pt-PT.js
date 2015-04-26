@@ -1,13 +1,13 @@
 'use strict';
 
 var numbro = require('../../numbro'),
-    language = require('../../languages/fr-FR');
+    language = require('../../languages/pt-PT');
 
 numbro.language(language.langLocaleCode, language);
 
-exports['language:fr'] = {
+exports['language:pt-PT'] = {
     setUp: function (callback) {
-        numbro.language('fr');
+        numbro.language('pt-PT');
         callback();
     },
 
@@ -31,10 +31,10 @@ exports['language:fr'] = {
             [1230974,'0.0a','1,2m'],
             [1460,'0a','1k'],
             [-104000,'0a','-104k'],
-            [1,'0o','1er'],
-            [52,'0o','52ème'],
-            [23,'0o','23ème'],
-            [100,'0o','100ème'],
+            [1,'0o','1º'],
+            [52,'0o','52º'],
+            [23,'0o','23º'],
+            [100,'0o','100º'],
             [1,'0[.]0','1']
         ];
 
@@ -88,7 +88,7 @@ exports['language:fr'] = {
             ['(€1,23m)',-1230000],
             ['10k',10000],
             ['-10k',-10000],
-            ['23e',23],
+            ['23º',23],
             ['€10 000,00',10000],
             ['-76%',-0.76],
             ['2:23:57',8637]
