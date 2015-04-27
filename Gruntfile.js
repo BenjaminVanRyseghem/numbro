@@ -7,6 +7,13 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
+        copy: {
+            main: {
+                files: [
+                    {src: 'numbro.js', dest: 'dist/numbro.js'},
+                ]
+            }
+        },
         concat: {
             languages: {
                 src: [
@@ -18,13 +25,13 @@ module.exports = function(grunt) {
         uglify: {
             target: {
                 files: [
-                    { src: [ 'dist/languages.js' ], dest: 'dist/min/languages.min.js', },
-                    { src: [ 'numbro.js' ], dest: 'dist/min/numbro.min.js', },
+                    { src: [ 'dist/languages.js' ], dest: 'dist/languages.min.js', },
+                    { src: [ 'numbro.js' ], dest: 'dist/numbro.min.js', },
                 ].concat( fs.readdirSync('./languages').map(function (fileName) {
                     var lang = path.basename(fileName, '.js');
                     return {
                         src: [path.join('languages/', fileName)],
-                        dest: path.join('dist/min/languages/', lang + '.min.js'),
+                        dest: path.join('dist/languages/', lang + '.min.js'),
                     };
                 }))
             },
@@ -85,6 +92,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-nodeunit');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-confirm');
@@ -102,6 +110,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'test',
+        'copy:main',
         'concat',
         'uglify'
     ]);
