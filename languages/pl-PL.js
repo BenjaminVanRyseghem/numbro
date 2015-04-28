@@ -23,7 +23,7 @@
             return '.';
         },
         currency: {
-            symbol: 'PLN',
+            symbol: ' zł',
             position: 'postfix'
         },
         defaults: {
