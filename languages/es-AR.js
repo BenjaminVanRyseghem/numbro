@@ -24,8 +24,8 @@
             return (b === 1 || b === 3) ? 'er' :
                 (b === 2) ? 'do' :
                 (b === 7 || b === 0) ? 'mo' :
-		(b === 8) ? 'vo' :
-		(b === 9) ? 'no' : 'to';
+        (b === 8) ? 'vo' :
+        (b === 9) ? 'no' : 'to';
         },
         currency: {
             symbol: '$',
@@ -38,7 +38,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 

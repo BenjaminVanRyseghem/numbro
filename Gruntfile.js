@@ -86,6 +86,19 @@ module.exports = function(grunt) {
                 'numbro.js',
                 'languages/**/*.js'
             ]
+        },
+        jscs: {
+            src: [
+                'Gruntfile.js',
+                'numbro.js',
+                'languages/**/*.js'
+            ],
+            options: {
+                config: '.jscsrc',
+                esnext: true, // If you use ES6 http://jscs.info/overview.html#esnext
+                verbose: true, // If you need output with rule names http://jscs.info/overview.html#verbose
+                validateIndentation: 4
+            }
         }
     });
 
@@ -97,14 +110,20 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-confirm');
     grunt.loadNpmTasks('grunt-release');
+    grunt.loadNpmTasks('grunt-jscs');
 
 
     grunt.registerTask('default', [
         'test'
     ]);
 
-    grunt.registerTask('test', [
+    grunt.registerTask('lint', [
         'jshint',
+        'jscs'
+    ]);
+
+    grunt.registerTask('test', [
+        'lint',
         'nodeunit'
     ]);
 
