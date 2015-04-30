@@ -465,7 +465,9 @@
                     format = format.replace('o', '');
                 }
 
-                ord = ord + languages[currentLanguage].ordinal(value);
+                if (languages[currentLanguage].ordinal){
+                   ord = ord + languages[currentLanguage].ordinal(value);
+                }
             }
 
             if (format.indexOf('[.]') > -1) {

@@ -17,7 +17,7 @@
 			thousand: 't',
 			million: 'M',
 			billion: 'md',
-			trillion: 't'
+			trillion: 'tmd'
 		},
 		currency: {
 			symbol: 'kr',
