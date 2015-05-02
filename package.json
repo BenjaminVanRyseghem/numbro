@@ -44,6 +44,7 @@
     "grunt-contrib-uglify": "latest",
     "grunt-jscs": "^1.8.0",
     "grunt-release": "latest",
+    "require-dir": "^0.3.0",
     "uglify-js": "latest"
   },
   "scripts": {
