@@ -1,3 +1,7 @@
+### 1.2.2
+
+- Remove old minified files
+
 ### 1.2.1
 
 - Forgot to build when published
