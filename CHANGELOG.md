@@ -1,3 +1,18 @@
+### 1.2.0
+
+- #27 Binary and decimal bytes. Thanks @clayzermk1 and @Graham42
+- #26 Jshint improvemnents. Thanks @baer and @Graham42
+- Fixes french ordinal. Thanks @BenjaminVanRyseghem
+- #32 Use svg instead of png to get better image quality. Thanks @PeterDaveHello
+- #33 Correct culture code for Español. Thanks @maheshsenni
+- #34 Clean up locales info. Thanks @Graham42
+- #36 Improve `dist/` layout. Thanks @Graham42
+- #35 Correct Polish currency symbol. Thanks @Graham42
+- Fixes Swedish tests. Thanks @BenjaminVanRyseghem
+- Fixes inconsistent white spaces. Thanks @BenjaminVanRyseghem
+- #44 Tests for culture code format. Thanks @maheshsenni
+- #50 added en-ZA language. Thanks @stewart42
+
 ### 1.1.1
 
 - Fixes minified version number. Thanks @BenjaminVanRyseghem

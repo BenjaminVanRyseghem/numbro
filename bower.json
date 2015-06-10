@@ -1,7 +1,7 @@
 {
   "name": "numbro",
   "repo": "foretagsplatsen/numbro",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "description": "Format and manipulate numbers.",
   "keywords": [
     "numeral",
