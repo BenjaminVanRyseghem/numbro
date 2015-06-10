@@ -556,6 +556,7 @@
     };
 
     // version number
+    debugger;
     numbro.version = VERSION;
 
     // compare numbro object
