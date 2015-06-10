@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : french (fr-ch)
+ * language : French
+ * locale: Switzerland
  * author : Adam Draper : https://github.com/adamwdraper
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'fr-CH',
         delimiters: {
             thousands: '\'',
             decimal: '.'
@@ -16,7 +20,7 @@
             trillion: 't'
         },
         ordinal : function (number) {
-            return number === 1 ? 'er' : 'e';
+            return number === 1 ? 'er' : 'ème';
         },
         currency: {
             symbol: 'CHF',
@@ -29,7 +33,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -39,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('fr-CH', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

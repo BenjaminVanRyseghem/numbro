@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : slovak (sk)
+ * language : Slovak
+ * locale : Slovakia
  * author : Ahmed Al Hafoudh : http://www.freevision.sk
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'sk-SK',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -29,7 +33,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -39,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('sk-SK', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

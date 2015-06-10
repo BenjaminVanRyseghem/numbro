@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : netherlands-dutch (nl-nl)
+ * language : Dutch
+ * locale: Netherlands
  * author : Dave Clayton : https://github.com/davedx
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'nl-NL',
         delimiters: {
             thousands: '.',
             decimal  : ','
@@ -30,7 +34,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -40,6 +44,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('nl-NL', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

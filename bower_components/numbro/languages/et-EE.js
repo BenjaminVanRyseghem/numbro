@@ -1,13 +1,17 @@
 /*!
  * numbro.js language configuration
  * language : Estonian
+ * locale: Estonia
  * author : Illimar Tambek : https://github.com/ragulka
  *
  * Note: in Estonian, abbreviations are always separated
  * from numbers with a space
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'et-EE',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -18,7 +22,7 @@
             billion: ' mld',
             trillion: ' trl'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {
@@ -32,7 +36,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -42,6 +46,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('et-EE', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

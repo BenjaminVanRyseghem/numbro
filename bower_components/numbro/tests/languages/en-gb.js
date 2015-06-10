@@ -1,11 +1,13 @@
+'use strict';
+
 var numbro = require('../../numbro'),
     language = require('../../languages/en-GB');
 
-numbro.language('en-gb', language);
+numbro.language(language.langLocaleCode, language);
 
-exports['language:en-gb'] = {
+exports['language:en-GB'] = {
     setUp: function (callback) {
-        numbro.language('en-gb');
+        numbro.language('en-GB');
         callback();
     },
 

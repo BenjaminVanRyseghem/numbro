@@ -1,3 +1,5 @@
+'use strict';
+
 var numbro = require('../../numbro');
 
 exports.unformat = {
@@ -17,7 +19,7 @@ exports.unformat = {
                 ['31st', 31],
                 ['1.23t', 1230000000000],
                 ['N/A', 0],
-                [, 0],
+                [undefined, 0],
                 ['', 0],
 
                 // Pass Through for Numbers
@@ -52,11 +54,12 @@ exports.unformat = {
     },
 
     bytes: function (test) {
-        test.expect(2);
+        test.expect(3);
 
         var tests = [
                 ['100B', 100],
-                ['3.154 TB', 3467859674006]
+                ['3.154 TiB', 3467859674006],
+                ['3.154 TB', 3154000000000]
             ];
 
         for (var i = 0; i < tests.length; i++) {

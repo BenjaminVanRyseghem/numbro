@@ -6,7 +6,8 @@
  * http://www.foretagsplatsen.se
  */
 
-(function() {
+(function () {
+    'use strict';
 
     /************************************
         Constants
@@ -87,7 +88,8 @@
             millionRegExp,
             billionRegExp,
             trillionRegExp,
-            suffixes = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+            binarySuffixes = ['KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
+            decimalSuffixes = ['KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             bytesMultiplier = false,
             power;
 
@@ -102,22 +104,34 @@
                 }
 
                 // see if abbreviations are there so that we can multiply to the correct number
-                thousandRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.thousand + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
-                millionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.million + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
-                billionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.billion + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
-                trillionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.trillion + '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                thousandRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.thousand +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                millionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.million +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                billionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.billion +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
+                trillionRegExp = new RegExp('[^a-zA-Z]' + languages[currentLanguage].abbreviations.trillion +
+                    '(?:\\)|(\\' + languages[currentLanguage].currency.symbol + ')?(?:\\))?)?$');
 
                 // see if bytes are there so that we can multiply to the correct number
-                for (power = 0; power <= suffixes.length; power++) {
-                    bytesMultiplier = (string.indexOf(suffixes[power]) > -1) ? Math.pow(1024, power + 1) : false;
-
-                    if (bytesMultiplier) {
-                        break;
+                for (power = 0; power <= binarySuffixes.length && !bytesMultiplier; power++) {
+                    if (string.indexOf(binarySuffixes[power]) > -1) {
+                        bytesMultiplier = Math.pow(1024, power + 1);
+                    } else if (string.indexOf(decimalSuffixes[power]) > -1) {
+                        bytesMultiplier = Math.pow(1000, power + 1);
                     }
                 }
 
                 // do some math to create our number
-                n._value = ((bytesMultiplier) ? bytesMultiplier : 1) * ((stringOriginal.match(thousandRegExp)) ? Math.pow(10, 3) : 1) * ((stringOriginal.match(millionRegExp)) ? Math.pow(10, 6) : 1) * ((stringOriginal.match(billionRegExp)) ? Math.pow(10, 9) : 1) * ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) * ((string.indexOf('%') > -1) ? 0.01 : 1) * (((string.split('-').length + Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) * Number(string.replace(/[^0-9\.]+/g, ''));
+                n._value = ((bytesMultiplier) ? bytesMultiplier : 1) *
+                    ((stringOriginal.match(thousandRegExp)) ? Math.pow(10, 3) : 1) *
+                    ((stringOriginal.match(millionRegExp)) ? Math.pow(10, 6) : 1) *
+                    ((stringOriginal.match(billionRegExp)) ? Math.pow(10, 9) : 1) *
+                    ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) *
+                    ((string.indexOf('%') > -1) ? 0.01 : 1) *
+                    (((string.split('-').length +
+                        Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) *
+                    Number(string.replace(/[^0-9\.]+/g, ''));
 
                 // round if we are talking about bytes
                 n._value = (bytesMultiplier) ? Math.ceil(n._value) : n._value;
@@ -248,7 +262,9 @@
         var hours = Math.floor(n._value / 60 / 60),
             minutes = Math.floor((n._value - (hours * 60 * 60)) / 60),
             seconds = Math.round(n._value - (hours * 60 * 60) - (minutes * 60));
-        return hours + ':' + ((minutes < 10) ? '0' + minutes : minutes) + ':' + ((seconds < 10) ? '0' + seconds : seconds);
+        return hours + ':' +
+            ((minutes < 10) ? '0' + minutes : minutes) + ':' +
+            ((seconds < 10) ? '0' + seconds : seconds);
     }
 
     function unformatTime(string) {
@@ -285,14 +301,15 @@
             bytes = '',
             ord = '',
             abs = Math.abs(value),
-            suffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
+            binarySuffixes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
+            decimalSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
             min,
             max,
             power,
-			totalLength,
+            totalLength,
             length,
-			minimumPrecision,
-			pow,
+            minimumPrecision,
+            pow,
             w,
             intPrecision,
             precision,
@@ -302,7 +319,7 @@
             forcedNeg = false,
             neg = false,
             indexOpenP = -1,
-			size,
+            size,
             indexMinus = -1,
             paren = '';
 
@@ -345,52 +362,52 @@
                     format = format.replace('a', '');
                 }
 
-				totalLength = Math.floor(Math.log(abs) / Math.LN10) + 1;
+                totalLength = Math.floor(Math.log(abs) / Math.LN10) + 1;
 
-				minimumPrecision = totalLength %3;
-				minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
+                minimumPrecision = totalLength %3;
+                minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
 
-				if(intPrecision >= minimumPrecision) {
+                if(intPrecision >= minimumPrecision) {
 
-					length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
+                    length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
 
-					pow = 3 * ~~((Math.min(intPrecision, totalLength) - minimumPrecision) / 3);
+                    pow = 3 * ~~((Math.min(intPrecision, totalLength) - minimumPrecision) / 3);
 
-					abs = abs / Math.pow(10, pow);
+                    abs = abs / Math.pow(10, pow);
 
-					if (format.indexOf('.') === -1 && intPrecision > 3) {
-						format += '[.]';
+                    if (format.indexOf('.') === -1 && intPrecision > 3) {
+                        format += '[.]';
 
-						size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
-						size = size < 0 ? size + 3 : size;
+                        size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
+                        size = size < 0 ? size + 3 : size;
 
-						for (i = 0; i < size; i++) {
-							format += '0';
-						}
-					}
-				}
-				if (Math.floor(Math.log(Math.abs(value)) / Math.LN10) + 1 !== intPrecision){
-					if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
-						// trillion
-						abbr = abbr + languages[currentLanguage].abbreviations.trillion;
-						value = value / Math.pow(10, 12);
-					} else if (abs < Math.pow(10, 12) && abs >= Math.pow(10, 9) && !abbrForce || abbrB) {
-						// billion
-						abbr = abbr + languages[currentLanguage].abbreviations.billion;
-						value = value / Math.pow(10, 9);
-					} else if (abs < Math.pow(10, 9) && abs >= Math.pow(10, 6) && !abbrForce || abbrM) {
-						// million
-						abbr = abbr + languages[currentLanguage].abbreviations.million;
-						value = value / Math.pow(10, 6);
-					} else if (abs < Math.pow(10, 6) && abs >= Math.pow(10, 3) && !abbrForce || abbrK) {
-						// thousand
-						abbr = abbr + languages[currentLanguage].abbreviations.thousand;
-						value = value / Math.pow(10, 3);
-					}
-				}
+                        for (i = 0; i < size; i++) {
+                            format += '0';
+                        }
+                    }
+                }
+                if (Math.floor(Math.log(Math.abs(value)) / Math.LN10) + 1 !== intPrecision){
+                    if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
+                        // trillion
+                        abbr = abbr + languages[currentLanguage].abbreviations.trillion;
+                        value = value / Math.pow(10, 12);
+                    } else if (abs < Math.pow(10, 12) && abs >= Math.pow(10, 9) && !abbrForce || abbrB) {
+                        // billion
+                        abbr = abbr + languages[currentLanguage].abbreviations.billion;
+                        value = value / Math.pow(10, 9);
+                    } else if (abs < Math.pow(10, 9) && abs >= Math.pow(10, 6) && !abbrForce || abbrM) {
+                        // million
+                        abbr = abbr + languages[currentLanguage].abbreviations.million;
+                        value = value / Math.pow(10, 6);
+                    } else if (abs < Math.pow(10, 6) && abs >= Math.pow(10, 3) && !abbrForce || abbrK) {
+                        // thousand
+                        abbr = abbr + languages[currentLanguage].abbreviations.thousand;
+                        value = value / Math.pow(10, 3);
+                    }
+                }
             }
 
-            // see if we are formatting bytes
+            // see if we are formatting binary bytes
             if (format.indexOf('b') > -1) {
                 // check for space before
                 if (format.indexOf(' b') > -1) {
@@ -400,12 +417,36 @@
                     format = format.replace('b', '');
                 }
 
-                for (power = 0; power <= suffixes.length; power++) {
+                for (power = 0; power <= binarySuffixes.length; power++) {
                     min = Math.pow(1024, power);
                     max = Math.pow(1024, power + 1);
 
                     if (value >= min && value < max) {
-                        bytes = bytes + suffixes[power];
+                        bytes = bytes + binarySuffixes[power];
+                        if (min > 0) {
+                            value = value / min;
+                        }
+                        break;
+                    }
+                }
+            }
+
+            // see if we are formatting decimal bytes
+            if (format.indexOf('d') > -1) {
+                // check for space before
+                if (format.indexOf(' d') > -1) {
+                    bytes = ' ';
+                    format = format.replace(' d', '');
+                } else {
+                    format = format.replace('d', '');
+                }
+
+                for (power = 0; power <= decimalSuffixes.length; power++) {
+                    min = Math.pow(1000, power);
+                    max = Math.pow(1000, power + 1);
+
+                    if (value >= min && value < max) {
+                        bytes = bytes + decimalSuffixes[power];
                         if (min > 0) {
                             value = value / min;
                         }
@@ -424,7 +465,9 @@
                     format = format.replace('o', '');
                 }
 
-                ord = ord + languages[currentLanguage].ordinal(value);
+                if (languages[currentLanguage].ordinal){
+                    ord = ord + languages[currentLanguage].ordinal(value);
+                }
             }
 
             if (format.indexOf('[.]') > -1) {
@@ -440,7 +483,8 @@
                 if (precision.indexOf('[') > -1) {
                     precision = precision.replace(']', '');
                     precision = precision.split('[');
-                    d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction, precision[1].length);
+                    d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction,
+                            precision[1].length);
                 } else {
                     d = toFixed(value, precision.length, roundingFunction);
                 }
@@ -468,7 +512,8 @@
             }
 
             if (thousands > -1) {
-                w = w.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' + languages[currentLanguage].delimiters.thousands);
+                w = w.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' +
+                    languages[currentLanguage].delimiters.thousands);
             }
 
             if (format.indexOf('.') === 0) {
@@ -485,7 +530,12 @@
             }
 
 
-            return paren + ((!neg && signed) ? '+' : '') + w + d + ((ord) ? ord : '') + ((abbr && !sep) ? abbr : '') + ((bytes) ? bytes : '') + ((negP && neg) ? ')' : '');
+            return paren + ((!neg && signed) ? '+' : '') +
+                w + d +
+                ((ord) ? ord : '') +
+                ((abbr && !sep) ? abbr : '') +
+                ((bytes) ? bytes : '') +
+                ((negP && neg) ? ')' : '');
         }
     }
 
@@ -542,23 +592,23 @@
         return numbro;
     };
 
-	// This function allow the user to set a new language with a fallback if
-	// the language does not exist. If no fallback language is provided,
-	// it fallbacks to english.
-	numbro.setLanguage = function(newLanguage, fallbackLanguage) {
-		var key = newLanguage,
-			prefix = newLanguage.split('-')[0],
-			matchingLanguage = null;
-		if (!languages[key]) {
-			Object.keys(languages).forEach(function(language) {
-				if (!matchingLanguage && language.split('-')[0] === prefix){
-					matchingLanguage = language;
-				}
-			});
-			key = matchingLanguage || fallbackLanguage || 'en-US';
-		}
-		numbro.language(key);
-	};
+    // This function allow the user to set a new language with a fallback if
+    // the language does not exist. If no fallback language is provided,
+    // it fallbacks to english.
+    numbro.setLanguage = function(newLanguage, fallbackLanguage) {
+        var key = newLanguage,
+            prefix = newLanguage.split('-')[0],
+            matchingLanguage = null;
+        if (!languages[key]) {
+            Object.keys(languages).forEach(function(language) {
+                if (!matchingLanguage && language.split('-')[0] === prefix){
+                    matchingLanguage = language;
+                }
+            });
+            key = matchingLanguage || fallbackLanguage || 'en-US';
+        }
+        numbro.language(key);
+    };
 
     // This function provides access to the loaded language data.  If
     // no arguments are passed in, it will simply return the current
@@ -595,16 +645,16 @@
         },
         currency: {
             symbol: '$',
-			position: 'prefix'
+            position: 'prefix'
         },
-		defaults: {
-			currencyFormat: ',0000 a'
-		},
-		formats: {
-			fourDigits: '0000 a',
-			fullWithTwoDecimals: '$ ,0.00',
-			fullWithTwoDecimalsNoCurrency: ',0.00'
-		}
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00'
+        }
     });
 
     numbro.languages = function() {
@@ -686,7 +736,8 @@
         temp = val.match(/[^\d]+$/);
         if (temp !== null) {
             val = val.slice(0, -1);
-            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million && temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
+            if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million &&
+                    temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
                 return false;
             }
         }
@@ -702,9 +753,13 @@
                     return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
                 } else {
                     if (_valArray[0].length === 1) {
-                        return ( !! _valArray[0].match(/^\d+$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                        return ( !! _valArray[0].match(/^\d+$/) &&
+                            !_valArray[0].match(_thousandRegEx) &&
+                            !! _valArray[1].match(/^\d+$/));
                     } else {
-                        return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx) && !! _valArray[1].match(/^\d+$/));
+                        return ( !! _valArray[0].match(/^\d+.*\d$/) &&
+                            !_valArray[0].match(_thousandRegEx) &&
+                            !! _valArray[1].match(/^\d+$/));
                     }
                 }
             }
@@ -733,8 +788,7 @@
      * https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce#Compatibility
      */
     if ('function' !== typeof Array.prototype.reduce) {
-        Array.prototype.reduce = function(callback, opt_initialValue) {
-            'use strict';
+        Array.prototype.reduce = function(callback, optInitialValue) {
 
             if (null === this || 'undefined' === typeof this) {
                 // At the moment all modern browsers, that support strict mode, have
@@ -753,7 +807,7 @@
                 isValueSet = false;
 
             if (1 < arguments.length) {
-                value = opt_initialValue;
+                value = optInitialValue;
                 isValueSet = true;
             }
 
@@ -818,7 +872,8 @@
 
         format: function(inputString, roundingFunction) {
             return formatNumbro(this,
-                inputString ? inputString : defaultFormat, (roundingFunction !== undefined) ? roundingFunction : Math.round
+                inputString ? inputString : defaultFormat,
+                (roundingFunction !== undefined) ? roundingFunction : Math.round
             );
         },
 
@@ -852,7 +907,7 @@
         add: function(value) {
             var corrFactor = correctionFactor.call(null, this._value, value);
 
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 return accum + corrFactor * curr;
             }
             this._value = [this._value, value].reduce(cback, 0) / corrFactor;
@@ -862,7 +917,7 @@
         subtract: function(value) {
             var corrFactor = correctionFactor.call(null, this._value, value);
 
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 return accum - corrFactor * curr;
             }
             this._value = [value].reduce(cback, this._value * corrFactor) / corrFactor;
@@ -870,7 +925,7 @@
         },
 
         multiply: function(value) {
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 var corrFactor = correctionFactor(accum, curr);
                 return (accum * corrFactor) * (curr * corrFactor) /
                     (corrFactor * corrFactor);
@@ -880,7 +935,7 @@
         },
 
         divide: function(value) {
-            function cback(accum, curr, currI, O) {
+            function cback(accum, curr) {
                 var corrFactor = correctionFactor(accum, curr);
                 return (accum * corrFactor) / (curr * corrFactor);
             }
@@ -908,7 +963,7 @@
         // here, `this` means `window` in the browser, or `global` on the server
         // add `numbro` as a global object via a string identifier,
         // for Closure Compiler 'advanced' mode
-        this['numbro'] = numbro;
+        this.numbro = numbro;
     }
 
     /*global define:false */

@@ -1,11 +1,13 @@
+'use strict';
+
 var numbro = require('../../numbro'),
     language = require('../../languages/fr-CH');
 
-numbro.language('fr-ch', language);
+numbro.language(language.langLocaleCode, language);
 
-exports['language:fr-ch'] = {
+exports['language:fr-CH'] = {
     setUp: function (callback) {
-        numbro.language('fr-ch');
+        numbro.language('fr-CH');
         callback();
     },
 
@@ -30,9 +32,9 @@ exports['language:fr-ch'] = {
             [1460,'0a','1k'],
             [-104000,'0a','-104k'],
             [1,'0o','1er'],
-            [52,'0o','52e'],
-            [23,'0o','23e'],
-            [100,'0o','100e'],
+            [52,'0o','52ème'],
+            [23,'0o','23ème'],
+            [100,'0o','100ème'],
             [1,'0[.]0','1']
         ];
 

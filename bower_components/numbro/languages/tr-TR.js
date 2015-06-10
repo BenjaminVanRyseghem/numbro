@@ -1,77 +1,83 @@
 /*!
  * numbro.js language configuration
- * language : turkish (tr)
- * author : Ecmel Ercan : https://github.com/ecmel, Erhan Gundogan : https://github.com/erhangundogan, Burak Yiğit Kaya: https://github.com/BYK
+ * language : Turkish
+ * locale : Turkey
+ * author : Ecmel Ercan : https://github.com/ecmel,
+ *          Erhan Gundogan : https://github.com/erhangundogan,
+ *          Burak Yiğit Kaya: https://github.com/BYK
  */
 (function() {
-	var suffixes = {
-			1: '\'inci',
-			5: '\'inci',
-			8: '\'inci',
-			70: '\'inci',
-			80: '\'inci',
+    'use strict';
 
-			2: '\'nci',
-			7: '\'nci',
-			20: '\'nci',
-			50: '\'nci',
+    var suffixes = {
+            1: '\'inci',
+            5: '\'inci',
+            8: '\'inci',
+            70: '\'inci',
+            80: '\'inci',
 
-			3: '\'üncü',
-			4: '\'üncü',
-			100: '\'üncü',
+            2: '\'nci',
+            7: '\'nci',
+            20: '\'nci',
+            50: '\'nci',
 
-			6: '\'ncı',
+            3: '\'üncü',
+            4: '\'üncü',
+            100: '\'üncü',
 
-			9: '\'uncu',
-			10: '\'uncu',
-			30: '\'uncu',
+            6: '\'ncı',
 
-			60: '\'ıncı',
-			90: '\'ıncı'
-		},
-		language = {
-			delimiters: {
-				thousands: '.',
-				decimal: ','
-			},
-			abbreviations: {
-				thousand: 'bin',
-				million: 'milyon',
-				billion: 'milyar',
-				trillion: 'trilyon'
-			},
-			ordinal: function(number) {
-				if (number === 0) {  // special case for zero
-					return '\'ıncı';
-				}
+            9: '\'uncu',
+            10: '\'uncu',
+            30: '\'uncu',
 
-				var a = number % 10,
-					b = number % 100 - a,
-					c = number >= 100 ? 100 : null;
+            60: '\'ıncı',
+            90: '\'ıncı'
+        },
+        language = {
+            langLocaleCode: 'tr-TR',
+            delimiters: {
+                thousands: '.',
+                decimal: ','
+            },
+            abbreviations: {
+                thousand: 'bin',
+                million: 'milyon',
+                billion: 'milyar',
+                trillion: 'trilyon'
+            },
+            ordinal: function(number) {
+                if (number === 0) {  // special case for zero
+                    return '\'ıncı';
+                }
 
-				return suffixes[a] || suffixes[b] || suffixes[c];
-			},
-			currency: {
-				symbol: '\u20BA',
-				position: 'postfix'
-			},
-			defaults: {
-				currencyFormat: ',0000 a'
-			},
-			formats: {
-				fourDigits: '0000 a',
-				fullWithTwoDecimals: ',0.00 $',
-				fullWithTwoDecimalsNoCurrency: ',0.00',
-				fullWithNoDecimals: ',0 $'
-			}
-		};
+                var a = number % 10,
+                    b = number % 100 - a,
+                    c = number >= 100 ? 100 : null;
 
-	// Node
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = language;
-	}
-	// Browser
-	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-		this.numbro.language('tr-TR', language);
-	}
+                return suffixes[a] || suffixes[b] || suffixes[c];
+            },
+            currency: {
+                symbol: '\u20BA',
+                position: 'postfix'
+            },
+            defaults: {
+                currencyFormat: ',0000 a'
+            },
+            formats: {
+                fourDigits: '0000 a',
+                fullWithTwoDecimals: ',0.00 $',
+                fullWithTwoDecimalsNoCurrency: ',0.00',
+                fullWithNoDecimals: ',0 $'
+            }
+        };
+
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language(language.langLocaleCode, language);
+    }
 }());

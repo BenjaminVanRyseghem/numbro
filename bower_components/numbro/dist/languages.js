@@ -29,7 +29,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -65,7 +65,7 @@
         },
         currency: {
             symbol: 'kr',
-			position: 'postfix'
+            position: 'postfix'
         },
         defaults: {
             currencyFormat: ',0000 a'
@@ -74,7 +74,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -119,7 +119,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -163,7 +163,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -211,7 +211,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: '$ ,0'
+            fullWithNoDecimals: '$ ,0'
         }
     };
 
@@ -246,8 +246,8 @@
             return (b === 1 || b === 3) ? 'er' :
                 (b === 2) ? 'do' :
                 (b === 7 || b === 0) ? 'mo' :
-		(b === 8) ? 'vo' :
-		(b === 9) ? 'no' : 'to';
+        (b === 8) ? 'vo' :
+        (b === 9) ? 'no' : 'to';
         },
         currency: {
             symbol: '$',
@@ -260,7 +260,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -310,7 +310,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -358,7 +358,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -438,7 +438,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -522,7 +522,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: '$ ,0'
+            fullWithNoDecimals: '$ ,0'
         }
     };
 
@@ -566,7 +566,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -611,7 +611,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -655,7 +655,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -699,7 +699,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -743,7 +743,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: '$ ,0'
+            fullWithNoDecimals: '$ ,0'
         }
     };
 
@@ -788,7 +788,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
     // Node
@@ -807,40 +807,40 @@
  * author : Benjamin Van Ryseghem
  */
 (function() {
-	var language = {
-		delimiters: {
-			thousands: ' ',
-			decimal: ','
-		},
-		abbreviations: {
-			thousand: 't',
-			million: 'M',
-			billion: 'md',
-			trillion: 't'
-		},
-		currency: {
-			symbol: 'kr',
-			position: 'postfix'
-		},
-		defaults: {
-			currencyFormat: ',0000 a'
-		},
-		formats: {
-			fourDigits: '0000 a',
-			fullWithTwoDecimals: ',0.00 $',
-			fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
-		}
-	};
+    var language = {
+        delimiters: {
+            thousands: ' ',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 't',
+            million: 'M',
+            billion: 'md',
+            trillion: 't'
+        },
+        currency: {
+            symbol: 'kr',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: ',0 $'
+        }
+    };
 
-	// Node
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = language;
-	}
-	// Browser
-	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-		this.numbro.language('nb-NO', language);
-	}
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('nb-NO', language);
+    }
 }());
 /*!
  * numbro.js language configuration
@@ -874,7 +874,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -919,7 +919,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -963,7 +963,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1007,7 +1007,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1051,7 +1051,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1099,7 +1099,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1145,7 +1145,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1190,7 +1190,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1210,40 +1210,40 @@
  * author : Benjamin Van Ryseghem (benjamin.vanryseghem.com)
  */
 (function() {
-	var language = {
-		delimiters: {
-			thousands: ' ',
-			decimal: ','
-		},
-		abbreviations: {
-			thousand: 't',
-			million: 'M',
-			billion: 'md',
-			trillion: 't'
-		},
-		currency: {
-			symbol: 'kr',
-			position: 'postfix'
-		},
-		defaults: {
-			currencyFormat: ',0000 a'
-		},
-		formats: {
-			fourDigits: '0000 a',
-			fullWithTwoDecimals: ',0.00 $',
-			fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
-		}
-	};
+    var language = {
+        delimiters: {
+            thousands: ' ',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 't',
+            million: 'M',
+            billion: 'md',
+            trillion: 't'
+        },
+        currency: {
+            symbol: 'kr',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',0000 a'
+        },
+        formats: {
+            fourDigits: '0000 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: ',0 $'
+        }
+    };
 
-	// Node
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = language;
-	}
-	// Browser
-	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-		this.numbro.language('sv-SE', language);
-	}
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('sv-SE', language);
+    }
 }());
 /*!
  * numbro.js language configuration
@@ -1276,7 +1276,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1296,76 +1296,76 @@
  * author : Ecmel Ercan : https://github.com/ecmel, Erhan Gundogan : https://github.com/erhangundogan, Burak Yiğit Kaya: https://github.com/BYK
  */
 (function() {
-	var suffixes = {
-			1: '\'inci',
-			5: '\'inci',
-			8: '\'inci',
-			70: '\'inci',
-			80: '\'inci',
+    var suffixes = {
+            1: '\'inci',
+            5: '\'inci',
+            8: '\'inci',
+            70: '\'inci',
+            80: '\'inci',
 
-			2: '\'nci',
-			7: '\'nci',
-			20: '\'nci',
-			50: '\'nci',
+            2: '\'nci',
+            7: '\'nci',
+            20: '\'nci',
+            50: '\'nci',
 
-			3: '\'üncü',
-			4: '\'üncü',
-			100: '\'üncü',
+            3: '\'üncü',
+            4: '\'üncü',
+            100: '\'üncü',
 
-			6: '\'ncı',
+            6: '\'ncı',
 
-			9: '\'uncu',
-			10: '\'uncu',
-			30: '\'uncu',
+            9: '\'uncu',
+            10: '\'uncu',
+            30: '\'uncu',
 
-			60: '\'ıncı',
-			90: '\'ıncı'
-		},
-		language = {
-			delimiters: {
-				thousands: '.',
-				decimal: ','
-			},
-			abbreviations: {
-				thousand: 'bin',
-				million: 'milyon',
-				billion: 'milyar',
-				trillion: 'trilyon'
-			},
-			ordinal: function(number) {
-				if (number === 0) {  // special case for zero
-					return '\'ıncı';
-				}
+            60: '\'ıncı',
+            90: '\'ıncı'
+        },
+        language = {
+            delimiters: {
+                thousands: '.',
+                decimal: ','
+            },
+            abbreviations: {
+                thousand: 'bin',
+                million: 'milyon',
+                billion: 'milyar',
+                trillion: 'trilyon'
+            },
+            ordinal: function(number) {
+                if (number === 0) {  // special case for zero
+                    return '\'ıncı';
+                }
 
-				var a = number % 10,
-					b = number % 100 - a,
-					c = number >= 100 ? 100 : null;
+                var a = number % 10,
+                    b = number % 100 - a,
+                    c = number >= 100 ? 100 : null;
 
-				return suffixes[a] || suffixes[b] || suffixes[c];
-			},
-			currency: {
-				symbol: '\u20BA',
-				position: 'postfix'
-			},
-			defaults: {
-				currencyFormat: ',0000 a'
-			},
-			formats: {
-				fourDigits: '0000 a',
-				fullWithTwoDecimals: ',0.00 $',
-				fullWithTwoDecimalsNoCurrency: ',0.00',
-				fullWithNoDecimals: ',0 $'
-			}
-		};
+                return suffixes[a] || suffixes[b] || suffixes[c];
+            },
+            currency: {
+                symbol: '\u20BA',
+                position: 'postfix'
+            },
+            defaults: {
+                currencyFormat: ',0000 a'
+            },
+            formats: {
+                fourDigits: '0000 a',
+                fullWithTwoDecimals: ',0.00 $',
+                fullWithTwoDecimalsNoCurrency: ',0.00',
+                fullWithNoDecimals: ',0 $'
+            }
+        };
 
-	// Node
-	if (typeof module !== 'undefined' && module.exports) {
-		module.exports = language;
-	}
-	// Browser
-	if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-		this.numbro.language('tr-TR', language);
-	}
+    // Node
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
+        this.numbro.language('tr-TR', language);
+    }
 }());
 
 // numbro.js language configuration
@@ -1400,7 +1400,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -1445,7 +1445,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: '$ ,0'
+            fullWithNoDecimals: '$ ,0'
         }
     };
 

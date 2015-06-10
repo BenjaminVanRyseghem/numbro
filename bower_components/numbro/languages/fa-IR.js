@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : Farsi Iran
+ * language : Farsi
+ * locale: Iran
  * author : neo13 : https://github.com/neo13
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'fa-IR',
         delimiters: {
             thousands: '،',
             decimal: '.'
@@ -15,7 +19,7 @@
             billion: 'میلیارد',
             trillion: 'تریلیون'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return 'ام';
         },
         currency: {
@@ -29,6 +33,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('fa-IR', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

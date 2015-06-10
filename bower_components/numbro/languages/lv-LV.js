@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : Latvian (lv)
+ * language : Latvian
+ * locale: Latvia
  * author : Lauris Bukšis-Haberkorns : https://github.com/Lafriks
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'lv-LV',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -15,7 +19,7 @@
             billion: ' mljrd.',
             trillion: ' trilj.'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {
@@ -29,7 +33,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
     // Node
@@ -38,6 +42,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('lv-LV', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

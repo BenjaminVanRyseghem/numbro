@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : thai (th)
+ * language : Thai
+ * locale : Thailand
  * author : Sathit Jittanupat : https://github.com/jojosati
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'th-TH',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -15,7 +19,7 @@
             billion: 'พันล้าน',
             trillion: 'ล้านล้าน'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {
@@ -29,7 +33,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -39,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('th-TH', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : japanese
+ * language : Japanese
+ * locale: Japan
  * author : teppeis : https://github.com/teppeis
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'ja-JP',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -15,7 +19,7 @@
             billion: '十億',
             trillion: '兆'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {
@@ -29,7 +33,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: '$ ,0'
+            fullWithNoDecimals: '$ ,0'
         }
     };
 
@@ -39,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('ja-JP', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

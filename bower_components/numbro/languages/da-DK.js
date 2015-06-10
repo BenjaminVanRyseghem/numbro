@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : danish denmark (dk)
+ * language : Danish
+ * locale: Denmark
  * author : Michael Storgaard : https://github.com/mstorgaard
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'da-DK',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -15,12 +19,12 @@
             billion: 'mia',
             trillion: 'b'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return '.';
         },
         currency: {
             symbol: 'kr',
-			position: 'postfix'
+            position: 'postfix'
         },
         defaults: {
             currencyFormat: ',0000 a'
@@ -29,7 +33,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -39,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('da-DK', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

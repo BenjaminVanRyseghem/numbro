@@ -1,10 +1,14 @@
 /*!
  * numbro.js language configuration
- * language : portuguese brazil (pt-br)
+ * language : Portuguese
+ * locale : Brazil
  * author : Ramiro Varandas Jr : https://github.com/ramirovjr
  */
 (function () {
+    'use strict';
+
     var language = {
+        langLocaleCode: 'pt-BR',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -15,7 +19,7 @@
             billion: 'b',
             trillion: 't'
         },
-        ordinal: function (number) {
+        ordinal: function () {
             return 'º';
         },
         currency: {
@@ -29,7 +33,7 @@
             fourDigits: '0000 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-			fullWithNoDecimals: ',0 $'
+            fullWithNoDecimals: ',0 $'
         }
     };
 
@@ -39,6 +43,6 @@
     }
     // Browser
     if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language('pt-BR', language);
+        this.numbro.language(language.langLocaleCode, language);
     }
 }());

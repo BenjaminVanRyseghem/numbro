@@ -1,3 +1,5 @@
+'use strict';
+
 var numbro = require('../../numbro');
 
 exports.manipulate = {
@@ -95,7 +97,8 @@ exports.manipulate = {
 
         for (var i = 0; i < tests.length; i++) {
             num = numbro(tests[i][0]);
-            test.strictEqual(num.difference(tests[i][1]), tests[i][2], 'Difference between ' + tests[i][0] + ' and ' + tests[i][1]);
+            test.strictEqual(num.difference(tests[i][1]), tests[i][2],
+                'Difference between ' + tests[i][0] + ' and ' + tests[i][1]);
         }
 
         test.done();
