@@ -1,3 +1,7 @@
+### 1.2.1
+
+- Forgot to build when published
+
 ### 1.2.0
 
 - #27 Binary and decimal bytes. Thanks @clayzermk1 and @Graham42
