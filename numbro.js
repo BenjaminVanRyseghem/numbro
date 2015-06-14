@@ -191,7 +191,7 @@
                     break;
                 case 'infix':
                     break;
-                default:
+                case 'prefix':
                     if (output.indexOf('(') > -1 || output.indexOf('-') > -1) {
                         output = output.split('');
                         spliceIndex = Math.max(openParenIndex, minusSignIndex) + 1;
@@ -202,6 +202,8 @@
                         output = languages[currentLanguage].currency.symbol + space + output;
                     }
                     break;
+                default:
+                    throw Error('Currency position should be among ["prefix", "infix", "postfix"]');
             }
         } else {
             // position the symbol
