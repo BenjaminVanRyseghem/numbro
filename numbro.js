@@ -344,8 +344,8 @@
 
             // see if abbreviation is wanted
             if (format.indexOf('a') > -1) {
-                intPrecision = format.split('.')[0].match(/0/g) || [];
-                intPrecision = intPrecision.length;
+                intPrecision = format.split('.')[0].match(/[0-9]+/g) || ['0'];
+                intPrecision = parseInt(intPrecision[0], 10);
 
                 // check if abbreviation is specified
                 abbrK = format.indexOf('aK') >= 0;
@@ -364,10 +364,10 @@
 
                 totalLength = Math.floor(Math.log(abs) / Math.LN10) + 1;
 
-                minimumPrecision = totalLength %3;
+                minimumPrecision = totalLength % 3;
                 minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
 
-                if(intPrecision >= minimumPrecision) {
+                if(intPrecision) {
 
                     length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
 
@@ -386,6 +386,7 @@
                         }
                     }
                 }
+
                 if (Math.floor(Math.log(Math.abs(value)) / Math.LN10) + 1 !== intPrecision){
                     if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
                         // trillion
