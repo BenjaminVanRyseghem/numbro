@@ -1,3 +1,8 @@
+### 1.3.0
+
+- #53 Max significant numbers formating. Thanks @BenjaminVanRyseghem
+- #57 Broken reference to this in languages. Thanks @BenjaminVanRyseghem
+
 ### 1.2.2
 
 - Remove old minified files
