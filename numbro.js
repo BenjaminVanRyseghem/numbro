@@ -975,4 +975,4 @@
             return numbro;
         });
     }
-}).call(this);
+}.call(typeof window === 'undefined' ? this : window));

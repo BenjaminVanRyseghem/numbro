@@ -42,4 +42,4 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
