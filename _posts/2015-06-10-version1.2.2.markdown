@@ -6,7 +6,7 @@ date:   2015-06-10 20:56:00
 
 **numbro 1.2.2** has been released.
 
-With a lot of bug fixes (and a big thank you to @Graham42),
+With a lot of bug fixes (and a big thank you to [@Graham42](https://github.com/Graham42)),
 we all hope you will enjoy this new release.
 
 The complete changelog can be found [here](https://github.com/foretagsplatsen/numbro/blob/899ed22f998abd97e9dea3b4f0e85f9ad561c1f9/CHANGELOG.md).
