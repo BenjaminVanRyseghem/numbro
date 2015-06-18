@@ -1,3 +1,7 @@
+### 1.3.1
+
+- fix context issue when in strict mode. Thanks @avetisk
+
 ### 1.3.0
 
 - #53 Max significant numbers formating. Thanks @BenjaminVanRyseghem
