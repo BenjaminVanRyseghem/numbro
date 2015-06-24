@@ -45,7 +45,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -94,7 +94,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -143,7 +143,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : German
@@ -193,7 +194,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : English
@@ -245,7 +247,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : English
@@ -297,7 +300,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Spanish
@@ -350,7 +354,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -404,7 +408,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -456,7 +460,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -495,7 +499,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -544,7 +548,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -587,7 +591,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -636,7 +640,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : French
@@ -684,7 +689,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -733,7 +738,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Hungarian
@@ -781,7 +787,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Italian
@@ -829,7 +836,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Japanese
@@ -877,7 +885,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -925,7 +933,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -971,7 +979,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Dutch
@@ -1020,7 +1029,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Dutch
@@ -1069,7 +1079,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Polish
@@ -1117,7 +1128,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Portuguese
@@ -1165,7 +1177,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Portuguese
@@ -1213,7 +1226,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -1265,7 +1278,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -1317,7 +1330,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -1366,7 +1379,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -1412,7 +1425,8 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
+
 /*!
  * numbro.js language configuration
  * language : Thai
@@ -1460,7 +1474,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -1544,7 +1558,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -1596,7 +1610,7 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 /*!
  * numbro.js language configuration
@@ -1645,4 +1659,4 @@
     if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
         window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));

@@ -1,6 +1,10 @@
+### 1.3.2
+
+- Fix issue with the release process
+
 ### 1.3.1
 
-- fix context issue when in strict mode. Thanks @avetisk
+- Fix context issue when in strict mode. Thanks @avetisk
 
 ### 1.3.0
 
