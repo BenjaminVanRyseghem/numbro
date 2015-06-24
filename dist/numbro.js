@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.3.1
+ * version : 1.3.2
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.3.1',
+        VERSION = '1.3.2',
         // internal storage for language config files
         languages = {},
         currentLanguage = 'en-US',
@@ -975,4 +975,4 @@
             return numbro;
         });
     }
-}).call(this);
+}.call(typeof window === 'undefined' ? this : window));
