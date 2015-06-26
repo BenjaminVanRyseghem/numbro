@@ -929,9 +929,11 @@
 
         multiply: function(value) {
             function cback(accum, curr) {
-                var corrFactor = correctionFactor(accum, curr);
-                return (accum * corrFactor) * (curr * corrFactor) /
-                    (corrFactor * corrFactor);
+                var corrFactor = correctionFactor(accum, curr),
+                    result = accum * corrFactor;
+                result *= curr * corrFactor;
+                result /= corrFactor * corrFactor;
+                return result;
             }
             this._value = [this._value, value].reduce(cback, 1);
             return this;
