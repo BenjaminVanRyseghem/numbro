@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.3.2
+ * version : 1.3.3
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.3.2',
+        VERSION = '1.3.3',
         // internal storage for language config files
         languages = {},
         currentLanguage = 'en-US',
@@ -929,9 +929,11 @@
 
         multiply: function(value) {
             function cback(accum, curr) {
-                var corrFactor = correctionFactor(accum, curr);
-                return (accum * corrFactor) * (curr * corrFactor) /
-                    (corrFactor * corrFactor);
+                var corrFactor = correctionFactor(accum, curr),
+                    result = accum * corrFactor;
+                result *= curr * corrFactor;
+                result /= corrFactor * corrFactor;
+                return result;
             }
             this._value = [this._value, value].reduce(cback, 1);
             return this;
