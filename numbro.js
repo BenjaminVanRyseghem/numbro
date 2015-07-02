@@ -961,6 +961,14 @@
     // CommonJS module is defined
     if (hasModule) {
         module.exports = numbro;
+
+        // Load all languages
+        var fs = require('fs'),
+            path = require('path');
+        var langFiles = fs.readdirSync(path.join(__dirname, 'languages'));
+        langFiles.forEach(function (langFile) {
+            numbro.language(path.basename(langFile, '.js'), require(path.join(__dirname, 'languages', langFile)));
+        });
     }
 
     /*global ender:false */
