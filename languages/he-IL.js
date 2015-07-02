@@ -19,10 +19,6 @@
             billion: 'בליון',
             trillion: 'טריליון'
         },
-        ordinal: function () {
-            // hebrew doesn't have short ordinals attached to numbers
-            return '';
-        },
         currency: {
             symbol: '₪',
             position: 'prefix'
