@@ -1,3 +1,11 @@
+### 1.5.0
+
+- Adds support for Hebrew (he-LI). Thanks to @eli-zehavi
+
+### 1.4.0
+
+- #62 using languages in node. Thanks @alexkwolfe
+
 ### 1.3.3
 
 - #64 multiply loses accuracy on minification. Thanks @rafde
