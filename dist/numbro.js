@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.4.0
+ * version : 1.5.0
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.4.0',
+        VERSION = '1.5.0',
         // internal storage for language config files
         languages = {},
         currentLanguage = 'en-US',
@@ -961,6 +961,14 @@
     // CommonJS module is defined
     if (hasModule) {
         module.exports = numbro;
+
+        // Load all languages
+        var fs = require('fs'),
+            path = require('path');
+        var langFiles = fs.readdirSync(path.join(__dirname, 'languages'));
+        langFiles.forEach(function (langFile) {
+            numbro.language(path.basename(langFile, '.js'), require(path.join(__dirname, 'languages', langFile)));
+        });
     }
 
     /*global ender:false */
