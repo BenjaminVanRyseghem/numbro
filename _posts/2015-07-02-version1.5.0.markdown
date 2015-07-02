@@ -1,0 +1,16 @@
+---
+title:  Release 1.5.0
+author: BenjaminVanRyseghem
+date:   2015-07-02 17:47:00
+---
+
+**numbro 1.50** has been released.
+
+We are proud to announce a new release of numbro today.
+Actually, we did tree releases today (we like to keep them small).
+
+Basically, it brings now support for Hebrew (thanks to [@eli-zehavi](https://github.com/eli-zehavi)), automatic load of all languages for node users (thanks to [@alexkwolfe](https://github.com/alexkwolfe)), and an improvement in the decimal accuracy when minified (thanks to [@rafde](https://github.com/rafde)).
+
+I hope you will have fun with this new release,
+
+Enjoy <i class="fa fa-smile-o">
