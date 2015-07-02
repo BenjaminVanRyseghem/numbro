@@ -1,3 +1,7 @@
+### 1.3.3
+
+- #64 multiply loses accuracy on minification. Thanks @rafde
+
 ### 1.3.2
 
 - Fix issue with the release process
