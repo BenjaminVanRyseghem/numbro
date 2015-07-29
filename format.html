@@ -388,11 +388,11 @@ numbro(1000.234).formatCurrency("0[.]00");
 			</tr>
 			</tbody>
 		</table>
-		
+
 		<p>
 			Note that you can set the default format for currency formatting using the function <code>numbro.defaultCurrencyFormat</code>. The current culture defaults are kept (symbol, symbol position, etc).
 		</p>
-		
+
 		{% highlight javascript %}
 numbro.defaultCurrencyFormat('0,0[.]00');
 numbro(12345678).formatCurrency();
@@ -593,12 +593,12 @@ var string = numbro().unformat('($10,000.00)');
 		</p>
 
 		{% highlight javascript %}
-var number = numeral(1000);
+var number = numbro(1000);
 
 number.format();
 // '1,000'
 
-numeral.defaultFormat('$0,0.00');
+numbro.defaultFormat('$0,0.00');
 
 number.format();
 // '$1,000.00'
@@ -610,14 +610,14 @@ number.format();
 		<h4>Default zero</h4>
 
 		<p>
-			Set a custom output when formatting numerals with a value of <code>0</code>.
+			Set a custom output when formatting numbers with a value of <code>0</code>.
 		</p>
 
 
 		{% highlight javascript %}
-var number = numeral(0);
+var number = numbro(0);
 
-numeral.zeroFormat('N/A');
+numbro.zeroFormat('N/A');
 
 var zero = number.format('0.0')
 // 'N/A'
