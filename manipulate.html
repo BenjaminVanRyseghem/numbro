@@ -14,7 +14,7 @@ description: How to manupulate numbro numbers (not used often, but still useful)
 	</p>
 
 	{% highlight javascript %}
-var number = numeral(1000);
+var number = numbro(1000);
 
 var added = number.add(10);
 // 1010
@@ -61,7 +61,7 @@ var added = number.add(10);
 
 
 	{% highlight javascript %}
-var number = numeral(1000);
+var number = numbro(1000);
 
 var string = number.format('0,0');
 // '1,000'
@@ -81,7 +81,7 @@ var value = number.value();
 
 
 	{% highlight javascript %}
-var number = numeral(10);
+var number = numbro(10);
 
 number.set(1000);
 
@@ -95,12 +95,12 @@ var value = number.value();
 	<h4>Difference</h4>
 
 	<p>
-		Find the difference between your numeral object and a numeric value.
+		Find the difference between your numbro object and a numeric value.
 	</p>
 
 
 	{% highlight javascript %}
-var number = numeral(1000),
+var number = numbro(1000),
 value = 100;
 
 var difference = number.difference(value);
@@ -119,8 +119,8 @@ var difference = number.difference(value);
 
 
 	{% highlight javascript %}
-var a = numeral(1000);
-var b = numeral(a);
+var a = numbro(1000);
+var b = numbro(a);
 var c = a.clone();
 
 var aVal = a.set(2000).value();
