@@ -962,7 +962,7 @@
     if (hasModule) {
         module.exports = numbro;
 
-        if (process.title === 'node') {
+        if (process !== undefined && process.title === 'node') {
             // Load all languages
             var fs = require('fs');
             var path = require('path');
