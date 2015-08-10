@@ -1,5 +1,7 @@
 # [numbro](https://numbrojs.com/)
 
+[![Join the chat at https://gitter.im/foretagsplatsen/numbro](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/foretagsplatsen/numbro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 A javascript library for formatting and manipulating numbers.
 
 [Website and documentation](http://foretagsplatsen.github.io/numbro)
