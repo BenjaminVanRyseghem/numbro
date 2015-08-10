@@ -1,3 +1,9 @@
+### 1.5.1
+ 
+- #78 Why is 0 formatted as +0?. Thanks to @clayzermk1
+- #80 currency format "+$..." produces output "$+...". Thanks to @clayzermk1
+- Fixes German separator. Thanks to @gka
+
 ### 1.5.0
 
 - Adds support for Hebrew (he-LI). Thanks to @eli-zehavi

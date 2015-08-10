@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.5.0
+ * version : 1.5.1
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.5.0',
+        VERSION = '1.5.1',
         // internal storage for language config files
         languages = {},
         currentLanguage = 'en-US',
@@ -144,12 +144,12 @@
         var format = originalFormat,
             symbolIndex = format.indexOf('$'),
             openParenIndex = format.indexOf('('),
+            plusSignIndex = format.indexOf('+'),
             minusSignIndex = format.indexOf('-'),
             space = '',
             decimalSeparator = '',
             spliceIndex,
             output;
-
 
         if(format.indexOf('$') === -1){
             // Use defaults instead of the format provided
@@ -208,11 +208,11 @@
         } else {
             // position the symbol
             if (symbolIndex <= 1) {
-                if (output.indexOf('(') > -1 || output.indexOf('-') > -1) {
+                if (output.indexOf('(') > -1 || output.indexOf('+') > -1 || output.indexOf('-') > -1) {
                     output = output.split('');
                     spliceIndex = 1;
-                    if (symbolIndex < openParenIndex || symbolIndex < minusSignIndex) {
-                        // the symbol appears before the "(" or "-"
+                    if (symbolIndex < openParenIndex || symbolIndex < plusSignIndex || symbolIndex < minusSignIndex) {
+                        // the symbol appears before the "(", "+" or "-"
                         spliceIndex = 0;
                     }
                     output.splice(spliceIndex, 0, languages[currentLanguage].currency.symbol + space);
@@ -533,7 +533,7 @@
             }
 
 
-            return paren + ((!neg && signed) ? '+' : '') +
+            return paren + ((!neg && signed && value !== 0) ? '+' : '') +
                 w + d +
                 ((ord) ? ord : '') +
                 ((abbr && !sep) ? abbr : '') +
