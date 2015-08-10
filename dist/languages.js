@@ -159,7 +159,7 @@
     var language = {
         langLocaleCode: 'de-DE',
         delimiters: {
-            thousands: ' ',
+            thousands: '.',
             decimal: ','
         },
         abbreviations: {
