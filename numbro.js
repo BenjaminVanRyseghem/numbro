@@ -533,7 +533,7 @@
             }
 
 
-            return paren + ((!neg && signed) ? '+' : '') +
+            return paren + ((!neg && signed && value !== 0) ? '+' : '') +
                 w + d +
                 ((ord) ? ord : '') +
                 ((abbr && !sep) ? abbr : '') +
