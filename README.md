@@ -53,7 +53,7 @@ See [the english unit tests](https://github.com/foretagsplatsen/numbro/blob/mast
 See [CHANGELOG.md](CHANGELOG.md).
 
 
-# Acknowlegements
+# Acknowledgements
 
 `numbro` is forked from [Adam Draper](https://github.com/adamwdraper)'s project
 [Numeral.js](http://numeraljs.com/), which was in turn inspired by and heavily borrowed from
