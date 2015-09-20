@@ -21,7 +21,8 @@
         },
         currency: {
             symbol: 'kr',
-            position: 'postfix'
+            position: 'postfix',
+            spaceSeparated: true
         },
         defaults: {
             currencyFormat: ',0000 a'

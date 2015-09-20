@@ -21,7 +21,8 @@
         },
         currency: {
             symbol: '₪',
-            position: 'prefix'
+            position: 'prefix',
+            spaceSeparated: true
         },
         defaults: {
             currencyFormat: ',0000 a'
