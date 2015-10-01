@@ -22,8 +22,39 @@
         defaultFormat = '0,0',
         defaultCurrencyFormat = '0$',
         // check for nodeJS
-        hasModule = (typeof module !== 'undefined' && module.exports);
-
+        hasModule = (typeof module !== 'undefined' && module.exports),
+    // default language
+        enUS = {
+            delimiters: {
+                thousands: ',',
+                decimal: '.'
+            },
+            abbreviations: {
+                thousand: 'k',
+                million: 'm',
+                billion: 'b',
+                trillion: 't'
+            },
+            ordinal: function(number) {
+                var b = number % 10;
+                return (~~(number % 100 / 10) === 1) ? 'th' :
+                    (b === 1) ? 'st' :
+                        (b === 2) ? 'nd' :
+                            (b === 3) ? 'rd' : 'th';
+            },
+            currency: {
+                symbol: '$',
+                position: 'prefix'
+            },
+            defaults: {
+                currencyFormat: ',0000 a'
+            },
+            formats: {
+                fourDigits: '0000 a',
+                fullWithTwoDecimals: '$ ,0.00',
+                fullWithTwoDecimalsNoCurrency: ',0.00'
+            }
+        };
 
     /************************************
         Constructors
@@ -566,6 +597,24 @@
         return obj instanceof Numbro;
     };
 
+    // This function allow the user to set a new language with a fallback if
+    // the language does not exist. If no fallback language is provided,
+    // it fallbacks to english.
+    numbro.setLanguage = function(newLanguage, fallbackLanguage) {
+        var key = newLanguage,
+            prefix = newLanguage.split('-')[0],
+            matchingLanguage = null;
+        if (!languages[key]) {
+            Object.keys(languages).forEach(function(language) {
+                if (!matchingLanguage && language.split('-')[0] === prefix) {
+                    matchingLanguage = language;
+                }
+            });
+            key = matchingLanguage || fallbackLanguage || 'en-US';
+        }
+        chooseLanguage(key);
+    };
+
     // This function will load languages and then set the global language.  If
     // no arguments are passed in, it will simply return the current global
     // language key.
@@ -578,39 +627,14 @@
             if (!languages[key]) {
                 throw new Error('Unknown language : ' + key);
             }
-            currentLanguage = key;
-            var defaults = languages[key].defaults;
-            if(defaults && defaults.format){
-                numbro.defaultFormat(defaults.format);
-            }
-            if(defaults && defaults.currencyFormat){
-                numbro.defaultCurrencyFormat(defaults.currencyFormat);
-            }
+            chooseLanguage(key);
         }
 
         if (values || !languages[key]) {
-            loadLanguage(key, values);
+            setLanguage(key, values);
         }
 
         return numbro;
-    };
-
-    // This function allow the user to set a new language with a fallback if
-    // the language does not exist. If no fallback language is provided,
-    // it fallbacks to english.
-    numbro.setLanguage = function(newLanguage, fallbackLanguage) {
-        var key = newLanguage,
-            prefix = newLanguage.split('-')[0],
-            matchingLanguage = null;
-        if (!languages[key]) {
-            Object.keys(languages).forEach(function(language) {
-                if (!matchingLanguage && language.split('-')[0] === prefix){
-                    matchingLanguage = language;
-                }
-            });
-            key = matchingLanguage || fallbackLanguage || 'en-US';
-        }
-        numbro.language(key);
     };
 
     // This function provides access to the loaded language data.  If
@@ -628,37 +652,7 @@
         return languages[key];
     };
 
-    numbro.language('en-US', {
-        delimiters: {
-            thousands: ',',
-            decimal: '.'
-        },
-        abbreviations: {
-            thousand: 'k',
-            million: 'm',
-            billion: 'b',
-            trillion: 't'
-        },
-        ordinal: function(number) {
-            var b = number % 10;
-            return (~~(number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
-        },
-        currency: {
-            symbol: '$',
-            position: 'prefix'
-        },
-        defaults: {
-            currencyFormat: ',0000 a'
-        },
-        formats: {
-            fourDigits: '0000 a',
-            fullWithTwoDecimals: '$ ,0.00',
-            fullWithTwoDecimalsNoCurrency: ',0.00'
-        }
-    });
+    numbro.language('en-US', enUS);
 
     numbro.languages = function() {
         return languages;
@@ -771,12 +765,53 @@
         return false;
     };
 
+    numbro.includeLocales = function(languagesPath, languages) {
+        if (!inNodejsRuntime()) {
+            return;
+        }
+
+        var path = require('path');
+
+        languages.forEach(function(langLocaleCode) {
+            var language = require(path.join(__dirname, languagesPath, langLocaleCode));
+            numbro.language(language.langLocaleCode, language);
+        });
+    };
+
+    numbro.loadLanguages = function(languagesPath) {
+        if (!inNodejsRuntime()) {
+            return;
+        }
+
+        var fs = require('fs');
+        var path = require('path');
+
+        var langFiles = fs.readdirSync(path.join(__dirname, languagesPath));
+
+        numbro.includeLocales(languagesPath, langFiles);
+    };
+
     /************************************
         Helpers
     ************************************/
 
-    function loadLanguage(key, values) {
+    function setLanguage(key, values) {
         languages[key] = values;
+    }
+
+    function chooseLanguage(key) {
+        currentLanguage = key;
+        var defaults = languages[key].defaults;
+        if (defaults && defaults.format) {
+            numbro.defaultFormat(defaults.format);
+        }
+        if (defaults && defaults.currencyFormat) {
+            numbro.defaultCurrencyFormat(defaults.currencyFormat);
+        }
+    }
+
+    function inNodejsRuntime() {
+        return process.browser === undefined;
     }
 
     /************************************
@@ -860,7 +895,6 @@
             return mp > mn ? mp : mn;
         }, -Infinity);
     }
-
 
     /************************************
         Numbro Prototype
@@ -961,14 +995,6 @@
     // CommonJS module is defined
     if (hasModule) {
         module.exports = numbro;
-
-        // Load all languages
-        var fs = require('fs'),
-            path = require('path');
-        var langFiles = fs.readdirSync(path.join(__dirname, 'languages'));
-        langFiles.forEach(function (langFile) {
-            numbro.language(path.basename(langFile, '.js'), require(path.join(__dirname, 'languages', langFile)));
-        });
     }
 
     /*global ender:false */
@@ -985,4 +1011,5 @@
             return numbro;
         });
     }
+
 }.call(typeof window === 'undefined' ? this : window));
