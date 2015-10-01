@@ -486,13 +486,17 @@
         thousands = format.indexOf(',');
 
         if (precision) {
-            if (precision.indexOf('[') > -1) {
-                precision = precision.replace(']', '');
-                precision = precision.split('[');
-                d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction,
-                    precision[1].length);
+            if (precision.indexOf('*') !== -1) {
+                d = toFixed(value, value.toString().split('.')[1].length, roundingFunction);
             } else {
-                d = toFixed(value, precision.length, roundingFunction);
+                if (precision.indexOf('[') > -1) {
+                    precision = precision.replace(']', '');
+                    precision = precision.split('[');
+                    d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction,
+                        precision[1].length);
+                } else {
+                    d = toFixed(value, precision.length, roundingFunction);
+                }
             }
 
             w = d.split('.')[0];
