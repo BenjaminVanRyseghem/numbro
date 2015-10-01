@@ -4,7 +4,7 @@ var numbro = require('../../numbro');
 
 exports.misc = {
   languages: function(test) {
-    if (typeof module !== 'undefined' && module.exports) {
+    if (typeof module !== 'undefined' && module.exports && typeof process !== 'undefined' && process.title === 'node') {
       test.expect(1);
       var languages = numbro.languages();
       // test that languages were loaded.
