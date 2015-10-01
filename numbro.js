@@ -324,7 +324,8 @@
             indexOpenP = -1,
             size,
             indexMinus = -1,
-            paren = '';
+            paren = '',
+            minlen = -1;
 
         // check if number is zero and a custom zero format has been set
         if (value === 0 && zeroFormat !== null) {
@@ -356,6 +357,15 @@
         } else {
             postfix = '';
         }
+
+        // check for min length
+        var info;
+        if (format.indexOf('.') === -1) {
+            info = format.match(/([0-9]+).*/);
+        } else {
+            info = format.match(/([0-9]+)\..*/);
+        }
+        minlen = info === null ? -1 : info[1].length;
 
         // see if we should use parentheses for negative number or if we should prefix with a sign
         // if both are present we default to parentheses
@@ -542,6 +552,10 @@
         if (w.indexOf('-') > -1) {
             w = w.slice(1);
             neg = true;
+        }
+
+        if (w.length < minlen) {
+            w = new Array(minlen - w.length + 1).join('0') + w;
         }
 
         if (thousands > -1) {
