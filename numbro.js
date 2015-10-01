@@ -316,6 +316,7 @@
             intPrecision,
             precision,
             prefix,
+            postfix,
             thousands,
             d = '',
             forcedNeg = false,
@@ -332,6 +333,28 @@
 
         if (!isFinite(value)) {
             return '' + value;
+        }
+
+        if (format.indexOf('{') === 0) {
+            var end = format.indexOf('}');
+            if (end === -1) {
+                throw Error('Format should also contain a "}"');
+            }
+            prefix = format.slice(1, end);
+            format = format.slice(end + 1);
+        } else {
+            prefix = '';
+        }
+
+        if (format.indexOf('}') === format.length - 1) {
+            var start = format.indexOf('{');
+            if (start === -1) {
+                throw Error('Format should also contain a "{"');
+            }
+            postfix = format.slice(start + 1, -1);
+            format = format.slice(0, start + 1);
+        } else {
+            postfix = '';
         }
 
         // see if we should use parentheses for negative number or if we should prefix with a sign
@@ -502,8 +525,8 @@
             w = d.split('.')[0];
 
             if (d.split('.')[1].length) {
-                prefix = sep ? abbr + sep : languages[currentLanguage].delimiters.decimal;
-                d = prefix + d.split('.')[1];
+                var p = sep ? abbr + sep : languages[currentLanguage].delimiters.decimal;
+                d = p + d.split('.')[1];
             } else {
                 d = '';
             }
@@ -539,12 +562,14 @@
             paren = (((forcedNeg && neg) || (!negP && neg)) ? '-' : '') + ((negP && neg) ? '(' : '');
         }
 
-        return paren + ((!neg && signed && value !== 0) ? '+' : '') +
+        return prefix +
+            paren + ((!neg && signed && value !== 0) ? '+' : '') +
             w + d +
             ((ord) ? ord : '') +
             ((abbr && !sep) ? abbr : '') +
             ((bytes) ? bytes : '') +
-            ((negP && neg) ? ')' : '');
+            ((negP && neg) ? ')' : '') +
+            postfix;
     }
 
     /************************************
