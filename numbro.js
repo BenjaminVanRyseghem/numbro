@@ -352,11 +352,11 @@
             d = '',
             forcedNeg = false,
             neg = false,
-            indexOpenP = -1,
+            indexOpenP,
             size,
-            indexMinus = -1,
+            indexMinus,
             paren = '',
-            minlen = -1;
+            minlen;
 
         // check if number is zero and a custom zero format has been set
         if (value === 0 && zeroFormat !== null) {
@@ -809,7 +809,7 @@
         return false;
     };
 
-    numbro.includeLocales = function(languagesPath, languages) {
+    numbro.includeLocalesInNode = function(languagesPath, languages) {
         if (!inNodejsRuntime()) {
             return;
         }
@@ -822,7 +822,7 @@
         });
     };
 
-    numbro.loadLanguages = function(languagesPath) {
+    numbro.loadLanguagesInNode = function(languagesPath) {
         if (!inNodejsRuntime()) {
             return;
         }
@@ -832,7 +832,7 @@
 
         var langFiles = fs.readdirSync(path.join(__dirname, languagesPath));
 
-        numbro.includeLocales(languagesPath, langFiles);
+        numbro.includeLocalesInNode(languagesPath, langFiles);
     };
 
     /************************************
@@ -855,7 +855,7 @@
     }
 
     function inNodejsRuntime() {
-        return process.browser === undefined;
+        return process && process.browser === undefined && (process.title === 'node' || process.title === 'grunt');
     }
 
     /************************************
@@ -1040,6 +1040,8 @@
     if (hasModule) {
         module.exports = numbro;
     }
+
+    numbro.loadLanguagesInNode('languages');
 
     /*global ender:false */
     if (typeof ender === 'undefined') {
