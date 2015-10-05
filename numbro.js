@@ -347,6 +347,7 @@
             intPrecision,
             precision,
             prefix,
+            postfix,
             thousands,
             d = '',
             forcedNeg = false,
@@ -354,223 +355,266 @@
             indexOpenP = -1,
             size,
             indexMinus = -1,
-            paren = '';
+            paren = '',
+            minlen = -1;
 
         // check if number is zero and a custom zero format has been set
         if (value === 0 && zeroFormat !== null) {
             return zeroFormat;
-        } else if (!isFinite(value)) {
+        }
+
+        if (!isFinite(value)) {
             return '' + value;
+        }
+
+        if (format.indexOf('{') === 0) {
+            var end = format.indexOf('}');
+            if (end === -1) {
+                throw Error('Format should also contain a "}"');
+            }
+            prefix = format.slice(1, end);
+            format = format.slice(end + 1);
         } else {
-            // see if we should use parentheses for negative number or if we should prefix with a sign
-            // if both are present we default to parentheses
-            if(format.indexOf('-') !== -1){
-                forcedNeg = true;
+            prefix = '';
+        }
+
+        if (format.indexOf('}') === format.length - 1) {
+            var start = format.indexOf('{');
+            if (start === -1) {
+                throw Error('Format should also contain a "{"');
             }
-            if (format.indexOf('(') > -1) {
-                negP = true;
-                format = format.slice(1, -1);
-            } else if (format.indexOf('+') > -1) {
-                signed = true;
-                format = format.replace(/\+/g, '');
-            }
+            postfix = format.slice(start + 1, -1);
+            format = format.slice(0, start + 1);
+        } else {
+            postfix = '';
+        }
 
-            // see if abbreviation is wanted
-            if (format.indexOf('a') > -1) {
-                intPrecision = format.split('.')[0].match(/[0-9]+/g) || ['0'];
-                intPrecision = parseInt(intPrecision[0], 10);
+        // check for min length
+        var info;
+        if (format.indexOf('.') === -1) {
+            info = format.match(/([0-9]+).*/);
+        } else {
+            info = format.match(/([0-9]+)\..*/);
+        }
+        minlen = info === null ? -1 : info[1].length;
 
-                // check if abbreviation is specified
-                abbrK = format.indexOf('aK') >= 0;
-                abbrM = format.indexOf('aM') >= 0;
-                abbrB = format.indexOf('aB') >= 0;
-                abbrT = format.indexOf('aT') >= 0;
-                abbrForce = abbrK || abbrM || abbrB || abbrT;
+        // see if we should use parentheses for negative number or if we should prefix with a sign
+        // if both are present we default to parentheses
+        if (format.indexOf('-') !== -1) {
+            forcedNeg = true;
+        }
+        if (format.indexOf('(') > -1) {
+            negP = true;
+            format = format.slice(1, -1);
+        } else if (format.indexOf('+') > -1) {
+            signed = true;
+            format = format.replace(/\+/g, '');
+        }
 
-                // check for space before abbreviation
-                if (format.indexOf(' a') > -1) {
-                    abbr = ' ';
-                    format = format.replace(' a', '');
-                } else {
-                    format = format.replace('a', '');
-                }
+        // see if abbreviation is wanted
+        if (format.indexOf('a') > -1) {
+            intPrecision = format.split('.')[0].match(/[0-9]+/g) || ['0'];
+            intPrecision = parseInt(intPrecision[0], 10);
 
-                totalLength = Math.floor(Math.log(abs) / Math.LN10) + 1;
+            // check if abbreviation is specified
+            abbrK = format.indexOf('aK') >= 0;
+            abbrM = format.indexOf('aM') >= 0;
+            abbrB = format.indexOf('aB') >= 0;
+            abbrT = format.indexOf('aT') >= 0;
+            abbrForce = abbrK || abbrM || abbrB || abbrT;
 
-                minimumPrecision = totalLength % 3;
-                minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
-
-                if(intPrecision) {
-
-                    length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
-
-                    pow = 3 * ~~((Math.min(intPrecision, totalLength) - minimumPrecision) / 3);
-
-                    abs = abs / Math.pow(10, pow);
-
-                    if (format.indexOf('.') === -1 && intPrecision > 3) {
-                        format += '[.]';
-
-                        size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
-                        size = size < 0 ? size + 3 : size;
-
-                        for (i = 0; i < size; i++) {
-                            format += '0';
-                        }
-                    }
-                }
-
-                if (Math.floor(Math.log(Math.abs(value)) / Math.LN10) + 1 !== intPrecision){
-                    if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
-                        // trillion
-                        abbr = abbr + languages[currentLanguage].abbreviations.trillion;
-                        value = value / Math.pow(10, 12);
-                    } else if (abs < Math.pow(10, 12) && abs >= Math.pow(10, 9) && !abbrForce || abbrB) {
-                        // billion
-                        abbr = abbr + languages[currentLanguage].abbreviations.billion;
-                        value = value / Math.pow(10, 9);
-                    } else if (abs < Math.pow(10, 9) && abs >= Math.pow(10, 6) && !abbrForce || abbrM) {
-                        // million
-                        abbr = abbr + languages[currentLanguage].abbreviations.million;
-                        value = value / Math.pow(10, 6);
-                    } else if (abs < Math.pow(10, 6) && abs >= Math.pow(10, 3) && !abbrForce || abbrK) {
-                        // thousand
-                        abbr = abbr + languages[currentLanguage].abbreviations.thousand;
-                        value = value / Math.pow(10, 3);
-                    }
-                }
+            // check for space before abbreviation
+            if (format.indexOf(' a') > -1) {
+                abbr = ' ';
+                format = format.replace(' a', '');
+            } else {
+                format = format.replace('a', '');
             }
 
-            // see if we are formatting binary bytes
-            if (format.indexOf('b') > -1) {
-                // check for space before
-                if (format.indexOf(' b') > -1) {
-                    bytes = ' ';
-                    format = format.replace(' b', '');
-                } else {
-                    format = format.replace('b', '');
-                }
+            totalLength = Math.floor(Math.log(abs) / Math.LN10) + 1;
 
-                for (power = 0; power <= binarySuffixes.length; power++) {
-                    min = Math.pow(1024, power);
-                    max = Math.pow(1024, power + 1);
+            minimumPrecision = totalLength % 3;
+            minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
 
-                    if (value >= min && value < max) {
-                        bytes = bytes + binarySuffixes[power];
-                        if (min > 0) {
-                            value = value / min;
-                        }
-                        break;
+            if (intPrecision) {
+
+                length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
+
+                pow = 3 * ~~((Math.min(intPrecision, totalLength) - minimumPrecision) / 3);
+
+                abs = abs / Math.pow(10, pow);
+
+                if (format.indexOf('.') === -1 && intPrecision > 3) {
+                    format += '[.]';
+
+                    size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
+                    size = size < 0 ? size + 3 : size;
+
+                    for (i = 0; i < size; i++) {
+                        format += '0';
                     }
                 }
             }
 
-            // see if we are formatting decimal bytes
-            if (format.indexOf('d') > -1) {
-                // check for space before
-                if (format.indexOf(' d') > -1) {
-                    bytes = ' ';
-                    format = format.replace(' d', '');
-                } else {
-                    format = format.replace('d', '');
+            if (Math.floor(Math.log(Math.abs(value)) / Math.LN10) + 1 !== intPrecision) {
+                if (abs >= Math.pow(10, 12) && !abbrForce || abbrT) {
+                    // trillion
+                    abbr = abbr + languages[currentLanguage].abbreviations.trillion;
+                    value = value / Math.pow(10, 12);
+                } else if (abs < Math.pow(10, 12) && abs >= Math.pow(10, 9) && !abbrForce || abbrB) {
+                    // billion
+                    abbr = abbr + languages[currentLanguage].abbreviations.billion;
+                    value = value / Math.pow(10, 9);
+                } else if (abs < Math.pow(10, 9) && abs >= Math.pow(10, 6) && !abbrForce || abbrM) {
+                    // million
+                    abbr = abbr + languages[currentLanguage].abbreviations.million;
+                    value = value / Math.pow(10, 6);
+                } else if (abs < Math.pow(10, 6) && abs >= Math.pow(10, 3) && !abbrForce || abbrK) {
+                    // thousand
+                    abbr = abbr + languages[currentLanguage].abbreviations.thousand;
+                    value = value / Math.pow(10, 3);
                 }
+            }
+        }
 
-                for (power = 0; power <= decimalSuffixes.length; power++) {
-                    min = Math.pow(1000, power);
-                    max = Math.pow(1000, power + 1);
+        // see if we are formatting binary bytes
+        if (format.indexOf('b') > -1) {
+            // check for space before
+            if (format.indexOf(' b') > -1) {
+                bytes = ' ';
+                format = format.replace(' b', '');
+            } else {
+                format = format.replace('b', '');
+            }
 
-                    if (value >= min && value < max) {
-                        bytes = bytes + decimalSuffixes[power];
-                        if (min > 0) {
-                            value = value / min;
-                        }
-                        break;
+            for (power = 0; power <= binarySuffixes.length; power++) {
+                min = Math.pow(1024, power);
+                max = Math.pow(1024, power + 1);
+
+                if (value >= min && value < max) {
+                    bytes = bytes + binarySuffixes[power];
+                    if (min > 0) {
+                        value = value / min;
                     }
+                    break;
                 }
             }
+        }
 
-            // see if ordinal is wanted
-            if (format.indexOf('o') > -1) {
-                // check for space before
-                if (format.indexOf(' o') > -1) {
-                    ord = ' ';
-                    format = format.replace(' o', '');
-                } else {
-                    format = format.replace('o', '');
-                }
-
-                if (languages[currentLanguage].ordinal){
-                    ord = ord + languages[currentLanguage].ordinal(value);
-                }
+        // see if we are formatting decimal bytes
+        if (format.indexOf('d') > -1) {
+            // check for space before
+            if (format.indexOf(' d') > -1) {
+                bytes = ' ';
+                format = format.replace(' d', '');
+            } else {
+                format = format.replace('d', '');
             }
 
-            if (format.indexOf('[.]') > -1) {
-                optDec = true;
-                format = format.replace('[.]', '.');
+            for (power = 0; power <= decimalSuffixes.length; power++) {
+                min = Math.pow(1000, power);
+                max = Math.pow(1000, power + 1);
+
+                if (value >= min && value < max) {
+                    bytes = bytes + decimalSuffixes[power];
+                    if (min > 0) {
+                        value = value / min;
+                    }
+                    break;
+                }
+            }
+        }
+
+        // see if ordinal is wanted
+        if (format.indexOf('o') > -1) {
+            // check for space before
+            if (format.indexOf(' o') > -1) {
+                ord = ' ';
+                format = format.replace(' o', '');
+            } else {
+                format = format.replace('o', '');
             }
 
-            w = value.toString().split('.')[0];
-            precision = format.split('.')[1];
-            thousands = format.indexOf(',');
+            if (languages[currentLanguage].ordinal) {
+                ord = ord + languages[currentLanguage].ordinal(value);
+            }
+        }
 
-            if (precision) {
+        if (format.indexOf('[.]') > -1) {
+            optDec = true;
+            format = format.replace('[.]', '.');
+        }
+
+        w = value.toString().split('.')[0];
+        precision = format.split('.')[1];
+        thousands = format.indexOf(',');
+
+        if (precision) {
+            if (precision.indexOf('*') !== -1) {
+                d = toFixed(value, value.toString().split('.')[1].length, roundingFunction);
+            } else {
                 if (precision.indexOf('[') > -1) {
                     precision = precision.replace(']', '');
                     precision = precision.split('[');
                     d = toFixed(value, (precision[0].length + precision[1].length), roundingFunction,
-                            precision[1].length);
+                        precision[1].length);
                 } else {
                     d = toFixed(value, precision.length, roundingFunction);
                 }
+            }
 
-                w = d.split('.')[0];
+            w = d.split('.')[0];
 
-                if (d.split('.')[1].length) {
-                    prefix = sep ? abbr + sep : languages[currentLanguage].delimiters.decimal;
-                    d = prefix + d.split('.')[1];
-                } else {
-                    d = '';
-                }
-
-                if (optDec && Number(d.slice(1)) === 0) {
-                    d = '';
-                }
+            if (d.split('.')[1].length) {
+                var p = sep ? abbr + sep : languages[currentLanguage].delimiters.decimal;
+                d = p + d.split('.')[1];
             } else {
-                w = toFixed(value, null, roundingFunction);
+                d = '';
             }
 
-            // format number
-            if (w.indexOf('-') > -1) {
-                w = w.slice(1);
-                neg = true;
+            if (optDec && Number(d.slice(1)) === 0) {
+                d = '';
             }
-
-            if (thousands > -1) {
-                w = w.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' +
-                    languages[currentLanguage].delimiters.thousands);
-            }
-
-            if (format.indexOf('.') === 0) {
-                w = '';
-            }
-
-            indexOpenP = format.indexOf('(');
-            indexMinus = format.indexOf('-');
-
-            if(indexOpenP < indexMinus) {
-                paren = ((negP && neg) ? '(' : '') + (((forcedNeg && neg) || (!negP && neg)) ? '-' : '');
-            } else {
-                paren = (((forcedNeg && neg) || (!negP && neg)) ? '-' : '') + ((negP && neg) ? '(' : '');
-            }
-
-
-            return paren + ((!neg && signed && value !== 0) ? '+' : '') +
-                w + d +
-                ((ord) ? ord : '') +
-                ((abbr && !sep) ? abbr : '') +
-                ((bytes) ? bytes : '') +
-                ((negP && neg) ? ')' : '');
+        } else {
+            w = toFixed(value, null, roundingFunction);
         }
+
+        // format number
+        if (w.indexOf('-') > -1) {
+            w = w.slice(1);
+            neg = true;
+        }
+
+        if (w.length < minlen) {
+            w = new Array(minlen - w.length + 1).join('0') + w;
+        }
+
+        if (thousands > -1) {
+            w = w.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' +
+                languages[currentLanguage].delimiters.thousands);
+        }
+
+        if (format.indexOf('.') === 0) {
+            w = '';
+        }
+
+        indexOpenP = format.indexOf('(');
+        indexMinus = format.indexOf('-');
+
+        if (indexOpenP < indexMinus) {
+            paren = ((negP && neg) ? '(' : '') + (((forcedNeg && neg) || (!negP && neg)) ? '-' : '');
+        } else {
+            paren = (((forcedNeg && neg) || (!negP && neg)) ? '-' : '') + ((negP && neg) ? '(' : '');
+        }
+
+        return prefix +
+            paren + ((!neg && signed && value !== 0) ? '+' : '') +
+            w + d +
+            ((ord) ? ord : '') +
+            ((abbr && !sep) ? abbr : '') +
+            ((bytes) ? bytes : '') +
+            ((negP && neg) ? ')' : '') +
+            postfix;
     }
 
     /************************************
