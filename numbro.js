@@ -855,7 +855,9 @@
     }
 
     function inNodejsRuntime() {
-        return process && process.browser === undefined && (process.title === 'node' || process.title === 'grunt');
+        return (typeof process !== 'undefined') &&
+            (process.browser === undefined) &&
+            (process.title === 'node' || process.title === 'grunt');
     }
 
     /************************************
