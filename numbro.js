@@ -66,6 +66,43 @@
         this._value = number;
     }
 
+    function zeroes(count) {
+        var i, ret = '';
+
+        for (i = 0; i < count; i++) {
+            ret += '0';
+        }
+
+        return ret;
+    }
+    /**
+     * Implementation of toFixed() for numbers with exponent > 21
+     *
+     *
+     */
+    function toFixedLarge(value, precision) {
+        var mantissa,
+            beforeDec,
+            afterDec,
+            exponent,
+            str;
+
+        str = value.toString();
+
+        mantissa = str.split('e')[0];
+        exponent  = str.split('e')[1];
+
+        beforeDec = mantissa.split('.')[0];
+        afterDec = mantissa.split('.')[1] || '';
+
+        str = beforeDec + afterDec + zeroes(exponent - afterDec.length);
+        if (precision > 0) {
+            str += '.' + zeroes(precision);
+        }
+
+        return str;
+    }
+
     /**
      * Implementation of toFixed() that treats floats more like decimals
      *
@@ -77,9 +114,16 @@
             optionalsRegExp,
             output;
 
-        //roundingFunction = (roundingFunction !== undefined ? roundingFunction : Math.round);
-        // Multiply up by precision, round accurately, then divide and use native toFixed():
-        output = (roundingFunction(value * power) / power).toFixed(precision);
+        if (value.toFixed(0).search('e') > -1) {
+            // Above 1e21, toFixed returns scientific notation, which
+            // is useless and unexpected
+            output = toFixedLarge(value, precision);
+        }
+        else {
+            //roundingFunction = (roundingFunction !== undefined ? roundingFunction : Math.round);
+            // Multiply up by precision, round accurately, then divide and use native toFixed():
+            output = (roundingFunction(value * power) / power).toFixed(precision);
+        }
 
         if (optionals) {
             optionalsRegExp = new RegExp('0{1,' + optionals + '}$');
