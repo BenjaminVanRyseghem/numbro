@@ -37,7 +37,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -86,7 +86,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -135,7 +135,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -186,7 +186,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -239,7 +239,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -292,7 +292,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -346,7 +346,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -400,7 +400,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -452,7 +452,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -491,7 +491,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -540,7 +540,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -583,7 +583,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -632,7 +632,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -681,7 +681,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -730,7 +730,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -776,15 +776,15 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && this.numbro && this.numbro.language) {
-        this.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
+        window.numbro.language(language.langLocaleCode, language);
     }
-}());
+}.call(typeof window === 'undefined' ? this : window));
 
 
 /*!
@@ -826,7 +826,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -875,7 +875,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -924,7 +924,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -972,7 +972,7 @@
             fullWithNoDecimals: ',0 $'
         }
     };
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1018,7 +1018,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1068,7 +1068,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1118,7 +1118,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1167,7 +1167,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1216,7 +1216,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1265,7 +1265,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1317,7 +1317,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1369,7 +1369,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1418,7 +1418,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1464,7 +1464,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1513,7 +1513,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1597,7 +1597,7 @@
             }
         };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1649,7 +1649,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
@@ -1698,7 +1698,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }

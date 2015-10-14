@@ -1,0 +1,14 @@
+---
+title:  Release 1.5.2
+author: BenjaminVanRyseghem
+date:   2015-10-14 18:53:00
+---
+
+**numbro 1.5.2** has been released.
+
+This release brings a few fixes and improvements,
+especially for [Browserify](http://browserify.org/) users.
+
+Let's hope you'll like this new version.
+
+Enjoy <i class="fa fa-smile-o">

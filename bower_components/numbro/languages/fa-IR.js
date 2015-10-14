@@ -27,7 +27,7 @@
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
