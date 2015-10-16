@@ -9,6 +9,7 @@
 
     var language = {
         langLocaleCode: 'pl-PL',
+        cultureCode: 'pl-PL',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -42,7 +43,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
