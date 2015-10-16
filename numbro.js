@@ -482,7 +482,7 @@
             minimumPrecision = totalLength % 3;
             minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
 
-            if (intPrecision) {
+            if (intPrecision && abs !== 0) {
 
                 length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
 
