@@ -1,0 +1,30 @@
+---
+title:  Release 1.6.0
+author: BenjaminVanRyseghem
+date:   2015-10-16 16:59:00
+---
+
+**numbro 1.6.0** has been released.
+
+This version brings new API functions to replace the
+language based functions. Those are now deprecated, and
+a equivalent has been introduced.
+
+- Introduced new API functions:
+
+	- setCulture
+	- culture
+	- cultureData
+	- cultures
+
+- Deprecated API functions:
+
+	- setLanguage
+	- language
+	- languageData
+	- languages
+
+Those deprecated functions will be removed in version 2.0.0
+
+
+Enjoy <i class="fa fa-smile-o">

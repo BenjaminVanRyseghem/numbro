@@ -197,9 +197,9 @@ exports.format = {
 
     formatPostfixedCurrency: function (test) {
         var i;
-        var currentLanguage = numbro.language();
+        var currentCulture = numbro.culture();
 
-        numbro.language('test1', {
+        numbro.culture('test1', {
             delimiters: {
                 thousands: ',',
                 decimal: '.'
@@ -220,7 +220,7 @@ exports.format = {
             }
         });
 
-        numbro.language('test1');
+        numbro.culture('test1');
 
 
         var tests = [
@@ -235,15 +235,15 @@ exports.format = {
             test.strictEqual(numbro(tests[i][0]).formatCurrency(), tests[i][1], tests[i][1]);
         }
 
-        numbro.language(currentLanguage);
+        numbro.culture(currentCulture);
         test.done();
     },
 
     formatPostfixedWithSpaceCurrency: function (test) {
         var i;
-        var currentLanguage = numbro.language();
+        var currentCulture = numbro.culture();
 
-        numbro.language('test2', {
+        numbro.culture('test2', {
             delimiters: {
                 thousands: ',',
                 decimal: '.'
@@ -264,7 +264,7 @@ exports.format = {
             }
         });
 
-        numbro.language('test2');
+        numbro.culture('test2');
 
 
         var tests = [
@@ -279,15 +279,15 @@ exports.format = {
             test.strictEqual(numbro(tests[i][0]).formatCurrency(), tests[i][1], tests[i][1]);
         }
 
-        numbro.language(currentLanguage);
+        numbro.culture(currentCulture);
         test.done();
     },
 
     formatInfixedCurrency: function (test) {
         var i;
-        var currentLanguage = numbro.language();
+        var currentCulture = numbro.culture();
 
-        numbro.language('test3', {
+        numbro.culture('test3', {
             delimiters: {
                 thousands: ',',
                 decimal: '.'
@@ -308,7 +308,7 @@ exports.format = {
             }
         });
 
-        numbro.language('test3');
+        numbro.culture('test3');
 
 
         var tests = [
@@ -323,15 +323,15 @@ exports.format = {
             test.strictEqual(numbro(tests[i][0]).formatCurrency(), tests[i][1], tests[i][1]);
         }
 
-        numbro.language(currentLanguage);
+        numbro.culture(currentCulture);
         test.done();
     },
 
     formatInfixedWithSpaceCurrency: function (test) {
         var i;
-        var currentLanguage = numbro.language();
+        var currentCulture = numbro.culture();
 
-        numbro.language('test4', {
+        numbro.culture('test4', {
             delimiters: {
                 thousands: ',',
                 decimal: '.'
@@ -352,7 +352,7 @@ exports.format = {
             }
         });
 
-        numbro.language('test4');
+        numbro.culture('test4');
 
 
         var tests = [
@@ -367,14 +367,14 @@ exports.format = {
             test.strictEqual(numbro(tests[i][0]).formatCurrency(), tests[i][1], tests[i][1]);
         }
 
-        numbro.language(currentLanguage);
+        numbro.culture(currentCulture);
         test.done();
     },
     formatPrefixedCurrency: function (test) {
         var i;
-        var currentLanguage = numbro.language();
+        var currentCulture = numbro.culture();
 
-        numbro.language('test5', {
+        numbro.culture('test5', {
             delimiters: {
                 thousands: ',',
                 decimal: '.'
@@ -395,7 +395,7 @@ exports.format = {
             }
         });
 
-        numbro.language('test5');
+        numbro.culture('test5');
 
 
         var tests = [
@@ -410,15 +410,15 @@ exports.format = {
             test.strictEqual(numbro(tests[i][0]).formatCurrency(), tests[i][1], tests[i][1]);
         }
 
-        numbro.language(currentLanguage);
+        numbro.culture(currentCulture);
         test.done();
     },
 
     formatPrefixedWithSpaceCurrency: function (test) {
         var i;
-        var currentLanguage = numbro.language();
+        var currentCulture = numbro.culture();
 
-        numbro.language('test6', {
+        numbro.culture('test6', {
             delimiters: {
                 thousands: ',',
                 decimal: '.'
@@ -439,7 +439,7 @@ exports.format = {
             }
         });
 
-        numbro.language('test6');
+        numbro.culture('test6');
 
 
         var tests = [
@@ -454,7 +454,7 @@ exports.format = {
             test.strictEqual(numbro(tests[i][0]).formatCurrency(), tests[i][1], tests[i][1]);
         }
 
-        numbro.language(currentLanguage);
+        numbro.culture(currentCulture);
         test.done();
     },
 

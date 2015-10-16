@@ -1,3 +1,21 @@
+### 1.6.0
+
+- Introduce new API functions:
+
+	- setCulture
+	- culture
+	- cultureData
+	- cultures
+	
+- Deprecate API functions:
+
+	- setLanguage
+	- language
+	- languageData
+	- languages
+
+Those deprecated functions will be removed in version 2.0.0
+
 ### 1.5.2
 
 - Fixed scoping issue. Thanks @tuimz

@@ -2,14 +2,14 @@
 
 var numbro = require('../../numbro');
 
-exports['language:en'] = {
+exports['culture:en'] = {
     setUp: function (callback) {
-        numbro.language('en-US');
+        numbro.culture('en-US');
         callback();
     },
 
     tearDown: function (callback) {
-        numbro.language('en-US');
+        numbro.culture('en-US');
         callback();
     },
 
