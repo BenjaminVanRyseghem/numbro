@@ -39,9 +39,9 @@
 			"zh-CN": "Chinese (PRC)"
 		};
 
-		Object.keys(numbro.languages()).sort().forEach(function(each) {
+		Object.keys(numbro.cultures()).sort().forEach(function(each) {
 			var name = countryCodes[each] || "Unknown Code";
-			if (each === numbro.language()) {
+			if (each === numbro.culture()) {
 				$table.append("<tr class=\"info\"><td>" + name + "</td><td>" + each + "</td>");
 			} else {
 				$table.append("<tr><td>" + name + "</td><td>" + each + "</td>");

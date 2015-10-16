@@ -1,0 +1,21 @@
+---
+title:  Release 1.6.2
+author: BenjaminVanRyseghem
+date:   2015-10-16 18:39:00
+---
+
+**numbro 1.6.2** has been released.
+
+Two hotfixes today as we are moving the API.
+
+### 1.6.2
+
+- Fix deprecated use of `language` and introduce `cultureCode`
+
+### 1.6.1
+
+- Fix languages to use proper intPrecision
+- Fix `intPrecision` when value is 0
+
+
+Enjoy <i class="fa fa-smile-o">

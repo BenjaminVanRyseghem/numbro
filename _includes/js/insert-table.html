@@ -22,9 +22,9 @@
 				var tds = $(tr).find("td");
 				var value = $(tds[0]).text();
 				var lang = $(tds[1]).text();
-				numbro.language(lang);
+				numbro.culture(lang);
 				$(tds[2]).text(numbro(value).formatCurrency());
-				numbro.language("en-US");
+				numbro.culture("en-US");
 			});
 		});
 
@@ -37,9 +37,9 @@
 				var tds = $(tr).find("td");
 				var value = $(tds[0]).text();
 				var lang = $(tds[1]).text();
-				numbro.language(lang);
+				numbro.culture(lang);
 				$(tds[2]).text(numbro(value).formatCurrency("0[.]00"));
-				numbro.language("en-US");
+				numbro.culture("en-US");
 			});
 		});
 

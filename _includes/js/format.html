@@ -97,10 +97,10 @@
 			}
 		}
 
-		Object.keys(numbro.languages()).sort().forEach(function(each) {
+		Object.keys(numbro.cultures()).sort().forEach(function(each) {
 			var name = countryCodes[each] || "Unknown code";
 			var node = "<option data-subtext=\"" + each + "\">" + name + "</option>";
-			if (each === numbro.language()) {
+			if (each === numbro.culture()) {
 				node = "<option selected=\"selected\" data-subtext=\"" + each + "\">" + name + "</option>";
 			}
 
