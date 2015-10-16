@@ -124,5 +124,27 @@ exports.misc = {
         test.strictEqual(formatTestVal(), oldCurrencyVal, 'Format uses old currency');
 
         test.done();
+    },
+
+    setLanguage: function(test) {
+        test.expect(4);
+
+        numbro.setLanguage('tr-TR');
+        test.strictEqual(numbro.language(), 'tr-TR', 'Current culture is turkish');
+
+        numbro.setLanguage('tr-XXXXXXXX');
+        test.strictEqual(numbro.language(), 'tr-TR', 'Current culture is turkish');
+
+        numbro.setLanguage('XXXXXXXX', 'fr-FR');
+        test.strictEqual(numbro.language(), 'fr-FR', 'Current culture fallbacks to french');
+
+        numbro.setLanguage('XXXXXXXX');
+        test.strictEqual(numbro.language(), 'en-US', 'Current culture fallbacks to american english');
+
+        // Teardown
+        numbro.setLanguage('en-US');
+        test.done();
     }
+
+
 };
