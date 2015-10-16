@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.5.2
+ * version : 1.6.0
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.5.2',
+        VERSION = '1.6.0',
     // internal storage for culture config files
         cultures = {},
     // Todo: Remove in 2.0.0
@@ -692,11 +692,11 @@
      * the language does not exist. If no fallback language is provided,
      * it fallbacks to english.
      *
-     * @deprecated Since in version 1.5.3. It will be deleted in version 2.0
+     * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
      * `setCulture` should be used instead.
      */
     numbro.setLanguage = function(newLanguage, fallbackLanguage) {
-        console.warn('`setLanguage` is deprecated since version 1.5.3. Use `setCulture` instead');
+        console.warn('`setLanguage` is deprecated since version 1.6.0. Use `setCulture` instead');
         var key = newLanguage,
             prefix = newLanguage.split('-')[0],
             matchingLanguage = null;
@@ -739,11 +739,11 @@
      * no arguments are passed in, it will simply return the current global
      * language key.
      *
-     * @deprecated Since in version 1.5.3. It will be deleted in version 2.0
+     * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
      * `culture` should be used instead.
      */
     numbro.language = function(key, values) {
-        console.warn('`language` is deprecated since version 1.5.3. Use `culture` instead');
+        console.warn('`language` is deprecated since version 1.6.0. Use `culture` instead');
 
         if (!key) {
             return currentCulture;
@@ -792,11 +792,11 @@
      * no arguments are passed in, it will simply return the current
      * global language object.
      *
-     * @deprecated Since in version 1.5.3. It will be deleted in version 2.0
+     * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
      * `culture` should be used instead.
      */
     numbro.languageData = function(key) {
-        console.warn('`languageData` is deprecated since version 1.5.3. Use `cultureData` instead');
+        console.warn('`languageData` is deprecated since version 1.6.0. Use `cultureData` instead');
 
         if (!key) {
             return languages[currentCulture];
@@ -829,11 +829,11 @@
     numbro.culture('en-US', enUS);
 
     /**
-     * @deprecated Since in version 1.5.3. It will be deleted in version 2.0
+     * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
      * `cultures` should be used instead.
      */
     numbro.languages = function() {
-        console.warn('`languages` is deprecated since version 1.5.3. Use `cultures` instead');
+        console.warn('`languages` is deprecated since version 1.6.0. Use `cultures` instead');
 
         return languages;
     };
@@ -963,11 +963,11 @@
     };
 
     /**
-     * * @deprecated Since in version 1.5.3. It will be deleted in version 2.0
+     * * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
      * `loadCulturesInNode` should be used instead.
      */
     numbro.loadLanguagesInNode = function(languagesPath) {
-        console.warn('`loadLanguagesInNode` is deprecated since version 1.5.3. Use `loadCulturesInNode` instead');
+        console.warn('`loadLanguagesInNode` is deprecated since version 1.6.0. Use `loadCulturesInNode` instead');
 
         if (!inNodejsRuntime()) {
             return;
