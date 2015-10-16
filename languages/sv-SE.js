@@ -24,10 +24,10 @@
             position: 'postfix'
         },
         defaults: {
-            currencyFormat: ',0000 a'
+            currencyFormat: ',4 a'
         },
         formats: {
-            fourDigits: '0000 a',
+            fourDigits: '4 a',
             fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
             fullWithNoDecimals: ',0 $'
