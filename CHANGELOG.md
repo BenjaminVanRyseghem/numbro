@@ -1,3 +1,8 @@
+### 1.6.1
+
+- Fix languages to use proper intPrecision. Thanks @BenjaminVanRyseghem
+- Fix `intPrecision` when value is 0. Thanks @BenjaminVanRyseghem
+
 ### 1.6.0
 
 - Introduce new API functions:

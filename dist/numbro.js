@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.6.0
+ * version : 1.6.1
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.6.0',
+        VERSION = '1.6.1',
     // internal storage for culture config files
         cultures = {},
     // Todo: Remove in 2.0.0
@@ -482,7 +482,7 @@
             minimumPrecision = totalLength % 3;
             minimumPrecision = minimumPrecision === 0 ? 3 : minimumPrecision;
 
-            if (intPrecision) {
+            if (intPrecision && abs !== 0) {
 
                 length = Math.floor(Math.log(abs) / Math.LN10) + 1 - intPrecision;
 
