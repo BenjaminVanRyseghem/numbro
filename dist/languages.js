@@ -9,6 +9,7 @@
 
     var language = {
         langLocaleCode: 'cs-CZ',
+        cultureCode: 'cs-CZ',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -42,8 +43,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -58,6 +59,7 @@
 
     var language = {
         langLocaleCode: 'da-DK',
+        cultureCode: 'da-DK',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -91,8 +93,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -107,6 +109,7 @@
 
     var language = {
         langLocaleCode: 'de-CH',
+        cultureCode: 'de-CH',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -140,8 +143,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -158,6 +161,7 @@
 
     var language = {
         langLocaleCode: 'de-DE',
+        cultureCode: 'de-DE',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -191,8 +195,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -207,6 +211,7 @@
 
     var language = {
         langLocaleCode: 'en-GB',
+        cultureCode: 'en-GB',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -244,8 +249,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -260,6 +265,7 @@
 
     var language = {
         langLocaleCode: 'en-ZA',
+        cultureCode: 'en-ZA',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -297,8 +303,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -313,6 +319,7 @@
 
     var language = {
         langLocaleCode: 'es-AR',
+        cultureCode: 'es-AR',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -351,8 +358,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -367,6 +374,7 @@
 
     var language = {
         langLocaleCode: 'es-ES',
+        cultureCode: 'es-ES',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -405,8 +413,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -424,6 +432,7 @@
 
     var language = {
         langLocaleCode: 'et-EE',
+        cultureCode: 'et-EE',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -457,8 +466,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -473,6 +482,7 @@
 
     var language = {
         langLocaleCode: 'fa-IR',
+        cultureCode: 'fa-IR',
         delimiters: {
             thousands: '،',
             decimal: '.'
@@ -496,8 +506,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -512,6 +522,7 @@
 
     var language = {
         langLocaleCode: 'fi-FI',
+        cultureCode: 'fi-FI',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -545,8 +556,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -561,6 +572,7 @@
 
     var language = {
         langLocaleCode: 'fil-PH',
+        cultureCode: 'fil-PH',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -588,8 +600,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -604,6 +616,7 @@
 
     var language = {
         langLocaleCode: 'fr-CA',
+        cultureCode: 'fr-CA',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -637,8 +650,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -653,6 +666,7 @@
 
     var language = {
         langLocaleCode: 'fr-CH',
+        cultureCode: 'fr-CH',
         delimiters: {
             thousands: '\'',
             decimal: '.'
@@ -686,8 +700,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -702,6 +716,7 @@
 
     var language = {
         langLocaleCode: 'fr-FR',
+        cultureCode: 'fr-FR',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -735,8 +750,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -751,6 +766,7 @@
 
     var language = {
         langLocaleCode: 'he-IL',
+        cultureCode: 'he-IL',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -781,8 +797,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -798,6 +814,7 @@
 
     var language = {
         langLocaleCode: 'hu-HU',
+        cultureCode: 'hu-HU',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -831,8 +848,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -847,6 +864,7 @@
 
     var language = {
         langLocaleCode: 'it-IT',
+        cultureCode: 'it-IT',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -880,8 +898,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -896,6 +914,7 @@
 
     var language = {
         langLocaleCode: 'ja-JP',
+        cultureCode: 'ja-JP',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -929,8 +948,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -945,6 +964,7 @@
 
     var language = {
         langLocaleCode: 'lv-LV',
+        cultureCode: 'lv-LV',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -977,8 +997,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -993,6 +1013,7 @@
 
     var language = {
         langLocaleCode: 'nb-NO',
+        cultureCode: 'nb-NO',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1023,8 +1044,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1039,6 +1060,7 @@
 
     var language = {
         langLocaleCode: 'nl-BE',
+        cultureCode: 'nl-BE',
         delimiters: {
             thousands: ' ',
             decimal  : ','
@@ -1073,8 +1095,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1089,6 +1111,7 @@
 
     var language = {
         langLocaleCode: 'nl-NL',
+        cultureCode: 'nl-NL',
         delimiters: {
             thousands: '.',
             decimal  : ','
@@ -1123,8 +1146,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1139,6 +1162,7 @@
 
     var language = {
         langLocaleCode: 'pl-PL',
+        cultureCode: 'pl-PL',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1172,8 +1196,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1188,6 +1212,7 @@
 
     var language = {
         langLocaleCode: 'pt-BR',
+        cultureCode: 'pt-BR',
         delimiters: {
             thousands: '.',
             decimal: ','
@@ -1221,8 +1246,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1237,6 +1262,7 @@
 
     var language = {
         langLocaleCode: 'pt-PT',
+        cultureCode: 'pt-PT',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1270,8 +1296,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1286,6 +1312,7 @@
 
     var language = {
         langLocaleCode: 'ru-RU',
+        cultureCode: 'ru-RU',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1322,8 +1349,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1338,6 +1365,7 @@
 
     var language = {
         langLocaleCode: 'ru-UA',
+        cultureCode: 'ru-UA',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1374,8 +1402,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1390,6 +1418,7 @@
 
     var language = {
         langLocaleCode: 'sk-SK',
+        cultureCode: 'sk-SK',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1423,8 +1452,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1439,6 +1468,7 @@
 
     var language = {
         langLocaleCode: 'sv-SE',
+        cultureCode: 'sv-SE',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1469,8 +1499,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1485,6 +1515,7 @@
 
     var language = {
         langLocaleCode: 'th-TH',
+        cultureCode: 'th-TH',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -1518,8 +1549,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1561,6 +1592,7 @@
         },
         language = {
             langLocaleCode: 'tr-TR',
+            cultureCode: 'tr-TR',
             delimiters: {
                 thousands: '.',
                 decimal: ','
@@ -1602,8 +1634,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1618,6 +1650,7 @@
 
     var language = {
         langLocaleCode: 'uk-UA',
+        cultureCode: 'uk-UA',
         delimiters: {
             thousands: ' ',
             decimal: ','
@@ -1654,8 +1687,8 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
 
@@ -1670,6 +1703,7 @@
 
     var language = {
         langLocaleCode: 'zh-CN',
+        cultureCode: 'zh-CN',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -1703,7 +1737,7 @@
         module.exports = language;
     }
     // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.language) {
-        window.numbro.language(language.langLocaleCode, language);
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));

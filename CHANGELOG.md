@@ -1,3 +1,7 @@
+### 1.6.2
+
+- Fix deprecated use of `language` and introduce `cultureCode`. Thanks @BenjaminVanRyseghem
+
 ### 1.6.1
 
 - Fix languages to use proper intPrecision. Thanks @BenjaminVanRyseghem
