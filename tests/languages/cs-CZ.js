@@ -1,18 +1,18 @@
 'use strict';
 
 var numbro = require('../../numbro'),
-    language = require('../../languages/cs-CZ');
+    culture = require('../../languages/cs-CZ');
 
-numbro.language(language.langLocaleCode, language);
+numbro.culture(culture.langLocaleCode, culture);
 
-exports['language:cs-CZ'] = {
+exports['culture:cs-CZ'] = {
     setUp: function (callback) {
-        numbro.language('cs-CZ');
+        numbro.culture('cs-CZ');
         callback();
     },
 
     tearDown: function (callback) {
-        numbro.language('en-US');
+        numbro.culture('en-US');
         callback();
     },
 

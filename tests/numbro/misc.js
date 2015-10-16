@@ -92,7 +92,7 @@ exports.misc = {
         test.done();
     },
 
-    languageData: function(test) {
+    cultureData: function(test) {
         test.expect(10);
 
         var cOld = '$',
@@ -101,26 +101,26 @@ exports.misc = {
             oldCurrencyVal = cOld + '100',
             newCurrencyVal = cNew + '100';
 
-        test.strictEqual(numbro.languageData().currency.symbol, cOld, 'Current language currency is ' + cOld);
-        test.strictEqual(numbro.languageData('en-US').currency.symbol, cOld, 'English language currency is ' + cOld);
+        test.strictEqual(numbro.cultureData().currency.symbol, cOld, 'Current culture currency is ' + cOld);
+        test.strictEqual(numbro.cultureData('en-US').currency.symbol, cOld, 'English culture currency is ' + cOld);
 
-        numbro.languageData().currency.symbol = cNew;
-        test.strictEqual(numbro.languageData().currency.symbol, cNew,
-            'Current language currency is changed to ' + cNew);
+        numbro.cultureData().currency.symbol = cNew;
+        test.strictEqual(numbro.cultureData().currency.symbol, cNew,
+            'Current culture currency is changed to ' + cNew);
         test.strictEqual(formatTestVal(), newCurrencyVal, 'Format uses new currency');
 
-        numbro.languageData().currency.symbol = cOld;
-        test.strictEqual(numbro.languageData().currency.symbol, '$', 'Current language currency is reset to ' + cOld);
+        numbro.cultureData().currency.symbol = cOld;
+        test.strictEqual(numbro.cultureData().currency.symbol, '$', 'Current culture currency is reset to ' + cOld);
         test.strictEqual(formatTestVal(), oldCurrencyVal, 'Format uses old currency');
 
-        numbro.languageData('en-US').currency.symbol = cNew;
-        test.strictEqual(numbro.languageData().currency.symbol, cNew,
-            'English language currency is changed to ' + cNew);
+        numbro.cultureData('en-US').currency.symbol = cNew;
+        test.strictEqual(numbro.cultureData().currency.symbol, cNew,
+            'English culture currency is changed to ' + cNew);
         test.strictEqual(formatTestVal(), newCurrencyVal, 'Format uses new currency');
 
-        numbro.languageData('en-US').currency.symbol = cOld;
-        test.strictEqual(numbro.languageData().currency.symbol, cOld,
-            'English language currency is reset to ' + cOld);
+        numbro.cultureData('en-US').currency.symbol = cOld;
+        test.strictEqual(numbro.cultureData().currency.symbol, cOld,
+            'English culture currency is reset to ' + cOld);
         test.strictEqual(formatTestVal(), oldCurrencyVal, 'Format uses old currency');
 
         test.done();
@@ -143,6 +143,26 @@ exports.misc = {
 
         // Teardown
         numbro.setLanguage('en-US');
+        test.done();
+    },
+
+    setCulture: function(test) {
+        test.expect(4);
+
+        numbro.setCulture('tr-TR');
+        test.strictEqual(numbro.culture(), 'tr-TR', 'Current culture is turkish');
+
+        numbro.setCulture('XXXXXXXX-TR');
+        test.strictEqual(numbro.culture(), 'tr-TR', 'Current culture is turkish');
+
+        numbro.setCulture('XXXXXXXX', 'fr-FR');
+        test.strictEqual(numbro.culture(), 'fr-FR', 'Current culture fallbacks to french');
+
+        numbro.setCulture('XXXXXXXX');
+        test.strictEqual(numbro.culture(), 'en-US', 'Current culture fallbacks to american english');
+
+        // Teardown
+        numbro.setCulture('en-US');
         test.done();
     }
 
