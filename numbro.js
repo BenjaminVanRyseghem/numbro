@@ -122,9 +122,8 @@
             output = toFixedLarge(value, precision);
         }
         else {
-            //roundingFunction = (roundingFunction !== undefined ? roundingFunction : Math.round);
             // Multiply up by precision, round accurately, then divide and use native toFixed():
-            output = (roundingFunction(value * power) / power).toFixed(precision);
+            output = (roundingFunction(value + 'e+' + precision) / power).toFixed(precision);
         }
 
         if (optionals) {
@@ -622,7 +621,7 @@
                 d = '';
             }
         } else {
-            w = toFixed(value, null, roundingFunction);
+            w = toFixed(value, 0, roundingFunction);
         }
 
         // format number
