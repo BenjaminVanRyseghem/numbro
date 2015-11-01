@@ -1015,7 +1015,7 @@
     function inNodejsRuntime() {
         return (typeof process !== 'undefined') &&
             (process.browser === undefined) &&
-            (process.title === 'node' || process.title === 'grunt');
+            (process.versions.node !== undefined || process.title === 'grunt');
     }
 
     /************************************
