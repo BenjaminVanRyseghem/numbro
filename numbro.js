@@ -1196,27 +1196,27 @@
         Exposing Numbro
     ************************************/
 
-    // CommonJS module is defined
-    if (hasModule) {
-        module.exports = numbro;
-    }
-
     //Todo: Rename the folder in 2.0.0
     numbro.loadCulturesInNode('languages');
 
-    /*global ender:false */
-    if (typeof ender === 'undefined') {
-        // here, `this` means `window` in the browser, or `global` on the server
-        // add `numbro` as a global object via a string identifier,
-        // for Closure Compiler 'advanced' mode
-        this.numbro = numbro;
-    }
+    // CommonJS module is defined
+    if (hasModule) {
+        module.exports = numbro;
+    } else {
+        /*global ender:false */
+        if (typeof ender === 'undefined') {
+            // here, `this` means `window` in the browser, or `global` on the server
+            // add `numbro` as a global object via a string identifier,
+            // for Closure Compiler 'advanced' mode
+            this.numbro = numbro;
+        }
 
-    /*global define:false */
-    if (typeof define === 'function' && define.amd) {
-        define([], function() {
-            return numbro;
-        });
+        /*global define:false */
+        if (typeof define === 'function' && define.amd) {
+            define([], function() {
+                return numbro;
+            });
+        }
     }
 
 }.call(typeof window === 'undefined' ? this : window));
