@@ -952,13 +952,13 @@
      * * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
      * `loadCulturesInNode` should be used instead.
      */
-    numbro.loadLanguagesInNode = function(languagesPath) {
+    numbro.loadLanguagesInNode = function() {
         console.warn('`loadLanguagesInNode` is deprecated since version 1.6.0. Use `loadCulturesInNode` instead');
 
-        numbro.loadCulturesInNode(languagesPath);
+        numbro.loadCulturesInNode();
     };
 
-    numbro.loadCulturesInNode = function(culturesPath) {
+    numbro.loadCulturesInNode = function() {
         if (!inNodejsRuntime()) {
             return;
         }
@@ -1180,6 +1180,8 @@
     if (hasModule) {
         module.exports = numbro;
     }
+
+    numbro.loadCulturesInNode();
 
     /*global ender:false */
     if (typeof ender === 'undefined') {
