@@ -148,7 +148,7 @@ module.exports = function(grunt) {
                 return true;
             }
         }).map(function(file) {
-            return 'module.export = require(\'./' + file + '\');';
+            return 'exports[\'' + file.replace('.js', '') + '\'] = require(\'./' + file + '\');';
         }).join('\n');
 
         fs.writeFileSync(dir + '/index.js', langFiles);
