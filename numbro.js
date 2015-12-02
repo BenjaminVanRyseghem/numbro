@@ -948,18 +948,18 @@
         return false;
     };
 
-    numbro.includeLocalesInNode = function(culturesPath, culture) {
-        if (!inNodejsRuntime()) {
-            return;
-        }
+    // numbro.includeLocalesInNode = function(culturesPath, culture) {
+    //     if (!inNodejsRuntime()) {
+    //         return;
+    //     }
 
-        var path = require('path');
+    //     var path = require('path');
 
-        culture.forEach(function(langLocaleCode) {
-            var culture = require(path.join(__dirname, culturesPath, langLocaleCode));
-            numbro.culture(culture.langLocaleCode, culture);
-        });
-    };
+    //     culture.forEach(function(langLocaleCode) {
+    //         var culture = require(path.join(__dirname, culturesPath, langLocaleCode));
+    //         numbro.culture(culture.langLocaleCode, culture);
+    //     });
+    // };
 
     /**
      * * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
@@ -985,12 +985,16 @@
             return;
         }
 
-        var fs = require('fs');
         var path = require('path');
+        var cultures = require(path.join(__dirname, culturesPath));
 
-        var langFiles = fs.readdirSync(path.join(__dirname, culturesPath));
+        for(var langLocaleCode in cultures) {
+            if(langLocaleCode) {
+                numbro.culture(langLocaleCode, cultures[langLocaleCode]);
+            }
+        }
 
-        numbro.includeLocalesInNode(culturesPath, langFiles);
+        //numbro.includeLocalesInNode(culturesPath, langFiles);
     };
 
     /************************************
