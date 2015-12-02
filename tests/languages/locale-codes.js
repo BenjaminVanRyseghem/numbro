@@ -1,7 +1,7 @@
 'use strict';
 
 var requireDir = require('require-dir'),
-    cultures = requireDir('./../../languages');
+    cultures = require('./../../languages');
 
 /* Tests for the format of locale codes used in numbro cultures.
  * Tested against the regex /^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?$/g
