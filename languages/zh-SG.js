@@ -1,15 +1,15 @@
 /*!
  * numbro.js language configuration
  * language : Chinese (Simplified)
- * locale : China
+ * locale : Singapore
  * author : badplum : https://github.com/badplum
  */
 (function () {
     'use strict';
 
     var language = {
-        langLocaleCode: 'zh-CN',
-        cultureCode: 'zh-CN',
+        langLocaleCode: 'zh-SG',
+        cultureCode: 'zh-SG',
         delimiters: {
             thousands: ',',
             decimal: '.'

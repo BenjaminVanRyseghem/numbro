@@ -1,23 +1,23 @@
 /*!
  * numbro.js language configuration
- * language : Chinese (Simplified)
- * locale : China
- * author : badplum : https://github.com/badplum
+ * language : Chinese (Traditional)
+ * locale : Macao
+ * author : rdubigny : https://github.com/rdubigny
  */
 (function () {
     'use strict';
 
     var language = {
-        langLocaleCode: 'zh-CN',
-        cultureCode: 'zh-CN',
+        langLocaleCode: 'zh-MO',
+        cultureCode: 'zh-MO',
         delimiters: {
             thousands: ',',
             decimal: '.'
         },
         abbreviations: {
             thousand: '千',
-            million: '百万',
-            billion: '十亿',
+            million: '百萬',
+            billion: '十億',
             trillion: '兆'
         },
         ordinal: function () {
