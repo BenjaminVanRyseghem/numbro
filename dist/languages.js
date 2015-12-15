@@ -853,40 +853,6 @@
     }
 }.call(typeof window === 'undefined' ? this : window));
 
-exports['cs-CZ'] = require('./cs-CZ.js');
-exports['da-DK'] = require('./da-DK.js');
-exports['de-CH'] = require('./de-CH.js');
-exports['de-DE'] = require('./de-DE.js');
-exports['en-GB'] = require('./en-GB.js');
-exports['en-ZA'] = require('./en-ZA.js');
-exports['es-AR'] = require('./es-AR.js');
-exports['es-ES'] = require('./es-ES.js');
-exports['et-EE'] = require('./et-EE.js');
-exports['fa-IR'] = require('./fa-IR.js');
-exports['fi-FI'] = require('./fi-FI.js');
-exports['fil-PH'] = require('./fil-PH.js');
-exports['fr-CA'] = require('./fr-CA.js');
-exports['fr-CH'] = require('./fr-CH.js');
-exports['fr-FR'] = require('./fr-FR.js');
-exports['he-IL'] = require('./he-IL.js');
-exports['hu-HU'] = require('./hu-HU.js');
-exports['it-IT'] = require('./it-IT.js');
-exports['ja-JP'] = require('./ja-JP.js');
-exports['lv-LV'] = require('./lv-LV.js');
-exports['nb-NO'] = require('./nb-NO.js');
-exports['nl-BE'] = require('./nl-BE.js');
-exports['nl-NL'] = require('./nl-NL.js');
-exports['pl-PL'] = require('./pl-PL.js');
-exports['pt-BR'] = require('./pt-BR.js');
-exports['pt-PT'] = require('./pt-PT.js');
-exports['ru-RU'] = require('./ru-RU.js');
-exports['ru-UA'] = require('./ru-UA.js');
-exports['sk-SK'] = require('./sk-SK.js');
-exports['sv-SE'] = require('./sv-SE.js');
-exports['th-TH'] = require('./th-TH.js');
-exports['tr-TR'] = require('./tr-TR.js');
-exports['uk-UA'] = require('./uk-UA.js');
-exports['zh-CN'] = require('./zh-CN.js');
 /*!
  * numbro.js language configuration
  * language : Italian
@@ -974,46 +940,6 @@ exports['zh-CN'] = require('./zh-CN.js');
             fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00',
             fullWithNoDecimals: '$ ,0'
-        }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
-    }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
-
-/*!
- * numbro.js language configuration
- * language : Korean
- * author (numbro.js Version): Randy Wilander : https://github.com/rocketedaway
- * author (numeral.js Version) : Rich Daley : https://github.com/pedantic-git
- */
-(function () {
-    'use strict';
-
-    var language = {
-        langLocaleCode: 'ko-KR',
-        cultureCode: 'ko-KR',
-        delimiters: {
-            thousands: ',',
-            decimal: '.'
-        },
-        abbreviations: {
-            thousand: '천',
-            million: '백만',
-            billion: '십억',
-            trillion: '일조'
-        },
-        ordinal: function () {
-            return '.';
-        },
-        currency: {
-            symbol: '₩'
         }
     };
 
@@ -1803,46 +1729,6 @@ exports['zh-CN'] = require('./zh-CN.js');
             fullWithTwoDecimals: '$ ,0.00',
             fullWithTwoDecimalsNoCurrency: ',0.00',
             fullWithNoDecimals: '$ ,0'
-        }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
-    }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
-
-/*!
- * numbro.js language configuration
- * language : Chinese (Taiwan)
- * author (numbro.js Version): Randy Wilander : https://github.com/rocketedaway
- * author (numeral.js Version) : Rich Daley : https://github.com/pedantic-git
- */
-(function () {
-    'use strict';
-
-    var language = {
-        langLocaleCode: 'zh-TW',
-        cultureCode: 'zh-TW',
-        delimiters: {
-            thousands: ',',
-            decimal: '.'
-        },
-        abbreviations: {
-            thousand: '千',
-            million: '百萬',
-            billion: '十億',
-            trillion: '兆'
-        },
-        ordinal: function () {
-            return '第';
-        },
-        currency: {
-            symbol: 'NT$'
         }
     };
 
