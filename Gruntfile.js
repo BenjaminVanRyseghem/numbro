@@ -140,6 +140,19 @@ module.exports = function(grunt) {
         'release',
     ]);
 
+    // This creates an index file for the languages
+    grunt.registerTask('languages', function() {
+        var dir = './languages';
+        var langFiles = fs.readdirSync(dir).filter(function(file) {
+            if(file !== 'index.js') {
+                return true;
+            }
+        }).map(function(file) {
+            return 'exports[\'' + file.replace('.js', '') + '\'] = require(\'./' + file + '\');';
+        }).join('\n');
+
+        fs.writeFileSync(dir + '/index.js', langFiles);
+    });
 
     // Travis CI task.
     grunt.registerTask('travis', ['test']);
