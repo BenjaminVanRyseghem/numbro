@@ -140,14 +140,15 @@
 
     // determine what type of formatting we need to do
     function formatNumbro(n, format, roundingFunction) {
-        var output;
+        var output,
+            escapedFormat = format.replace(/\{[^\{\}]*\}/g, '');
 
         // figure out what kind of format we are dealing with
-        if (format.indexOf('$') > -1) { // currency!!!!!
+        if (escapedFormat.indexOf('$') > -1) { // currency!!!!!
             output = formatCurrency(n, format, roundingFunction);
-        } else if (format.indexOf('%') > -1) { // percentage
+        } else if (escapedFormat.indexOf('%') > -1) { // percentage
             output = formatPercentage(n, format, roundingFunction);
-        } else if (format.indexOf(':') > -1) { // time
+        } else if (escapedFormat.indexOf(':') > -1) { // time
             output = formatTime(n, format);
         } else { // plain ol' numbers or bytes
             output = formatNumber(n._value, format, roundingFunction);
