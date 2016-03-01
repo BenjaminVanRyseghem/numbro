@@ -46,17 +46,18 @@ exports['culture:fr'] = {
     },
 
     currency: function (test) {
-        test.expect(4);
+        test.expect(5);
 
         var tests = [
             [1000.234,'0,0.00 $','1 000,23 $'],
             [-1000.234,'(0,0 $)','(1 000 $)'],
             [-1000.234,'0.00 $','-1000,23 $'],
-            [1230974,'(0.00 a$)','1,23 M$']
+            [1230974,'(0.00 a$)','1,23 M$'],
+            [1000.234,'0,0.00','1 000,23 $']
         ];
 
         for (var i = 0; i < tests.length; i++) {
-            test.strictEqual(numbro(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
+            test.strictEqual(numbro(tests[i][0]).formatCurrency(tests[i][1]), tests[i][2], tests[i][1]);
         }
 
         test.done();
