@@ -60,6 +60,7 @@ exports.format = {
                 [-0.23,'(.00)','(.23)'],
                 [0.23,'0.00000','0.23000'],
                 [0.67,'0.0[0000]','0.67'],
+                [1.005,'0.00','1.01'],
                 [2000000000,'0.0a','2.0b'],
                 [1230974,'0.0a','1.2m'],
                 [1460,'0a','1k'],
@@ -70,9 +71,6 @@ exports.format = {
                 [100,'0o','100th'],
                 [3124213.12341234, '0.*', '3124213.12341234'],
                 [3124213.12341234, ',0.*', '3,124,213.12341234'],
-
-                [100, '{foo }0o', 'foo 100th'],
-                [100, '0o{ foo}', '100th foo'],
 
                 [1, '000', '001'],
                 [10, '000', '010'],
@@ -452,6 +450,54 @@ exports.format = {
 
         for (i = 0; i < tests.length; i++) {
             test.strictEqual(numbro(tests[i][0]).formatCurrency(), tests[i][1], tests[i][1]);
+        }
+
+        numbro.culture(currentCulture);
+        test.done();
+    },
+
+    escape: function (test) {
+        var i;
+        var currentCulture = numbro.culture();
+
+        numbro.culture('test7', {
+            delimiters: {
+                thousands: ',',
+                decimal: '.'
+            },
+            abbreviations: {
+                thousand: 'k',
+                million: 'm',
+                billion: 'b',
+                trillion: 't'
+            },
+            ordinal: function(number) {
+              return "th";
+            },
+            currency: {
+                symbol: '€',
+                position: 'prefix'
+            }
+        });
+
+        numbro.culture('test7');
+
+
+        var tests = [
+            [100, '$0', '€100'],
+            [100, '{$}0', '$100'],
+            [100, '{foo }0o', 'foo 100th'],
+            [100, '0o{ foo}', '100th foo'],
+            [100, '{$  }0', '$  100'],
+            [100, '0{%}', '100%'],
+            [100, '0{:}', '100:'],
+            [100,'0{b}','100b']
+        ];
+
+        test.expect(tests.length);
+
+        for (i = 0; i < tests.length; i++) {
+            test.strictEqual(numbro(tests[i][0]).format(tests[i][1]), tests[i][2], tests[i][1]);
         }
 
         numbro.culture(currentCulture);

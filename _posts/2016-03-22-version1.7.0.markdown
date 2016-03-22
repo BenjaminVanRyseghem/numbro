@@ -1,0 +1,15 @@
+---
+title:  Release 1.7.0
+author: BenjaminVanRyseghem
+date:   2016-03-22 19:35:00
+---
+
+**numbro 1.7.0** has been released.
+
+- Fix decimal rounding issue. Thanks [@Shraymonks](https://github.com/Shraymonks).
+- Fix #114: webpack bundling. Thanks [@mmollick](https://github.com/mmollick).
+- Add ko-KR & zh-TW support. Thanks [@rocketedaway](https://github.com/rocketedaway) and [@rWilander](https://github.com/rWilander).
+- Add existence check for require. Thanks [@jamiter](https://github.com/jamiter).
+- Improve verbatim feature. Thanks [@jneill](https://github.com/jneill).
+
+Enjoy <i class="fa fa-smile-o">

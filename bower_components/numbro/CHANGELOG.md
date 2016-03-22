@@ -1,3 +1,11 @@
+### 1.7.0
+
+- Fix decimal rounding issue. Thanks @Shraymonks.
+- Fix #114: webpack bundling. Thanks @mmollick.
+- Add ko-KR & zh-TW support. Thanks @rocketedaway and @rWilander.
+- Add existence check for require. Thanks @jamiter.
+- Improve verbatim feature. Thanks @jneill.
+
 ### 1.6.2
 
 - Fix deprecated use of `language` and introduce `cultureCode`. Thanks @BenjaminVanRyseghem
