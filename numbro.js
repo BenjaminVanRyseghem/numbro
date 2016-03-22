@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.6.2
+ * version : 1.7.0
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.6.2',
+        VERSION = '1.7.0',
     // internal storage for culture config files
         cultures = {},
     // Todo: Remove in 2.0.0
