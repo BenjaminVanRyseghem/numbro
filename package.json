@@ -48,5 +48,14 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "files": [
+    "LICENSE",
+    "LICENSE-Numeraljs",
+    "CHANGELOG",
+    "CHANGELOG-Numeraljs.md",
+    "numbro.js",
+    "languages",
+    "dist"
+  ]
 }
