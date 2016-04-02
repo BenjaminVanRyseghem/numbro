@@ -147,7 +147,7 @@
             // toFixed returns scientific notation for numbers above 1e21 and below 1e-7
             output = toFixedLargeSmall(value, precision);
             // remove the leading negative sign if it exists and should not be present (e.g. -0.00)
-            if (output.charAt(0) === '-' && Math.sign(output) === 0) {
+            if (output.charAt(0) === '-' && +output >= 0) {
                 output = output.substr(1); // chop off the '-'
             }
         }
