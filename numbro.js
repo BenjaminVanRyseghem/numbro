@@ -960,10 +960,6 @@
     };
 
     numbro.loadCulturesInNode = function() {
-        if (!inNodejsRuntime()) {
-            return;
-        }
-
         // TODO: Rename the folder in 2.0.0
         var cultures = require('./languages');
 
@@ -996,7 +992,7 @@
     function inNodejsRuntime() {
         return (typeof process !== 'undefined') &&
             (process.browser === undefined) &&
-            (process.title === 'node' || process.title === 'grunt') &&
+            (process.title === 'node' || process.title === 'grunt' || process.title === 'gulp') &&
             (typeof require !== 'undefined');
     }
 
@@ -1178,8 +1174,10 @@
         Exposing Numbro
     ************************************/
 
-    //Todo: Rename the folder in 2.0.0
-    numbro.loadCulturesInNode('languages');
+    if (inNodejsRuntime()) {
+        //Todo: Rename the folder in 2.0.0
+        numbro.loadCulturesInNode();
+    }
 
     // CommonJS module is defined
     if (hasModule) {

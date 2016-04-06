@@ -34,7 +34,7 @@
     }
   ],
   "devDependencies": {
-    "grunt": "latest",
+    "grunt": "0.4.5",
     "grunt-bump": "latest",
     "grunt-confirm": "latest",
     "grunt-contrib-concat": "latest",
