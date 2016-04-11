@@ -17,7 +17,7 @@ module.exports = function(grunt) {
         concat: {
             languages: {
                 src: [
-                    'languages/**/*.js',
+                    'languages/**/!(index).js',
                 ],
                 dest: 'dist/languages.js',
             },
@@ -129,6 +129,7 @@ module.exports = function(grunt) {
 
     grunt.registerTask('build', [
         'test',
+        'languages',
         'copy:main',
         'concat',
         'uglify'

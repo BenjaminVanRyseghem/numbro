@@ -1,6 +1,6 @@
 {
   "name": "numbro",
-  "version": "1.7.0",
+  "version": "1.7.1",
   "description": "Format and manipulate numbers.",
   "homepage": "http://numbrojs.com",
   "author": {
@@ -34,7 +34,7 @@
     }
   ],
   "devDependencies": {
-    "grunt": "latest",
+    "grunt": "0.4.5",
     "grunt-bump": "latest",
     "grunt-confirm": "latest",
     "grunt-contrib-concat": "latest",
@@ -48,5 +48,14 @@
   },
   "scripts": {
     "test": "grunt test"
-  }
+  },
+  "files": [
+    "LICENSE",
+    "LICENSE-Numeraljs",
+    "CHANGELOG",
+    "CHANGELOG-Numeraljs.md",
+    "numbro.js",
+    "languages",
+    "dist"
+  ]
 }
