@@ -1,3 +1,18 @@
+### 1.7.1
+
+- Fix #142: Limit packaging extraneous files. Thanks @MarkHerhold.
+- Fix #143: Fixing web build. Thanks @mmollick.
+- Fix #149: Allow loading of cultures in node explicitly if numbro hasn't detected correctly that it is in node. Thanks @stewart42.
+- Fix #147: Fixing formatting issues for very small (+/-1e-23) numbers. Thanks @MarkHerhold.
+
+### 1.7.0
+
+- Fix decimal rounding issue. Thanks @Shraymonks.
+- Fix #114: webpack bundling. Thanks @mmollick.
+- Add ko-KR & zh-TW support. Thanks @rocketedaway and @rWilander.
+- Add existence check for require. Thanks @jamiter.
+- Improve verbatim feature. Thanks @jneill.
+
 ### 1.6.2
 
 - Fix deprecated use of `language` and introduce `cultureCode`. Thanks @BenjaminVanRyseghem

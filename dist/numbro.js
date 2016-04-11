@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.6.2
+ * version : 1.7.1
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.6.2',
+        VERSION = '1.7.1',
     // internal storage for culture config files
         cultures = {},
     // Todo: Remove in 2.0.0
@@ -78,27 +78,52 @@
         return ret;
     }
     /**
-     * Implementation of toFixed() for numbers with exponent > 21
-     *
-     *
+     * Implementation of toFixed() for numbers with exponents
+     * This function may return negative representations for zero values e.g. "-0.0"
      */
-    function toFixedLarge(value, precision) {
+    function toFixedLargeSmall(value, precision) {
         var mantissa,
             beforeDec,
             afterDec,
             exponent,
+            prefix,
+            endStr,
+            zerosStr,
             str;
 
         str = value.toString();
 
         mantissa = str.split('e')[0];
-        exponent  = str.split('e')[1];
+        exponent = str.split('e')[1];
 
         beforeDec = mantissa.split('.')[0];
         afterDec = mantissa.split('.')[1] || '';
 
-        str = beforeDec + afterDec + zeroes(exponent - afterDec.length);
-        if (precision > 0) {
+        if (+exponent > 0) {
+            // exponent is positive - add zeros after the numbers
+            str = beforeDec + afterDec + zeroes(exponent - afterDec.length);
+        } else {
+            // exponent is negative
+
+            if (+beforeDec < 0) {
+                prefix = '-0';
+            } else {
+                prefix = '0';
+            }
+
+            // tack on the decimal point if needed
+            if (precision > 0) {
+                prefix += '.';
+            }
+
+            zerosStr = zeroes((-1 * exponent) - 1);
+            // substring off the end to satisfy the precision
+            endStr = (zerosStr + Math.abs(beforeDec) + afterDec).substr(0, precision);
+            str = prefix + endStr;
+        }
+
+        // only add percision 0's if the exponent is positive
+        if (+exponent > 0 && precision > 0) {
             str += '.' + zeroes(precision);
         }
 
@@ -110,21 +135,25 @@
      *
      * Fixes binary rounding issues (eg. (0.615).toFixed(2) === '0.61') that present
      * problems for accounting- and finance-related software.
+     *
+     * Also removes negative signs for zero-formatted numbers. e.g. -0.01 w/ precision 1 -> 0.0
      */
     function toFixed(value, precision, roundingFunction, optionals) {
         var power = Math.pow(10, precision),
             optionalsRegExp,
             output;
 
-        if (value.toFixed(0).search('e') > -1) {
-            // Above 1e21, toFixed returns scientific notation, which
-            // is useless and unexpected
-            output = toFixedLarge(value, precision);
+        if (value.toString().indexOf('e') > -1) {
+            // toFixed returns scientific notation for numbers above 1e21 and below 1e-7
+            output = toFixedLargeSmall(value, precision);
+            // remove the leading negative sign if it exists and should not be present (e.g. -0.00)
+            if (output.charAt(0) === '-' && +output >= 0) {
+                output = output.substr(1); // chop off the '-'
+            }
         }
         else {
-            //roundingFunction = (roundingFunction !== undefined ? roundingFunction : Math.round);
             // Multiply up by precision, round accurately, then divide and use native toFixed():
-            output = (roundingFunction(value * power) / power).toFixed(precision);
+            output = (roundingFunction(value + 'e+' + precision) / power).toFixed(precision);
         }
 
         if (optionals) {
@@ -141,14 +170,15 @@
 
     // determine what type of formatting we need to do
     function formatNumbro(n, format, roundingFunction) {
-        var output;
+        var output,
+            escapedFormat = format.replace(/\{[^\{\}]*\}/g, '');
 
         // figure out what kind of format we are dealing with
-        if (format.indexOf('$') > -1) { // currency!!!!!
+        if (escapedFormat.indexOf('$') > -1) { // currency!!!!!
             output = formatCurrency(n, format, roundingFunction);
-        } else if (format.indexOf('%') > -1) { // percentage
+        } else if (escapedFormat.indexOf('%') > -1) { // percentage
             output = formatPercentage(n, format, roundingFunction);
-        } else if (format.indexOf(':') > -1) { // time
+        } else if (escapedFormat.indexOf(':') > -1) { // time
             output = formatTime(n, format);
         } else { // plain ol' numbers or bytes
             output = formatNumber(n._value, format, roundingFunction);
@@ -622,7 +652,7 @@
                 d = '';
             }
         } else {
-            w = toFixed(value, null, roundingFunction);
+            w = toFixed(value, 0, roundingFunction);
         }
 
         // format number
@@ -949,49 +979,25 @@
         return false;
     };
 
-    numbro.includeLocalesInNode = function(culturesPath, culture) {
-        if (!inNodejsRuntime()) {
-            return;
-        }
-
-        var path = require('path');
-
-        culture.forEach(function(langLocaleCode) {
-            var culture = require(path.join(__dirname, culturesPath, langLocaleCode));
-            numbro.culture(culture.langLocaleCode, culture);
-        });
-    };
-
     /**
      * * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
      * `loadCulturesInNode` should be used instead.
      */
-    numbro.loadLanguagesInNode = function(languagesPath) {
+    numbro.loadLanguagesInNode = function() {
         console.warn('`loadLanguagesInNode` is deprecated since version 1.6.0. Use `loadCulturesInNode` instead');
 
-        if (!inNodejsRuntime()) {
-            return;
-        }
-
-        var fs = require('fs');
-        var path = require('path');
-
-        var langFiles = fs.readdirSync(path.join(__dirname, languagesPath));
-
-        numbro.includeLocalesInNode(languagesPath, langFiles);
+        numbro.loadCulturesInNode();
     };
 
-    numbro.loadCulturesInNode = function(culturesPath) {
-        if (!inNodejsRuntime()) {
-            return;
+    numbro.loadCulturesInNode = function() {
+        // TODO: Rename the folder in 2.0.0
+        var cultures = require('./languages');
+
+        for(var langLocaleCode in cultures) {
+            if(langLocaleCode) {
+                numbro.culture(langLocaleCode, cultures[langLocaleCode]);
+            }
         }
-
-        var fs = require('fs');
-        var path = require('path');
-
-        var langFiles = fs.readdirSync(path.join(__dirname, culturesPath));
-
-        numbro.includeLocalesInNode(culturesPath, langFiles);
     };
 
     /************************************
@@ -1016,7 +1022,8 @@
     function inNodejsRuntime() {
         return (typeof process !== 'undefined') &&
             (process.browser === undefined) &&
-            (process.title === 'node' || process.title === 'grunt');
+            (process.title === 'node' || process.title === 'grunt' || process.title === 'gulp') &&
+            (typeof require !== 'undefined');
     }
 
     /************************************
@@ -1197,27 +1204,29 @@
         Exposing Numbro
     ************************************/
 
+    if (inNodejsRuntime()) {
+        //Todo: Rename the folder in 2.0.0
+        numbro.loadCulturesInNode();
+    }
+
     // CommonJS module is defined
     if (hasModule) {
         module.exports = numbro;
-    }
+    } else {
+        /*global ender:false */
+        if (typeof ender === 'undefined') {
+            // here, `this` means `window` in the browser, or `global` on the server
+            // add `numbro` as a global object via a string identifier,
+            // for Closure Compiler 'advanced' mode
+            this.numbro = numbro;
+        }
 
-    //Todo: Rename the folder in 2.0.0
-    numbro.loadCulturesInNode('languages');
-
-    /*global ender:false */
-    if (typeof ender === 'undefined') {
-        // here, `this` means `window` in the browser, or `global` on the server
-        // add `numbro` as a global object via a string identifier,
-        // for Closure Compiler 'advanced' mode
-        this.numbro = numbro;
-    }
-
-    /*global define:false */
-    if (typeof define === 'function' && define.amd) {
-        define([], function() {
-            return numbro;
-        });
+        /*global define:false */
+        if (typeof define === 'function' && define.amd) {
+            define([], function() {
+                return numbro;
+            });
+        }
     }
 
 }.call(typeof window === 'undefined' ? this : window));
