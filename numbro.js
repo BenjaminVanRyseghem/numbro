@@ -401,7 +401,6 @@
             signed = false,
             optDec = false,
             abbr = '',
-            i,
             abbrK = false, // force abbreviation to thousands
             abbrM = false, // force abbreviation to millions
             abbrB = false, // force abbreviation to billions
@@ -526,9 +525,7 @@
                     size = length === 0 ? 0 : 3 * ~~(length / 3) - length;
                     size = size < 0 ? size + 3 : size;
 
-                    for (i = 0; i < size; i++) {
-                        format += '0';
-                    }
+                    format += zeroes(size);
                 }
             }
 
@@ -662,7 +659,7 @@
         }
 
         if (w.length < minlen) {
-            w = new Array(minlen - w.length + 1).join('0') + w;
+            w = zeroes(minlen - w.length) + w;
         }
 
         if (thousands > -1) {
@@ -744,7 +741,7 @@
     /**
      * This function allow the user to set a new culture with a fallback if
      * the culture does not exist. If no fallback culture is provided,
-     * it fallbacks to "en-US".
+     * it falls back to "en-US".
      */
     numbro.setCulture = function(newCulture, fallbackCulture) {
         var key = newCulture,
