@@ -8,6 +8,29 @@ exports.unformat = {
         callback();
     },
 
+    unformatStrict: function (test) {
+        test.expect(9);
+
+        var tests = [
+                ['10,000.123', 10000.123],
+                ['(0.12345)', -0.12345],
+                ['((--0.12345))', 0.12345],
+                ['23rd', 23],
+                ['31st', 31],
+                ['1.23t', 1230000000000],
+                ['N/A', 0],
+                ['', undefined],
+                ['not a number', undefined]
+            ];
+
+        for (var i = 0; i < tests.length; i++) {
+            test.strictEqual(numbro().unformatStrict(tests[i][0]), tests[i][1], tests[i][0]);
+        }
+
+        test.done();
+
+    },
+
     numbers: function (test) {
         test.expect(15);
 
