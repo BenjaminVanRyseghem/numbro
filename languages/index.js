@@ -27,6 +27,7 @@ exports['nl-NL'] = require('./nl-NL.js');
 exports['pl-PL'] = require('./pl-PL.js');
 exports['pt-BR'] = require('./pt-BR.js');
 exports['pt-PT'] = require('./pt-PT.js');
+exports['ro-RO'] = require('./ro-RO.js');
 exports['ru-RU'] = require('./ru-RU.js');
 exports['ru-UA'] = require('./ru-UA.js');
 exports['sk-SK'] = require('./sk-SK.js');
