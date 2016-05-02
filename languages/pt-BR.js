@@ -25,7 +25,7 @@
         },
         currency: {
             symbol: 'R$',
-            position: 'postfix'
+            position: 'prefix'
         },
         defaults: {
             currencyFormat: ',4 a'
