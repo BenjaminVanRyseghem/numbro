@@ -572,6 +572,9 @@
                     break;
                 }
             }
+            if (bytes === '' || bytes === ' ') {
+                bytes = bytes + 'B';
+            }
         }
 
         // see if we are formatting decimal bytes
