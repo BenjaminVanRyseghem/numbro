@@ -524,6 +524,7 @@ exports.format = {
 
     bytes: function (test) {
         var tests = [
+                [0,'0 b','0 B'],
                 [100,'0b','100B'],
                 [1024*2,'0 b','2 KiB'],
                 [1024*1024*5,'0b','5MiB'],
