@@ -34,17 +34,17 @@
     }
   ],
   "devDependencies": {
-    "grunt": "0.4.5",
-    "grunt-bump": "latest",
-    "grunt-confirm": "latest",
-    "grunt-contrib-concat": "latest",
-    "grunt-contrib-copy": "latest",
-    "grunt-contrib-jshint": "latest",
-    "grunt-contrib-nodeunit": "latest",
-    "grunt-contrib-uglify": "latest",
-    "grunt-jscs": "^1.8.0",
-    "grunt-release": "latest",
-    "uglify-js": "latest"
+    "grunt": "^1.0.1",
+    "grunt-bump": "^0.8.0",
+    "grunt-confirm": "^1.0.5",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-jshint": "^1.0.0",
+    "grunt-contrib-nodeunit": "^1.0.0",
+    "grunt-contrib-uglify": "^1.0.1",
+    "grunt-jscs": "^2.8.0",
+    "grunt-release": "^0.13.1",
+    "uglify-js": "^2.6.2"
   },
   "scripts": {
     "test": "grunt test"
