@@ -12,13 +12,17 @@ exports.misc = {
                 [0.5, 0.5],
                 [undefined, 0],
                 ['1,000', 1000],
-                ['not a number', 0]
+                ['not a number', NaN],
             ],
             num;
 
         for (var i = 0; i < tests.length; i++) {
             num = numbro(tests[i][0]);
-            test.strictEqual(num.value(), tests[i][1], tests[i][1]);
+            if (isNaN(tests[i][1])) {
+                test.ok(isNaN(num.value()), tests[i][0]);
+            } else {
+                test.strictEqual(num.value(), tests[i][1], tests[i][1]);
+            }
         }
 
         test.done();

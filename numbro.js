@@ -229,19 +229,26 @@
                     }
                 }
 
-                // do some math to create our number
-                n._value = ((bytesMultiplier) ? bytesMultiplier : 1) *
-                    ((stringOriginal.match(thousandRegExp)) ? Math.pow(10, 3) : 1) *
-                    ((stringOriginal.match(millionRegExp)) ? Math.pow(10, 6) : 1) *
-                    ((stringOriginal.match(billionRegExp)) ? Math.pow(10, 9) : 1) *
-                    ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) *
-                    ((string.indexOf('%') > -1) ? 0.01 : 1) *
-                    (((string.split('-').length +
-                        Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) *
-                    Number(string.replace(/[^0-9\.]+/g, ''));
+                var str = string.replace(/[^0-9\.]+/g, '');
+                if (str === '') {
+                    // An empty string is not a number.
+                    n._value = NaN;
 
-                // round if we are talking about bytes
-                n._value = (bytesMultiplier) ? Math.ceil(n._value) : n._value;
+                } else {
+                    // do some math to create our number
+                    n._value = ((bytesMultiplier) ? bytesMultiplier : 1) *
+                        ((stringOriginal.match(thousandRegExp)) ? Math.pow(10, 3) : 1) *
+                        ((stringOriginal.match(millionRegExp)) ? Math.pow(10, 6) : 1) *
+                        ((stringOriginal.match(billionRegExp)) ? Math.pow(10, 9) : 1) *
+                        ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) *
+                        ((string.indexOf('%') > -1) ? 0.01 : 1) *
+                        (((string.split('-').length +
+                            Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) *
+                        Number(str);
+
+                    // round if we are talking about bytes
+                    n._value = (bytesMultiplier) ? Math.ceil(n._value) : n._value;
+                }
             }
         }
         return n._value;
@@ -1134,10 +1141,17 @@
         },
 
         unformat: function(inputString) {
-            if (Object.prototype.toString.call(inputString) === '[object Number]') {
+            if (typeof inputString === 'number') {
                 return inputString;
+            } else if (typeof inputString === 'string') {
+                var result = unformatNumbro(this, inputString);
+
+                // Any unparseable string (represented as NaN in the result) is
+                // converted into undefined.
+                return isNaN(result) ? undefined : result;
+            } else {
+                return undefined;
             }
-            return unformatNumbro(this, inputString ? inputString : defaultFormat);
         },
 
         value: function() {

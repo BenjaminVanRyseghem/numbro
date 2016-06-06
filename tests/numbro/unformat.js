@@ -9,7 +9,7 @@ exports.unformat = {
     },
 
     numbers: function (test) {
-        test.expect(15);
+        test.expect(20);
 
         var tests = [
                 ['10,000.123', 10000.123],
@@ -19,8 +19,11 @@ exports.unformat = {
                 ['31st', 31],
                 ['1.23t', 1230000000000],
                 ['N/A', 0],
-                [undefined, 0],
-                ['', 0],
+
+                // Invalid strings which don't represent a number are converted
+                // to undefined.
+                ['', undefined],
+                ['not a number', undefined],
 
                 // Pass Through for Numbers
                 [0, 0],
@@ -28,11 +31,25 @@ exports.unformat = {
                 [1.1, 1.1],
                 [-0, 0],
                 [-1, -1],
-                [-1.1, -1.1]
-            ];
+                [-1.1, -1.1],
+                [NaN, NaN],
+
+                // JavaScript values which are neither Number or String are
+                // converted to undefined.
+                [undefined, undefined],
+                [null, undefined],
+                [[], undefined],
+                [{}, undefined]
+            ],
+            val;
 
         for (var i = 0; i < tests.length; i++) {
-            test.strictEqual(numbro().unformat(tests[i][0]), tests[i][1], tests[i][0]);
+            val = numbro().unformat(tests[i][0]);
+            if (isNaN(tests[i][1])) {
+              test.ok(isNaN(val), tests[i][0]);
+            } else {
+              test.strictEqual(val, tests[i][1], tests[i][0]);
+            }
         }
 
         test.done();
