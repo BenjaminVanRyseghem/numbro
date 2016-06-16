@@ -1,3 +1,16 @@
+### 1.8.0
+
+- Fix #180: Add culture function, deprecate language. Thanks @wereHamster.
+- Fix #170: Add the ability to determine units without formatting. Thanks @pickypg.
+- Fix #162: Add TypeScript declaration file. Thanks @wereHamster.
+- Fix #163: unformat: return undefined when value can't be parsed. Thanks @wereHamster.
+- Fix #173: Added two latest stable node versions to Travis build. Thanks @therebelrobot.
+- Fix #176: default pt-BR currency is prefix, not postfix. Thanks @luisrudge.
+- Fix #175: Zero byte unit fix, take 2. Thanks @therebelrobot.
+- Fix #135: Fix fr-CA currency format. Thanks @killfish.
+- Fix #174: Set versions for all deps. Thanks @BenjaminVanRyseghem.
+- Fix #152: Use zeros() function instead of multiple inline implementations. Thanks @MarkHerhold.
+
 ### 1.7.1
 
 - Fix #142: Limit packaging extraneous files. Thanks @MarkHerhold.
@@ -7,7 +20,7 @@
 
 ### 1.7.0
 
-- Fix decimal rounding issue. Thanks @Shraymonks.
+- Fix decimal rounding issue. Thangrks @Shraymonks.
 - Fix #114: webpack bundling. Thanks @mmollick.
 - Add ko-KR & zh-TW support. Thanks @rocketedaway and @rWilander.
 - Add existence check for require. Thanks @jamiter.
