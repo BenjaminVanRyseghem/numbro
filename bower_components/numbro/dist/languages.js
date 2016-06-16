@@ -632,7 +632,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'postfix',
+            spaceSeparated : true
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1268,7 +1269,7 @@
         },
         currency: {
             symbol: 'R$',
-            position: 'postfix'
+            position: 'prefix'
         },
         defaults: {
             currencyFormat: ',4 a'

@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'postfix',
+            spaceSeparated : true
         },
         defaults: {
             currencyFormat: ',4 a'
