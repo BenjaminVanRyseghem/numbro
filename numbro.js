@@ -948,7 +948,7 @@
         }
 
         // validating currency symbol
-        temp = val.match(/^[^\d]+/);
+        temp = val.match(/^[^\d\.\,]+/);
         if (temp !== null) {
             val = val.substr(1);
             if (temp[0] !== _currSymbol) {
@@ -976,7 +976,12 @@
                 if (_valArray.length < 2) {
                     return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
                 } else {
-                    if (_valArray[0].length === 1) {
+                    if (_valArray[0] === '') {
+                        // for values without leading zero eg. .984
+                        return (!_valArray[0].match(_thousandRegEx) &&
+                            !!_valArray[1].match(/^\d+$/));
+
+                    } else if (_valArray[0].length === 1) {
                         return ( !! _valArray[0].match(/^\d+$/) &&
                             !_valArray[0].match(_thousandRegEx) &&
                             !! _valArray[1].match(/^\d+$/));
