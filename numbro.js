@@ -919,6 +919,9 @@
         //trim whitespaces from either sides
         val = val.trim();
 
+        //replace the initial '+' or '-' sign if present
+        val = val.replace(/^[+-]?/, '');
+
         //if val is just digits return true
         if ( !! val.match(/^\d+$/)) {
             return true;
