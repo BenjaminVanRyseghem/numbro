@@ -1,6 +1,72 @@
-// Definitions by: Vincent Bortone <https://github.com/vbortone/>
+// Definitions by: Dan Poggi <https://github.com/dpoggi>
 
-export interface NumbroLanguage {
+interface NumbroStatic {
+  (value?: any): Numbro;
+
+  version: string;
+  isNumbro(value: any): value is Numbro;
+
+  setCulture(newCultureCode: string, fallbackCultureCode?: string): void;
+  culture(): string;
+  culture(cultureCode: string): void;
+  culture(cultureCode: string, newCulture: NumbroCulture): NumbroStatic;
+  cultureData(cultureCode?: string): NumbroCulture;
+  cultures(): Array<NumbroCulture>;
+
+  /**
+   * Language functions
+   *
+   * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
+   * culture versions instead.
+   */
+  setLanguage(newCultureCode: string, fallbackCultureCode?: string): void;
+  language(): string;
+  language(cultureCode: string): void;
+  language(cultureCode: string, newCulture: NumbroCulture): NumbroStatic;
+  languageData(cultureCode?: string): NumbroCulture;
+  languages(): Array<NumbroCulture>;
+
+  zeroFormat(newFormat: string): void;
+  defaultFormat(newFormat: string): void;
+  defaultCurrencyFormat(newFormat: string): void;
+
+  validate(value: string | any, cultureCode?: string): boolean;
+
+  loadCulturesInNode(): void;
+
+  /**
+   * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
+   * culture version instead.
+   */
+  loadLanguagesInNode(): void;
+}
+
+export interface Numbro {
+  clone(): Numbro;
+
+  format(formatString?: string, roundingFunction?: RoundingFunction): string;
+  formatCurrency(formatString?: string, roundingFunction?: RoundingFunction): string;
+  unformat(formattedNumber: string): number;
+
+  binaryByteUnits(): string;
+  byteUnits(): string;
+  decimalByteUnits(): string;
+
+  value(): number;
+  valueOf(): number;
+
+  set(value: number | any): this;
+  add(value: number): this;
+  subtract(value: number): this;
+  multiply(value: number): this;
+  divide(value: number): this;
+
+  difference(value: number): number;
+}
+
+export interface NumbroCulture {
+  langLocaleCode: string;
+  cultureCode: string;
   delimiters: {
     thousands: string;
     decimal: string;
@@ -14,32 +80,22 @@ export interface NumbroLanguage {
   ordinal(num: number): string;
   currency: {
     symbol: string;
+    position: string;
+  };
+  defaults: {
+    currencyFormat: string;
+  };
+  formats: {
+    fourDigits: string;
+    fullWithTwoDecimals: string;
+    fullWithTwoDecimalsNoCurrency: string;
+    fullWithNoDecimals: string;
   };
 }
 
-export interface Numbro {
-  (value?: any): Numbro;
-  version: string;
-  isNumbro: boolean;
-
-  culture(code: string, values?: NumbroLanguage): Numbro;
-  // Deprecated: language will be removed after Numbro 2.0, use culture instead
-  language(key: string, values?: NumbroLanguage): Numbro;
-
-  zeroFormat(format: string): string;
-  clone(): Numbro;
-  format(inputString?: string): string;
-  formatCurrency(inputString?: string): string;
-  unformat(inputString: string): number;
-  value(): number;
-  valueOf(): number;
-  set (value: any): Numbro;
-  add(value: any): Numbro;
-  subtract(value: any): Numbro;
-  multiply(value: any): Numbro;
-  divide(value: any): Numbro;
-  difference(value: any): number;
+export interface RoundingFunction {
+  (x: number): number;
 }
 
-declare var numbro: Numbro;
+declare const numbro: NumbroStatic;
 export default numbro;
