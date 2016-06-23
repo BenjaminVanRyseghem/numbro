@@ -30,7 +30,7 @@ interface NumbroStatic {
   defaultFormat(newFormat: string): void;
   defaultCurrencyFormat(newFormat: string): void;
 
-  validate(value: string | any, cultureCode?: string): boolean;
+  validate(value: string, cultureCode?: string): boolean;
 
   loadCulturesInNode(): void;
 
@@ -55,7 +55,7 @@ export interface Numbro {
   value(): number;
   valueOf(): number;
 
-  set(value: number | any): this;
+  set(value: number): this;
   add(value: number): this;
   subtract(value: number): this;
   multiply(value: number): this;
