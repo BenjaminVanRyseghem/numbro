@@ -1,0 +1,12 @@
+---
+title:  Release 1.8.1
+author: BenjaminVanRyseghem
+date:   2016-06-24 11:22:00
+---
+
+**numbro 1.8.1** has been released.
+
+- Fix [#182](https://github.com/foretagsplatsen/numbro/pull/#182): Added support for numbers without leading zero. Thanks @budnix.
+- Fix [#183](https://github.com/foretagsplatsen/numbro/pull/#183): Number validation doesn't validate negative numbers. Thanks @budnix.
+
+Enjoy <i class="fa fa-smile-o">
