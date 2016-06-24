@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.8.0
+ * version : 1.8.1
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.8.0',
+        VERSION = '1.8.1',
         binarySuffixes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
         decimalSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         bytes = {
@@ -919,6 +919,9 @@
         //trim whitespaces from either sides
         val = val.trim();
 
+        //replace the initial '+' or '-' sign if present
+        val = val.replace(/^[+-]?/, '');
+
         //if val is just digits return true
         if ( !! val.match(/^\d+$/)) {
             return true;
@@ -948,7 +951,7 @@
         }
 
         // validating currency symbol
-        temp = val.match(/^[^\d]+/);
+        temp = val.match(/^[^\d\.\,]+/);
         if (temp !== null) {
             val = val.substr(1);
             if (temp[0] !== _currSymbol) {
@@ -976,7 +979,12 @@
                 if (_valArray.length < 2) {
                     return ( !! _valArray[0].match(/^\d+.*\d$/) && !_valArray[0].match(_thousandRegEx));
                 } else {
-                    if (_valArray[0].length === 1) {
+                    if (_valArray[0] === '') {
+                        // for values without leading zero eg. .984
+                        return (!_valArray[0].match(_thousandRegEx) &&
+                            !!_valArray[1].match(/^\d+$/));
+
+                    } else if (_valArray[0].length === 1) {
                         return ( !! _valArray[0].match(/^\d+$/) &&
                             !_valArray[0].match(_thousandRegEx) &&
                             !! _valArray[1].match(/^\d+$/));

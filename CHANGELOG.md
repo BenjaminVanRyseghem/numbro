@@ -1,3 +1,8 @@
+### 1.8.1
+
+- Fix #182: Added support for numbers without leading zero. Thanks @budnix.
+- Fix #183: Number validation doesn't validate negative numbers. Thanks @budnix.
+
 ### 1.8.0
 
 - Fix #180: Add culture function, deprecate language. Thanks @wereHamster.
