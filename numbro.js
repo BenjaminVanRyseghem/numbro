@@ -1043,6 +1043,7 @@
     function inNodejsRuntime() {
         return (typeof process !== 'undefined') &&
             (process.browser === undefined) &&
+            (process.title !== undefined) &&
             (process.title.indexOf('node') === 0 || process.title === 'grunt' || process.title === 'gulp') &&
             (typeof require !== 'undefined');
     }
