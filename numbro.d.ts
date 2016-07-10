@@ -22,6 +22,7 @@ export interface Numbro {
   version: string;
   isNumbro: boolean;
 
+  cultureData(val:any):Numbro;
   culture(code: string, values?: NumbroLanguage): Numbro;
   // Deprecated: language will be removed after Numbro 2.0, use culture instead
   language(key: string, values?: NumbroLanguage): Numbro;
