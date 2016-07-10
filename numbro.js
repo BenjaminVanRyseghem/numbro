@@ -10,8 +10,8 @@
     'use strict';
 
     /************************************
-        Constants
-    ************************************/
+     Constants
+     ************************************/
 
     var numbro,
         VERSION = '1.8.1',
@@ -22,7 +22,7 @@
             binary:  { scale: 1024, suffixes: binarySuffixes, marker: 'b' },
             decimal: { scale: 1000, suffixes: decimalSuffixes, marker: 'd' }
         },
-        // general must be before the others because it reuses their characters!
+    // general must be before the others because it reuses their characters!
         byteFormatOrder = [ bytes.general, bytes.binary, bytes.decimal ],
     // internal storage for culture config files
         cultures = {},
@@ -32,7 +32,7 @@
         zeroFormat = null,
         defaultFormat = '0,0',
         defaultCurrencyFormat = '0$',
-        // check for nodeJS
+    // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
     // default culture
         enUS = {
@@ -68,8 +68,8 @@
         };
 
     /************************************
-        Constructors
-    ************************************/
+     Constructors
+     ************************************/
 
 
     // Numbro prototype object
@@ -174,8 +174,8 @@
     }
 
     /************************************
-        Formatting
-    ************************************/
+     Formatting
+     ************************************/
 
     // determine what type of formatting we need to do
     function formatNumbro(n, format, roundingFunction) {
@@ -183,7 +183,7 @@
             escapedFormat = format.replace(/\{[^\{\}]*\}/g, '');
 
         // figure out what kind of format we are dealing with
-        if (escapedFormat.indexOf('$') > -1) { // currency!!!!!
+        if (escapedFormat.indexOf(numbro.cultureData().currency.symbol) > -1) { // currency!!!!!
             output = formatCurrency(n, format, roundingFunction);
         } else if (escapedFormat.indexOf('%') > -1) { // percentage
             output = formatPercentage(n, format, roundingFunction);
@@ -250,7 +250,7 @@
                         ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) *
                         ((string.indexOf('%') > -1) ? 0.01 : 1) *
                         (((string.split('-').length +
-                            Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) *
+                        Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) *
                         Number(str);
 
                     // round if we are talking about bytes
@@ -263,7 +263,7 @@
 
     function formatCurrency(n, originalFormat, roundingFunction) {
         var format = originalFormat,
-            symbolIndex = format.indexOf('$'),
+            symbolIndex = format.indexOf(numbro.cultureData().currency.symbol),
             openParenIndex = format.indexOf('('),
             plusSignIndex = format.indexOf('+'),
             minusSignIndex = format.indexOf('-'),
@@ -272,7 +272,7 @@
             spliceIndex,
             output;
 
-        if(format.indexOf('$') === -1){
+        if(format.indexOf(numbro.cultureData().currency.symbol) === -1){
             // Use defaults instead of the format provided
             if (cultures[currentCulture].currency.position === 'infix') {
                 decimalSeparator = cultures[currentCulture].currency.symbol;
@@ -284,21 +284,21 @@
             }
         } else {
             // check for space before or after currency
-            if (format.indexOf(' $') > -1) {
+            if (format.indexOf(' '+numbro.cultureData().currency.symbol) > -1) {
                 space = ' ';
-                format = format.replace(' $', '');
-            } else if (format.indexOf('$ ') > -1) {
+                format = format.replace(' '+numbro.cultureData().currency.symbol, '');
+            } else if (format.indexOf(numbro.cultureData().currency.symbol+' ') > -1) {
                 space = ' ';
-                format = format.replace('$ ', '');
+                format = format.replace(numbro.cultureData().currency.symbol+' ', '');
             } else {
-                format = format.replace('$', '');
+                format = format.replace(numbro.cultureData().currency.symbol, '');
             }
         }
 
         // Format The Number
         output = formatNumber(n._value, format, roundingFunction, decimalSeparator);
 
-        if (originalFormat.indexOf('$') === -1) {
+        if (originalFormat.indexOf(numbro.cultureData().currency.symbol) === -1) {
             // Use defaults instead of the format provided
             switch (cultures[currentCulture].currency.position) {
                 case 'postfix':
@@ -707,8 +707,8 @@
     }
 
     /************************************
-        Top Level Functions
-    ************************************/
+     Top Level Functions
+     ************************************/
 
     numbro = function(input) {
         if (numbro.isNumbro(input)) {
@@ -964,7 +964,7 @@
         if (temp !== null) {
             val = val.slice(0, -1);
             if (temp[0] !== _abbrObj.thousand && temp[0] !== _abbrObj.million &&
-                    temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
+                temp[0] !== _abbrObj.billion && temp[0] !== _abbrObj.trillion) {
                 return false;
             }
         }
@@ -982,16 +982,16 @@
                     if (_valArray[0] === '') {
                         // for values without leading zero eg. .984
                         return (!_valArray[0].match(_thousandRegEx) &&
-                            !!_valArray[1].match(/^\d+$/));
+                        !!_valArray[1].match(/^\d+$/));
 
                     } else if (_valArray[0].length === 1) {
                         return ( !! _valArray[0].match(/^\d+$/) &&
-                            !_valArray[0].match(_thousandRegEx) &&
-                            !! _valArray[1].match(/^\d+$/));
+                        !_valArray[0].match(_thousandRegEx) &&
+                        !! _valArray[1].match(/^\d+$/));
                     } else {
                         return ( !! _valArray[0].match(/^\d+.*\d$/) &&
-                            !_valArray[0].match(_thousandRegEx) &&
-                            !! _valArray[1].match(/^\d+$/));
+                        !_valArray[0].match(_thousandRegEx) &&
+                        !! _valArray[1].match(/^\d+$/));
                     }
                 }
             }
@@ -1022,8 +1022,8 @@
     };
 
     /************************************
-        Helpers
-    ************************************/
+     Helpers
+     ************************************/
 
     function setCulture(code, values) {
         cultures[code] = values;
@@ -1048,8 +1048,8 @@
     }
 
     /************************************
-        Floating-point helpers
-    ************************************/
+     Floating-point helpers
+     ************************************/
 
     // The floating-point helper functions and implementation
     // borrows heavily from sinful.js: http://guipn.github.io/sinful.js/
@@ -1130,8 +1130,8 @@
     }
 
     /************************************
-        Numbro Prototype
-    ************************************/
+     Numbro Prototype
+     ************************************/
 
 
     numbro.fn = Numbro.prototype = {
@@ -1241,8 +1241,8 @@
     };
 
     /************************************
-        Exposing Numbro
-    ************************************/
+     Exposing Numbro
+     ************************************/
 
     if (inNodejsRuntime()) {
         //Todo: Rename the folder in 2.0.0
