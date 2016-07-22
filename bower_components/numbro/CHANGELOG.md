@@ -1,3 +1,13 @@
+### 1.9.1
+
+- Add forgotten files
+
+### 1.9.0
+
+- Fix #192: Add locales en-AU and en-NZ. Thanks @Ben305.
+- Fix #193: Add function formatForeignCurrency. Thanks @Ben305.
+- Fix #194: Fix undefined error on React native. Thanks @abalhier.
+
 ### 1.8.1
 
 - Fix #182: Added support for numbers without leading zero. Thanks @budnix.

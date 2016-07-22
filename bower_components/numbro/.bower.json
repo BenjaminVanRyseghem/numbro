@@ -1,7 +1,7 @@
 {
   "name": "numbro",
   "repo": "foretagsplatsen/numbro",
-  "version": "1.8.1",
+  "version": "1.9.1",
   "description": "Format and manipulate numbers.",
   "keywords": [
     "numeral",
@@ -17,13 +17,14 @@
   ],
   "main": "numbro.js",
   "homepage": "https://github.com/foretagsplatsen/numbro",
-  "_release": "1.8.1",
+  "_release": "1.9.1",
   "_resolution": {
     "type": "version",
-    "tag": "1.8.1",
-    "commit": "3a091be3e6e2f57dbc84d2dfffda5aecba8ee581"
+    "tag": "1.9.1",
+    "commit": "f3c4ce2b7a85cb0cf8e2ac6d3f7088253224d658"
   },
   "_source": "https://github.com/foretagsplatsen/numbro.git",
-  "_target": "*",
-  "_originalSource": "numbro"
+  "_target": "^1.9.1",
+  "_originalSource": "numbro",
+  "_direct": true
 }
