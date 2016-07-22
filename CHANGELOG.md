@@ -1,3 +1,7 @@
+### 1.9.1
+
+- Add forgotten files
+
 ### 1.9.0
 
 - Fix #192: Add locales en-AU and en-NZ. Thanks @Ben305.
