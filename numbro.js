@@ -184,7 +184,7 @@
 
         // figure out what kind of format we are dealing with
         if (escapedFormat.indexOf('$') > -1) { // currency!!!!!
-            output = formatCurrency(n, format, roundingFunction);
+            output = formatCurrency(n, cultures[currentCulture].currency.symbol, format, roundingFunction);
         } else if (escapedFormat.indexOf('%') > -1) { // percentage
             output = formatPercentage(n, format, roundingFunction);
         } else if (escapedFormat.indexOf(':') > -1) { // time
@@ -261,7 +261,7 @@
         return n._value;
     }
 
-    function formatCurrency(n, originalFormat, roundingFunction) {
+    function formatCurrency(n, currencySymbol, originalFormat, roundingFunction) {
         var format = originalFormat,
             symbolIndex = format.indexOf('$'),
             openParenIndex = format.indexOf('('),
@@ -336,23 +336,27 @@
                         // the symbol appears before the "(", "+" or "-"
                         spliceIndex = 0;
                     }
-                    output.splice(spliceIndex, 0, cultures[currentCulture].currency.symbol + space);
+                    output.splice(spliceIndex, 0, currencySymbol + space);
                     output = output.join('');
                 } else {
-                    output = cultures[currentCulture].currency.symbol + space + output;
+                    output = currencySymbol + space + output;
                 }
             } else {
                 if (output.indexOf(')') > -1) {
                     output = output.split('');
-                    output.splice(-1, 0, space + cultures[currentCulture].currency.symbol);
+                    output.splice(-1, 0, space + currencySymbol);
                     output = output.join('');
                 } else {
-                    output = output + space + cultures[currentCulture].currency.symbol;
+                    output = output + space + currencySymbol;
                 }
             }
         }
 
         return output;
+    }
+
+    function formatForeignCurrency(n, foreignCurrencySymbol, originalFormat, roundingFunction) {
+        return formatCurrency(n, foreignCurrencySymbol, originalFormat, roundingFunction);
     }
 
     function formatPercentage(n, format, roundingFunction) {
@@ -1150,6 +1154,15 @@
 
         formatCurrency: function(inputString, roundingFunction) {
             return formatCurrency(this,
+                cultures[currentCulture].currency.symbol,
+                inputString ? inputString : defaultCurrencyFormat,
+                (roundingFunction !== undefined) ? roundingFunction : Math.round
+            );
+        },
+
+        formatForeignCurrency: function(currencySymbol, inputString, roundingFunction) {
+            return formatForeignCurrency(this,
+                currencySymbol,
                 inputString ? inputString : defaultCurrencyFormat,
                 (roundingFunction !== undefined) ? roundingFunction : Math.round
             );
