@@ -274,10 +274,25 @@ exports.format = {
             ],
             i;
 
-        test.expect(tests.length);
+        var testsWithoutFormatString = [
+                [0.1,'$','0,1 $'],
+                [25,'$','25 $'],
+                [107, '$', '107 $'],
+                [9288,'$','9.288 $'],
+                [10965, '$','10,97 k$']
+            ],
+            j;
+
+        test.expect(tests.length + testsWithoutFormatString.length);
 
         for (i = 0; i < tests.length; i++) {
             test.strictEqual(numbro(tests[i][0]).formatForeignCurrency(tests[i][1], tests[i][2]), tests[i][3], tests[i][2]);
+        }
+
+        numbro.culture('de-DE');
+
+        for (j = 0; j < testsWithoutFormatString.length; j++) {
+            test.strictEqual(numbro(testsWithoutFormatString[j][0]).formatForeignCurrency(testsWithoutFormatString[j][1]), testsWithoutFormatString[j][2]);
         }
 
         numbro.culture(currentCulture);
