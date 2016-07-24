@@ -1,3 +1,7 @@
+### 1.9.2
+
+- Fix #195: Fixed wrong results from formatForeignCurrency. Thanks @Ben305.
+
 ### 1.9.1
 
 - Add forgotten files
