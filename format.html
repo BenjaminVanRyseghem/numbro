@@ -402,6 +402,18 @@ numbro.language('fr-FR');
 numbro(12345678).formatCurrency();
 // "12,345,678 €"
 		{% endhighlight %}
+
+		<p>
+			You can even round the result with your own rounding function (default is <code>Math.round</code>).
+		</p>
+
+		{% highlight javascript %}
+numbro(1000.234).formatCurrency("", Math.ceil);
+//$1001
+
+numbro(1000.234).formatCurrency("", Math.floor);
+//$1000
+		{% endhighlight %}
 	</div>
 
 	<div id="bytes" class="sub-section">
