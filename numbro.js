@@ -1048,7 +1048,7 @@
         return (typeof process !== 'undefined') &&
             (process.browser === undefined) &&
             process.title &&
-            (process.title.indexOf('node') === 0 || process.title === 'grunt' || process.title === 'gulp') &&
+            (process.title.indexOf('node') === 0 || process.title.indexOf('meteor-tool') > 0 || process.title === 'grunt' || process.title === 'gulp') &&
             (typeof require !== 'undefined');
     }
 
