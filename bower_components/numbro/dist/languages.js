@@ -111,8 +111,8 @@
         langLocaleCode: 'de-CH',
         cultureCode: 'de-CH',
         delimiters: {
-            thousands: ' ',
-            decimal: ','
+            thousands: '\'',
+            decimal: '.'
         },
         abbreviations: {
             thousand: 'k',
@@ -177,10 +177,11 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            spaceSeparated: true
         },
         defaults: {
-            currencyFormat: ',4 a'
+            currencyFormat: ',4'
         },
         formats: {
             fourDigits: '4 a',

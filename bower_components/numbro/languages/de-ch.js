@@ -11,8 +11,8 @@
         langLocaleCode: 'de-CH',
         cultureCode: 'de-CH',
         delimiters: {
-            thousands: ' ',
-            decimal: ','
+            thousands: '\'',
+            decimal: '.'
         },
         abbreviations: {
             thousand: 'k',

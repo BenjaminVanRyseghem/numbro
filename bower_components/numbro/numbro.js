@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.9.1
+ * version : 1.9.3
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.9.1',
+        VERSION = '1.9.3',
         binarySuffixes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
         decimalSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         bytes = {
@@ -275,7 +275,7 @@
         if(format.indexOf('$') === -1){
             // Use defaults instead of the format provided
             if (cultures[currentCulture].currency.position === 'infix') {
-                decimalSeparator = cultures[currentCulture].currency.symbol;
+                decimalSeparator = currencySymbol;
                 if (cultures[currentCulture].currency.spaceSeparated) {
                     decimalSeparator = ' ' + decimalSeparator + ' ';
                 }
@@ -304,10 +304,10 @@
                 case 'postfix':
                     if (output.indexOf(')') > -1) {
                         output = output.split('');
-                        output.splice(-1, 0, space + cultures[currentCulture].currency.symbol);
+                        output.splice(-1, 0, space + currencySymbol);
                         output = output.join('');
                     } else {
-                        output = output + space + cultures[currentCulture].currency.symbol;
+                        output = output + space + currencySymbol;
                     }
                     break;
                 case 'infix':
@@ -317,10 +317,10 @@
                         output = output.split('');
                         spliceIndex = Math.max(openParenIndex, minusSignIndex) + 1;
 
-                        output.splice(spliceIndex, 0, cultures[currentCulture].currency.symbol + space);
+                        output.splice(spliceIndex, 0, currencySymbol + space);
                         output = output.join('');
                     } else {
-                        output = cultures[currentCulture].currency.symbol + space + output;
+                        output = currencySymbol + space + output;
                     }
                     break;
                 default:
@@ -1048,7 +1048,12 @@
         return (typeof process !== 'undefined') &&
             (process.browser === undefined) &&
             process.title &&
-            (process.title.indexOf('node') === 0 || process.title === 'grunt' || process.title === 'gulp') &&
+            (
+                process.title.indexOf('node') === 0 ||
+                process.title.indexOf('meteor-tool') > 0 ||
+                process.title === 'grunt' ||
+                process.title === 'gulp'
+            ) &&
             (typeof require !== 'undefined');
     }
 
