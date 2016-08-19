@@ -1,3 +1,10 @@
+### 1.9.3
+
+- Fix #184: Accurate, up-to-date type definitions for TypeScript. Thanks @dpoggi.
+- Fix #196: Fix german language specifications. Thanks @Ben305.
+- Fix #197: Add detection for Meteor. Thanks @Ben305.
+- Fix #206: fix number formats for de-CH. Thanks @Remo.
+
 ### 1.9.2
 
 - Fix #195: Fixed wrong results from formatForeignCurrency. Thanks @Ben305.
