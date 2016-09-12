@@ -22,7 +22,7 @@
   "undef"         : true,     // Require all non-global variables be declared before they are used.
   "unused"        : true,     // Prevent declaring unused functions and variables.
   "strict"        : true,     // Require `use strict` pragma in every file.
-  "maxparams"     : 4,        // Set the max number of formal parameters allowed per function
+  "maxparams"     : 5,        // Set the max number of formal parameters allowed per function
   "maxlen"        : 120,      // Set the maximum line length
 
   // == Relaxing Options ================================================
