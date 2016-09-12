@@ -1,9 +1,10 @@
 'use strict';
 
 var numbro = require('../../numbro');
+require('./test-locale');
 
-// Check that changes to instance settings apply to the particular instance
-// and do not modify the defaults
+// Check that changes to instance configuration apply to the particular
+// instance and do not modify the defaults
 exports.instance = {
 
     // Prepare the test environment
@@ -45,11 +46,11 @@ exports.instance = {
 
         var n = numbro();
         n.language('test-TEST');
-        test.strictEqual(n.language(), 'test-TEST', 'local language');
+        test.strictEqual(n.language(), 'test-TEST', 'local');
         n.setLanguage('test');
-        test.strictEqual(n.language(), 'test-TEST', 'local language');
+        test.strictEqual(n.language(), 'test-TEST', 'local prefix');
 
-        test.strictEqual(numbro.language(), 'en-US', 'global language');
+        test.strictEqual(numbro.language(), 'en-US', 'global');
 
         test.done();
     },

@@ -77,8 +77,17 @@
     //   number: number to initialize the numbro instance with
     //   config: optional overrides for global configuration variables
     function Numbro(number, config) {
+        var key;
         this._value = number;
-        this._config = config || {};
+        this._config = {};
+        // clone the configuration not to modify the source object
+        if (config) {
+            for (key in config) {
+                if (Object.hasOwnProperty.call(config, key)) {
+                    this._config[key] = config[key];
+                }
+            }
+        }
     }
 
     function zeroes(count) {
@@ -204,7 +213,7 @@
     // revert to number
     function unformatNumbro(n, string) {
         var stringOriginal = string,
-            cultureConfig = languages[n._config.currentCulture || currentCulture],
+            cultureConfig = cultures[n._config.currentCulture || currentCulture],
             currentZeroFormat,
             thousandRegExp,
             millionRegExp,
@@ -270,7 +279,7 @@
 
     function formatCurrency(n, currencySymbol, originalFormat, roundingFunction) {
         var format = originalFormat,
-            cultureConfig = languages[n._config.currentCulture || currentCulture],
+            cultureConfig = cultures[n._config.currentCulture || currentCulture],
             symbolIndex = format.indexOf('$'),
             openParenIndex = format.indexOf('('),
             plusSignIndex = format.indexOf('+'),
@@ -466,7 +475,7 @@
             units,
             ord = '',
             abs = Math.abs(value),
-            cultureConfig = languages[n._config.currentCulture || currentCulture],
+            cultureConfig = cultures[n._config.currentCulture || currentCulture],
             currentZeroFormat = n._config.zeroFormat || zeroFormat,
             totalLength,
             length,
@@ -722,23 +731,156 @@
         Top Level Functions
     ************************************/
 
+    // Clones the specified or the current global configuration to a new
+    // numbro factory function, which will be configurable separately
+    function cloneNumbro(config) {
+        if (!config) {
+            config = {};
+        }
+        // Configuration of the numro factory function clone
+        var _config = {
+            currentCulture: config.currentCulture || currentCulture,
+            zeroFormat: config.zeroFormat || zeroFormat,
+            defaultFormat: config.defaultFormat || defaultFormat,
+            defaultCurrencyFormat: config.defaultCurrencyFormat || defaultCurrencyFormat
+        };
+
+        // Factory function clone for numbro
+        var numbroClone = function(input) {
+            return createNumbro(input, _config);
+        };
+
+        // Clones the numbro factory function with its current configuration
+        numbroClone.clone = function () {
+            return cloneNumbro(_config);
+        };
+
+        // version number
+        numbroClone.version = numbro.version;
+
+        // compare numbro object
+        numbroClone.isNumbro = numbro.isNumbro;
+
+        // This function will load languages and then set the global language.  If
+        // no arguments are passed in, it will simply return the current global
+        // language key.
+        numbroClone.language = function(key, values) {
+            var language;
+
+            console.warn('`language` is deprecated since version 1.6.0. Use `culture` instead');
+
+            if (!key) {
+                return _config.currentCulture;
+            }
+
+            if (key && !values) {
+                language = languages[key];
+                if (!language) {
+                    throw new Error('Unknown language : ' + key);
+                }
+                _config.currentCulture = key;
+                setDefaultsFromCulture(numbroClone, language);
+            }
+
+            if (values || !languages[key]) {
+                setCulture(key, values);
+            }
+
+            return numbroClone;
+        };
+
+        // This function will load cultures and then set the global culture.  If
+        // no arguments are passed in, it will simply return the current global
+        // culture key.
+        numbroClone.culture = function(code, values) {
+            var culture;
+
+            if (!code) {
+                return _config.currentCulture;
+            }
+
+            if (code && !values) {
+                culture = cultures[code];
+                if (!culture) {
+                    throw new Error('Unknown culture : ' + code);
+                }
+                _config.currentCulture = code;
+                setDefaultsFromCulture(numbroClone, culture);
+            }
+
+            if (values || !cultures[code]) {
+                setCulture(code, values);
+            }
+
+            return numbroClone;
+        };
+
+        // This function allow the user to set a new language with a fallback if
+        // the language does not exist. If no fallback language is provided,
+        // it fallbacks to english.
+        numbroClone.setLanguage = numbro.setLanguage;
+
+        // This function allow the user to set a new culture with a fallback if
+        // the culture does not exist. If no fallback culture is provided,
+        // it fallbacks to English.
+        numbroClone.setCulture = numbro.setCulture;
+
+        // This function provides access to the loaded language data.  If
+        // no arguments are passed in, it will simply return the current
+        // global language object.
+        numbroClone.languageData = function(key) {
+            console.warn('`languageData` is deprecated since version 1.6.0. Use `cultureData` instead');
+
+            if (!key) {
+                return languages[_config.currentCulture];
+            }
+            return numbro.languageData(key);
+        };
+
+        // This function provides access to the loaded culture data.  If
+        // no arguments are passed in, it will simply return the current
+        // global culture object.
+        numbroClone.cultureData = function(key) {
+            if (!key) {
+                return cultures[_config.currentCulture];
+            }
+            return numbro.cultureData(key);
+        };
+
+        numbroClone.languages = numbro.languages;
+
+        numbroClone.cultures = numbro.cultures;
+
+        numbroClone.zeroFormat = function(format) {
+            _config.zeroFormat = typeof(format) === 'string' ? format : null;
+        };
+
+        numbroClone.defaultFormat = function(format) {
+            _config.defaultFormat = typeof(format) === 'string' ? format : '0.0';
+        };
+
+        numbroClone.defaultCurrencyFormat = function (format) {
+            _config.defaultCurrencyFormat = typeof(format) === 'string' ? format : '0$';
+        };
+
+        numbroClone.validate = numbro.validate;
+
+        numbroClone.loadLanguagesInNode = numbro.loadLanguagesInNode;
+
+        numbroClone.loadCulturesInNode = numbro.loadCulturesInNode;
+
+        return numbroClone;
+    }
+
+    // Factory function for numbro
     numbro = function(input) {
-        var number, instance;
-        if (numbro.isNumbro(input)) {
-            return new Numbro(input.value(), input._config);
-        }
-        if (input === 0 || typeof input === 'undefined') {
-            return new Numbro(0);
-        }
-        number = Number(input);
-        if (isNaN(number)) {
-            // Do not call unformat on the prototype; instance
-            // configuration may be accessed
-            instance = new Numbro();
-            instance.set(instance.unformat(input));
-            return instance;
-        }
-        return new Numbro(number);
+        return createNumbro(input);
+    };
+
+    // clones the numbro factory function with the current state
+    // of the global configuration
+    numbro.clone = function () {
+        return cloneNumbro();
     };
 
     // version number
@@ -761,7 +903,7 @@
         console.warn('`setLanguage` is deprecated since version 1.6.0. Use `setCulture` instead');
 
         newLanguage = getClosestCulture(newLanguage, fallbackLanguage);
-        numbro.language(newLanguage);
+        this.language(newLanguage);
     };
 
     /**
@@ -771,7 +913,7 @@
      */
     numbro.setCulture = function(newCulture, fallbackCulture) {
         newCulture = getClosestCulture(newCulture, fallbackCulture);
-        numbro.culture(newCulture);
+        this.culture(newCulture);
     };
 
     /**
@@ -783,6 +925,8 @@
      * `culture` should be used instead.
      */
     numbro.language = function(key, values) {
+        var language;
+
         console.warn('`language` is deprecated since version 1.6.0. Use `culture` instead');
 
         if (!key) {
@@ -790,10 +934,12 @@
         }
 
         if (key && !values) {
-            if (!languages[key]) {
+            language = languages[key];
+            if (!language) {
                 throw new Error('Unknown language : ' + key);
             }
-            chooseCulture(key);
+            currentCulture = key;
+            setDefaultsFromCulture(numbro, language);
         }
 
         if (values || !languages[key]) {
@@ -809,15 +955,19 @@
      * culture code.
      */
     numbro.culture = function(code, values) {
+        var culture;
+
         if (!code) {
             return currentCulture;
         }
 
         if (code && !values) {
-            if (!cultures[code]) {
+            culture = cultures[code];
+            if (!culture) {
                 throw new Error('Unknown culture : ' + code);
             }
-            chooseCulture(code);
+            currentCulture = code;
+            setDefaultsFromCulture(numbro, culture);
         }
 
         if (values || !cultures[code]) {
@@ -825,31 +975,6 @@
         }
 
         return numbro;
-    };
-
-    /**
-     * This function allows the user to set a new language with a fallback if
-     * the language does not exist. If no fallback language is provided,
-     * it falls back to English.
-     *
-     * @deprecated Since in version 1.6.0. It will be deleted in version 2.0
-     * `setCulture` should be used instead.
-     */
-    numbro.setLanguage = function(newLanguage, fallbackLanguage) {
-        console.warn('`setLanguage` is deprecated since version 1.6.0. Use `setCulture` instead');
-
-        newLanguage = getClosestCulture(newLanguage, fallbackLanguage);
-        numbro.language(newLanguage);
-    };
-
-    /**
-     * This function allows the user to set a new culture with a fallback if
-     * the culture does not exist. If no fallback culture is provided,
-     * it falls back to English.
-     */
-    numbro.setCulture = function(newCulture, fallbackCulture) {
-        newCulture = getClosestCulture(newCulture, fallbackCulture);
-        numbro.language(newCulture);
     };
 
     /**
@@ -957,9 +1082,9 @@
         //get the decimal and thousands separator from numbro.cultureData
         try {
             //check if the culture is understood by numbro. if not, default it to current culture
-            cultureData = numbro.cultureData(culture);
+            cultureData = this.cultureData(culture);
         } catch (e) {
-            cultureData = numbro.cultureData(numbro.culture());
+            cultureData = this.cultureData(this.culture());
         }
 
         //setup the delimiters and currency symbol based on culture
@@ -1029,7 +1154,7 @@
     numbro.loadLanguagesInNode = function() {
         console.warn('`loadLanguagesInNode` is deprecated since version 1.6.0. Use `loadCulturesInNode` instead');
 
-        numbro.loadCulturesInNode();
+        this.loadCulturesInNode();
     };
 
     numbro.loadCulturesInNode = function() {
@@ -1038,7 +1163,7 @@
 
         for(var langLocaleCode in cultures) {
             if(langLocaleCode) {
-                numbro.culture(langLocaleCode, cultures[langLocaleCode]);
+                this.culture(langLocaleCode, cultures[langLocaleCode]);
             }
         }
     };
@@ -1051,28 +1176,37 @@
         cultures[code] = values;
     }
 
-    function chooseCulture(code) {
-        currentCulture = code;
-        var defaults = cultures[code].defaults;
-        if (defaults && defaults.format) {
-            numbro.defaultFormat(defaults.format);
+    // Creates a new numbro instance
+    function createNumbro(input, config) {
+        var number, instance;
+        if (numbro.isNumbro(input)) {
+            return new Numbro(input.value(), input._config);
         }
-        if (defaults && defaults.currencyFormat) {
-            numbro.defaultCurrencyFormat(defaults.currencyFormat);
+        if (input === 0 || typeof input === 'undefined') {
+            return new Numbro(0, config);
         }
+        number = Number(input);
+        if (isNaN(number)) {
+            // Do not call unformat on the prototype; instance
+            // configuration may be accessed
+            instance = new Numbro(undefined, config);
+            instance.set(instance.unformat(input));
+            return instance;
+        }
+        return new Numbro(number, config);
     }
 
-    function inNodejsRuntime() {
-        return (typeof process !== 'undefined') &&
-            (process.browser === undefined) &&
-            process.title &&
-            (
-                process.title.indexOf('node') === 0 ||
-                process.title.indexOf('meteor-tool') > 0 ||
-                process.title === 'grunt' ||
-                process.title === 'gulp'
-            ) &&
-            (typeof require !== 'undefined');
+    // Propagates language defaults to the caller context
+    function setDefaultsFromCulture(numbroContext, language) {
+        var defaults = language.defaults;
+        if (defaults) {
+            if (defaults.format) {
+                numbroContext.defaultFormat(defaults.format);
+            }
+            if (defaults.currencyFormat) {
+                numbroContext.defaultCurrencyFormat(defaults.currencyFormat);
+            }
+        }
     }
 
     // Checks if the preferred culture exists and return is, if it does;
@@ -1104,6 +1238,19 @@
             preferredCulture = matchingCulture || fallbackCulture || 'en-US';
         }
         return preferredCulture;
+    }
+
+    function inNodejsRuntime() {
+        return (typeof process !== 'undefined') &&
+            (process.browser === undefined) &&
+            process.title &&
+            (
+                process.title.indexOf('node') === 0 ||
+                process.title.indexOf('meteor-tool') > 0 ||
+                process.title === 'grunt' ||
+                process.title === 'gulp'
+            ) &&
+            (typeof require !== 'undefined');
     }
 
     /************************************
@@ -1325,15 +1472,7 @@
                 throw new Error('Unknown culture : ' + key);
             }
             this._config.currentCulture = key;
-            var defaults = culture.defaults;
-            if (defaults) {
-                if (defaults.format) {
-                    this.defaultFormat(defaults.format);
-                }
-                if (defaults.currencyFormat) {
-                    this.defaultCurrencyFormat(defaults.currencyFormat);
-                }
-            }
+            setDefaultsFromCulture(this, culture);
 
             return this;
         },
@@ -1353,15 +1492,7 @@
                 throw new Error('Unknown language : ' + key);
             }
             this._config.currentCulture = key;
-            var defaults = language.defaults;
-            if (defaults) {
-                if (defaults.format) {
-                    this.defaultFormat(defaults.format);
-                }
-                if (defaults.currencyFormat) {
-                    this.defaultCurrencyFormat(defaults.currencyFormat);
-                }
-            }
+            setDefaultsFromCulture(this, language);
 
             return this;
         },
