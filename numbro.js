@@ -261,6 +261,35 @@
         return n._value;
     }
 
+    function detectCulture(inputString) {
+        numbro.loadCulturesInNode();
+        if (typeof inputString === 'number') {
+            return undefined;
+        }
+
+        var input = numbro().unformat(inputString);
+
+        if (typeof input === 'number') {
+            var inputSymbol = inputString.replace(/[0-9.,\s]+/g, '');
+            var result = [];
+
+            for (var culture in cultures) {
+                if (cultures.hasOwnProperty(cultures[culture].cultureCode)) {
+                    var currencySymbol = cultures[culture].currency.symbol;
+                    currencySymbol = currencySymbol.replace(/[.\s]+/g, '');
+
+                    if (inputSymbol === currencySymbol) {
+                        result.push(cultures[culture].cultureCode);
+                    }
+                }
+            }
+
+            return result;
+        }
+
+        return undefined;
+    }
+
     function formatCurrency(n, currencySymbol, originalFormat, roundingFunction) {
         var format = originalFormat,
             symbolIndex = format.indexOf('$'),
@@ -498,7 +527,7 @@
             prefix = '';
         }
 
-        if (format.indexOf('}') === format.length - 1) {
+        if (format.indexOf('}') === format.length - 1 && format.length) {
             var start = format.indexOf('{');
             if (start === -1) {
                 throw Error('Format should also contain a "{"');
@@ -1049,7 +1078,7 @@
             (process.browser === undefined) &&
             process.title &&
             (
-                process.title.indexOf('node') === 0 ||
+                process.title.indexOf('node') !== -1 ||
                 process.title.indexOf('meteor-tool') > 0 ||
                 process.title === 'grunt' ||
                 process.title === 'gulp'
@@ -1185,6 +1214,10 @@
             } else {
                 return undefined;
             }
+        },
+
+        detectCulture: function(inputString) {
+            return detectCulture(inputString);
         },
 
         binaryByteUnits: function() {

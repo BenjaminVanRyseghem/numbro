@@ -261,6 +261,20 @@
         return n._value;
     }
 
+    function detectCulture(inputString) {
+        numbro.loadCulturesInNode();
+        // var input = numbro.unformat(inputString);
+        var result = [];
+
+        for (var i = 0; i < cultures.length; i++) {
+            if (inputString.indexOf(cultures[i].currency.symbol) !== -1) {
+                result.push(cultures[i].cultureCode);
+            }
+        }
+
+        return result;
+    }
+
     function formatCurrency(n, currencySymbol, originalFormat, roundingFunction) {
         var format = originalFormat,
             symbolIndex = format.indexOf('$'),
@@ -1185,6 +1199,10 @@
             } else {
                 return undefined;
             }
+        },
+
+        detectCulture: function(inputString) {
+            return detectCulture(inputString);
         },
 
         binaryByteUnits: function() {
