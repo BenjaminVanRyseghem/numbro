@@ -498,7 +498,7 @@
             prefix = '';
         }
 
-        if (format.indexOf('}') === format.length - 1) {
+        if (format.indexOf('}') === format.length - 1 && format.length) {
             var start = format.indexOf('{');
             if (start === -1) {
                 throw Error('Format should also contain a "{"');
