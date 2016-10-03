@@ -64,7 +64,7 @@ See [CHANGELOG.md](CHANGELOG.md).
 
 Copyright © 2014 Adam Draper
 
-Copyright © 2015 Företagsplatsen AB
+Copyright © 2015-2016 Företagsplatsen AB
 
 ---
 
