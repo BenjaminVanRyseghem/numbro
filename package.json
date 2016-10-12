@@ -29,11 +29,7 @@
   "bugs": {
     "url": "https://github.com/foretagsplatsen/numbro/issues"
   },
-  "licenses": [
-    {
-      "type": "MIT"
-    }
-  ],
+  "license" : "MIT",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-bump": "^0.8.0",
