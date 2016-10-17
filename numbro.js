@@ -1049,7 +1049,7 @@
             (process.browser === undefined) &&
             process.title &&
             (
-                process.title.indexOf('node') === 0 ||
+                process.title.indexOf('node') !== -1 ||
                 process.title.indexOf('meteor-tool') > 0 ||
                 process.title === 'grunt' ||
                 process.title === 'gulp'
