@@ -51,7 +51,6 @@ exports.detectCulture = {
 
         for (var i = 0; i < tests.length; i++) {
             val = numbro().detectCulture(tests[i][0]);
-            console.log(val);
             test.deepEqual(val, tests[i][1], tests[i][0]);
         }
 
