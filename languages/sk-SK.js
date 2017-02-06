@@ -2,7 +2,7 @@
  * numbro.js language configuration
  * language : Slovak
  * locale : Slovakia
- * author : Ahmed Al Hafoudh : http://www.freevision.sk
+ * author : Jan Pesa : https://github.com/smajl
  */
 (function () {
     'use strict';
@@ -11,21 +11,22 @@
         langLocaleCode: 'sk-SK',
         cultureCode: 'sk-SK',
         delimiters: {
-            thousands: ' ',
+            thousands: '\u00a0',
             decimal: ','
         },
         abbreviations: {
             thousand: 'tis.',
             million: 'mil.',
-            billion: 'b',
-            trillion: 't'
+            billion: 'mld.',
+            trillion: 'bil.'
         },
         ordinal: function () {
             return '.';
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            spaceSeparated: true
         },
         defaults: {
             currencyFormat: ',4 a'
