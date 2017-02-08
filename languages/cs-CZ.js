@@ -2,7 +2,7 @@
  * numbro.js language configuration
  * language : Czech
  * locale: Czech Republic
- * author : Jan Pesa : https://github.com/smajl
+ * author : Jan Pesa : https://github.com/smajl (based on work from Anatoli Papirovski : https://github.com/apapirovski)
  */
 (function () {
     'use strict';

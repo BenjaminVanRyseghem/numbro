@@ -2,7 +2,7 @@
  * numbro.js language configuration
  * language : Slovak
  * locale : Slovakia
- * author : Jan Pesa : https://github.com/smajl
+ * author : Jan Pesa : https://github.com/smajl (based on work from Ahmed Al Hafoudh : http://www.freevision.sk)
  */
 (function () {
     'use strict';
