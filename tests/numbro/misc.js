@@ -168,7 +168,52 @@ exports.misc = {
         // Teardown
         numbro.setCulture('en-US');
         test.done();
-    }
+    },
 
+    // Adapted from the noConflict test of Underscore.js; see
+    // https://github.com/jashkenas/underscore/blob/master/test/utility.js#L29
+    noConflict: function(test) {
+        test.expect(2);
+
+        var fs = require('fs'),
+            vm = require('vm'),
+            fileName = __dirname + '/../../numbro.js';
+
+        fs.readFile(fileName, function(error, content) {
+            var sandbox = vm.createScript(
+                    content + 'this.newNumbro = this.numbro.noConflict();',
+                    fileName
+                ),
+                context = {numbro: 'oldValue'};
+
+            sandbox.runInNewContext(context);
+            test.strictEqual(context.numbro, 'oldValue',
+                'restores the previous value');
+            test.strictEqual(context.newNumbro.version, numbro.version,
+                'returns the new numbro object');
+
+            test.done();
+        });
+    },
+
+    // Tests that numbro declares a global function by default
+    exportedFuntion: function(test) {
+        test.expect(1);
+
+        var fs = require('fs'),
+            vm = require('vm'),
+            fileName = __dirname + '/../../numbro.js';
+
+        fs.readFile(fileName, function(error, content) {
+            var sandbox = vm.createScript(content, fileName),
+                context = {};
+
+            sandbox.runInNewContext(context);
+            test.strictEqual(context.numbro.version, numbro.version,
+                'returns the numbro object');
+
+            test.done();
+        });
+    }
 
 };

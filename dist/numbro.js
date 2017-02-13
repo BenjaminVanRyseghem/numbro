@@ -34,6 +34,9 @@
         defaultCurrencyFormat = '0$',
         // check for nodeJS
         hasModule = (typeof module !== 'undefined' && module.exports),
+        // support noConflict
+        previousNumbro = this.numbro,
+        self = this,
     // default culture
         enUS = {
             delimiters: {
@@ -1278,6 +1281,14 @@
             // add `numbro` as a global object via a string identifier,
             // for Closure Compiler 'advanced' mode
             this.numbro = numbro;
+
+            // Supports loading different versions of numbro on a HTML page.  When called,
+            // it restores the previous global numbro value and return the value set here,
+            // so that can be used by a local variable.
+            numbro.noConflict = function () {
+                self.numbro = previousNumbro;
+                return numbro;
+            };
         }
 
         /*global define:false */
