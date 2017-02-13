@@ -41,8 +41,6 @@ declare namespace numbro {
      */
     export function loadLanguagesInNode(): void;
 
-
-
     interface Numbro {
         clone(): Numbro;
 
@@ -98,8 +96,6 @@ declare namespace numbro {
     export interface RoundingFunction {
         (x: number): number;
     }
-
 }
 
 export = numbro;
-
