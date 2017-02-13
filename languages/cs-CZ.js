@@ -2,7 +2,7 @@
  * numbro.js language configuration
  * language : Czech
  * locale: Czech Republic
- * author : Anatoli Papirovski : https://github.com/apapirovski
+ * author : Jan Pesa : https://github.com/smajl (based on work from Anatoli Papirovski : https://github.com/apapirovski)
  */
 (function () {
     'use strict';
@@ -11,21 +11,22 @@
         langLocaleCode: 'cs-CZ',
         cultureCode: 'cs-CZ',
         delimiters: {
-            thousands: ' ',
+            thousands: '\u00a0',
             decimal: ','
         },
         abbreviations: {
             thousand: 'tis.',
             million: 'mil.',
-            billion: 'b',
-            trillion: 't'
+            billion: 'mld.',
+            trillion: 'bil.'
         },
         ordinal: function () {
             return '.';
         },
         currency: {
             symbol: 'Kč',
-            position: 'postfix'
+            position: 'postfix',
+            spaceSeparated: true
         },
         defaults: {
             currencyFormat: ',4 a'
