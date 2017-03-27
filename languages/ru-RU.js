@@ -27,7 +27,7 @@
             return '.';
         },
         currency: {
-            symbol: 'руб.',
+            symbol: '₽',
             position: 'postfix'
         },
         defaults: {
