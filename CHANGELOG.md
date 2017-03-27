@@ -1,3 +1,14 @@
+### 1.10.0
+
+- Fix #213: Unhelpful Error Message with $ as Format String. Thanks @reustle.
+- Fix #221: update package.json license field. Thanks @mguida22.
+- Fix #190: Allow abbreviation precision for < 4. Thanks @chrisnicola.
+- Fix #227: Add Romanian locale. Thanks @herodrigues.
+- Fix #222: allow a decimal format for an integer. Thanks @mguida22.
+- Fix #233: Correct CZ and SK locales (finally). Thanks @smajl.
+- Fix #244: Fixes for fr-CH. Thanks @gwynjudd.
+- Fix #262: Better input validation. Thanks @BenjaminVanRyseghem.
+
 ### 1.9.3
 
 - Fix #184: Accurate, up-to-date type definitions for TypeScript. Thanks @dpoggi.
