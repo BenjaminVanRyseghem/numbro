@@ -724,6 +724,18 @@ exports.format = {
       }
 
       test.done();
+    },
 
+	regression261: function(test) {
+		// Setup
+		var currentCulture = numbro.culture();
+
+		numbro.culture("de-DE");
+		var result = numbro("100.000").format();
+		test.strictEqual(result, "100.000");
+
+		//Teardown
+		numbro.culture(currentCulture);
+		test.done();
     }
 };
