@@ -13,7 +13,7 @@ exports['locale-codes'] = {
         test.expect(keys.length);
         keys.forEach(function(key) {
             var lang = cultures[key];
-            test.strictEqual(true, /^[a-z]{2,3}(?:-[A-Z]{2,3}(?:-[a-zA-Z]{4})?)?$/g.test(lang.langLocaleCode),
+            test.strictEqual(true, /^[a-z]{2,3}(?:-[a-zA-Z]{2,4}(?:-[a-zA-Z]{2,4})?)?$/g.test(lang.langLocaleCode),
                 "Invalid locale code '" + lang.langLocaleCode + "' in culture " + key);
         });
         test.done();
