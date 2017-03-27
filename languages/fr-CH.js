@@ -11,7 +11,7 @@
         langLocaleCode: 'fr-CH',
         cultureCode: 'fr-CH',
         delimiters: {
-            thousands: '\'',
+            thousands: ' ',
             decimal: '.'
         },
         abbreviations: {
