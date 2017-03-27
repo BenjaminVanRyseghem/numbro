@@ -1,0 +1,19 @@
+---
+title:  Release 1.10.0
+author: BenjaminVanRyseghem
+date:   2017-03-27 14:06:00
+---
+
+**numbro 1.10.0** has been released.
+
+
+- Fix [#213](https://github.com/foretagsplatsen/numbro/pull/213): Unhelpful Error Message with $ as Format String. Thanks [@reustle](https://github.com/reustle).
+- Fix [#221](https://github.com/foretagsplatsen/numbro/pull/221): update package.json license field. Thanks [@mguida22](https://github.com/mguida22).
+- Fix [#190](https://github.com/foretagsplatsen/numbro/pull/190): Allow abbreviation precision for < 4. Thanks [@chrisnicola](https://github.com/chrisnicola).
+- Fix [#227](https://github.com/foretagsplatsen/numbro/pull/227): Add Romanian locale. Thanks [@herodrigues](https://github.com/herodrigues).
+- Fix [#222](https://github.com/foretagsplatsen/numbro/pull/222): allow a decimal format for an integer. Thanks [@mguida22](https://github.com/mguida22).
+- Fix [#233](https://github.com/foretagsplatsen/numbro/pull/233): Correct CZ and SK locales (finally). Thanks [@smajl](https://github.com/smajl).
+- Fix [#244](https://github.com/foretagsplatsen/numbro/pull/244): Fixes for fr-CH. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#262](https://github.com/foretagsplatsen/numbro/pull/262): Better input validation. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+
+Enjoy <i class="fa fa-smile-o">

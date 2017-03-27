@@ -2,7 +2,7 @@
  * numbro.js language configuration
  * language : Czech
  * locale: Czech Republic
- * author : Anatoli Papirovski : https://github.com/apapirovski
+ * author : Jan Pesa : https://github.com/smajl (based on work from Anatoli Papirovski : https://github.com/apapirovski)
  */
 (function () {
     'use strict';
@@ -11,21 +11,22 @@
         langLocaleCode: 'cs-CZ',
         cultureCode: 'cs-CZ',
         delimiters: {
-            thousands: ' ',
+            thousands: '\u00a0',
             decimal: ','
         },
         abbreviations: {
             thousand: 'tis.',
             million: 'mil.',
-            billion: 'b',
-            trillion: 't'
+            billion: 'mld.',
+            trillion: 'bil.'
         },
         ordinal: function () {
             return '.';
         },
         currency: {
             symbol: 'Kč',
-            position: 'postfix'
+            position: 'postfix',
+            spaceSeparated: true
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -778,7 +779,7 @@
         langLocaleCode: 'fr-CH',
         cultureCode: 'fr-CH',
         delimiters: {
-            thousands: '\'',
+            thousands: ' ',
             decimal: '.'
         },
         abbreviations: {
@@ -1452,6 +1453,55 @@
 }.call(typeof window === 'undefined' ? this : window));
 
 /*!
+ * numeral.js language configuration
+ * language : Romanian
+ * author : Andrei Alecu https://github.com/andreialecu
+ */
+(function () {
+    'use strict';
+
+    var language = {
+        langLocaleCode: 'ro-RO',
+        cultureCode: 'ro-RO',
+        delimiters: {
+            thousands: '.',
+            decimal: ','
+        },
+        abbreviations: {
+            thousand: 'mii',
+            million: 'mil',
+            billion: 'mld',
+            trillion: 'bln'
+        },
+        ordinal: function () {
+            return '.';
+        },
+        currency: {
+            symbol: ' lei',
+            position: 'postfix'
+        },
+        defaults: {
+            currencyFormat: ',4 a'
+        },
+        formats: {
+            fourDigits: '4 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: ',0 $'
+        }
+    };
+
+    // CommonJS
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
+    }
+}.call(typeof window === 'undefined' ? this : window));
+
+/*!
  * numbro.js language configuration
  * language : Russian
  * locale : Russsia
@@ -1561,7 +1611,7 @@
  * numbro.js language configuration
  * language : Slovak
  * locale : Slovakia
- * author : Ahmed Al Hafoudh : http://www.freevision.sk
+ * author : Jan Pesa : https://github.com/smajl (based on work from Ahmed Al Hafoudh : http://www.freevision.sk)
  */
 (function () {
     'use strict';
@@ -1570,21 +1620,22 @@
         langLocaleCode: 'sk-SK',
         cultureCode: 'sk-SK',
         delimiters: {
-            thousands: ' ',
+            thousands: '\u00a0',
             decimal: ','
         },
         abbreviations: {
             thousand: 'tis.',
             million: 'mil.',
-            billion: 'b',
-            trillion: 't'
+            billion: 'mld.',
+            trillion: 'bil.'
         },
         ordinal: function () {
             return '.';
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            spaceSeparated: true
         },
         defaults: {
             currencyFormat: ',4 a'

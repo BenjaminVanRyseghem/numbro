@@ -72,6 +72,9 @@ exports.format = {
                 [3124213.12341234, '0.*', '3124213.12341234'],
                 [3124213.12341234, ',0.*', '3,124,213.12341234'],
 
+                // decimal format on an integer (see issue #199)
+                [-40, '#.*', '-40'],
+
                 [1, '000', '001'],
                 [10, '000', '010'],
                 [100, '000', '100'],
@@ -105,6 +108,11 @@ exports.format = {
                 [123456789, '8 a', '123456.79 k'],
                 [123456789, '9 a', '123456789 '],
                 [1234567891, '10 a', '1234567891 '],
+
+                [1234567, '2 a', '1.2 m'],
+                [1234567, '3 a', '1.23 m'],
+
+                [0, '2a', '0'],
 
                 [18823.85, '6 a', '18823.9 '],
                 [188235.85, '6 a', '188236 '],
@@ -177,6 +185,7 @@ exports.format = {
                 [-1000.234,'+$0,0.00','-$1,000.23'],
                 [1230974,'($0.00 a)','$1.23 m'],
                 [1000.234,'+$0a','+$1k'],
+                [1000.234,'$','$1000'],
 
                 // test symbol position before negative sign / open parens
                 [-1000.234,'$ (0,0)','$ (1,000)'],
@@ -715,6 +724,18 @@ exports.format = {
       }
 
       test.done();
+    },
 
+	regression261: function(test) {
+		// Setup
+		var currentCulture = numbro.culture();
+
+		numbro.culture("de-DE");
+		var result = numbro("100.000").format();
+		test.strictEqual(result, "100.000");
+
+		//Teardown
+		numbro.culture(currentCulture);
+		test.done();
     }
 };

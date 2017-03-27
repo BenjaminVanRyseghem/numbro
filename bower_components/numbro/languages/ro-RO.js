@@ -1,32 +1,30 @@
 /*!
- * numbro.js language configuration
- * language : Czech
- * locale: Czech Republic
- * author : Jan Pesa : https://github.com/smajl (based on work from Anatoli Papirovski : https://github.com/apapirovski)
+ * numeral.js language configuration
+ * language : Romanian
+ * author : Andrei Alecu https://github.com/andreialecu
  */
 (function () {
     'use strict';
 
     var language = {
-        langLocaleCode: 'cs-CZ',
-        cultureCode: 'cs-CZ',
+        langLocaleCode: 'ro-RO',
+        cultureCode: 'ro-RO',
         delimiters: {
-            thousands: '\u00a0',
+            thousands: '.',
             decimal: ','
         },
         abbreviations: {
-            thousand: 'tis.',
-            million: 'mil.',
-            billion: 'mld.',
-            trillion: 'bil.'
+            thousand: 'mii',
+            million: 'mil',
+            billion: 'mld',
+            trillion: 'bln'
         },
         ordinal: function () {
             return '.';
         },
         currency: {
-            symbol: 'Kč',
-            position: 'postfix',
-            spaceSeparated: true
+            symbol: ' lei',
+            position: 'postfix'
         },
         defaults: {
             currencyFormat: ',4 a'
