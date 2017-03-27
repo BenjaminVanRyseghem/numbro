@@ -1033,6 +1033,33 @@
         Helpers
     ************************************/
 
+    function detectCulture(inputString) {
+        numbro.loadCulturesInNode();
+        if (typeof inputString === 'number') {
+            return undefined;
+        }
+
+        var input = numbro().unformat(inputString);
+
+        if (typeof input === 'number') {
+            var output = [];
+
+            Object.keys(cultures).forEach(function(code) {
+                var culture = cultures[code];
+
+                if (culture.currency.spaceSeparated) {
+                    console.log(inputString.split(' '));
+                } else {
+                    console.log(inputString.split(culture.currency.symbol));
+                }
+            });
+
+            return output;
+        }
+
+        return undefined;
+    }
+
     function setCulture(code, values) {
         cultures[code] = values;
     }
@@ -1189,6 +1216,10 @@
             } else {
                 return undefined;
             }
+        },
+
+        detectCulture: function(inputString) {
+            return detectCulture(inputString);
         },
 
         binaryByteUnits: function() {
