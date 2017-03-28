@@ -1,33 +1,30 @@
 /*!
  * numbro.js language configuration
- * language : Russian
- * locale : Russsia
- * author : Anatoli Papirovski : https://github.com/apapirovski
+ * language : German
+ * locale: Liechtenstein
+ * author : Michael Piefel : https://github.com/piefel (based on work from Marco Krage : https://github.com/sinky)
  */
 (function () {
     'use strict';
 
     var language = {
-        langLocaleCode: 'ru-RU',
-        cultureCode: 'ru-RU',
+        langLocaleCode: 'de-LI',
+        cultureCode: 'de-LI',
         delimiters: {
-            thousands: ' ',
-            decimal: ','
+            thousands: '\'',
+            decimal: '.'
         },
         abbreviations: {
-            thousand: 'тыс.',
-            million: 'млн',
+            thousand: 'k',
+            million: 'm',
             billion: 'b',
             trillion: 't'
         },
         ordinal: function () {
-            // not ideal, but since in Russian it can taken on
-            // different forms (masculine, feminine, neuter)
-            // this is all we can do
             return '.';
         },
         currency: {
-            symbol: '₽',
+            symbol: 'CHF',
             position: 'postfix'
         },
         defaults: {
