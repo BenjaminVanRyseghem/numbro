@@ -35,5 +35,23 @@ exports.misc = {
 
         test.ok(currentCulture === 'en', 'Expect culturecode: ' + currentCulture);
         test.done();
+    },
+    missing_culture: function (test) {
+        test.expect(1);
+        numbro.culture('zz-foo');
+
+        var currentCulture = numbro.culture();
+
+        test.ok(currentCulture === 'en-US', 'Expect culturecode: ' + currentCulture);
+        test.done();
+    },
+    missing_language: function (test) {
+        test.expect(1);
+        numbro.language('zz-foo');
+
+        var currentCulture = numbro.language();
+
+        test.ok(currentCulture === 'en-US', 'Expect culturecode: ' + currentCulture);
+        test.done();
     }
 };

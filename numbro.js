@@ -812,7 +812,7 @@
                 if (key.indexOf('-') >= 0) {
                     return numbro.language(parentCulture(key));
                 } else {
-                    throw new Error('Unknown language : ' + key);
+                    key = 'en-US';
                 }
             }
             chooseCulture(key);
@@ -840,7 +840,7 @@
                 if (code.indexOf('-') >= 0) {
                     return numbro.culture(parentCulture(code));
                 } else {
-                    throw new Error('Unknown culture : ' + code);
+                    code = 'en-US';
                 }
             }
             chooseCulture(code);
