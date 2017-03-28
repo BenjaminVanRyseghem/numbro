@@ -57,5 +57,35 @@ exports.misc = {
 
         test.ok(cultureData.cultureCode === 'en', 'Expect culturecode: ' + cultureData.cultureCode);
         test.done();
-    }
+    },
+    ultimate_fallback_culture: function (test) {
+        test.expect(1);
+        numbro.culture('zz-foo');
+        var currentCulture = numbro.culture();
+
+        test.ok(currentCulture === 'en-US', 'Expect culturecode: ' + currentCulture);
+        test.done();
+    },
+    ultimate_fallback_language: function (test) {
+        test.expect(1);
+        numbro.language('zz-foo');
+        var currentCulture = numbro.language();
+
+        test.ok(currentCulture === 'en-US', 'Expect culturecode: ' + currentCulture);
+        test.done();
+    },
+    ultimate_fallback_culture_data: function (test) {
+        test.expect(1);
+        var cultureData = numbro.cultureData('zz-foo');
+
+        test.ok(cultureData.cultureCode === 'en-US', 'Expect culturecode: ' + cultureData.cultureCode);
+        test.done();
+    },
+    ultimate_fallback_language_data: function (test) {
+        test.expect(1);
+        var cultureData = numbro.languageData('zz-foo');
+
+        test.ok(cultureData.cultureCode === 'en-US', 'Expect culturecode: ' + cultureData.cultureCode);
+        test.done();
+    },
 };
