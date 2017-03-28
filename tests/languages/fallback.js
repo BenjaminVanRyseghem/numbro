@@ -28,12 +28,34 @@ numbro.culture('en', {
 });
 
 exports.misc = {
-    fallback: function (test) {
+    fallback_culture: function (test) {
         test.expect(1);
         numbro.culture('en-foo');
         var currentCulture = numbro.culture();
 
         test.ok(currentCulture === 'en', 'Expect culturecode: ' + currentCulture);
+        test.done();
+    },
+    fallback_language: function (test) {
+        test.expect(1);
+        numbro.language('en-foo');
+        var currentCulture = numbro.language();
+
+        test.ok(currentCulture === 'en', 'Expect culturecode: ' + currentCulture);
+        test.done();
+    },
+    fallback_culture_data: function (test) {
+        test.expect(1);
+        var cultureData = numbro.cultureData('en-foo');
+
+        test.ok(cultureData.cultureCode === 'en', 'Expect culturecode: ' + cultureData.cultureCode);
+        test.done();
+    },
+    fallback_language_data: function (test) {
+        test.expect(1);
+        var cultureData = numbro.languageData('en-foo');
+
+        test.ok(cultureData.cultureCode === 'en', 'Expect culturecode: ' + cultureData.cultureCode);
         test.done();
     }
 };
