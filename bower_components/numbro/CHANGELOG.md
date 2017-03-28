@@ -1,3 +1,11 @@
+### 1.10.1
+
+- Fix #239: Add de-AT localization. Thanks @gwynjudd.
+- Fix #242: Added de-LI localisation. Thanks @gwynjudd.
+- Fix #243: en-IE localization. Thanks @gwynjudd.
+- Fix #246: Added it-CH localization. Thanks @gwynjudd.
+- Fix #265: Revert Error thrown when invalid input. Thanks @BenjaminVanRyseghem.
+
 ### 1.10.0
 
 - Fix #213: Unhelpful Error Message with $ as Format String. Thanks @reustle.

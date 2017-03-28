@@ -10,7 +10,7 @@ exports.misc = {
         var tests = [
                 [1000, 1000],
                 [0.5, 0.5],
-                [undefined, 0],
+                [undefined, NaN],
                 ['1,000', 1000],
                 ['not a number', NaN],
             ],
@@ -25,6 +25,15 @@ exports.misc = {
             }
         }
 
+        test.done();
+    },
+
+    regression265: function(test) {
+        // Setup
+        var result = numbro(null).format();
+        test.strictEqual(result, "NaN");
+
+        //Teardown
         test.done();
     },
 

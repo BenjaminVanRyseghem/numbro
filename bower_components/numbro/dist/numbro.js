@@ -1,6 +1,6 @@
 /*!
  * numbro.js
- * version : 1.10.0
+ * version : 1.10.1
  * author : Företagsplatsen AB
  * license : MIT
  * http://www.foretagsplatsen.se
@@ -14,7 +14,7 @@
     ************************************/
 
     var numbro,
-        VERSION = '1.10.0',
+        VERSION = '1.10.1',
         binarySuffixes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
         decimalSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
         bytes = {
@@ -719,12 +719,10 @@
     numbro = function(input) {
         if (numbro.isNumbro(input)) {
             input = input.value();
-        } else if (input === 0 || typeof input === 'undefined') {
-            input = 0;
         } else if (typeof input === 'string' || typeof input === 'number') {
             input = numbro.fn.unformat(input);
         } else {
-            throw new Error('Invalid input');
+            input = NaN;
         }
 
         return new Numbro(Number(input));
