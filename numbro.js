@@ -719,12 +719,10 @@
     numbro = function(input) {
         if (numbro.isNumbro(input)) {
             input = input.value();
-        } else if (input === 0 || typeof input === 'undefined') {
-            input = 0;
         } else if (typeof input === 'string' || typeof input === 'number') {
             input = numbro.fn.unformat(input);
         } else {
-            throw new Error('Invalid input');
+            input = NaN;
         }
 
         return new Numbro(Number(input));
