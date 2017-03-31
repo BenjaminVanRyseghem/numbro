@@ -11,8 +11,8 @@
         langLocaleCode: 'en-ZA',
         cultureCode: 'en-ZA',
         delimiters: {
-            thousands: ',',
-            decimal: '.'
+            thousands: ' ',
+            decimal: ','
         },
         abbreviations: {
             thousand: 'k',
