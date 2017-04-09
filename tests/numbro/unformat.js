@@ -9,7 +9,7 @@ exports.unformat = {
     },
 
     numbers: function (test) {
-        test.expect(20);
+        test.expect(32);
 
         var tests = [
                 ['10,000.123', 10000.123],
@@ -19,6 +19,18 @@ exports.unformat = {
                 ['31st', 31],
                 ['1.23t', 1230000000000],
                 ['N/A', 0],
+                ['NaN', NaN],
+                ['NaN%', NaN],
+                ['NaN %', NaN],
+                ['$NaN', NaN],
+                ['Infinity', Infinity],
+                ['$Infinity', Infinity],
+                ['Infinity%', Infinity],
+                ['Infinity %', Infinity],
+                ['-Infinity', -Infinity],
+                ['-$Infinity', -Infinity],
+                ['-Infinity%', -Infinity],
+                ['-Infinity %', -Infinity],
 
                 // Invalid strings which don't represent a number are converted
                 // to undefined.
