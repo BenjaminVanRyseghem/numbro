@@ -1,15 +1,15 @@
 /*!
  * numbro.js language configuration
  * language : Spanish
- * locale: Peru
- * author : Gwyn Judd : https://github.com/gwynjudd
+ * locale: México
+ * author : Elvin García : https://github.com/miuler089
  */
 (function () {
     'use strict';
 
     var language = {
-        langLocaleCode: 'es-PE',
-        cultureCode: 'es-PE',
+        langLocaleCode: 'es-MX',
+        cultureCode: 'es-MX',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -29,7 +29,7 @@
                             (b === 9) ? 'no' : 'to';
         },
         currency: {
-            symbol: 'S/',
+            symbol: '$',
             position: 'prefix'
         },
         defaults: {
