@@ -29,7 +29,7 @@
                             (b === 9) ? 'no' : 'to';
         },
         currency: {
-            symbol: 'S/.',
+            symbol: 'S/',
             position: 'prefix'
         },
         defaults: {
