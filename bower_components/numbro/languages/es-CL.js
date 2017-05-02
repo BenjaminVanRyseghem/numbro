@@ -1,44 +1,45 @@
 /*!
  * numbro.js language configuration
- * language : English
- * locale: South Africa
- * author : Stewart Scott https://github.com/stewart42
+ * language : Spanish
+ * locale: Chile
+ * author : Gwyn Judd : https://github.com/gwynjudd
  */
 (function () {
     'use strict';
 
     var language = {
-        langLocaleCode: 'en-ZA',
-        cultureCode: 'en-ZA',
+        langLocaleCode: 'es-CL',
+        cultureCode: 'es-CL',
         delimiters: {
-            thousands: ' ',
+            thousands: '.',
             decimal: ','
         },
         abbreviations: {
             thousand: 'k',
-            million: 'm',
+            million: 'mm',
             billion: 'b',
             trillion: 't'
         },
         ordinal: function (number) {
             var b = number % 10;
-            return (~~ (number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
+            return (b === 1 || b === 3) ? 'er' :
+                (b === 2) ? 'do' :
+                    (b === 7 || b === 0) ? 'mo' :
+                        (b === 8) ? 'vo' :
+                            (b === 9) ? 'no' : 'to';
         },
         currency: {
-            symbol: 'R',
+            symbol: '$',
             position: 'prefix'
         },
         defaults: {
-            currencyFormat: ',4 a'
+            currencyFormat: '$0,0'
         },
         formats: {
             fourDigits: '4 a',
-            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimals: ',0.00 $',
             fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: '$ ,0'
+            fullWithNoDecimals: ',0 $'
         }
     };
 

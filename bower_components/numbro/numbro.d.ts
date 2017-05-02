@@ -1,101 +1,101 @@
 // Definitions by: Dan Poggi <https://github.com/dpoggi>
 
-interface NumbroStatic {
-  (value?: any): Numbro;
+declare function numbro(value?: any): numbro.Numbro;
 
-  version: string;
-  isNumbro(value: any): value is Numbro;
+declare namespace numbro {
+    
+    export const version: string;
+    export function isNumbro(value: any): value is Numbro;
 
-  setCulture(newCultureCode: string, fallbackCultureCode?: string): void;
-  culture(): string;
-  culture(cultureCode: string): void;
-  culture(cultureCode: string, newCulture: NumbroCulture): NumbroStatic;
-  cultureData(cultureCode?: string): NumbroCulture;
-  cultures(): Array<NumbroCulture>;
+    export function setCulture(newCultureCode: string, fallbackCultureCode ?: string): void;
+    export function culture(): string;
+    export function culture(cultureCode: string): void;
+    export function culture(cultureCode: string, newCulture: NumbroCulture): typeof numbro;
+    export function cultureData(cultureCode ?: string): NumbroCulture;
+    export function cultures(): Array<NumbroCulture>;
 
-  /**
-   * Language functions
-   *
-   * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
-   * culture versions instead.
-   */
-  setLanguage(newCultureCode: string, fallbackCultureCode?: string): void;
-  language(): string;
-  language(cultureCode: string): void;
-  language(cultureCode: string, newCulture: NumbroCulture): NumbroStatic;
-  languageData(cultureCode?: string): NumbroCulture;
-  languages(): Array<NumbroCulture>;
+    /**
+     * Language functions
+     *
+     * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
+     * culture versions instead.
+     */
+    export function setLanguage(newCultureCode: string, fallbackCultureCode ?: string): void;
+    export function language(): string;
+    export function language(cultureCode: string): void;
+    export function language(cultureCode: string, newCulture: NumbroCulture): typeof numbro;
+    export function languageData(cultureCode ?: string): NumbroCulture;
+    export function languages(): Array<NumbroCulture>;
 
-  zeroFormat(newFormat: string): void;
-  defaultFormat(newFormat: string): void;
-  defaultCurrencyFormat(newFormat: string): void;
+    export function zeroFormat(newFormat: string): void;
+    export function defaultFormat(newFormat: string): void;
+    export function defaultCurrencyFormat(newFormat: string): void;
 
-  validate(value: string, cultureCode?: string): boolean;
+    export function validate(value: string, cultureCode ?: string): boolean;
 
-  loadCulturesInNode(): void;
+    export function loadCulturesInNode(): void;
 
-  /**
-   * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
-   * culture version instead.
-   */
-  loadLanguagesInNode(): void;
+    /**
+     * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
+     * culture version instead.
+     */
+    export function loadLanguagesInNode(): void;
+
+    interface Numbro {
+        clone(): Numbro;
+
+        format(formatString?: string, roundingFunction?: RoundingFunction): string;
+        formatCurrency(formatString?: string, roundingFunction?: RoundingFunction): string;
+        unformat(formattedNumber: string): number;
+
+        binaryByteUnits(): string;
+        byteUnits(): string;
+        decimalByteUnits(): string;
+
+        value(): number;
+        valueOf(): number;
+
+        set(value: number): this;
+        add(value: number): this;
+        subtract(value: number): this;
+        multiply(value: number): this;
+        divide(value: number): this;
+
+        difference(value: number): number;
+    }
+
+    export interface NumbroCulture {
+        langLocaleCode: string;
+        cultureCode: string;
+        delimiters: {
+            thousands: string;
+            decimal: string;
+        };
+        abbreviations: {
+            thousand: string;
+            million: string;
+            billion: string;
+            trillion: string;
+        };
+        ordinal(num: number): string;
+        currency: {
+            symbol: string;
+            position: string;
+        };
+        defaults: {
+            currencyFormat: string;
+        };
+        formats: {
+            fourDigits: string;
+            fullWithTwoDecimals: string;
+            fullWithTwoDecimalsNoCurrency: string;
+            fullWithNoDecimals: string;
+        };
+    }
+
+    export interface RoundingFunction {
+        (x: number): number;
+    }
 }
 
-export interface Numbro {
-  clone(): Numbro;
-
-  format(formatString?: string, roundingFunction?: RoundingFunction): string;
-  formatCurrency(formatString?: string, roundingFunction?: RoundingFunction): string;
-  unformat(formattedNumber: string): number;
-
-  binaryByteUnits(): string;
-  byteUnits(): string;
-  decimalByteUnits(): string;
-
-  value(): number;
-  valueOf(): number;
-
-  set(value: number): this;
-  add(value: number): this;
-  subtract(value: number): this;
-  multiply(value: number): this;
-  divide(value: number): this;
-
-  difference(value: number): number;
-}
-
-export interface NumbroCulture {
-  langLocaleCode: string;
-  cultureCode: string;
-  delimiters: {
-    thousands: string;
-    decimal: string;
-  };
-  abbreviations: {
-    thousand: string;
-    million: string;
-    billion: string;
-    trillion: string;
-  };
-  ordinal(num: number): string;
-  currency: {
-    symbol: string;
-    position: string;
-  };
-  defaults: {
-    currencyFormat: string;
-  };
-  formats: {
-    fourDigits: string;
-    fullWithTwoDecimals: string;
-    fullWithTwoDecimalsNoCurrency: string;
-    fullWithNoDecimals: string;
-  };
-}
-
-export interface RoundingFunction {
-  (x: number): number;
-}
-
-declare const numbro: NumbroStatic;
-export default numbro;
+export = numbro;

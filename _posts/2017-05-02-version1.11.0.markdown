@@ -1,0 +1,25 @@
+---
+title:  Release 1.11.0
+author: BenjaminVanRyseghem
+date:   2017-05-02 10:22:00
+---
+
+**numbro 1.11.0** has been released.
+
+
+- Fix [#232](https://github.com/foretagsplatsen/numbro/pull/232): update numbro.d.ts to use export = instead of export default. Thanks [@olmobrutall](https://github.com/olmobrutall).
+- Fix [#241](https://github.com/foretagsplatsen/numbro/pull/241): Added bg localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#248](https://github.com/foretagsplatsen/numbro/pull/248): Fix index.js generation for culture neutral codes. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#255](https://github.com/foretagsplatsen/numbro/pull/255): Allow four character country code. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#260](https://github.com/foretagsplatsen/numbro/pull/260): Added el localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#269](https://github.com/foretagsplatsen/numbro/pull/269): Fix thousands and decimal separator for en-ZA. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#271](https://github.com/foretagsplatsen/numbro/pull/271): Added es-CL localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#272](https://github.com/foretagsplatsen/numbro/pull/272): Added es-CO localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#273](https://github.com/foretagsplatsen/numbro/pull/273): Added es-CR localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#274](https://github.com/foretagsplatsen/numbro/pull/274): Added es-NI localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#275](https://github.com/foretagsplatsen/numbro/pull/275): Added es-PE localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#276](https://github.com/foretagsplatsen/numbro/pull/276): Added es-PR localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+- Fix [#277](https://github.com/foretagsplatsen/numbro/pull/277): Added es-SV localization. Thanks [@gwynjudd](https://github.com/gwynjudd).
+
+
+Enjoy <i class="fa fa-smile-o">
