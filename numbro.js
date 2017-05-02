@@ -30,6 +30,8 @@
         languages = cultures,
         currentCulture = 'en-US',
         zeroFormat = null,
+        nanFormat = NaN.toString(),
+        infinityFormat = Infinity.toString(),
         defaultFormat = '0,0',
         defaultCurrencyFormat = '0$',
         // check for nodeJS
@@ -244,8 +246,19 @@
                 var str = string.replace(/[^0-9\.]+/g, '');
                 if (str === '') {
                     // An empty string is not a number.
-                    n._value = NaN;
+                    n._value = undefined;
 
+                    // But it might be NaN or Infinity (but not both)
+                    var containsNaN = string.indexOf(nanFormat) > -1;
+                    var containsInfinity = string.indexOf(infinityFormat) > -1;
+                    if ((containsNaN && !containsInfinity) || (!containsNaN && containsInfinity)) {
+                        // Remove characters numbro may have added
+                        // TODO: review if these characters should be added to NaN / Infinity
+                        var baseValue = string.replace(/[$% ]/g, '');
+
+                        // Will return NaN by default if doesn't match - any other special characters?
+                        n._value = Number(baseValue);
+                    }
                 } else {
                     // do some math to create our number
                     n._value = ((bytesMultiplier) ? bytesMultiplier : 1) *
@@ -1179,11 +1192,7 @@
             if (typeof inputString === 'number') {
                 return inputString;
             } else if (typeof inputString === 'string') {
-                var result = unformatNumbro(this, inputString);
-
-                // Any unparseable string (represented as NaN in the result) is
-                // converted into undefined.
-                return isNaN(result) ? undefined : result;
+                return unformatNumbro(this, inputString);
             } else {
                 return undefined;
             }
