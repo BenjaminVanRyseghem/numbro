@@ -1,3 +1,19 @@
+### 1.11.0
+
+- Fix #232: update numbro.d.ts to use export = instead of export default. Thanks @olmobrutall.
+- Fix #241: Added bg localization. Thanks @gwynjudd.
+- Fix #248: Fix index.js generation for culture neutral codes. Thanks @gwynjudd.
+- Fix #255: Allow four character country code. Thanks @gwynjudd.
+- Fix #260: Added el localization. Thanks @gwynjudd.
+- Fix #269: Fix thousands and decimal separator for en-ZA. Thanks @gwynjudd.
+- Fix #271: Added es-CL localization. Thanks @gwynjudd.
+- Fix #272: Added es-CO localization. Thanks @gwynjudd.
+- Fix #273: Added es-CR localization. Thanks @gwynjudd.
+- Fix #274: Added es-NI localization. Thanks @gwynjudd.
+- Fix #275: Added es-PE localization. Thanks @gwynjudd.
+- Fix #276: Added es-PR localization. Thanks @gwynjudd.
+- Fix #277: Added es-SV localization. Thanks @gwynjudd.
+
 ### 1.10.1
 
 - Fix #239: Add de-AT localization. Thanks @gwynjudd.
