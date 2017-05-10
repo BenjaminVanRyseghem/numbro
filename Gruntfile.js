@@ -149,7 +149,12 @@ module.exports = function(grunt) {
                 return true;
             }
         }).map(function(file) {
-            return 'exports[\'' + file.replace('.js', '') + '\'] = require(\'./' + file + '\');';
+            var prop = file.replace('.js', '');
+            if (prop.indexOf('-') < 0) {
+                return 'exports.' + prop + ' = require(\'./' + file + '\');';
+            } else {
+                return 'exports[\'' + prop + '\'] = require(\'./' + file + '\');';
+            }
         }).join('\n');
 
         fs.writeFileSync(dir + '/index.js', '/* jshint sub: true */\n');
