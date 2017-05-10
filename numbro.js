@@ -784,6 +784,17 @@
     };
 
     /**
+     * Get the parent culture from the passed in culture code
+     * e.g. fr-FR -> fr
+     *
+     * @param {string} code
+     * @returns {string} parent culture
+     */
+    function parentCulture(code) {
+        return code.substring(0, code.lastIndexOf('-'));
+    }
+
+    /**
      * This function will load languages and then set the global language.  If
      * no arguments are passed in, it will simply return the current global
      * language key.
@@ -800,7 +811,11 @@
 
         if (key && !values) {
             if (!languages[key]) {
-                throw new Error('Unknown language : ' + key);
+                if (key.indexOf('-') >= 0) {
+                    return numbro.language(parentCulture(key));
+                } else {
+                    key = 'en-US';
+                }
             }
             chooseCulture(key);
         }
@@ -824,7 +839,11 @@
 
         if (code && !values) {
             if (!cultures[code]) {
-                throw new Error('Unknown culture : ' + code);
+                if (code.indexOf('-') >= 0) {
+                    return numbro.culture(parentCulture(code));
+                } else {
+                    code = 'en-US';
+                }
             }
             chooseCulture(code);
         }
