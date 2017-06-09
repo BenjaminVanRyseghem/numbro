@@ -204,11 +204,11 @@
 
     // revert to number
     function unformatNumbro(n, string) {
-        var stringOriginal = string,
-            thousandRegExp,
+        var thousandRegExp,
             millionRegExp,
             billionRegExp,
             trillionRegExp,
+			currencySymbolRegExp,
             bytesMultiplier = false,
             power;
 
@@ -218,19 +218,28 @@
             if (string === zeroFormat) {
                 n._value = 0;
             } else {
+                if (cultures[currentCulture].currency.symbol !== '$') {
+                    currencySymbolRegExp = new RegExp(escapeRegExp(cultures[currentCulture].currency.symbol), 'g');
+                    string = string.replace(currencySymbolRegExp, '$');
+                }
+				
                 if (cultures[currentCulture].delimiters.decimal !== '.') {
                     string = string.replace(/\./g, '').replace(cultures[currentCulture].delimiters.decimal, '.');
                 }
 
                 // see if abbreviations are there so that we can multiply to the correct number
-                thousandRegExp = new RegExp('[^a-zA-Z]' + cultures[currentCulture].abbreviations.thousand +
-                    '(?:\\)|(\\' + cultures[currentCulture].currency.symbol + ')?(?:\\))?)?$');
-                millionRegExp = new RegExp('[^a-zA-Z]' + cultures[currentCulture].abbreviations.million +
-                    '(?:\\)|(\\' + cultures[currentCulture].currency.symbol + ')?(?:\\))?)?$');
-                billionRegExp = new RegExp('[^a-zA-Z]' + cultures[currentCulture].abbreviations.billion +
-                    '(?:\\)|(\\' + cultures[currentCulture].currency.symbol + ')?(?:\\))?)?$');
-                trillionRegExp = new RegExp('[^a-zA-Z]' + cultures[currentCulture].abbreviations.trillion +
-                    '(?:\\)|(\\' + cultures[currentCulture].currency.symbol + ')?(?:\\))?)?$');
+                thousandRegExp = new RegExp('[^a-zA-Z]' + 
+                    escapeRegExp(cultures[currentCulture].abbreviations.thousand.replace(/\./g, '')) +
+                    '(?:\\)|(\\$)?(?:\\))?)?$');
+                millionRegExp = new RegExp('[^a-zA-Z]' + 
+                    escapeRegExp(cultures[currentCulture].abbreviations.million.replace(/\./g, '')) +
+                    '(?:\\)|(\\$)?(?:\\))?)?$');
+                billionRegExp = new RegExp('[^a-zA-Z]' + 
+                    escapeRegExp(cultures[currentCulture].abbreviations.billion.replace(/\./g, '')) +
+                    '(?:\\)|(\\$)?(?:\\))?)?$');
+                trillionRegExp = new RegExp('[^a-zA-Z]' + 
+                    escapeRegExp(cultures[currentCulture].abbreviations.trillion.replace(/\./g, '')) +
+                    '(?:\\)|(\\$)?(?:\\))?)?$');
 
                 // see if bytes are there so that we can multiply to the correct number
                 for (power = 1; power < binarySuffixes.length && !bytesMultiplier; ++power) {
@@ -249,10 +258,10 @@
                 } else {
                     // do some math to create our number
                     n._value = ((bytesMultiplier) ? bytesMultiplier : 1) *
-                        ((stringOriginal.match(thousandRegExp)) ? Math.pow(10, 3) : 1) *
-                        ((stringOriginal.match(millionRegExp)) ? Math.pow(10, 6) : 1) *
-                        ((stringOriginal.match(billionRegExp)) ? Math.pow(10, 9) : 1) *
-                        ((stringOriginal.match(trillionRegExp)) ? Math.pow(10, 12) : 1) *
+                        ((string.match(thousandRegExp)) ? Math.pow(10, 3) : 1) *
+                        ((string.match(millionRegExp)) ? Math.pow(10, 6) : 1) *
+                        ((string.match(billionRegExp)) ? Math.pow(10, 9) : 1) *
+                        ((string.match(trillionRegExp)) ? Math.pow(10, 12) : 1) *
                         ((string.indexOf('%') > -1) ? 0.01 : 1) *
                         (((string.split('-').length +
                             Math.min(string.split('(').length - 1, string.split(')').length - 1)) % 2) ? 1 : -1) *
@@ -1058,6 +1067,13 @@
             ) &&
             (typeof require !== 'undefined');
     }
+	
+    /**
+     * Escape a string for use in a RegExp
+     */
+    function escapeRegExp(s) {
+        return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+    }
 
     /************************************
         Floating-point helpers
@@ -1139,7 +1155,8 @@
                 mn = multiplier(next);
             return mp > mn ? mp : mn;
         }, -Infinity);
-    }
+    }	
+	
 
     /************************************
         Numbro Prototype

@@ -69,6 +69,58 @@ exports.unformat = {
 
         test.done();
     },
+	
+	currencyRtl: function (test) {
+		var culture = {
+			langLocaleCode: 'unformat-rtl-test',
+			cultureCode: 'unformat-rtl-test',
+			delimiters: {
+				thousands: ',',
+				decimal: '.'
+			},
+			abbreviations: {
+				thousand: 'k',
+				million: 'm',
+				billion: 'b',
+				trillion: 't'
+			},
+			ordinal: function (number) {
+				var b = number % 10;
+				return (~~ (number % 100 / 10) === 1) ? 'th' :
+					(b === 1) ? 'st' :
+					(b === 2) ? 'nd' :
+					(b === 3) ? 'rd' : 'th';
+			},
+			currency: {
+				symbol: 'د.ت',
+				position: 'prefix'
+			},
+			defaults: {
+				currencyFormat: ',4 a'
+			},
+			formats: {
+				fourDigits: '4 a',
+				fullWithTwoDecimals: '$ ,0.00',
+				fullWithTwoDecimalsNoCurrency: ',0.00',
+				fullWithNoDecimals: '$ ,0'
+			}
+		};
+		
+		numbro.culture('unformat-rtl-test', culture);
+		numbro.setCulture('unformat-rtl-test');
+		
+		var tests = [
+			['د.ت1,234.56', 1234.56]
+		];
+		
+		test.expect(1);
+		
+        for (var i = 0; i < tests.length; i++) {
+            test.strictEqual(numbro().unformat(tests[i][0]), tests[i][1], tests[i][0]);
+        }
+
+        test.done();
+	},
 
     bytes: function (test) {
         var tests = [
