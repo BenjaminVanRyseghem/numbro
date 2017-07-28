@@ -60,7 +60,8 @@
             },
             currency: {
                 symbol: '\u20BA',
-                position: 'postfix'
+                position: 'postfix',
+                code: 'TRY'
             },
             defaults: {
                 currencyFormat: ',4 a'

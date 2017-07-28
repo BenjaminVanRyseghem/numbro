@@ -29,7 +29,8 @@
         },
         currency: {
             symbol: 'R',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'ZAR'
         },
         defaults: {
             currencyFormat: ',4 a'

@@ -23,7 +23,8 @@
             return '.';
         },
         currency: {
-            symbol: 'RON'
+            symbol: 'RON',
+            code: 'RON'
         }
     };
 

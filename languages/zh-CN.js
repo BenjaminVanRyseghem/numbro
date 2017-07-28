@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: '¥',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'CNY'
         },
         defaults: {
             currencyFormat: ',4 a'

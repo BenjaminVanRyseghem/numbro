@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: 'R$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'BRL'
         },
         defaults: {
             currencyFormat: ',4 a'

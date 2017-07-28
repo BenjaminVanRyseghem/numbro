@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: '¥',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'JPY'
         },
         defaults: {
             currencyFormat: ',4 a'

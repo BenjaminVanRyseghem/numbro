@@ -28,7 +28,8 @@
                         (b === 3) ? 'rd' : 'th';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            code: 'EUR'
         }
     };
 

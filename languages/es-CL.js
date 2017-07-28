@@ -30,7 +30,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'CLP'
         },
         defaults: {
             currencyFormat: '$0,0'

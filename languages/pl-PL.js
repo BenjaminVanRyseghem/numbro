@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: ' zł',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'PLN'
         },
         defaults: {
             currencyFormat: ',4 a'
