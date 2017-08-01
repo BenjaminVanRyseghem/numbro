@@ -71,6 +71,31 @@ exports.misc = {
         test.done();
     },
 
+    customNull: function (test) {
+        test.expect(11);
+
+        var tests = [
+                [null, '', '', '0'],
+                [null, 'N/A', 'N/A', '0'],
+                [null, 'N/A', 'N/A', '0o'],
+                [null, 'N/A', 'N/A', '0 a'],
+                [null, 'N/A', 'N/A', '$0'],
+                [null, 'N/A', 'N/A', '0 b'],
+                [null, 'N/A', 'N/A', '0%'],
+                [null, 'N/A', 'N/A', '00:00:00'],
+                [undefined, 'N/A', 'N/A', '0'],
+                ['not a number', 'N/A', 'N/A', '0'],
+                [NaN, 'N/A', 'N/A', '0']
+            ];
+
+        for (var i = 0; i < tests.length; i++) {
+            numbro.nullFormat(tests[i][1]);
+            test.strictEqual(numbro(tests[i][0]).format(tests[i][3]), tests[i][2]);
+        }
+
+        test.done();
+    },
+
     clone: function (test) {
         test.expect(4);
 

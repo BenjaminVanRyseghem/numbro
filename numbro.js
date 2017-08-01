@@ -30,6 +30,7 @@
         languages = cultures,
         currentCulture = 'en-US',
         zeroFormat = null,
+        nullFormat = null,
         defaultFormat = '0,0',
         defaultCurrencyFormat = '0$',
         // check for nodeJS
@@ -277,6 +278,10 @@
             spliceIndex,
             output;
 
+        if ((n._value === null || isNaN(n._value)) && nullFormat !== null) {
+            return nullFormat;
+        }
+
         if(format.indexOf('$') === -1){
             // Use defaults instead of the format provided
             if (cultures[currentCulture].currency.position === 'infix') {
@@ -369,6 +374,10 @@
             output,
             value = n._value * 100;
 
+        if ((n._value === null || isNaN(n._value)) && nullFormat !== null) {
+            return nullFormat;
+        }
+
         // check for space before %
         if (format.indexOf(' %') > -1) {
             space = ' ';
@@ -394,6 +403,11 @@
         var hours = Math.floor(n._value / 60 / 60),
             minutes = Math.floor((n._value - (hours * 60 * 60)) / 60),
             seconds = Math.round(n._value - (hours * 60 * 60) - (minutes * 60));
+
+        if ((n._value === null || isNaN(n._value)) && nullFormat !== null) {
+            return nullFormat;
+        }
+
         return hours + ':' +
             ((minutes < 10) ? '0' + minutes : minutes) + ':' +
             ((seconds < 10) ? '0' + seconds : seconds);
@@ -481,6 +495,10 @@
             paren = '',
             minlen,
             i;
+
+        if ((value === null || isNaN(value)) && nullFormat !== null) {
+            return nullFormat;
+        }
 
         // check if number is zero and a custom zero format has been set
         if (value === 0 && zeroFormat !== null) {
@@ -725,7 +743,7 @@
             input = NaN;
         }
 
-        return new Numbro(Number(input));
+        return new Numbro(input);
     };
 
     // version number
@@ -893,6 +911,10 @@
 
     numbro.zeroFormat = function(format) {
         zeroFormat = typeof(format) === 'string' ? format : null;
+    };
+
+    numbro.nullFormat = function(format) {
+        nullFormat = typeof(format) === 'string' ? format : null;
     };
 
     numbro.defaultFormat = function(format) {
