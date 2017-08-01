@@ -685,7 +685,18 @@
         }
 
         if (thousands > -1) {
-            w = w.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1' +
+            var re = '(?!\\d))';
+
+            var group = cultures[currentCulture].delimiters.group || [3];
+            for (var groupIndex = group.length-1; groupIndex >= 0; groupIndex--) {
+                var repeat = (groupIndex === 0 ? (group.length > 1 ? '*' : '+') : '');
+                re = '(?:\\d{' + group[groupIndex] + '})' + repeat + re;
+            }
+
+            re = '(\\d)(?=' + re;
+            re = new RegExp(re, 'g');
+
+            w = w.toString().replace(re, '$1' +
                 cultures[currentCulture].delimiters.thousands);
         }
 
