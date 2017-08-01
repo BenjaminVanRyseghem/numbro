@@ -24,7 +24,8 @@
             return '.';
         },
         currency: {
-            symbol: 'MOP'
+            symbol: 'MOP',
+            code: 'MOP'
         }
     };
 

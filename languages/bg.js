@@ -23,7 +23,8 @@
             return '.';
         },
         currency: {
-            symbol: 'лв.'
+            symbol: 'лв.',
+            code: 'BGN'
         }
     };
 

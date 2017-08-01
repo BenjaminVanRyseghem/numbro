@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: 'CHF',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'CHF'
         },
         defaults: {
             currencyFormat: ',4 a'

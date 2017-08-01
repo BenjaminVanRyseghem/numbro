@@ -30,7 +30,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'USD'
         },
         defaults: {
             currencyFormat: ',4 a'

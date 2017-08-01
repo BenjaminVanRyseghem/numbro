@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: ' Ft',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'HUF'
         },
         defaults: {
             currencyFormat: ',4 a'

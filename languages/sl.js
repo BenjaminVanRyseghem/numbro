@@ -24,7 +24,8 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            code: 'EUR'
         }
     };
 

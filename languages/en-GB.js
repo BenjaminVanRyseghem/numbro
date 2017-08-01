@@ -29,7 +29,8 @@
         },
         currency: {
             symbol: '£',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'GBP'
         },
         defaults: {
             currencyFormat: ',4 a'

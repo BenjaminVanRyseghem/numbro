@@ -24,7 +24,8 @@
             return 'ام';
         },
         currency: {
-            symbol: '﷼'
+            symbol: '﷼',
+            code: 'IRR'
         }
     };
 

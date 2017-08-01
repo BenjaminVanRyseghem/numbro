@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: '฿',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'THB'
         },
         defaults: {
             currencyFormat: ',4 a'

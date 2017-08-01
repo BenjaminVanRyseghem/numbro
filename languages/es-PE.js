@@ -30,7 +30,8 @@
         },
         currency: {
             symbol: 'S/.',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'PEN'
         },
         defaults: {
             currencyFormat: ',4 a'
