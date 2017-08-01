@@ -23,7 +23,8 @@
             return '.';
         },
         currency: {
-            symbol: 'Rp'
+            symbol: 'Rp',
+            code: 'IDR'
         }
     };
 

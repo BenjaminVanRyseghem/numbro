@@ -23,7 +23,8 @@
             return '.';
         },
         currency: {
-            symbol: 'kr'
+            symbol: 'kr',
+            code: 'NOK'
         }
     };
 

@@ -30,7 +30,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'ARS'
         },
         defaults: {
             currencyFormat: ',4 a'

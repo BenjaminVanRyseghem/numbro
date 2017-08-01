@@ -26,7 +26,8 @@
         currency: {
             symbol: '€',
             position: 'postfix',
-            spaceSeparated: true
+            spaceSeparated: true,
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'

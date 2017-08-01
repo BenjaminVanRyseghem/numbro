@@ -30,7 +30,8 @@
         },
         currency: {
             symbol: '₡',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'CRC'
         },
         defaults: {
             currencyFormat: ',4 a'

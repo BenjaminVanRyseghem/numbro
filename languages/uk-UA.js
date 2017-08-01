@@ -28,7 +28,8 @@
         },
         currency: {
             symbol: '\u20B4',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'UAH'
         },
         defaults: {
             currencyFormat: ',4 a'

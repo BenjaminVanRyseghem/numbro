@@ -25,7 +25,8 @@
         },
         currency: {
             symbol: 'kr',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'DKK'
         },
         defaults: {
             currencyFormat: ',4 a'

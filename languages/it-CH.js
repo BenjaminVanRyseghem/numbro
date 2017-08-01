@@ -24,7 +24,8 @@
             return '°';
         },
         currency: {
-            symbol: 'CHF'
+            symbol: 'CHF',
+            code: 'CHF'
         }
     };
 

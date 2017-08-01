@@ -24,7 +24,8 @@
             return '第';
         },
         currency: {
-            symbol: 'NT$'
+            symbol: 'NT$',
+            code: 'TWD'
         }
     };
 

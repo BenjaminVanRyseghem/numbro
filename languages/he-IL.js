@@ -22,7 +22,8 @@
         },
         currency: {
             symbol: '₪',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'ILS'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -44,4 +45,3 @@
         window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
-
