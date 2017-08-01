@@ -1,8 +1,8 @@
 /*!
  * numbro.js language configuration
- * language : Chinese (Taiwan)
- * author (numbro.js Version): Randy Wilander : https://github.com/rocketedaway
- * author (numeral.js Version) : Rich Daley : https://github.com/pedantic-git
+ * language : Chinese (Traditional)
+ * locale : Taiwan
+ * author : rdubigny : https://github.com/rdubigny
  */
 (function () {
     'use strict';
@@ -21,11 +21,21 @@
             trillion: '兆'
         },
         ordinal: function () {
-            return '第';
+            return '.';
         },
         currency: {
-            symbol: 'NT$',
+            symbol: '¥',
+            position: 'prefix',
             code: 'TWD'
+        },
+        defaults: {
+            currencyFormat: ',4 a'
+        },
+        formats: {
+            fourDigits: '4 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: '$ ,0'
         }
     };
 

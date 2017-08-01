@@ -1,6 +1,6 @@
 /*!
  * numbro.js language configuration
- * language : simplified chinese
+ * language : Chinese (Simplified)
  * locale : China
  * author : badplum : https://github.com/badplum
  */

@@ -1,7 +1,9 @@
-var numbro = require('../../numbro');
-var language = require('../../languages/zh-SG');
+'use strict';
 
-numbro.culture('zh-SG', language);
+var numbro = require('../../numbro');
+var culture = require('../../languages/zh-SG');
+
+numbro.culture(culture.langLocaleCode, culture);
 
 exports['culture:zh-SG'] = {
     setUp: function (callback) {
@@ -47,10 +49,10 @@ exports['culture:zh-SG'] = {
         test.expect(4);
 
         var tests = [
-            [1000.234,'$0,0.00','$1,000.23'],
-            [-1000.234,'($0,0)','($1,000)'],
-            [-1000.234,'$0.00','-$1000.23'],
-            [1230974,'($0.00a)','$1.23百万']
+            [1000.234,'$0,0.00','¥1,000.23'],
+            [-1000.234,'($0,0)','(¥1,000)'],
+            [-1000.234,'$0.00','-¥1000.23'],
+            [1230974,'($0.00a)','¥1.23百万']
         ];
 
         for (var i = 0; i < tests.length; i++) {
@@ -83,11 +85,11 @@ exports['culture:zh-SG'] = {
         var tests = [
             ['10,000.123',10000.123],
             ['(0.12345)',-0.12345],
-            ['($1.23百万)',-1230000],
+            ['(¥1.23百万)',-1230000],
             ['10千',10000],
             ['-10千',-10000],
             ['23.',23],
-            ['$10,000.00',10000],
+            ['¥10,000.00',10000],
             ['-76%',-0.76],
             ['2:23:57',8637]
         ];

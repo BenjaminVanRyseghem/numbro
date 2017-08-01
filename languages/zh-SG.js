@@ -1,8 +1,8 @@
 /*!
  * numbro.js language configuration
- * language : Chinese simplified
- * locale: Singapore
- * author : Tim McIntosh (StayinFront NZ)
+ * language : Chinese (Simplified)
+ * locale : Singapore
+ * author : badplum : https://github.com/badplum
  */
 (function () {
     'use strict';
@@ -24,17 +24,27 @@
             return '.';
         },
         currency: {
-            symbol: '$',
+            symbol: '¥',
+            position: 'prefix',
             code: 'SGD'
+        },
+        defaults: {
+            currencyFormat: ',4 a'
+        },
+        formats: {
+            fourDigits: '4 a',
+            fullWithTwoDecimals: '$ ,0.00',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: '$ ,0'
         }
     };
 
-    // Node
+    // CommonJS
     if (typeof module !== 'undefined' && module.exports) {
         module.exports = language;
     }
     // Browser
     if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture('zh-SG', language);
+        window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));

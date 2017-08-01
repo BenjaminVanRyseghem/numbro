@@ -1,15 +1,15 @@
 /*!
  * numbro.js language configuration
  * language : Chinese (Traditional)
- * locale : Macao
+ * locale : Hong Kong
  * author : rdubigny : https://github.com/rdubigny
  */
 (function () {
     'use strict';
 
     var language = {
-        langLocaleCode: 'zh-MO',
-        cultureCode: 'zh-MO',
+        langLocaleCode: 'zh-HK',
+        cultureCode: 'zh-HK',
         delimiters: {
             thousands: ',',
             decimal: '.'
@@ -26,7 +26,7 @@
         currency: {
             symbol: '¥',
             position: 'prefix',
-            code: 'MOP'
+            code: 'HKD'
         },
         defaults: {
             currencyFormat: ',4 a'

@@ -1,14 +1,13 @@
-
 'use strict';
 
 var numbro = require('../../numbro');
-var culture = require('../../languages/zh-MO');
+var culture = require('../../languages/zh-HK');
 
 numbro.culture(culture.langLocaleCode, culture);
 
-exports['culture:zh-MO'] = {
+exports['culture:zh-HK'] = {
     setUp: function (callback) {
-        numbro.culture('zh-MO');
+        numbro.culture('zh-HK');
         callback();
     },
 
