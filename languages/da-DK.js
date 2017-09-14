@@ -15,7 +15,7 @@
             decimal: ','
         },
         abbreviations: {
-            thousand: 'k',
+            thousand: 't',
             million: 'mio',
             billion: 'mia',
             trillion: 'b'
