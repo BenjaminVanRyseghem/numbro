@@ -1,7 +1,7 @@
 {
   "name": "numbro",
   "repo": "BenjaminVanRyseghem/numbro",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Format and manipulate numbers.",
   "keywords": [
     "numeral",

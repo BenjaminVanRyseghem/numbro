@@ -1,6 +1,6 @@
 {
   "name": "numbro",
-  "version": "1.11.0",
+  "version": "1.11.1",
   "description": "Format and manipulate numbers.",
   "homepage": "http://numbrojs.com",
   "author": {
@@ -29,7 +29,7 @@
   "bugs": {
     "url": "https://github.com/BenjaminVanRyseghem/numbro/issues"
   },
-  "license" : "MIT",
+  "license": "MIT",
   "devDependencies": {
     "grunt": "^1.0.1",
     "grunt-bump": "^0.8.0",

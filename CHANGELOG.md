@@ -1,3 +1,8 @@
+### 1.11.1
+
+- Fix copyright owner references.
+- Fix ##313: add es-MX language definition. Thanks @joebordes.
+
 ### 1.11.0
 
 - Fix #232: update numbro.d.ts to use export = instead of export default. Thanks @olmobrutall.
