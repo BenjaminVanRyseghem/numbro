@@ -1,6 +1,6 @@
 # Ranko the Raccoon
 
-Ranko is the mascott of the [numbro](https://github.com/foretagsplatsen/numbro) project.
+Ranko is the mascott of the [numbro](https://github.com/BenjaminVanRyseghem/numbro) project.
 
 This folder provides the material related to Ranko.
 

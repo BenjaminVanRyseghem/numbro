@@ -1,17 +1,15 @@
 # [numbro](https://numbrojs.com/)
 
-[![Join the chat at https://gitter.im/foretagsplatsen/numbro](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/foretagsplatsen/numbro?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-
 A javascript library for formatting and manipulating numbers.
 
-[Website and documentation](http://foretagsplatsen.github.io/numbro)
+[Website and documentation](http://BenjaminVanRyseghem.github.io/numbro)
 
 
 # Travis Build Status
 
-Master [![Build Status](https://travis-ci.org/foretagsplatsen/numbro.svg?branch=master)](https://travis-ci.org/foretagsplatsen/numbro)
+Master [![Build Status](https://travis-ci.org/BenjaminVanRyseghem/numbro.svg?branch=master)](https://travis-ci.org/BenjaminVanRyseghem/numbro)
 
-Develop [![Build Status](https://travis-ci.org/foretagsplatsen/numbro.svg?branch=develop)](https://travis-ci.org/foretagsplatsen/numbro)
+Develop [![Build Status](https://travis-ci.org/BenjaminVanRyseghem/numbro.svg?branch=develop)](https://travis-ci.org/BenjaminVanRyseghem/numbro)
 
 # NPM
 
@@ -45,7 +43,7 @@ of [ISO 3166-1 country codes](http://en.wikipedia.org/wiki/ISO_3166-1)
 
 ### Language translations will not be merged without unit tests.
 
-See [the english unit tests](https://github.com/foretagsplatsen/numbro/blob/master/tests/languages/en-GB.js) for an example.
+See [the english unit tests](https://github.com/BenjaminVanRyseghem/numbro/blob/master/tests/languages/en-GB.js) for an example.
 
 
 # Changelog
@@ -63,8 +61,9 @@ See [CHANGELOG.md](CHANGELOG.md).
 # License
 
 Copyright © 2014 Adam Draper
+Copyright © 2015-2017 Företagsplatsen AB
 
-Copyright © 2015-2016 Företagsplatsen AB
+Copyright © 2017 Benjamin Van Ryseghem
 
 ---
 

@@ -4,9 +4,9 @@
   "description": "Format and manipulate numbers.",
   "homepage": "http://numbrojs.com",
   "author": {
-    "name": "Företagsplatsen AB",
-    "email": "contact@foretagsplatsen.se",
-    "url": "http://www.foretagsplatsen.se"
+    "name": "Benjamin Van Ryseghem",
+    "email": "benjamin@vanryseghem.com",
+    "url": "https://benjamin.vanryseghem.com"
   },
   "keywords": [
     "numeral",
@@ -24,10 +24,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/foretagsplatsen/numbro"
+    "url": "https://github.com/BenjaminVanRyseghem/numbro"
   },
   "bugs": {
-    "url": "https://github.com/foretagsplatsen/numbro/issues"
+    "url": "https://github.com/BenjaminVanRyseghem/numbro/issues"
   },
   "license" : "MIT",
   "devDependencies": {
