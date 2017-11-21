@@ -29,7 +29,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'AUD'
         },
         defaults: {
             currencyFormat: ',4 a'

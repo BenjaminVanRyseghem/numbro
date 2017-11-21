@@ -17,6 +17,7 @@ exports['es-CL'] = require('./es-CL.js');
 exports['es-CO'] = require('./es-CO.js');
 exports['es-CR'] = require('./es-CR.js');
 exports['es-ES'] = require('./es-ES.js');
+exports['es-MX'] = require('./es-MX.js');
 exports['es-NI'] = require('./es-NI.js');
 exports['es-PE'] = require('./es-PE.js');
 exports['es-PR'] = require('./es-PR.js');

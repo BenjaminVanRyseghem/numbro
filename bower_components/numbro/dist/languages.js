@@ -23,7 +23,8 @@
             return '.';
         },
         currency: {
-            symbol: 'лв.'
+            symbol: 'лв.',
+            code: 'BGN'
         }
     };
 
@@ -65,7 +66,8 @@
         currency: {
             symbol: 'Kč',
             position: 'postfix',
-            spaceSeparated: true
+            spaceSeparated: true,
+            code: 'CZK'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -115,7 +117,8 @@
         },
         currency: {
             symbol: 'kr',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'DKK'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -164,7 +167,8 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            code: 'EUR'
         }
     };
 
@@ -205,7 +209,8 @@
         },
         currency: {
             symbol: 'CHF',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'CHF'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -258,7 +263,8 @@
         currency: {
             symbol: '€',
             position: 'postfix',
-            spaceSeparated: true
+            spaceSeparated: true,
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4'
@@ -308,7 +314,8 @@
         },
         currency: {
             symbol: 'CHF',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'CHF'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -356,7 +363,8 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            code: 'EUR'
         }
     };
 
@@ -401,7 +409,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'AUD'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -455,7 +464,8 @@
         },
         currency: {
             symbol: '£',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'GBP'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -508,7 +518,8 @@
                         (b === 3) ? 'rd' : 'th';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            code: 'EUR'
         }
     };
 
@@ -553,7 +564,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'NZD'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -607,7 +619,8 @@
         },
         currency: {
             symbol: 'R',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'ZAR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -662,7 +675,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'ARS'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -717,7 +731,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'CLP'
         },
         defaults: {
             currencyFormat: '$0,0'
@@ -772,7 +787,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -827,7 +843,8 @@
         },
         currency: {
             symbol: '₡',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'CRC'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -882,7 +899,64 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
+        },
+        defaults: {
+            currencyFormat: ',4 a'
+        },
+        formats: {
+            fourDigits: '4 a',
+            fullWithTwoDecimals: ',0.00 $',
+            fullWithTwoDecimalsNoCurrency: ',0.00',
+            fullWithNoDecimals: ',0 $'
+        }
+    };
+
+    // CommonJS
+    if (typeof module !== 'undefined' && module.exports) {
+        module.exports = language;
+    }
+    // Browser
+    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
+        window.numbro.culture(language.cultureCode, language);
+    }
+}.call(typeof window === 'undefined' ? this : window));
+
+/*!
+ * numbro.js language configuration
+ * language : Spanish
+ * locale: Mexico
+ * author : Joe Bordes : https://github.com/joebordes
+ */
+(function () {
+    'use strict';
+
+    var language = {
+        langLocaleCode: 'es-MX',
+        cultureCode: 'es-MX',
+        delimiters: {
+            thousands: ',',
+            decimal: '.'
+        },
+        abbreviations: {
+            thousand: 'k',
+            million: 'mm',
+            billion: 'b',
+            trillion: 't'
+        },
+        ordinal: function (number) {
+            var b = number % 10;
+            return (b === 1 || b === 3) ? 'er' :
+                (b === 2) ? 'do' :
+                    (b === 7 || b === 0) ? 'mo' :
+                        (b === 8) ? 'vo' :
+                            (b === 9) ? 'no' : 'to';
+        },
+        currency: {
+            symbol: '$',
+            position: 'postfix',
+            code: 'MXN'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -937,7 +1011,8 @@
         },
         currency: {
             symbol: 'C$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'NIO'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -992,7 +1067,8 @@
         },
         currency: {
             symbol: 'S/.',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'PEN'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1047,7 +1123,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'USD'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1102,7 +1179,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'SVC'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1155,7 +1233,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1204,7 +1283,8 @@
             return 'ام';
         },
         currency: {
-            symbol: '﷼'
+            symbol: '﷼',
+            code: 'IRR'
         }
     };
 
@@ -1245,7 +1325,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1298,7 +1379,8 @@
                 (b === 3) ? 'rd' : 'th';
         },
         currency: {
-            symbol: '₱'
+            symbol: '₱',
+            code: 'PHP'
         }
     };
 
@@ -1340,7 +1422,8 @@
         currency: {
             symbol: '$',
             position: 'postfix',
-            spaceSeparated : true
+            spaceSeparated : true,
+            code: 'USD'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1390,7 +1473,8 @@
         },
         currency: {
             symbol: 'CHF',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'CHF'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1440,7 +1524,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1487,7 +1572,8 @@
         },
         currency: {
             symbol: '₪',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'ILS'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1509,7 +1595,6 @@
         window.numbro.culture(language.cultureCode, language);
     }
 }.call(typeof window === 'undefined' ? this : window));
-
 
 /*!
  * numbro.js language configuration
@@ -1538,7 +1623,8 @@
         },
         currency: {
             symbol: ' Ft',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'HUF'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1586,7 +1672,8 @@
             return '.';
         },
         currency: {
-            symbol: 'Rp'
+            symbol: 'Rp',
+            code: 'IDR'
         }
     };
 
@@ -1626,7 +1713,8 @@
             return '°';
         },
         currency: {
-            symbol: 'CHF'
+            symbol: 'CHF',
+            code: 'CHF'
         }
     };
 
@@ -1667,7 +1755,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1717,7 +1806,8 @@
         },
         currency: {
             symbol: '¥',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'JPY'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1766,7 +1856,8 @@
             return '.';
         },
         currency: {
-            symbol: '₩'
+            symbol: '₩',
+            code: 'KPW'
         }
     };
 
@@ -1807,7 +1898,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1853,7 +1945,8 @@
         },
         currency: {
             symbol: 'kr',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'NOK'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1901,7 +1994,8 @@
             return '.';
         },
         currency: {
-            symbol: 'kr'
+            symbol: 'kr',
+            code: 'NOK'
         }
     };
 
@@ -1943,7 +2037,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -1994,7 +2089,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2042,7 +2138,8 @@
             return '.';
         },
         currency: {
-            symbol: 'kr'
+            symbol: 'kr',
+            code: 'NOK'
         }
     };
 
@@ -2083,7 +2180,8 @@
         },
         currency: {
             symbol: ' zł',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'PLN'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2133,7 +2231,8 @@
         },
         currency: {
             symbol: 'R$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'BRL'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2183,7 +2282,8 @@
         },
         currency: {
             symbol: '€',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2232,7 +2332,8 @@
         },
         currency: {
             symbol: ' lei',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'RON'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2280,7 +2381,8 @@
             return '.';
         },
         currency: {
-            symbol: 'RON'
+            symbol: 'RON',
+            code: 'RON'
         }
     };
 
@@ -2324,7 +2426,8 @@
         },
         currency: {
             symbol: 'руб.',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'RUB'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2377,7 +2480,8 @@
         },
         currency: {
             symbol: '\u20B4',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'UAH'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2428,7 +2532,8 @@
         currency: {
             symbol: '€',
             position: 'postfix',
-            spaceSeparated: true
+            spaceSeparated: true,
+            code: 'EUR'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2477,7 +2582,8 @@
             return '.';
         },
         currency: {
-            symbol: '€'
+            symbol: '€',
+            code: 'EUR'
         }
     };
 
@@ -2517,7 +2623,8 @@
             return '.';
         },
         currency: {
-            symbol: 'RSD'
+            symbol: 'RSD',
+            code: 'RSD'
         }
     };
 
@@ -2555,7 +2662,8 @@
         },
         currency: {
             symbol: 'kr',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'SEK'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2605,7 +2713,8 @@
         },
         currency: {
             symbol: '฿',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'THB'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2690,7 +2799,8 @@
             },
             currency: {
                 symbol: '\u20BA',
-                position: 'postfix'
+                position: 'postfix',
+                code: 'TRY'
             },
             defaults: {
                 currencyFormat: ',4 a'
@@ -2743,7 +2853,8 @@
         },
         currency: {
             symbol: '\u20B4',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'UAH'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2793,7 +2904,8 @@
         },
         currency: {
             symbol: '¥',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'CNY'
         },
         defaults: {
             currencyFormat: ',4 a'
@@ -2842,7 +2954,8 @@
             return '.';
         },
         currency: {
-            symbol: 'MOP'
+            symbol: 'MOP',
+            code: 'MOP'
         }
     };
 
@@ -2882,7 +2995,8 @@
             return '.';
         },
         currency: {
-            symbol: '$'
+            symbol: '$',
+            code: 'SGD'
         }
     };
 
@@ -2922,7 +3036,8 @@
             return '第';
         },
         currency: {
-            symbol: 'NT$'
+            symbol: 'NT$',
+            code: 'TWD'
         }
     };
 

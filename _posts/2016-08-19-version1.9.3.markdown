@@ -7,9 +7,9 @@ date:   2016-08-19 18:16:00
 **numbro 1.9.3** has been released.
 
 
-- Fix [#184](https://github.com/foretagsplatsen/numbro/pull/#184): Accurate, up-to-date type definitions for TypeScript. Thanks [@dpoggi](https://github.com/dpoggi).
-- Fix [#196](https://github.com/foretagsplatsen/numbro/pull/#196): Fix german language specifications. Thanks [@Ben305](https://github.com/Ben305).
-- Fix [#197](https://github.com/foretagsplatsen/numbro/pull/#197): Add detection for Meteor. Thanks [@Ben305](https://github.com/Ben305).
-- Fix [#206](https://github.com/foretagsplatsen/numbro/pull/#206): fix number formats for de-CH. Thanks [@Remo](https://github.com/Remo).
+- Fix [#184](https://github.com/BenjaminVanRyseghem/numbro/pull/#184): Accurate, up-to-date type definitions for TypeScript. Thanks [@dpoggi](https://github.com/dpoggi).
+- Fix [#196](https://github.com/BenjaminVanRyseghem/numbro/pull/#196): Fix german language specifications. Thanks [@Ben305](https://github.com/Ben305).
+- Fix [#197](https://github.com/BenjaminVanRyseghem/numbro/pull/#197): Add detection for Meteor. Thanks [@Ben305](https://github.com/Ben305).
+- Fix [#206](https://github.com/BenjaminVanRyseghem/numbro/pull/#206): fix number formats for de-CH. Thanks [@Remo](https://github.com/Remo).
 
 Enjoy <i class="fa fa-smile-o">

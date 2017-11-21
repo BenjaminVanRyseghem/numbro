@@ -28,7 +28,8 @@
         },
         currency: {
             symbol: 'руб.',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'RUB'
         },
         defaults: {
             currencyFormat: ',4 a'

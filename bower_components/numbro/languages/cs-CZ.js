@@ -26,7 +26,8 @@
         currency: {
             symbol: 'Kč',
             position: 'postfix',
-            spaceSeparated: true
+            spaceSeparated: true,
+            code: 'CZK'
         },
         defaults: {
             currencyFormat: ',4 a'

@@ -6,9 +6,9 @@ date:   2016-04-11 10:52:00
 
 **numbro 1.7.1** has been released.
 
-- Fix [#142](https://github.com/foretagsplatsen/numbro/pull/#142): Limit packaging extraneous files. Thanks [@MarkHerhold](https://github.com/@MarkHerhold).
-- Fix [#143](https://github.com/foretagsplatsen/numbro/pull/#143): Fixing web build. Thanks [@mmollick](https://github.com/@mmollick).
-- Fix [#149](https://github.com/foretagsplatsen/numbro/pull/#149): Allow loading of cultures in node explicitly if numbro hasn't detected correctly that it is in node. Thanks [@stewart42](https://github.com/@stewart42).
-- Fix [#147](https://github.com/foretagsplatsen/numbro/pull/#147): Fixing formatting issues for very small (+/-1e-23) numbers. Thanks [@MarkHerhold](https://github.com/@MarkHerhold).
+- Fix [#142](https://github.com/BenjaminVanRyseghem/numbro/pull/#142): Limit packaging extraneous files. Thanks [@MarkHerhold](https://github.com/@MarkHerhold).
+- Fix [#143](https://github.com/BenjaminVanRyseghem/numbro/pull/#143): Fixing web build. Thanks [@mmollick](https://github.com/@mmollick).
+- Fix [#149](https://github.com/BenjaminVanRyseghem/numbro/pull/#149): Allow loading of cultures in node explicitly if numbro hasn't detected correctly that it is in node. Thanks [@stewart42](https://github.com/@stewart42).
+- Fix [#147](https://github.com/BenjaminVanRyseghem/numbro/pull/#147): Fixing formatting issues for very small (+/-1e-23) numbers. Thanks [@MarkHerhold](https://github.com/@MarkHerhold).
 
 Enjoy <i class="fa fa-smile-o">

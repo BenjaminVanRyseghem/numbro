@@ -24,7 +24,8 @@
         },
         currency: {
             symbol: ' lei',
-            position: 'postfix'
+            position: 'postfix',
+            code: 'RON'
         },
         defaults: {
             currencyFormat: ',4 a'

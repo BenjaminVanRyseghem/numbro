@@ -35,8 +35,7 @@
     "tag": "v1.6.5",
     "commit": "cccb9dcbc458e13e95f839cf432adda78d3e27f1"
   },
-  "_source": "git://github.com/silviomoreto/bootstrap-select.git",
+  "_source": "https://github.com/silviomoreto/bootstrap-select.git",
   "_target": "~1.6.5",
-  "_originalSource": "bootstrap-select",
-  "_direct": true
+  "_originalSource": "bootstrap-select"
 }

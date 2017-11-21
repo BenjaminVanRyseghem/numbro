@@ -29,7 +29,8 @@
         },
         currency: {
             symbol: '$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'NZD'
         },
         defaults: {
             currencyFormat: ',4 a'

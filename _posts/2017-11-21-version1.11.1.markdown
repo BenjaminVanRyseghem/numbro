@@ -1,0 +1,13 @@
+---
+title:  Release 1.11.1
+author: BenjaminVanRyseghem
+date:   2017-11-21 17:11:00
+---
+
+**numbro 1.11.1** has been released.
+
+
+- Fix [#232](https://github.com/BenjaminVanRyseghem/numbro/pull/313): add es-MX language definition. Thanks [@joebordes](https://github.com/joebordes).
+
+
+Enjoy <i class="fa fa-smile-o">

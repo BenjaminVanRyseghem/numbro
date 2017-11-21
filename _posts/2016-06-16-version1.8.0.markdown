@@ -6,15 +6,15 @@ date:   2016-06-16 10:58:00
 
 **numbro 1.8.0** has been released.
 
-- Fix [#180](https://github.com/foretagsplatsen/numbro/pull/#180): Add culture function, deprecate language. Thanks [@wereHamster](https://github.com/wereHamster).
-- Fix [#170](https://github.com/foretagsplatsen/numbro/pull/#170): Add the ability to determine units without formatting. Thanks [@pickypg](https://github.com/pickypg).
-- Fix [#162](https://github.com/foretagsplatsen/numbro/pull/#162): Add TypeScript declaration file. Thanks [@wereHamster](https://github.com/wereHamster).
-- Fix [#163](https://github.com/foretagsplatsen/numbro/pull/#163): unformat: return undefined when value can't be parsed. Thanks [@wereHamster](https://github.com/wereHamster).
-- Fix [#173](https://github.com/foretagsplatsen/numbro/pull/#173): Added two latest stable node versions to Travis build. Thanks [@therebelrobot](https://github.com/therebelrobot).
-- Fix [#176](https://github.com/foretagsplatsen/numbro/pull/#176): default pt-BR currency is prefix, not postfix. Thanks [@luisrudge](https://github.com/luisrudge).
-- Fix [#175](https://github.com/foretagsplatsen/numbro/pull/#175): Zero byte unit fix, take 2. Thanks [@therebelrobot](https://github.com/therebelrobot).
-- Fix [#135](https://github.com/foretagsplatsen/numbro/pull/#135): Fix fr-CA currency format. Thanks [@killfish](https://github.com/killfish).
-- Fix [#174](https://github.com/foretagsplatsen/numbro/pull/#174): Set versions for all deps. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
-- Fix [#152](https://github.com/foretagsplatsen/numbro/pull/#152): Use zeros() function instead of multiple inline implementations. Thanks [@MarkHerhold](https://github.com/MarkHerhold).
+- Fix [#180](https://github.com/BenjaminVanRyseghem/numbro/pull/#180): Add culture function, deprecate language. Thanks [@wereHamster](https://github.com/wereHamster).
+- Fix [#170](https://github.com/BenjaminVanRyseghem/numbro/pull/#170): Add the ability to determine units without formatting. Thanks [@pickypg](https://github.com/pickypg).
+- Fix [#162](https://github.com/BenjaminVanRyseghem/numbro/pull/#162): Add TypeScript declaration file. Thanks [@wereHamster](https://github.com/wereHamster).
+- Fix [#163](https://github.com/BenjaminVanRyseghem/numbro/pull/#163): unformat: return undefined when value can't be parsed. Thanks [@wereHamster](https://github.com/wereHamster).
+- Fix [#173](https://github.com/BenjaminVanRyseghem/numbro/pull/#173): Added two latest stable node versions to Travis build. Thanks [@therebelrobot](https://github.com/therebelrobot).
+- Fix [#176](https://github.com/BenjaminVanRyseghem/numbro/pull/#176): default pt-BR currency is prefix, not postfix. Thanks [@luisrudge](https://github.com/luisrudge).
+- Fix [#175](https://github.com/BenjaminVanRyseghem/numbro/pull/#175): Zero byte unit fix, take 2. Thanks [@therebelrobot](https://github.com/therebelrobot).
+- Fix [#135](https://github.com/BenjaminVanRyseghem/numbro/pull/#135): Fix fr-CA currency format. Thanks [@killfish](https://github.com/killfish).
+- Fix [#174](https://github.com/BenjaminVanRyseghem/numbro/pull/#174): Set versions for all deps. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+- Fix [#152](https://github.com/BenjaminVanRyseghem/numbro/pull/#152): Use zeros() function instead of multiple inline implementations. Thanks [@MarkHerhold](https://github.com/MarkHerhold).
 
 Enjoy <i class="fa fa-smile-o">

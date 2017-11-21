@@ -24,7 +24,8 @@
             return '.';
         },
         currency: {
-            symbol: 'RSD'
+            symbol: 'RSD',
+            code: 'RSD'
         }
     };
 

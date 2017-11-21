@@ -6,7 +6,7 @@ date:   2016-06-24 11:22:00
 
 **numbro 1.8.1** has been released.
 
-- Fix [#182](https://github.com/foretagsplatsen/numbro/pull/#182): Added support for numbers without leading zero. Thanks [@budnix](https://github.com/budnix).
-- Fix [#183](https://github.com/foretagsplatsen/numbro/pull/#183): Number validation doesn't validate negative numbers. Thanks [@budnix](https://github.com/budnix).
+- Fix [#182](https://github.com/BenjaminVanRyseghem/numbro/pull/#182): Added support for numbers without leading zero. Thanks [@budnix](https://github.com/budnix).
+- Fix [#183](https://github.com/BenjaminVanRyseghem/numbro/pull/#183): Number validation doesn't validate negative numbers. Thanks [@budnix](https://github.com/budnix).
 
 Enjoy <i class="fa fa-smile-o">

@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/foretagsplatsen/numbro.git"
+    "url": "https://github.com/BenjaminVanRyseghem/numbro.git"
   },
   "keywords": [
     "webpage"
@@ -21,7 +21,7 @@
   "author": "Benjamin Van Ryseghem <benjamin.vanryseghem@gmail.com> (https://benjamin.vanryseghem.com/)",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/foretagsplatsen/numbro/issues"
+    "url": "https://github.com/BenjaminVanRyseghem/numbro/issues"
   },
-  "homepage": "https://github.com/foretagsplatsen/numbro"
+  "homepage": "https://github.com/BenjaminVanRyseghem/numbro"
 }

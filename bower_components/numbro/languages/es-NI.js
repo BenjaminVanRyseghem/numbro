@@ -30,7 +30,8 @@
         },
         currency: {
             symbol: 'C$',
-            position: 'prefix'
+            position: 'prefix',
+            code: 'NIO'
         },
         defaults: {
             currencyFormat: ',4 a'

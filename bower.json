@@ -20,7 +20,7 @@
   ],
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "numbro": "latest",
+    "numbro": "git://github.com/BenjaminVanRyseghem/numbro.git",
     "fontawesome": "~4.3.0",
     "bootstrap-select": "~1.6.5"
   }
