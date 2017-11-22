@@ -1,0 +1,78 @@
+/*!
+ * Copyright (c) 2017 Benjamin Van Ryseghem<benjamin@vanryseghem.com>
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+
+const rewire = require("rewire");
+const loadingModule = rewire("../../src/loading");
+const loading = loadingModule(numbroStub);
+
+function numbroStub(value) {
+    return {_value: value};
+}
+
+describe("loading", () => {
+    let require = undefined;
+    let error = undefined;
+    let revert = undefined;
+
+    beforeEach(() => {
+        require = jasmine.createSpy("require");
+        error = jasmine.createSpy("error");
+        revert = loadingModule.__set__({
+            require,
+            console: {error}
+        });
+    });
+
+    afterEach(() => {
+        revert();
+    });
+
+    it("requires all tags", () => {
+        let tags = ["foo", "bar", "baz"];
+
+        loading.loadLanguagesInNode(tags);
+
+        tags.forEach((tag) => {
+            expect(require).toHaveBeenCalledWith(`../languages/${tag}`);
+        });
+    });
+
+    it("catches the exception when require fails", () => {
+        let tags = ["foo"];
+        require.and.throwError("not matching module");
+
+        loading.loadLanguagesInNode(tags);
+
+        expect(error).toHaveBeenCalledWith("Unable to load \"foo\". No matching language file found.");
+    });
+
+    it("registers data loaded through require", () => {
+        let registerLanguage = jasmine.createSpy("registerLanguage");
+        let data = jasmine.createSpy("data");
+        numbroStub.registerLanguage = registerLanguage;
+        require.and.returnValue(data);
+
+        loading.loadLanguagesInNode(["foo"]);
+
+        expect(registerLanguage).toHaveBeenCalledWith(data);
+    });
+});
