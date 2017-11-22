@@ -6,48 +6,53 @@
  *
  * Generally useful in Germany, Austria, Luxembourg, Belgium
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'de-DE',
-        cultureCode: 'de-DE',
-        delimiters: {
-            thousands: '.',
-            decimal: ','
-        },
-        abbreviations: {
-            thousand: 'k',
-            million: 'm',
-            billion: 'b',
-            trillion: 't'
-        },
-        ordinal: function () {
-            return '.';
-        },
-        currency: {
-            symbol: '€',
-            position: 'postfix',
+module.exports = {
+    languageTag: "de-DE",
+    delimiters: {
+        thousands: ".",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "k",
+        million: "m",
+        billion: "b",
+        trillion: "t"
+    },
+    ordinal: function() {
+        return ".";
+    },
+    spaceSeparated: true,
+    currency: {
+        symbol: "€",
+        position: "postfix",
+        code: "EUR"
+    },
+    currencyFormat: {
+        totalLength: 4,
+        thousandSeparated: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
             spaceSeparated: true,
-            code: 'EUR'
+            average: true
         },
-        defaults: {
-            currencyFormat: ',4'
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
         },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: ',0 $'
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
+        },
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

@@ -4,44 +4,52 @@
  * locale : IL
  * author : Eli Zehavi : https://github.com/eli-zehavi
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'he-IL',
-        cultureCode: 'he-IL',
-        delimiters: {
-            thousands: ',',
-            decimal: '.'
+module.exports = {
+    languageTag: "he-IL",
+    delimiters: {
+        thousands: ",",
+        decimal: "."
+    },
+    abbreviations: {
+        thousand: "אלף",
+        million: "מליון",
+        billion: "בליון",
+        trillion: "טריליון"
+    },
+    currency: {
+        symbol: "₪",
+        position: "prefix",
+        code: "ILS"
+    },
+    ordinal: () => "",
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand: 'אלף',
-            million: 'מליון',
-            billion: 'בליון',
-            trillion: 'טריליון'
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: '₪',
-            position: 'prefix',
-            code: 'ILS'
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: '₪ ,0.00',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: '₪ ,0'
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

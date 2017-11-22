@@ -4,44 +4,52 @@
  * locale: Norway
  * author : Benjamin Van Ryseghem
  */
-(function() {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'nb-NO',
-        cultureCode: 'nb-NO',
-        delimiters: {
-            thousands: ' ',
-            decimal: ','
+module.exports = {
+    languageTag: "nb-NO",
+    delimiters: {
+        thousands: " ",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "t",
+        million: "M",
+        billion: "md",
+        trillion: "b"
+    },
+    ordinal: () => "",
+    currency: {
+        symbol: "kr",
+        position: "postfix",
+        code: "NOK"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand: 't',
-            million: 'M',
-            billion: 'md',
-            trillion: 't'
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: 'kr',
-            position: 'postfix',
-            code: 'NOK'
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: ',0 $'
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

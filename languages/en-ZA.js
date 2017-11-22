@@ -4,51 +4,52 @@
  * locale: South Africa
  * author : Stewart Scott https://github.com/stewart42
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'en-ZA',
-        cultureCode: 'en-ZA',
-        delimiters: {
-            thousands: ' ',
-            decimal: ','
+module.exports = {
+    languageTag: "en-ZA",
+    delimiters: {
+        thousands: " ",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "k",
+        million: "m",
+        billion: "b",
+        trillion: "t"
+    },
+    ordinal: number => {
+        let b = number % 10;
+        return (~~(number % 100 / 10) === 1) ? "th" : (b === 1) ? "st" : (b === 2) ? "nd" : (b === 3) ? "rd" : "th";
+    },
+    currency: {
+        symbol: "R",
+        position: "prefix",
+        code: "ZAR"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand: 'k',
-            million: 'm',
-            billion: 'b',
-            trillion: 't'
+        fullWithTwoDecimals: {
+            thousandSeparated: true,
+            mantissa: 2
         },
-        ordinal: function (number) {
-            var b = number % 10;
-            return (~~ (number % 100 / 10) === 1) ? 'th' :
-                (b === 1) ? 'st' :
-                (b === 2) ? 'nd' :
-                (b === 3) ? 'rd' : 'th';
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: 'R',
-            position: 'prefix',
-            code: 'ZAR'
-        },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: '$ ,0.00',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: '$ ,0'
+        fullWithNoDecimals: {
+            output: "currency",
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

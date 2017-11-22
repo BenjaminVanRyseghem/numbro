@@ -4,47 +4,51 @@
  * locale: Japan
  * author : teppeis : https://github.com/teppeis
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'ja-JP',
-        cultureCode: 'ja-JP',
-        delimiters: {
-            thousands: ',',
-            decimal: '.'
+module.exports = {
+    languageTag: "ja-JP",
+    delimiters: {
+        thousands: ",",
+        decimal: "."
+    },
+    abbreviations: {
+        thousand: "千",
+        million: "百万",
+        billion: "十億",
+        trillion: "兆"
+    },
+    ordinal: function() {
+        return ".";
+    },
+    currency: {
+        symbol: "¥",
+        position: "prefix",
+        code: "JPY"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand: '千',
-            million: '百万',
-            billion: '十億',
-            trillion: '兆'
+        fullWithTwoDecimals: {
+            thousandSeparated: true,
+            mantissa: 2
         },
-        ordinal: function () {
-            return '.';
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: '¥',
-            position: 'prefix',
-            code: 'JPY'
-        },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: '$ ,0.00',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: '$ ,0'
+        fullWithNoDecimals: {
+            output: "currency",
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};
