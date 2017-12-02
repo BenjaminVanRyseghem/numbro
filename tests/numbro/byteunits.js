@@ -103,6 +103,28 @@ exports.byteUnits = {
         }
 
         test.done();
+    },
+
+    metricPrefixes: function (test) {
+        var tests = [
+            [1, '1'],
+            [0, '0'],
+            [-10, '-10'],
+            [987, '987'],
+            [-999.999, '-999.999'],
+            [-100e-3, '-100 m'],
+            [1e-24, '1 y'],
+            [-23.4e-18, '-23.4 a'],
+            [-450.321e24, '-450.321 Y'],
+            [830.01e-15, '830.01 f'],
+        ];
+        test.expect(tests.length);
+
+        for (var i = 0; i < tests.length; ++i) {
+            test.strictEqual(numbro(tests[i][0]).format('0.[000] s'), tests[i][1]);
+        }
+
+        test.done();
     }
 
 };
