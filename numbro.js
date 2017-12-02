@@ -15,15 +15,37 @@
 
     var numbro,
         VERSION = '1.11.1',
-        binarySuffixes = ['B', 'KiB', 'MiB', 'GiB', 'TiB', 'PiB', 'EiB', 'ZiB', 'YiB'],
-        decimalSuffixes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'],
-        bytes = {
-            general: { scale: 1024, suffixes: decimalSuffixes, marker: 'bd' },
-            binary:  { scale: 1024, suffixes: binarySuffixes, marker: 'b' },
-            decimal: { scale: 1000, suffixes: decimalSuffixes, marker: 'd' }
-        },
+        prefixes = {
+          metric: [
+            ['Y', 1e+24], ['Z', 1e+21], ['E', 1e+18], ['P', 1e+15],
+            ['T', 1e+12], ['G', 1e+09], ['M', 1e+06], ['k', 1e+03],
+            ['' , 1e+00],
+            ['m', 1e-03], ['u', 1e-06], ['n', 1e-09], ['p', 1e-12],
+            ['f', 1e-15], ['a', 1e-18], ['z', 1e-21], ['y', 1e-24],
+          ], decimal: [
+            ['Y', 1e+24], ['Z', 1e+21], ['E', 1e+18], ['P', 1e+15],
+            ['T', 1e+12], ['G', 1e+09], ['M', 1e+06], ['K', 1e+03],
+            ['' , 1e+00]
+          ], binary: [
+            ['Yi', Math.pow(1024, 8)], ['Zi', Math.pow(1024, 7)],
+            ['Ei', Math.pow(1024, 6)], ['Pi', Math.pow(1024, 5)],
+            ['Ti', Math.pow(1024, 4)], ['Gi', Math.pow(1024, 3)],
+            ['Mi', Math.pow(1024, 2)], ['Ki', Math.pow(1024, 1)],
+            ['',   1]
+          ], general: [
+            ['Y', Math.pow(1024, 8)], ['Z', Math.pow(1024, 7)],
+            ['E', Math.pow(1024, 6)], ['P', Math.pow(1024, 5)],
+            ['T', Math.pow(1024, 4)], ['G', Math.pow(1024, 3)],
+            ['M', Math.pow(1024, 2)], ['K', Math.pow(1024, 1)],
+            ['',   1]
+        ]},
         // general must be before the others because it reuses their characters!
-        byteFormatOrder = [ bytes.general, bytes.binary, bytes.decimal ],
+        byteFormatOrder = [
+          ['bd', prefixes.general, 'B'],
+          ['b', prefixes.binary, 'B'],
+          ['d', prefixes.decimal, 'B'],
+          ['s', prefixes.metric, '']
+        ],
     // internal storage for culture config files
         cultures = {},
     // Todo: Remove in 2.0.0
@@ -233,11 +255,13 @@
                     '(?:\\)|(\\' + cultures[currentCulture].currency.symbol + ')?(?:\\))?)?$');
 
                 // see if bytes are there so that we can multiply to the correct number
-                for (power = 1; power < binarySuffixes.length && !bytesMultiplier; ++power) {
-                    if (string.indexOf(binarySuffixes[power]) > -1) {
-                        bytesMultiplier = Math.pow(1024, power);
-                    } else if (string.indexOf(decimalSuffixes[power]) > -1) {
-                        bytesMultiplier = Math.pow(1000, power);
+                for (power = 0; power < prefixes.binary.length - 1; ++power) {
+                    if (string.indexOf(prefixes.binary[power][0]+'B') > -1) {
+                        bytesMultiplier = prefixes.binary[power][1];
+                        break;
+                    } else if (string.indexOf(prefixes.decimal[power][0]+'B') > -1) {
+                        bytesMultiplier = prefixes.decimal[power][1];
+                        break;
                     }
                 }
 
@@ -419,33 +443,21 @@
         return Number(seconds);
     }
 
-    function formatByteUnits (value, suffixes, scale) {
-        var suffix = suffixes[0],
-            power,
-            min,
-            max,
-            abs = Math.abs(value);
-
-        if (abs >= scale) {
-            for (power = 1; power < suffixes.length; ++power) {
-                min = Math.pow(scale, power);
-                max = Math.pow(scale, power + 1);
-
-                if (abs >= min && abs < max) {
-                    suffix = suffixes[power];
-                    value = value / min;
-                    break;
-                }
-            }
-
-            // values greater than or equal to [scale] YB never set the suffix
-            if (suffix === suffixes[0]) {
-                value = value / Math.pow(scale, suffixes.length - 1);
-                suffix = suffixes[suffixes.length - 1];
+    // Return name and value of prefix to be used with x
+    function applyPrefix(x, prefixes) {
+        var absx = Math.abs(x);
+        var prefix, prefixValue;
+        if (absx === 0) {
+            return { value: x, prefix: '' };
+        }
+        for (var ii = 0; ii < prefixes.length; ii++) {
+            prefix = prefixes[ii][0];
+            prefixValue = prefixes[ii][1];
+            if (absx >= prefixValue) {
+                break;
             }
         }
-
-        return { value: value, suffix: suffix };
+        return { value: x / prefixValue, prefix: prefix };
     }
 
     function formatNumber (value, format, roundingFunction, sep) {
@@ -459,7 +471,6 @@
             abbrT = false, // force abbreviation to trillions
             abbrForce = false, // force abbreviation
             bytes = '',
-            byteFormat,
             units,
             ord = '',
             abs = Math.abs(value),
@@ -480,7 +491,9 @@
             indexMinus,
             paren = '',
             minlen,
-            i;
+            marker,
+            prefixes,
+            ii;
 
         // check if number is zero and a custom zero format has been set
         if (value === 0 && zeroFormat !== null) {
@@ -593,25 +606,31 @@
 
         // see if we are formatting
         //   binary-decimal bytes (1024 MB), binary bytes (1024 MiB), or decimal bytes (1000 MB)
-        for (i = 0; i < byteFormatOrder.length; ++i) {
-            byteFormat = byteFormatOrder[i];
-
-            if (format.indexOf(byteFormat.marker) > -1) {
-                // check for space before
-                if (format.indexOf(' ' + byteFormat.marker) >-1) {
-                    bytes = ' ';
-                }
-
-                // remove the marker (with the space if it had one)
-                format = format.replace(bytes + byteFormat.marker, '');
-
-                units = formatByteUnits(value, byteFormat.suffixes, byteFormat.scale);
-
-                value = units.value;
-                bytes = bytes + units.suffix;
-
-                break;
+        for (ii = 0; ii < byteFormatOrder.length; ii++) {
+            marker = byteFormatOrder[ii][0];
+            if (format.indexOf(marker) === -1) {
+                continue;
             }
+            prefixes = byteFormatOrder[ii][1];
+            if (!postfix) {
+                postfix = byteFormatOrder[ii][2];
+            }
+
+            units = applyPrefix(value, prefixes);
+            value = units.value;
+            // check for space before
+            if (format.indexOf(' ' + marker) >-1) {
+                bytes = ' ';
+            }
+            // remove the marker (with the space if it had one)
+            format = format.replace(bytes + marker, '');
+            bytes = bytes + units.prefix;
+            // Do not add space if prefix is empty and there is no postfix
+            if (!postfix) {
+                bytes = bytes.trimRight();
+            }
+
+            break;
         }
 
         // see if ordinal is wanted
@@ -1190,15 +1209,15 @@
         },
 
         binaryByteUnits: function() {
-            return formatByteUnits(this._value, bytes.binary.suffixes, bytes.binary.scale).suffix;
+            return applyPrefix(this._value, prefixes.binary).prefix + 'B';
         },
 
         byteUnits: function() {
-            return formatByteUnits(this._value, bytes.general.suffixes, bytes.general.scale).suffix;
+            return applyPrefix(this._value, prefixes.general).prefix + 'B';
         },
 
         decimalByteUnits: function() {
-            return formatByteUnits(this._value, bytes.decimal.suffixes, bytes.decimal.scale).suffix;
+            return applyPrefix(this._value, prefixes.decimal).prefix + 'B';
         },
 
         value: function() {
