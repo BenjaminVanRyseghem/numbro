@@ -608,11 +608,13 @@
         //   binary-decimal bytes (1024 MB), binary bytes (1024 MiB), or decimal bytes (1000 MB)
         for (ii = 0; ii < byteFormatOrder.length; ii++) {
             marker = byteFormatOrder[ii][0];
-            if (format.indexOf(marker) == -1) {
-                continue
+            if (format.indexOf(marker) === -1) {
+                continue;
             }
             prefixes = byteFormatOrder[ii][1];
-            postfix = byteFormatOrder[ii][2];
+            if (!postfix) {
+                postfix = byteFormatOrder[ii][2];
+            }
 
             units = applyPrefix(value, prefixes);
             value = units.value;

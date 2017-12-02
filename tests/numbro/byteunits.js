@@ -107,8 +107,9 @@ exports.byteUnits = {
 
     metricPrefixes: function (test) {
         var tests = [
-            [1, '1'],
             [0, '0'],
+            [1, '1'],
+            [3.45, '3.45'],
             [-10, '-10'],
             [987, '987'],
             [-999.999, '-999.999'],
@@ -118,12 +119,20 @@ exports.byteUnits = {
             [-450.321e24, '-450.321 Y'],
             [830.01e-15, '830.01 f'],
         ];
-        test.expect(tests.length);
-
         for (var i = 0; i < tests.length; ++i) {
             test.strictEqual(numbro(tests[i][0]).format('0.[000] s'), tests[i][1]);
         }
-
+        function _test(number, format, expected) {
+          test.strictEqual(numbro(number).format(format), expected,
+                           number.toString() + ' === ' + expected);
+        }
+        _test(0, ' s{m}', '0 m');
+        _test(0, 's{m}', '0m');
+        _test(1, ' s{m}', '1 m');
+        _test(1, 's{m}', '1m');
+        _test(1e-3, ' s{m}', '1 mm');
+        _test(1e3, ' s{m}', '1 km');
+        _test(1e3, 's{m}', '1km');
         test.done();
     }
 
