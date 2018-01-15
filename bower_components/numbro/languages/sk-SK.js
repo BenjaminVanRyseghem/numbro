@@ -4,48 +4,55 @@
  * locale : Slovakia
  * author : Jan Pesa : https://github.com/smajl (based on work from Ahmed Al Hafoudh : http://www.freevision.sk)
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'sk-SK',
-        cultureCode: 'sk-SK',
-        delimiters: {
-            thousands: '\u00a0',
-            decimal: ','
-        },
-        abbreviations: {
-            thousand: 'tis.',
-            million: 'mil.',
-            billion: 'mld.',
-            trillion: 'bil.'
-        },
-        ordinal: function () {
-            return '.';
-        },
-        currency: {
-            symbol: '€',
-            position: 'postfix',
+module.exports = {
+    languageTag: "sk-SK",
+    delimiters: {
+        thousands: "\u00a0",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "tis.",
+        million: "mil.",
+        billion: "mld.",
+        trillion: "bil."
+    },
+    ordinal: function() {
+        return ".";
+    },
+    spaceSeparated: true,
+    currency: {
+        symbol: "€",
+        position: "postfix",
+        code: "EUR"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
             spaceSeparated: true,
-            code: 'EUR'
+            average: true
         },
-        defaults: {
-            currencyFormat: ',4 a'
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
         },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: ',0 $'
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
+        },
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

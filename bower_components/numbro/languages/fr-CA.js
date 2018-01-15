@@ -4,48 +4,52 @@
  * locale: Canada
  * author : Léo Renaud-Allaire : https://github.com/renaudleo
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'fr-CA',
-        cultureCode: 'fr-CA',
-        delimiters: {
-            thousands: ' ',
-            decimal: ','
+module.exports = {
+    languageTag: "fr-CA",
+    delimiters: {
+        thousands: " ",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "k",
+        million: "M",
+        billion: "G",
+        trillion: "T"
+    },
+    ordinal: (number) => {
+        return number === 1 ? "er" : "ème";
+    },
+    spaceSeparated: true,
+    currency: {
+        symbol: "$",
+        position: "postfix",
+        code: "USD"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand: 'k',
-            million: 'M',
-            billion: 'G',
-            trillion: 'T'
+        fullWithTwoDecimals: {
+            thousandSeparated: true,
+            mantissa: 2
         },
-        ordinal : function (number) {
-            return number === 1 ? 'er' : 'ème';
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: '$',
-            position: 'postfix',
-            spaceSeparated : true,
-            code: 'USD'
-        },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: '$ ,0.00',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: '$ ,0'
+        fullWithNoDecimals: {
+            output: "currency",
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

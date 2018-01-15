@@ -6,80 +6,89 @@
  *          Erhan Gundogan : https://github.com/erhangundogan,
  *          Burak Yiğit Kaya: https://github.com/BYK
  */
-(function() {
-    'use strict';
 
-    var suffixes = {
-            1: '\'inci',
-            5: '\'inci',
-            8: '\'inci',
-            70: '\'inci',
-            80: '\'inci',
+const suffixes = {
+    1: "'inci",
+    5: "'inci",
+    8: "'inci",
+    70: "'inci",
+    80: "'inci",
 
-            2: '\'nci',
-            7: '\'nci',
-            20: '\'nci',
-            50: '\'nci',
+    2: "'nci",
+    7: "'nci",
+    20: "'nci",
+    50: "'nci",
 
-            3: '\'üncü',
-            4: '\'üncü',
-            100: '\'üncü',
+    3: "'üncü",
+    4: "'üncü",
+    100: "'üncü",
 
-            6: '\'ncı',
+    6: "'ncı",
 
-            9: '\'uncu',
-            10: '\'uncu',
-            30: '\'uncu',
+    9: "'uncu",
+    10: "'uncu",
+    30: "'uncu",
 
-            60: '\'ıncı',
-            90: '\'ıncı'
+    60: "'ıncı",
+    90: "'ıncı"
+};
+
+module.exports = {
+    languageTag: "tr-TR",
+    delimiters: {
+        thousands: ".",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "bin",
+        million: "milyon",
+        billion: "milyar",
+        trillion: "trilyon"
+    },
+    ordinal: number => {
+        // special case for zero
+        if (number === 0) {
+            return "'ıncı";
+        }
+
+        let a = number % 10;
+        let b = number % 100 - a;
+        let c = number >= 100 ? 100 : null;
+
+        return suffixes[a] || suffixes[b] || suffixes[c];
+    },
+    currency: {
+        symbol: "\u20BA",
+        position: "postfix",
+        code: "TRY"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        language = {
-            langLocaleCode: 'tr-TR',
-            cultureCode: 'tr-TR',
-            delimiters: {
-                thousands: '.',
-                decimal: ','
-            },
-            abbreviations: {
-                thousand: 'bin',
-                million: 'milyon',
-                billion: 'milyar',
-                trillion: 'trilyon'
-            },
-            ordinal: function(number) {
-                if (number === 0) {  // special case for zero
-                    return '\'ıncı';
-                }
-
-                var a = number % 10,
-                    b = number % 100 - a,
-                    c = number >= 100 ? 100 : null;
-
-                return suffixes[a] || suffixes[b] || suffixes[c];
-            },
-            currency: {
-                symbol: '\u20BA',
-                position: 'postfix',
-                code: 'TRY'
-            },
-            defaults: {
-                currencyFormat: ',4 a'
-            },
-            formats: {
-                fourDigits: '4 a',
-                fullWithTwoDecimals: ',0.00 $',
-                fullWithTwoDecimalsNoCurrency: ',0.00',
-                fullWithNoDecimals: ',0 $'
-            }
-        };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
+        },
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
+        },
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
+        }
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

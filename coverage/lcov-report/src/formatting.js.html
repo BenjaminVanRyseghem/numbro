@@ -1,0 +1,2360 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/formatting.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> formatting.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>276/276</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>180/180</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>26/26</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>275/275</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300
+301
+302
+303
+304
+305
+306
+307
+308
+309
+310
+311
+312
+313
+314
+315
+316
+317
+318
+319
+320
+321
+322
+323
+324
+325
+326
+327
+328
+329
+330
+331
+332
+333
+334
+335
+336
+337
+338
+339
+340
+341
+342
+343
+344
+345
+346
+347
+348
+349
+350
+351
+352
+353
+354
+355
+356
+357
+358
+359
+360
+361
+362
+363
+364
+365
+366
+367
+368
+369
+370
+371
+372
+373
+374
+375
+376
+377
+378
+379
+380
+381
+382
+383
+384
+385
+386
+387
+388
+389
+390
+391
+392
+393
+394
+395
+396
+397
+398
+399
+400
+401
+402
+403
+404
+405
+406
+407
+408
+409
+410
+411
+412
+413
+414
+415
+416
+417
+418
+419
+420
+421
+422
+423
+424
+425
+426
+427
+428
+429
+430
+431
+432
+433
+434
+435
+436
+437
+438
+439
+440
+441
+442
+443
+444
+445
+446
+447
+448
+449
+450
+451
+452
+453
+454
+455
+456
+457
+458
+459
+460
+461
+462
+463
+464
+465
+466
+467
+468
+469
+470
+471
+472
+473
+474
+475
+476
+477
+478
+479
+480
+481
+482
+483
+484
+485
+486
+487
+488
+489
+490
+491
+492
+493
+494
+495
+496
+497
+498
+499
+500
+501
+502
+503
+504
+505
+506
+507
+508
+509
+510
+511
+512
+513
+514
+515
+516
+517
+518
+519
+520
+521
+522
+523
+524
+525
+526
+527
+528
+529
+530
+531
+532
+533
+534
+535
+536
+537
+538
+539
+540
+541
+542
+543
+544
+545
+546
+547
+548
+549
+550
+551
+552
+553
+554
+555
+556
+557
+558
+559
+560
+561
+562
+563
+564
+565
+566
+567
+568
+569
+570
+571
+572
+573
+574
+575
+576
+577
+578
+579
+580
+581
+582
+583
+584
+585
+586
+587
+588
+589
+590
+591
+592
+593
+594
+595
+596
+597
+598
+599
+600
+601
+602
+603
+604
+605
+606
+607
+608
+609
+610
+611
+612
+613
+614
+615
+616
+617
+618
+619
+620
+621
+622
+623
+624
+625
+626
+627
+628
+629
+630
+631
+632
+633
+634
+635
+636
+637
+638
+639
+640
+641
+642
+643
+644
+645
+646
+647
+648
+649
+650
+651
+652
+653
+654
+655
+656
+657
+658
+659
+660
+661
+662
+663
+664
+665
+666
+667
+668
+669
+670
+671
+672
+673
+674
+675
+676
+677
+678
+679
+680
+681
+682
+683
+684
+685
+686
+687
+688
+689
+690
+691
+692
+693
+694
+695
+696
+697
+698
+699
+700
+701
+702
+703
+704
+705
+706
+707
+708
+709
+710
+711
+712
+713
+714
+715
+716
+717
+718
+719
+720
+721
+722
+723
+724
+725
+726
+727
+728
+729
+730
+731
+732
+733
+734
+735
+736
+737
+738
+739
+740
+741
+742
+743
+744
+745
+746
+747
+748
+749
+750
+751
+752
+753
+754
+755
+756
+757
+758
+759
+760
+761
+762
+763
+764
+765
+766</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1620×</span>
+<span class="cline-any cline-yes">1612×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1620×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1620×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1619×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">274×</span>
+<span class="cline-any cline-yes">274×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">246×</span>
+<span class="cline-any cline-yes">246×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">281×</span>
+<span class="cline-any cline-yes">281×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">814×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">106×</span>
+<span class="cline-any cline-yes">106×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">106×</span>
+<span class="cline-any cline-yes">82×</span>
+<span class="cline-any cline-yes">352×</span>
+<span class="cline-any cline-yes">352×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">352×</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">82×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">106×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-yes">9×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">285×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">252×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">252×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">252×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">252×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">249×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">36×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">65×</span>
+<span class="cline-any cline-yes">14×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">51×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-yes">212×</span>
+<span class="cline-any cline-yes">212×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">279×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">25×</span>
+<span class="cline-any cline-yes">348×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">20×</span>
+<span class="cline-any cline-yes">328×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">146×</span>
+<span class="cline-any cline-yes">146×</span>
+<span class="cline-any cline-yes">182×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">169×</span>
+<span class="cline-any cline-yes">169×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-yes">360×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-yes">42×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">373×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-yes">524×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">37×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">22×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1100×</span>
+<span class="cline-any cline-yes">18×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1082×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1640×</span>
+<span class="cline-any cline-yes">547×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1093×</span>
+<span class="cline-any cline-yes">1093×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1093×</span>
+<span class="cline-any cline-yes">69×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1024×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">126×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">125×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1503×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">7×</span>
+<span class="cline-any cline-yes">12×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1503×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">453×</span>
+<span class="cline-any cline-yes">453×</span>
+<span class="cline-any cline-yes">453×</span>
+<span class="cline-any cline-yes">2310×</span>
+<span class="cline-any cline-yes">516×</span>
+<span class="cline-any cline-yes">516×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2310×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">453×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-yes">429×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">197×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">429×</span>
+<span class="cline-any cline-yes">429×</span>
+<span class="cline-any cline-yes">491×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">429×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">197×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-yes">621×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1009×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1630×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">299×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">518×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">516×</span>
+<span class="cline-any cline-yes">4×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">512×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">510×</span>
+<span class="cline-any cline-yes">324×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">186×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1613×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1613×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1636×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1636×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1635×</span>
+<span class="cline-any cline-yes">6×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">295×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">295×</span>
+<span class="cline-any cline-yes">295×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">295×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">300×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">514×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">808×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">807×</span>
+<span class="cline-any cline-yes">807×</span>
+<span class="cline-any cline-yes">28×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">779×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-yes">1620×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-yes">30×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * Copyright (c) 2017 Benjamin Van Ryseghem&lt;benjamin@vanryseghem.com&gt;
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+&nbsp;
+const globalState = require("./globalState");
+const validating = require("./validating");
+const parsing = require("./parsing");
+&nbsp;
+const binarySuffixes = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
+const decimalSuffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
+const bytes = {
+    general: {scale: 1024, suffixes: decimalSuffixes, marker: "bd"},
+    binary: {scale: 1024, suffixes: binarySuffixes, marker: "b"},
+    decimal: {scale: 1000, suffixes: decimalSuffixes, marker: "d"}
+};
+&nbsp;
+const defaultOptions = {
+    totalLength: 0,
+    characteristic: 0,
+    forceAverage: false,
+    average: false,
+    mantissa: -1,
+    optionalMantissa: true,
+    thousandSeparated: false,
+    spaceSeparated: false,
+    negative: "sign",
+    forceSign: false
+};
+&nbsp;
+/**
+ * Entry point. Format the provided INSTANCE according to the PROVIDEDFORMAT.
+ * This method ensure the prefix and postfix are added as the last step.
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @param {NumbroFormat|string} [providedFormat] - specification for formatting
+ * @param numbro - the numbro singleton
+ * @return {string}
+ */
+function format(instance, providedFormat = {}, numbro) {
+    if (typeof providedFormat === "string") {
+        providedFormat = parsing.parseFormat(providedFormat);
+    }
+&nbsp;
+    let valid = validating.validateFormat(providedFormat);
+&nbsp;
+    if (!valid) {
+        return "ERROR: invalid format";
+    }
+&nbsp;
+    let prefix = providedFormat.prefix || "";
+    let postfix = providedFormat.postfix || "";
+&nbsp;
+    let output = formatNumbro(instance, providedFormat, numbro);
+    output = insertPrefix(output, prefix);
+    output = insertPostfix(output, postfix);
+    return output;
+}
+&nbsp;
+/**
+ * Format the provided INSTANCE according to the PROVIDEDFORMAT.
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @param {{}} providedFormat - specification for formatting
+ * @param numbro - the numbro singleton
+ * @return {string}
+ */
+function formatNumbro(instance, providedFormat, numbro) {
+    switch (providedFormat.output) {
+        case "currency": {
+            providedFormat = formatOrDefault(providedFormat, globalState.currentCurrencyDefaultFormat());
+            return formatCurrency(instance, providedFormat, globalState, numbro);
+        }
+        case "percent": {
+            providedFormat = formatOrDefault(providedFormat, globalState.currentPercentageDefaultFormat());
+            return formatPercentage(instance, providedFormat, globalState, numbro);
+        }
+        case "byte":
+            providedFormat = formatOrDefault(providedFormat, globalState.currentByteDefaultFormat());
+            return formatByte(instance, providedFormat, globalState, numbro);
+        case "time":
+            providedFormat = formatOrDefault(providedFormat, globalState.currentTimeDefaultFormat());
+            return formatTime(instance, providedFormat, globalState, numbro);
+        case "ordinal":
+            providedFormat = formatOrDefault(providedFormat, globalState.currentOrdinalDefaultFormat());
+            return formatOrdinal(instance, providedFormat, globalState, numbro);
+        case "number":
+        default:
+            return formatNumber({
+                instance,
+                providedFormat,
+                numbro
+            });
+    }
+}
+&nbsp;
+/**
+ * Get the decimal byte unit (MB) for the provided numbro INSTANCE.
+ * We go from one unit to another using the decimal system (1000).
+ *
+ * @param {Numbro} instance - numbro instance to compute
+ * @return {String}
+ */
+function getDecimalByteUnit(instance) {
+    let data = bytes.decimal;
+    return getFormatByteUnits(instance._value, data.suffixes, data.scale).suffix;
+}
+&nbsp;
+/**
+ * Get the binary byte unit (MiB) for the provided numbro INSTANCE.
+ * We go from one unit to another using the decimal system (1024).
+ *
+ * @param {Numbro} instance - numbro instance to compute
+ * @return {String}
+ */
+function getBinaryByteUnit(instance) {
+    let data = bytes.binary;
+    return getFormatByteUnits(instance._value, data.suffixes, data.scale).suffix;
+}
+&nbsp;
+/**
+ * Get the decimal byte unit (MB) for the provided numbro INSTANCE.
+ * We go from one unit to another using the decimal system (1024).
+ *
+ * @param {Numbro} instance - numbro instance to compute
+ * @return {String}
+ */
+function getByteUnit(instance) {
+    let data = bytes.general;
+    return getFormatByteUnits(instance._value, data.suffixes, data.scale).suffix;
+}
+&nbsp;
+/**
+ * Return the value and the suffix computed in byte.
+ * It uses the SUFFIXES and the SCALE provided.
+ *
+ * @param {number} value - Number to format
+ * @param {[String]} suffixes - List of suffixes
+ * @param {number} scale - Number in-between two units
+ * @return {{value: Number, suffix: String}}
+ */
+function getFormatByteUnits(value, suffixes, scale) {
+    let suffix = suffixes[0];
+    let abs = Math.abs(value);
+&nbsp;
+    if (abs &gt;= scale) {
+        for (let power = 1; power &lt; suffixes.length; ++power) {
+            let min = Math.pow(scale, power);
+            let max = Math.pow(scale, power + 1);
+&nbsp;
+            if (abs &gt;= min &amp;&amp; abs &lt; max) {
+                suffix = suffixes[power];
+                value = value / min;
+                break;
+            }
+        }
+&nbsp;
+        // values greater than or equal to [scale] YB never set the suffix
+        if (suffix === suffixes[0]) {
+            value = value / Math.pow(scale, suffixes.length - 1);
+            suffix = suffixes[suffixes.length - 1];
+        }
+    }
+&nbsp;
+    return {value, suffix};
+}
+&nbsp;
+/**
+ * Format the provided INSTANCE as bytes using the PROVIDEDFORMAT, and STATE.
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @param {{}} providedFormat - specification for formatting
+ * @param {globalState} state - shared state of the library
+ * @param numbro - the numbro singleton
+ * @return {string}
+ */
+function formatByte(instance, providedFormat, state, numbro) {
+    let base = providedFormat.base || "binary";
+    let baseInfo = bytes[base];
+&nbsp;
+    let {value, suffix} = getFormatByteUnits(instance._value, baseInfo.suffixes, baseInfo.scale);
+    let output = formatNumber({
+        instance: numbro(value),
+        providedFormat,
+        state,
+        defaults: state.currentByteDefaultFormat()
+    });
+    let abbreviations = state.currentAbbreviations();
+    return `${output}${abbreviations.spaced ? " " : ""}${suffix}`;
+}
+&nbsp;
+/**
+ * Format the provided INSTANCE as an ordinal using the PROVIDEDFORMAT,
+ * and the STATE.
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @param {{}} providedFormat - specification for formatting
+ * @param {globalState} state - shared state of the library
+ * @return {string}
+ */
+function formatOrdinal(instance, providedFormat, state) {
+    let ordinalFn = state.currentOrdinal();
+    let options = Object.assign({}, defaultOptions, providedFormat);
+&nbsp;
+    let output = formatNumber({
+        instance,
+        providedFormat,
+        state
+    });
+    let ordinal = ordinalFn(instance._value);
+&nbsp;
+    return `${output}${options.spaceSeparated ? " " : ""}${ordinal}`;
+}
+&nbsp;
+/**
+ * Format the provided INSTANCE as a time HH:MM:SS.
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @return {string}
+ */
+function formatTime(instance) {
+    let hours = Math.floor(instance._value / 60 / 60);
+    let minutes = Math.floor((instance._value - (hours * 60 * 60)) / 60);
+    let seconds = Math.round(instance._value - (hours * 60 * 60) - (minutes * 60));
+    return `${hours}:${(minutes &lt; 10) ? "0" : ""}${minutes}:${(seconds &lt; 10) ? "0" : ""}${seconds}`;
+}
+&nbsp;
+/**
+ * Format the provided INSTANCE as a percentage using the PROVIDEDFORMAT,
+ * and the STATE.
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @param {{}} providedFormat - specification for formatting
+ * @param {globalState} state - shared state of the library
+ * @param numbro - the numbro singleton
+ * @return {string}
+ */
+function formatPercentage(instance, providedFormat, state, numbro) {
+    let prefixSymbol = providedFormat.prefixSymbol;
+&nbsp;
+    let output = formatNumber({
+        instance: numbro(instance._value * 100),
+        providedFormat,
+        state
+    });
+    let options = Object.assign({}, defaultOptions, providedFormat);
+&nbsp;
+    if (prefixSymbol) {
+        return `%${options.spaceSeparated ? " " : ""}${output}`;
+    }
+&nbsp;
+    return `${output}${options.spaceSeparated ? " " : ""}%`;
+}
+&nbsp;
+/**
+ * Format the provided INSTANCE as a percentage using the PROVIDEDFORMAT,
+ * and the STATE.
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @param {{}} providedFormat - specification for formatting
+ * @param {globalState} state - shared state of the library
+ * @return {string}
+ */
+function formatCurrency(instance, providedFormat, state) {
+    const currentCurrency = state.currentCurrency();
+    let options = Object.assign({}, defaultOptions, providedFormat);
+    let decimalSeparator = undefined;
+    let space = "";
+    let average = !!options.totalLength || !!options.forceAverage || options.average;
+&nbsp;
+    if (options.spaceSeparated) {
+        space = " ";
+    }
+&nbsp;
+    if (currentCurrency.position === "infix") {
+        decimalSeparator = space + currentCurrency.symbol + space;
+    }
+&nbsp;
+    let output = formatNumber({
+        instance,
+        providedFormat,
+        state,
+        decimalSeparator
+    });
+&nbsp;
+    if (currentCurrency.position === "prefix") {
+        if (instance._value &lt; 0 &amp;&amp; options.negative === "sign") {
+            output = `-${space}${currentCurrency.symbol}${output.slice(1)}`;
+        } else {
+            output = currentCurrency.symbol + space + output;
+        }
+    }
+&nbsp;
+    if (!currentCurrency.position || currentCurrency.position === "postfix") {
+        space = average ? "" : space;
+        output = output + space + currentCurrency.symbol;
+    }
+&nbsp;
+    return output;
+}
+&nbsp;
+/**
+ * Compute the average value out of VALUE.
+ * The other parameters are computation options.
+ *
+ * @param {number} value - value to compute
+ * @param {string} [forceAverage] - forced unit used to compute
+ * @param {{}} abbreviations - part of the language specification
+ * @param {boolean} spaceSeparated - `true` if a space must be inserted between the value and the abbreviation
+ * @param {number} [totalLength] - total length of the output including the characteristic and the mantissa
+ * @return {{value: number, abbreviation: string, mantissaPrecision: number}}
+ */
+function computeAverage({value, forceAverage, abbreviations, spaceSeparated = false, totalLength = 0}) {
+    let abbreviation = "";
+    let abs = Math.abs(value);
+    let mantissaPrecision = -1;
+&nbsp;
+    if ((abs &gt;= Math.pow(10, 12) &amp;&amp; !forceAverage) || (forceAverage === "trillion")) {
+        // trillion
+        abbreviation = abbreviations.trillion;
+        value = value / Math.pow(10, 12);
+    } else if ((abs &lt; Math.pow(10, 12) &amp;&amp; abs &gt;= Math.pow(10, 9) &amp;&amp; !forceAverage) || (forceAverage === "billion")) {
+        // billion
+        abbreviation = abbreviations.billion;
+        value = value / Math.pow(10, 9);
+    } else if ((abs &lt; Math.pow(10, 9) &amp;&amp; abs &gt;= Math.pow(10, 6) &amp;&amp; !forceAverage) || (forceAverage === "million")) {
+        // million
+        abbreviation = abbreviations.million;
+        value = value / Math.pow(10, 6);
+    } else if ((abs &lt; Math.pow(10, 6) &amp;&amp; abs &gt;= Math.pow(10, 3) &amp;&amp; !forceAverage) || (forceAverage === "thousand")) {
+        // thousand
+        abbreviation = abbreviations.thousand;
+        value = value / Math.pow(10, 3);
+    }
+&nbsp;
+    let optionalSpace = spaceSeparated ? " " : "";
+&nbsp;
+    if (abbreviation) {
+        abbreviation = optionalSpace + abbreviation;
+    }
+&nbsp;
+    if (totalLength) {
+        let characteristic = value.toString().split(".")[0];
+        mantissaPrecision = Math.max(totalLength - characteristic.length, 0);
+    }
+&nbsp;
+    return {value, abbreviation, mantissaPrecision};
+}
+&nbsp;
+/**
+ * Compute an exponential form for VALUE, taking into account CHARACTERISTIC
+ * if provided.
+ * @param {number} value - value to compute
+ * @param {number} [characteristicPrecision] - optional characteristic length
+ * @return {{value: number, abbreviation: string}}
+ */
+function computeExponential({value, characteristicPrecision = 0}) {
+    let [numberString, exponential] = value.toExponential().split("e");
+    let number = +numberString;
+&nbsp;
+    if (!characteristicPrecision) {
+        return {
+            value: number,
+            abbreviation: `e${exponential}`
+        };
+    }
+&nbsp;
+    let characteristicLength = 1; // see `toExponential`
+&nbsp;
+    if (characteristicLength &lt; characteristicPrecision) {
+        number = number * Math.pow(10, characteristicPrecision - characteristicLength);
+        exponential = +exponential - (characteristicPrecision - characteristicLength);
+        exponential = exponential &gt;= 0 ? `+${exponential}` : exponential;
+    }
+&nbsp;
+    return {
+        value: number,
+        abbreviation: `e${exponential}`
+    };
+}
+&nbsp;
+/**
+ * Return a string of NUMBER zero.
+ *
+ * @param {number} number - Length of the output
+ * @return {string}
+ */
+function zeroes(number) {
+    let result = "";
+    for (let i = 0; i &lt; number; i++) {
+        result += "0";
+    }
+&nbsp;
+    return result;
+}
+&nbsp;
+/**
+ * Return a string representing VALUE with a PRECISION-long mantissa.
+ * This method is for large/small numbers only (a.k.a. including a "e").
+ *
+ * @param {number} value - number to precise
+ * @param {number} precision - desired length for the mantissa
+ * @return {string}
+ */
+function toFixedLarge(value, precision) {
+    let result = value.toString();
+&nbsp;
+    let [base, exp] = result.split("e");
+&nbsp;
+    let [characteristic, mantissa = ""] = base.split(".");
+&nbsp;
+    if (+exp &gt; 0) {
+        result = characteristic + mantissa + zeroes(exp - mantissa.length);
+    } else {
+        let prefix = ".";
+&nbsp;
+        if (+characteristic &lt; 0) {
+            prefix = `-0${prefix}`;
+        } else {
+            prefix = `0${prefix}`;
+        }
+&nbsp;
+        let suffix = (zeroes(-exp - 1) + Math.abs(characteristic) + mantissa).substr(0, precision);
+        if (suffix.length &lt; precision) {
+            suffix += zeroes(precision - suffix.length);
+        }
+        result = prefix + suffix;
+    }
+&nbsp;
+    if (+exp &gt; 0 &amp;&amp; precision &gt; 0) {
+        result += `.${zeroes(precision)}`;
+    }
+&nbsp;
+    return result;
+}
+&nbsp;
+/**
+ * Return a string representing VALUE with a PRECISION-long mantissa.
+ *
+ * @param {number} value - number to precise
+ * @param {number} precision - desired length for the mantissa
+ * @return {string}
+ */
+function toFixed(value, precision) {
+    if (value.toString().indexOf("e") !== -1) {
+        return toFixedLarge(value, precision);
+    }
+&nbsp;
+    return (Math.round(+`${value}e+${precision}`) / (Math.pow(10, precision))).toFixed(precision);
+}
+&nbsp;
+/**
+ * Return the current OUTPUT with a mantissa precions of PRECISION.
+ *
+ * @param {string} output - output being build in the process of formatting
+ * @param {number} value - number being currently formatted
+ * @param {boolean} optionalMantissa - `true` if the mantissa is omitted when it's only zeroes
+ * @param {number} precision - desired precision of the mantissa
+ * @return {string}
+ */
+function setMantissaPrecision(output, value, optionalMantissa, precision) {
+    if (precision === -1) {
+        return output;
+    }
+&nbsp;
+    let result = toFixed(value, precision);
+    let [currentCharacteristic, currentMantissa = ""] = result.toString().split(".");
+&nbsp;
+    if (currentMantissa.match(/^0+$/) &amp;&amp; optionalMantissa) {
+        return currentCharacteristic;
+    }
+&nbsp;
+    return result.toString();
+}
+&nbsp;
+/**
+ * Return the current OUTPUT with a characteristic precions of PRECISION.
+ *
+ * @param {string} output - output being build in the process of formatting
+ * @param {number} value - number being currently formatted
+ * @param {boolean} optionalCharacteristic - `true` if the characteristic is omitted when it's only zeroes
+ * @param {number} precision - desired precision of the characteristic
+ * @return {string}
+ */
+function setCharacteristicPrecision(output, value, optionalCharacteristic, precision) {
+    let result = output;
+    let [currentCharacteristic, currentMantissa] = result.toString().split(".");
+&nbsp;
+    if (currentCharacteristic.match(/^-?0$/) &amp;&amp; optionalCharacteristic) {
+        if (!currentMantissa) {
+            return currentCharacteristic.replace("0", "");
+        }
+&nbsp;
+        return `${currentCharacteristic.replace("0", "")}.${currentMantissa}`;
+    }
+&nbsp;
+    if (currentCharacteristic.length &lt; precision) {
+        let missingZeros = precision - currentCharacteristic.length;
+        for (let i = 0; i &lt; missingZeros; i++) {
+            result = `0${result}`;
+        }
+    }
+&nbsp;
+    return result.toString();
+}
+&nbsp;
+/**
+ * Return the indexes where are the group separations after splitting
+ * `totalLength` in group of `groupSize` size.
+ * Important: we start grouping from the right hand side.
+ *
+ * @param {number} totalLength - total length of the characteristic to split
+ * @param {number} groupSize - length of each group
+ * @return {[number]}
+ */
+function indexesOfGroupSpaces(totalLength, groupSize) {
+    let result = [];
+    let counter = 0;
+    for (let i = totalLength; i &gt; 0; i--) {
+        if (counter === groupSize) {
+            result.unshift(i);
+            counter = 0;
+        }
+        counter++;
+    }
+&nbsp;
+    return result;
+}
+&nbsp;
+/**
+ * Replace the decimal separator with DECIMALSEPARATOR and insert thousand
+ * separators.
+ *
+ * @param {string} output - output being build in the process of formatting
+ * @param {number} value - number being currently formatted
+ * @param {boolean} thousandSeparated - `true` if the characteristic must be separated
+ * @param {globalState} state - shared state of the library
+ * @param {string} decimalSeparator - string to use as decimal separator
+ * @return {string}
+ */
+function replaceDelimiters(output, value, thousandSeparated, state, decimalSeparator) {
+    let delimiters = state.currentDelimiters();
+    let thousandSeparator = delimiters.thousands;
+    decimalSeparator = decimalSeparator || delimiters.decimal;
+    let thousandsSize = delimiters.thousandsSize || 3;
+&nbsp;
+    let result = output.toString();
+    let characteristic = result.split(".")[0];
+    let mantissa = result.split(".")[1];
+&nbsp;
+    if (thousandSeparated) {
+        if (value &lt; 0) {
+            // Remove the minus sign
+            characteristic = characteristic.slice(1);
+        }
+&nbsp;
+        let indexesToInsertThousandDelimiters = indexesOfGroupSpaces(characteristic.length, thousandsSize);
+        indexesToInsertThousandDelimiters.forEach((position, index) =&gt; {
+            characteristic = characteristic.slice(0, position + index) + thousandSeparator + characteristic.slice(position + index);
+        });
+&nbsp;
+        if (value &lt; 0) {
+            // Add back the minus sign
+            characteristic = `-${characteristic}`;
+        }
+    }
+&nbsp;
+    if (!mantissa) {
+        result = characteristic;
+    } else {
+        result = characteristic + decimalSeparator + mantissa;
+    }
+    return result;
+}
+&nbsp;
+/**
+ * Insert the provided ABBREVIATION at the end of OUTPUT.
+ *
+ * @param {string} output - output being build in the process of formatting
+ * @param {string} abbreviation - abbreviation to append
+ * @return {*}
+ */
+function insertAbbreviation(output, abbreviation) {
+    return output + abbreviation;
+}
+&nbsp;
+/**
+ * Insert the positive/negative sign according to the NEGATIVE flag.
+ * If the value is negative but still output as 0, the negative sign is removed.
+ *
+ * @param {string} output - output being build in the process of formatting
+ * @param {number} value - number being currently formatted
+ * @param {string} negative - flag for the negative form ("sign" or "parenthesis")
+ * @return {*}
+ */
+function insertSign(output, value, negative) {
+    if (value === 0) {
+        return output;
+    }
+&nbsp;
+    if (+output === 0) {
+        return output.replace("-", "");
+    }
+&nbsp;
+    if (value &gt; 0) {
+        return `+${output}`;
+    }
+&nbsp;
+    if (negative === "sign") {
+        return output;
+    }
+&nbsp;
+    return `(${output.replace("-", "")})`;
+}
+&nbsp;
+/**
+ * Insert the provided PREFIX at the start of OUTPUT.
+ *
+ * @param {string} output - output being build in the process of formatting
+ * @param {string} prefix - abbreviation to prepend
+ * @return {*}
+ */
+function insertPrefix(output, prefix) {
+    return prefix + output;
+}
+&nbsp;
+/**
+ * Insert the provided POSTFIX at the end of OUTPUT.
+ *
+ * @param {string} output - output being build in the process of formatting
+ * @param {string} postfix - abbreviation to append
+ * @return {*}
+ */
+function insertPostfix(output, postfix) {
+    return output + postfix;
+}
+&nbsp;
+/**
+ * Format the provided INSTANCE as a number using the PROVIDEDFORMAT,
+ * and the STATE.
+ * This is the key method of the framework!
+ *
+ * @param {Numbro} instance - numbro instance to format
+ * @param {{}} [providedFormat] - specification for formatting
+ * @param {globalState} state - shared state of the library
+ * @param {string} decimalSeparator - string to use as decimal separator
+ * @param {{}} defaults - Set of default values used for formatting
+ * @return {string}
+ */
+function formatNumber({instance, providedFormat, state = globalState, decimalSeparator, defaults = state.currentDefaults()}) {
+    let value = instance._value;
+&nbsp;
+    if (value === 0 &amp;&amp; state.hasZeroFormat()) {
+        return state.getZeroFormat();
+    }
+&nbsp;
+    if (!isFinite(value)) {
+        return value.toString();
+    }
+&nbsp;
+    let options = Object.assign({}, defaultOptions, defaults, providedFormat);
+&nbsp;
+    let totalLength = options.totalLength;
+    let characteristicPrecision = totalLength ? 0 : options.characteristic;
+    let optionalCharacteristic = options.optionalCharacteristic;
+    let forceAverage = options.forceAverage;
+    let average = !!totalLength || !!forceAverage || options.average;
+&nbsp;
+    // default when averaging is to chop off decimals
+    let mantissaPrecision = totalLength ? -1 : (average &amp;&amp; providedFormat.mantissa === undefined ? 0 : options.mantissa);
+    let optionalMantissa = totalLength ? false : options.optionalMantissa;
+    let thousandSeparated = options.thousandSeparated;
+    let spaceSeparated = options.spaceSeparated;
+    let negative = options.negative;
+    let forceSign = options.forceSign;
+    let exponential = options.exponential;
+&nbsp;
+    let abbreviation = "";
+&nbsp;
+    if (average) {
+        let data = computeAverage({
+            value,
+            forceAverage,
+            abbreviations: state.currentAbbreviations(),
+            spaceSeparated: spaceSeparated,
+            totalLength
+        });
+&nbsp;
+        value = data.value;
+        abbreviation += data.abbreviation;
+&nbsp;
+        if (totalLength) {
+            mantissaPrecision = data.mantissaPrecision;
+        }
+    }
+&nbsp;
+    if (exponential) {
+        let data = computeExponential({
+            value,
+            characteristicPrecision
+        });
+&nbsp;
+        value = data.value;
+        abbreviation = data.abbreviation + abbreviation;
+    }
+&nbsp;
+    let output = setMantissaPrecision(value.toString(), value, optionalMantissa, mantissaPrecision);
+    output = setCharacteristicPrecision(output, value, optionalCharacteristic, characteristicPrecision);
+    output = replaceDelimiters(output, value, thousandSeparated, state, decimalSeparator);
+&nbsp;
+    if (average || exponential) {
+        output = insertAbbreviation(output, abbreviation);
+    }
+&nbsp;
+    if (forceSign || value &lt; 0) {
+        output = insertSign(output, value, negative);
+    }
+&nbsp;
+    return output;
+}
+&nbsp;
+/**
+ * If FORMAT is non-null and not just an output, return FORMAT.
+ * Return DEFAULTFORMAT otherwise.
+ *
+ * @param providedFormat
+ * @param defaultFormat
+ */
+function formatOrDefault(providedFormat, defaultFormat) {
+    if (!providedFormat) {
+        return defaultFormat;
+    }
+&nbsp;
+    let keys = Object.keys(providedFormat);
+    if (keys.length === 1 &amp;&amp; keys[0] === "output") {
+        return defaultFormat;
+    }
+&nbsp;
+    return providedFormat;
+}
+&nbsp;
+module.exports = (numbro) =&gt; ({
+    format: (...args) =&gt; format(...args, numbro),
+    getByteUnit: (...args) =&gt; getByteUnit(...args, numbro),
+    getBinaryByteUnit: (...args) =&gt; getBinaryByteUnit(...args, numbro),
+    getDecimalByteUnit: (...args) =&gt; getDecimalByteUnit(...args, numbro),
+    formatOrDefault
+});
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 22 2017 01:23:51 GMT+0100 (CET)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

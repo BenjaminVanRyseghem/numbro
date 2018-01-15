@@ -1,7 +1,11 @@
+### 2.0.0
+
+- Complete rewrite of numbro (#305). Thanks @BenjaminVanRyseghem.
+
 ### 1.11.1
 
 - Fix copyright owner references.
-- Fix ##313: add es-MX language definition. Thanks @joebordes.
+- Fix #313: add es-MX language definition. Thanks @joebordes.
 
 ### 1.11.0
 
@@ -105,17 +109,17 @@
 
 - Introduce new API functions:
 
-	- setCulture
-	- culture
-	- cultureData
-	- cultures
-	
+    - setCulture
+    - culture
+    - cultureData
+    - cultures
+
 - Deprecate API functions:
 
-	- setLanguage
-	- language
-	- languageData
-	- languages
+    - setLanguage
+    - language
+    - languageData
+    - languages
 
 Those deprecated functions will be removed in version 2.0.0
 
@@ -131,7 +135,7 @@ Those deprecated functions will be removed in version 2.0.0
 - #106 Exception on large number formatting. Thanks @andrewla
 
 ### 1.5.1
- 
+
 - #78 Why is 0 formatted as +0?. Thanks to @clayzermk1
 - #80 currency format "+$..." produces output "$+...". Thanks to @clayzermk1
 - Fixes German separator. Thanks to @gka

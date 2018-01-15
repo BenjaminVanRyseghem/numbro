@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for src/parsing.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">src/</a> parsing.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>105/105</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>54/54</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>15/15</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>105/105</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202
+203
+204
+205
+206
+207
+208
+209
+210
+211
+212
+213
+214
+215
+216
+217
+218
+219
+220
+221
+222
+223
+224
+225
+226
+227
+228
+229
+230
+231
+232
+233
+234
+235
+236
+237
+238
+239
+240
+241
+242
+243
+244
+245
+246
+247
+248
+249
+250
+251
+252
+253
+254
+255
+256
+257
+258
+259
+260
+261
+262
+263
+264
+265
+266
+267
+268
+269
+270
+271
+272
+273
+274
+275
+276
+277
+278
+279
+280
+281
+282
+283
+284
+285
+286
+287
+288
+289
+290
+291
+292
+293
+294
+295
+296
+297
+298
+299
+300</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1632×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1632×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1641×</span>
+<span class="cline-any cline-yes">291×</span>
+<span class="cline-any cline-yes">291×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1350×</span>
+<span class="cline-any cline-yes">246×</span>
+<span class="cline-any cline-yes">246×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1104×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1103×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1101×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1100×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1098×</span>
+<span class="cline-any cline-yes">281×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">401×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">35×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">8×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1455×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">914×</span>
+<span class="cline-any cline-yes">914×</span>
+<span class="cline-any cline-yes">910×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">266×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1631×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1629×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-yes">1627×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">70×</span>
+<span class="cline-any cline-yes">1563×</span>
+<span class="cline-any cline-yes">845×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">915×</span>
+<span class="cline-any cline-yes">915×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">309×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1633×</span>
+<span class="cline-any cline-yes">5×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1637×</span>
+<span class="cline-any cline-yes">3×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1634×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/*!
+ * Copyright (c) 2017 Benjamin Van Ryseghem&lt;benjamin@vanryseghem.com&gt;
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+&nbsp;
+/**
+ * Parse the format STRING looking for a prefix. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parsePrefix(string, result) {
+    let match = string.match(/^{([^}]*)}/);
+    if (match) {
+        result.prefix = match[1];
+        return string.slice(match[0].length);
+    }
+&nbsp;
+    return string;
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for a postfix. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parsePostfix(string, result) {
+    let match = string.match(/{([^}]*)}$/);
+    if (match) {
+        result.postfix = match[1];
+&nbsp;
+        return string.slice(0, -match[0].length);
+    }
+&nbsp;
+    return string;
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the output value. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ */
+function parseOutput(string, result) {
+    if (string.indexOf("$") !== -1) {
+        result.output = "currency";
+        return;
+    }
+&nbsp;
+    if (string.indexOf("%") !== -1) {
+        result.output = "percent";
+        return;
+    }
+&nbsp;
+    if (string.indexOf("bd") !== -1) {
+        result.output = "byte";
+        result.base = "general";
+        return;
+    }
+&nbsp;
+    if (string.indexOf("b") !== -1) {
+        result.output = "byte";
+        result.base = "binary";
+        return;
+&nbsp;
+    }
+&nbsp;
+    if (string.indexOf("d") !== -1) {
+        result.output = "byte";
+        result.base = "decimal";
+        return;
+&nbsp;
+    }
+&nbsp;
+    if (string.indexOf(":") !== -1) {
+        result.output = "time";
+        return;
+    }
+&nbsp;
+    if (string.indexOf("o") !== -1) {
+        result.output = "ordinal";
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the thousand separated value. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseThousandSeparated(string, result) {
+    if (string.indexOf(",") !== -1) {
+        result.thousandSeparated = true;
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the space separated value. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseSpaceSeparated(string, result) {
+    if (string.indexOf(" ") !== -1) {
+        result.spaceSeparated = true;
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the total length. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseTotalLength(string, result) {
+    let match = string.match(/[1-9]+[0-9]*/);
+&nbsp;
+    if (match) {
+        result.totalLength = +match[0];
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the characteristic length. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseCharacteristic(string, result) {
+    let characteristic = string.split(".")[0];
+    let match = characteristic.match(/0+/);
+    if (match) {
+        result.characteristic = match[0].length;
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the mantissa length. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseMantissa(string, result) {
+    let mantissa = string.split(".")[1];
+    if (mantissa) {
+        let match = mantissa.match(/0+/);
+        if (match) {
+            result.mantissa = match[0].length;
+        }
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the average value. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseAverage(string, result) {
+    if (string.indexOf("a") !== -1) {
+        result.average = true;
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for a forced average precision. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseForceAverage(string, result) {
+    if (string.indexOf("K") !== -1) {
+        result.forceAverage = "thousand";
+    } else if (string.indexOf("M") !== -1) {
+        result.forceAverage = "million";
+    } else if (string.indexOf("B") !== -1) {
+        result.forceAverage = "billion";
+    } else if (string.indexOf("T") !== -1) {
+        result.forceAverage = "trillion";
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING finding if the mantissa is optional. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseOptionalMantissa(string, result) {
+    if (string.match(/\[\.]/)) {
+        result.optionalMantissa = true;
+    } else if (string.match(/\./)) {
+        result.optionalMantissa = false;
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING finding if the characteristic is optional. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseOptionalCharacteristic(string, result) {
+    if (string.indexOf(".") !== -1) {
+        let characteristic = string.split(".")[0];
+        result.optionalCharacteristic = characteristic.indexOf("0") === -1;
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING looking for the negative format. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {string} - format
+ */
+function parseNegative(string, result) {
+    if (string.match(/^\+?\([^)]*\)$/)) {
+        result.negative = "parenthesis";
+    }
+    if (string.match(/^\+?-/)) {
+        result.negative = "sign";
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING finding if the sign is mandatory. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ */
+function parseForceSign(string, result) {
+    if (string.match(/^\+/)) {
+        result.forceSign = true;
+    }
+}
+&nbsp;
+/**
+ * Parse the format STRING and accumulating the values ie RESULT.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ * @return {NumbroFormat} - format
+ */
+function parseFormat(string, result = {}) {
+    if (typeof string !== "string") {
+        return string;
+    }
+&nbsp;
+    string = parsePrefix(string, result);
+    string = parsePostfix(string, result);
+    parseOutput(string, result);
+    parseTotalLength(string, result);
+    parseCharacteristic(string, result);
+    parseOptionalCharacteristic(string, result);
+    parseAverage(string, result);
+    parseForceAverage(string, result);
+    parseMantissa(string, result);
+    parseOptionalMantissa(string, result);
+    parseThousandSeparated(string, result);
+    parseSpaceSeparated(string, result);
+    parseNegative(string, result);
+    parseForceSign(string, result);
+&nbsp;
+    return result;
+}
+&nbsp;
+module.exports = {
+    parseFormat
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Wed Nov 22 2017 01:23:51 GMT+0100 (CET)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

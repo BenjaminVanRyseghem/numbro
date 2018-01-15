@@ -4,52 +4,55 @@
  * locale: Argentina
  * author : Hernan Garcia : https://github.com/hgarcia
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'es-AR',
-        cultureCode: 'es-AR',
-        delimiters: {
-            thousands: '.',
-            decimal: ','
+module.exports = {
+    languageTag: "es-AR",
+    delimiters: {
+        thousands: ".",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "k",
+        million: "mm",
+        billion: "b",
+        trillion: "t"
+    },
+    ordinal: number => {
+        let b = number % 10;
+        return (b === 1 || b === 3) ? "er" : (b === 2) ? "do" : (b === 7 || b === 0) ? "mo" : (b === 8) ? "vo" : (b === 9) ? "no" : "to";
+    },
+    currency: {
+        symbol: "$",
+        position: "postfix",
+        code: "ARS"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand: 'k',
-            million: 'mm',
-            billion: 'b',
-            trillion: 't'
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
         },
-        ordinal: function (number) {
-            var b = number % 10;
-            return (b === 1 || b === 3) ? 'er' :
-                (b === 2) ? 'do' :
-                (b === 7 || b === 0) ? 'mo' :
-        (b === 8) ? 'vo' :
-        (b === 9) ? 'no' : 'to';
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: '$',
-            position: 'postfix',
-            code: 'ARS'
-        },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: ',0 $'
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

@@ -4,37 +4,22 @@
  * country : Serbia (Cyrillic)
  * author : Tim McIntosh (StayinFront NZ)
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'sr-Cyrl-RS',
-        cultureCode: 'sr-Cyrl-RS',
-        delimiters: {
-            thousands: '.',
-            decimal: ','
-        },
-        abbreviations: {
-            thousand: 'тыс.',
-            million: 'млн',
-            billion: 'b',
-            trillion: 't'
-        },
-        ordinal: function () {
-            return '.';
-        },
-        currency: {
-            symbol: 'RSD',
-            code: 'RSD'
-        }
-    };
-
-    // Node
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
+module.exports = {
+    languageTag: "sr-Cyrl-RS",
+    delimiters: {
+        thousands: ".",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "тыс.",
+        million: "млн",
+        billion: "b",
+        trillion: "t"
+    },
+    ordinal: () => ".",
+    currency: {
+        symbol: "RSD",
+        code: "RSD"
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture('sr-Cyrl-RS', language);
-    }
-}());
+};
