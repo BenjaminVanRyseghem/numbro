@@ -53,12 +53,11 @@ See [CHANGELOG.md](CHANGELOG.md). For the original project (Numeral.js) changelo
 
 # License
 
-Copyright © 2014 Adam Draper
-Copyright © 2015-2017 Företagsplatsen AB
-
 Copyright © 2017 Benjamin Van Ryseghem
 
-Copyright © 2017 Benjamin Van Ryseghem<benjamin@vanryseghem.com>
+Copyright © 2015-2017 Företagsplatsen AB
+
+Copyright © 2014 Adam Draper
 
 ---
 

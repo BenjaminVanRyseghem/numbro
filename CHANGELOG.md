@@ -1,7 +1,11 @@
+### 2.0.0
+
+- Complete rewrite of numbro (#305). Thanks @BenjaminVanRyseghem.
+
 ### 1.11.1
 
 - Fix copyright owner references.
-- Fix ##313: add es-MX language definition. Thanks @joebordes.
+- Fix #313: add es-MX language definition. Thanks @joebordes.
 
 ### 1.11.0
 
