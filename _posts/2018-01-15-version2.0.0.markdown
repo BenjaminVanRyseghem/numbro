@@ -1,0 +1,37 @@
+---
+title:  Release 2.0.0
+author: BenjaminVanRyseghem
+date:   2018-01-15 11:20:00
+---
+
+# New year, new numbro!
+
+
+**numbro 2.0.0** has just been released, and it's a complete rewrite of the code.
+
+Hopefully, numbro 2.0.0 is 99% backward compatible with the previous version (1.11.1).
+
+Breaking changes are:
+
+- `unformat` is now a static function instead of an instance method (`numbro.unformat(myString)` instead of `numbro(whatever).unformat(myString)`)
+- not precising a mantissa now means to keep them all while it used to mean to trim it off (`numbro(123.456).format(0,0)` now is `123.234` instead of `123`)
+
+
+On the other side, this version brings some cool features in:
+
+- From a usage point of view:
+	- a better formatting format, now using a literal object for an improved readability (note that the string format is still supported) 
+	- support for [BigNumber](https://github.com/MikeMcl/bignumber.js/), so no more rounding issues
+	- defaults are now language specific, bringing more flexibility
+	
+- From a code point of view:
+	- the code is now split into modules, making it easier to read, to test and to maintain
+	- usage of the [ES6](http://es6-features.org/) specification, for an up-to-date codebase
+	- usage of [eslint](http://eslint.org/), a javascript linter for cleaner code
+	- usage of [jasmine](https://jasmine.github.io/), for more advanced testing (while keeping all previous tests)
+	- usage of [istanbul](https://gotwarlost.github.io/istanbul/), ensuring a **100%** test coverage ratio!
+
+More details can be found in the [PR #305](https://github.com/BenjaminVanRyseghem/numbro/pull/305)
+
+
+Enjoy <i class="fa fa-smile-o">
