@@ -3,98 +3,118 @@
 declare function numbro(value?: any): numbro.Numbro;
 
 declare namespace numbro {
-    
+
     export const version: string;
+
     export function isNumbro(value: any): value is Numbro;
 
-    export function setCulture(newCultureCode: string, fallbackCultureCode ?: string): void;
-    export function culture(): string;
-    export function culture(cultureCode: string): void;
-    export function culture(cultureCode: string, newCulture: NumbroCulture): typeof numbro;
-    export function cultureData(cultureCode ?: string): NumbroCulture;
-    export function cultures(): Array<NumbroCulture>;
-
-    /**
-     * Language functions
-     *
-     * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
-     * culture versions instead.
-     */
-    export function setLanguage(newCultureCode: string, fallbackCultureCode ?: string): void;
     export function language(): string;
-    export function language(cultureCode: string): void;
-    export function language(cultureCode: string, newCulture: NumbroCulture): typeof numbro;
-    export function languageData(cultureCode ?: string): NumbroCulture;
-    export function languages(): Array<NumbroCulture>;
+
+    export function registerLanguage(tag: NumbroLanguage, useLanguage ?: boolean): string;
+
+    export function setLanguage(tag: string, fallbackTag ?: string): void;
+
+    export function languages(): Array<NumbroLanguage>;
+
+    export function languageData(tag ?: string): NumbroLanguage;
 
     export function zeroFormat(newFormat: string): void;
-    export function defaultFormat(newFormat: string): void;
-    export function defaultCurrencyFormat(newFormat: string): void;
 
-    export function validate(value: string, cultureCode ?: string): boolean;
+    export function defaultFormat(): {};
 
-    export function loadCulturesInNode(): void;
+    export function defaultCurrencyFormat(newFormat: string): {};
 
-    /**
-     * @deprecated Since version 1.6.0. Will be removed in version 2.0. Use the
-     * culture version instead.
-     */
+    export function validate(value: string, format: {} | string): boolean;
+
     export function loadLanguagesInNode(): void;
+
+    export function unformat(input: string, format?: {} | string): numbro.Numbro;
 
     interface Numbro {
         clone(): Numbro;
 
-        format(formatString?: string, roundingFunction?: RoundingFunction): string;
-        formatCurrency(formatString?: string, roundingFunction?: RoundingFunction): string;
-        unformat(formattedNumber: string): number;
+        format(format?: {} | string): string;
+
+        formatCurrency(format?: {} | string): string;
+
+        formatTime(format?: {} | string): string;
 
         binaryByteUnits(): string;
-        byteUnits(): string;
+
         decimalByteUnits(): string;
 
-        value(): number;
-        valueOf(): number;
-
-        set(value: number): this;
-        add(value: number): this;
-        subtract(value: number): this;
-        multiply(value: number): this;
-        divide(value: number): this;
+        byteUnits(): string;
 
         difference(value: number): number;
+
+        add(value: number): this;
+
+        subtract(value: number): this;
+
+        multiply(value: number): this;
+
+        divide(value: number): this;
+
+        set(value: number): this;
+
+        value(): number;
+
+        valueOf(): number;
     }
 
-    export interface NumbroCulture {
-        langLocaleCode: string;
-        cultureCode: string;
+    interface Format {
+        prefix?: number;
+        postfix?: number;
+        characteristic?: number;
+        forceAverage?: "trillion" | "billion" | "million" | "thousand";
+        average?: boolean;
+        mantissa?: number;
+        optionalMantissa?: boolean;
+        thousandSeparated?: boolean;
+        negative?: "sign" | "parenthesis";
+        forceSign?: boolean;
+    }
+
+    export interface NumbroLanguage {
+        languageTag: string;
+
         delimiters: {
             thousands: string;
             decimal: string;
         };
+
         abbreviations: {
             thousand: string;
             million: string;
             billion: string;
             trillion: string;
+            spaced: boolean;
         };
+
         ordinal(num: number): string;
+
         currency: {
             symbol: string;
             position: string;
+            code: string;
         };
-        defaults: {
-            currencyFormat: string;
-        };
-        formats: {
-            fourDigits: string;
-            fullWithTwoDecimals: string;
-            fullWithTwoDecimalsNoCurrency: string;
-            fullWithNoDecimals: string;
-        };
-    }
 
-    export interface RoundingFunction {
-        (x: number): number;
+        defaults: Format;
+
+        ordinalFormat?: Format;
+
+        byteFormat: Format;
+
+        percentageFormat: Format;
+
+        currencyFormat: Format;
+
+        formats: {
+            fourDigits: Format;
+            fullWithTwoDecimals: Format;
+            fullWithTwoDecimalsNoCurrency: Format;
+            fullWithNoDecimals: Format;
+        };
     }
 }
 

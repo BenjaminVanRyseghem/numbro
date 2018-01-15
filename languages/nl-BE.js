@@ -4,48 +4,55 @@
  * locale: Belgium
  * author : Dieter Luypaert : https://github.com/moeriki
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'nl-BE',
-        cultureCode: 'nl-BE',
-        delimiters: {
-            thousands: ' ',
-            decimal  : ','
+module.exports = {
+    languageTag: "nl-BE",
+    delimiters: {
+        thousands: " ",
+        decimal: ","
+    },
+    abbreviations: {
+        thousand: "k",
+        million: "mln",
+        billion: "mld",
+        trillion: "bln"
+    },
+    ordinal: number => {
+        let remainder = number % 100;
+        return (number !== 0 && remainder <= 1 || remainder === 8 || remainder >= 20) ? "ste" : "de";
+    },
+    currency: {
+        symbol: "€",
+        position: "postfix",
+        code: "EUR"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand : 'k',
-            million  : 'mln',
-            billion  : 'mld',
-            trillion : 'bln'
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
         },
-        ordinal : function (number) {
-            var remainder = number % 100;
-            return (number !== 0 && remainder <= 1 || remainder === 8 || remainder >= 20) ? 'ste' : 'de';
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: '€',
-            position: 'postfix',
-            code: 'EUR'
-        },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: ',0 $'
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};

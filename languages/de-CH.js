@@ -4,47 +4,54 @@
  * locale: Switzerland
  * author : Michael Piefel : https://github.com/piefel (based on work from Marco Krage : https://github.com/sinky)
  */
-(function () {
-    'use strict';
 
-    var language = {
-        langLocaleCode: 'de-CH',
-        cultureCode: 'de-CH',
-        delimiters: {
-            thousands: '\'',
-            decimal: '.'
+module.exports = {
+    languageTag: "de-CH",
+    delimiters: {
+        thousands: "'",
+        decimal: "."
+    },
+    abbreviations: {
+        thousand: "k",
+        million: "m",
+        billion: "b",
+        trillion: "t"
+    },
+    ordinal: function() {
+        return ".";
+    },
+    currency: {
+        symbol: "CHF",
+        position: "postfix",
+        code: "CHF"
+    },
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
+    },
+    formats: {
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
         },
-        abbreviations: {
-            thousand: 'k',
-            million: 'm',
-            billion: 'b',
-            trillion: 't'
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
         },
-        ordinal: function () {
-            return '.';
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
         },
-        currency: {
-            symbol: 'CHF',
-            position: 'postfix',
-            code: 'CHF'
-        },
-        defaults: {
-            currencyFormat: ',4 a'
-        },
-        formats: {
-            fourDigits: '4 a',
-            fullWithTwoDecimals: ',0.00 $',
-            fullWithTwoDecimalsNoCurrency: ',0.00',
-            fullWithNoDecimals: ',0 $'
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
         }
-    };
-
-    // CommonJS
-    if (typeof module !== 'undefined' && module.exports) {
-        module.exports = language;
     }
-    // Browser
-    if (typeof window !== 'undefined' && window.numbro && window.numbro.culture) {
-        window.numbro.culture(language.cultureCode, language);
-    }
-}.call(typeof window === 'undefined' ? this : window));
+};
