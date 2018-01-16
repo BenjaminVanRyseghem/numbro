@@ -73,6 +73,8 @@ declare namespace numbro {
         thousandSeparated?: boolean;
         negative?: "sign" | "parenthesis";
         forceSign?: boolean;
+        totalLength?: number;
+        spaceSeparated?: boolean;
     }
 
     export interface NumbroLanguage {
@@ -99,15 +101,15 @@ declare namespace numbro {
             code: string;
         };
 
-        defaults: Format;
+        defaults?: Format;
 
         ordinalFormat?: Format;
 
-        byteFormat: Format;
+        byteFormat?: Format;
 
-        percentageFormat: Format;
+        percentageFormat?: Format;
 
-        currencyFormat: Format;
+        currencyFormat?: Format;
 
         formats: {
             fourDigits: Format;
