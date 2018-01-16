@@ -17,7 +17,7 @@
     "money",
     "percentage"
   ],
-  "main": ".dist//numbro.js",
+  "main": ".dist/numbro.js",
   "typings": "./numbro.d.ts",
   "engines": {
     "node": "*"
