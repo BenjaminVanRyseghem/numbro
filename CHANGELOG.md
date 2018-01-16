@@ -1,3 +1,7 @@
+### 2.0.1
+
+- Fix #318: v2.0 is not importable due to invalid package.json. Thanks @BenjaminVanRyseghem.
+
 ### 2.0.0
 
 - Complete rewrite of numbro (#305). Thanks @BenjaminVanRyseghem.
