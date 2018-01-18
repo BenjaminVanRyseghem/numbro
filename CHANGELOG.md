@@ -1,3 +1,12 @@
+### 2.0.3
+
+- Fix #319: Fix typings. Thanks @nicolashenry.
+- Fix #320: Fix main entry of package.json. Thanks @BenjaminVanRyseghem.
+
+### 2.0.2
+
+- Fix failing npm publish
+
 ### 2.0.1
 
 - Fix #318: v2.0 is not importable due to invalid package.json. Thanks @BenjaminVanRyseghem.
