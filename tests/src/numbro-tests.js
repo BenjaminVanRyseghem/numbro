@@ -177,6 +177,10 @@ describe("numbro", () => {
             revert();
         });
 
+        afterAll(() => {
+            revert();
+        });
+
         it("clones", () => {
             let clone = instance.clone();
             expect(clone._value).toBe(instance._value);
@@ -309,6 +313,14 @@ describe("numbro", () => {
                 expect(normalizeInput).toHaveBeenCalledWith(input);
                 expect(set).toHaveBeenCalledWith(instance, normalizedInput);
             });
+        });
+    });
+
+    describe("Regression", () => {
+        const numbro = rewire("../../src/numbro"); // eslint-disable-line no-shadow
+
+        it("Issue 321", () => {
+            numbro("23555.12").formatCurrency("0,0.00");
         });
     });
 });
