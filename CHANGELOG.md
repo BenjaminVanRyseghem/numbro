@@ -1,3 +1,7 @@
+### 2.0.4
+
+- Fix #321: formatCurrency with a string format throws. Thanks @BenjaminVanRyseghem.
+
 ### 2.0.3
 
 - Fix #319: Fix typings. Thanks @nicolashenry.
