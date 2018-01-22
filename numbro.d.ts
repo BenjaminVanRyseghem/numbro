@@ -90,7 +90,7 @@ declare namespace numbro {
             million: string;
             billion: string;
             trillion: string;
-            spaced: boolean;
+            spaced?: boolean;
         };
 
         ordinal(num: number): string;
