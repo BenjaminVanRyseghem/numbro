@@ -1,6 +1,8 @@
 ### 2.0.5
 
 - Fix #325: Unable to resolve module `./globalState`. Thanks @BenjaminVanRyseghem.
+- Fix #323: add missing option in typings. Thanks @nicolashenry.
+- Fix #322: "spaced" should be optional in typings. Thanks @nicolashenry.
 
 ### 2.0.4
 
