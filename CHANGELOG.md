@@ -1,3 +1,7 @@
+### 2.0.5
+
+- Fix #325: Unable to resolve module `./globalState`. Thanks @BenjaminVanRyseghem.
+
 ### 2.0.4
 
 - Fix #321: formatCurrency with a string format throws. Thanks @BenjaminVanRyseghem.

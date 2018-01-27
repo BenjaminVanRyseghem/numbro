@@ -167,6 +167,7 @@ gulp.task("build:all-languages", ["build:languages"], (cb) => {
 
 const referencesToVersion = [
     "./package.json",
+    "./package-lock.json",
     "./bower.json",
     "./component.json",
     "./src/numbro.js"
