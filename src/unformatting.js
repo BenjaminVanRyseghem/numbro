@@ -191,10 +191,6 @@ function unformatValue(inputString, delimiters, currencySymbol = "", ordinal, ze
         return undefined;
     }
 
-    if (!isNaN(+inputString)) {
-        return +inputString;
-    }
-
     // Zero Format
 
     if (inputString === zeroFormat) {

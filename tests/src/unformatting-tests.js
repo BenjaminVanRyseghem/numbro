@@ -401,4 +401,12 @@ describe("[unformatting] regression tests", () => {
             });
         });
     });
+
+    describe("Regression", () => {
+        it("Issue 328", () => {
+            let unformatValue = unformatting.__get__("unformatValue");
+            let result = unformatValue("12.000", { thousands: ".", decimal: "," }, undefined, enUS.ordinal, "N/A", enUS.abbreviations);
+            expect(result).toEqual(12000);
+        });
+    });
 });
