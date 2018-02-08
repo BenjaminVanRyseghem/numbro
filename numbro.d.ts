@@ -28,7 +28,7 @@ declare namespace numbro {
 
     export function loadLanguagesInNode(): void;
 
-    export function unformat(input: string, format?: {} | string): numbro.Numbro;
+    export function unformat(input: string, format?: {} | string): number;
 
     interface Numbro {
         clone(): Numbro;
