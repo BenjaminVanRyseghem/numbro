@@ -160,7 +160,8 @@ const validLanguage = {
         type: "object",
         children: {
             thousands: "string",
-            decimal: "string"
+            decimal: "string",
+            thousandsSize: "number"
         },
         mandatory: true
     },
