@@ -1,3 +1,24 @@
+### 2.0.5
+
+- Fix #325: Unable to resolve module `./globalState`. Thanks @BenjaminVanRyseghem.
+
+### 2.0.4
+
+- Fix #321: formatCurrency with a string format throws. Thanks @BenjaminVanRyseghem.
+
+### 2.0.3
+
+- Fix #319: Fix typings. Thanks @nicolashenry.
+- Fix #320: Fix main entry of package.json. Thanks @BenjaminVanRyseghem.
+
+### 2.0.2
+
+- Fix failing npm publish
+
+### 2.0.1
+
+- Fix #318: v2.0 is not importable due to invalid package.json. Thanks @BenjaminVanRyseghem.
+
 ### 2.0.0
 
 - Complete rewrite of numbro (#305). Thanks @BenjaminVanRyseghem.

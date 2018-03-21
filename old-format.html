@@ -1,24 +1,21 @@
 ---
 layout: page
-id: format
-title: Format
-description: How to format numbers, currencies, etc, and unformat them.
+id: old-format
+title: Old Format (v1)
+description: Old string-based format kept for backward compatibility
 ---
 
-<div id="format" class="section">
+<div id="old-format" class="section">
 	<h4>Format</h4>
 
 	<p>Numbers can be formatted to look like currency, percentages, times, or even plain old numbers with decimal places, thousands, and abbreviations.</p>
-	<p>Since version 2.0.0, formatting is done via a literal object allowing easier customization and more predictable output.</p>
 
-	{% highlight javascript %}var string = numbro(1000).format({thousandSeparated: true});
+	{% highlight javascript %}var string = numbro(1000).format('0,0');
 // '1,000'{% endhighlight %}
-
-	<p>All available options can be found in the <a href="https://github.com/BenjaminVanRyseghem/numbro/blob/master/src/validating.js" target="_blank">code</a> directly.</p>
 
 	<div id="numbers" class="sub-section">
 		<h4>Numbers</h4>
-		<table class="table table-striped table-bordered format-table demo-table">
+		<table class="table table-striped table-bordered demo-table">
 			<thead>
 			<tr>
 				<th>Number</th>
@@ -29,186 +26,103 @@ description: How to format numbers, currencies, etc, and unformat them.
 			<tbody>
 			<tr>
 				<td>10000</td>
-				<td>
-{% highlight javascript %}{
-    thousandSeparated: true,
-    mantissa: 4
-}{% endhighlight %}
-				</td>
+				<td>'0,0.0000'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>10000.23</td>
-				<td>
-{% highlight javascript %}{
-    thousandSeparated: true
-}{% endhighlight %}
-				</td>
+				<td>'0,0'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>10000.23</td>
-				<td>
-{% highlight javascript %}{
-    thousandSeparated: true,
-    forceSign: true
-}{% endhighlight %}
-				</td>
+				<td>'+0,0'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-10000</td>
-				<td>
-{% highlight javascript %}{
-    thousandSeparated: true,
-    mantissa: 1
-}{% endhighlight %}
-				</td>
+				<td>'0,0.0'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>10000.1234</td>
-				<td>
-{% highlight javascript %}{
-    mantissa: 3
-}{% endhighlight %}
-				</td>
+				<td>'0.000'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>10000.1234</td>
-				<td>
-{% highlight javascript %}{
-    optionalMantissa: true,
-    mantissa: 5
-}{% endhighlight %}
-				</td>
+				<td>'0[.]00000'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-10000</td>
-				<td>
-{% highlight javascript %}{
-    thousandSeparated: true,
-    negative: "parenthesis",
-    mantissa: 4
-}{% endhighlight %}
-				</td>
+				<td>'(0,0.0000)'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-0.23</td>
-				<td>
-{% highlight javascript %}{
-    mantissa: 2
-}{% endhighlight %}
-				</td>
+				<td>'.00'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-0.23</td>
-				<td>
-{% highlight javascript %}{
-    negative: "parenthesis",
-    mantissa: 2
-}{% endhighlight %}
-				</td>
+				<td>'(.00)'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>0.23</td>
-				<td>
-{% highlight javascript %}{
-    mantissa: 5
-}{% endhighlight %}
-				</td>
+				<td>'0.00000'</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td>0.23</td>
+				<td>'0.0[0000]'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1230974</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    mantissa: 1
-}{% endhighlight %}
-				</td>
+				<td>'0.0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1460</td>
-				<td>
-{% highlight javascript %}{
-    spaceSeparated: true,
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0 a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-104000</td>
-				<td>
-{% highlight javascript %}{
-    spaceSeparated: false,
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>233434</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    mantissa: 2,
-}{% endhighlight %}
-				</td>
+				<td>'0a.00'</td>
 				<td></td>
 			</tr>
 
 			<tr>
 				<td>233000</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    mantissa: 2,
-}{% endhighlight %}
-				</td>
+				<td>'0a.00'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1</td>
-				<td>
-{% highlight javascript %}{
-    output: "ordinal"
-}{% endhighlight %}
-				</td>
+				<td>'0o'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>52</td>
-				<td>
-{% highlight javascript %}{
-    output: "ordinal"
-}{% endhighlight %}
-				</td>
+				<td>'0o'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>23</td>
-				<td>
-{% highlight javascript %}{
-    output: "ordinal"
-}{% endhighlight %}
-				</td>
+				<td>'0o'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>100</td>
-				<td>
-{% highlight javascript %}{
-    output: "ordinal"
-}{% endhighlight %}
-				</td>
+				<td>'0o'</td>
 				<td></td>
 			</tr>
 			</tbody>
@@ -219,8 +133,8 @@ description: How to format numbers, currencies, etc, and unformat them.
 		<h4>Average</h4>
 
 		<p>
-			numbro provides an easy mechanism to round up any number with the key <code>average</code>.
-			Note that the abbreviation is language-specific.
+			numbro provides an easy mechanism to round up any number with the special formatting character <code>a</code>.
+			Note that the delimiters are per language.
 		</p>
 
 		<table class="table table-striped table-bordered format-table demo-table">
@@ -234,72 +148,45 @@ description: How to format numbers, currencies, etc, and unformat them.
 			<tbody>
 			<tr>
 				<td>123</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>12345</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>123456</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>12345678</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>123456789</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			</tbody>
 		</table>
 
 		<p>
-			In addition to this, when numbers are rounded up, one can specify the precision wanted with the key <code>totalLength</code>.
+			In addition to this, when numbers are rounded up, one can specify the precision wanted with a format like <code>3a</code> (for 3 numbers only).
+			In this case, <code>0</code> is used for "automatic" mode.
 		</p>
 
 		<table class="table table-striped table-bordered format-table demo-table">
@@ -313,111 +200,57 @@ description: How to format numbers, currencies, etc, and unformat them.
 			<tbody>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true
-}{% endhighlight %}
-				</td>
+				<td>'0a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 1
-}{% endhighlight %}
-				</td>
+				<td>'1a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 2
-}{% endhighlight %}
-				</td>
+				<td>'2a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 3
-}{% endhighlight %}
-				</td>
+				<td>'3a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 4
-}{% endhighlight %}
-				</td>
+				<td>'4a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 5
-}{% endhighlight %}
-				</td>
+				<td>'5a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 6
-}{% endhighlight %}
-				</td>
+				<td>'6a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 7
-}{% endhighlight %}
-				</td>
+				<td>'7a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 8
-}{% endhighlight %}
-				</td>
+				<td>'8a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 9
-}{% endhighlight %}
-				</td>
+				<td>'9a'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1234567891</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    totalLength: 10
-}{% endhighlight %}
-				</td>
+				<td>'10a'</td>
 				<td></td>
 			</tr>
 
@@ -434,7 +267,7 @@ description: How to format numbers, currencies, etc, and unformat them.
 		{% highlight javascript %}numbro(1000.234).formatCurrency();
 // $1000{% endhighlight %}
 
-		<table id="currency-table" class="table table-striped table-bordered demo-table">
+		<table id="currency-table" class="table table-striped table-bordered format-table demo-table">
 			<thead>
 			<tr>
 				<th>Number</th>
@@ -469,10 +302,10 @@ description: How to format numbers, currencies, etc, and unformat them.
 		<p>
 			You can of course precise a more specific format, as long as you do not use the <code>$</code> (that would override defaults).
 		</p>
-		{% highlight javascript %}numbro(1000.234).formatCurrency({ mantissa: 2 });
+		{% highlight javascript %}numbro(1000.234).formatCurrency("0[.]00");
 // $1000.23{% endhighlight %}
 
-		<table id="currency-table2" class="table table-striped table-bordered demo-table">
+		<table id="currency-table2" class="table table-striped table-bordered format-table demo-table">
 			<thead>
 			<tr>
 				<th>Number</th>
@@ -519,68 +352,32 @@ description: How to format numbers, currencies, etc, and unformat them.
 			<tbody>
 			<tr>
 				<td>1000.234</td>
-				<td>
-{% highlight javascript %}{
-    thousandSeparated: true,
-    mantissa: 2
-}{% endhighlight %}
-				</td>
+				<td>'$0,0.00'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1000.2</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    mantissa: 2,
-    optionalMantissa: true,
-    currencyPosition: "postfix",
-    spaceSeparated: true
-}{% endhighlight %}
-				</td>
+				<td>'0,0[.]00 $'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1001</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    mantissa: 2,
-    optionalMantissa: true,
-    currencyPosition: "prefix"
-}{% endhighlight %}
-				</td>
+				<td>'$ 0,0[.]00'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-1000.234</td>
-				<td>
-{% highlight javascript %}{
-    thousandSeparated: true,
-    negative: "parenthesis"
-}{% endhighlight %}
-				</td>
+				<td>'($0,0)'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-1000.234</td>
-				<td>
-{% highlight javascript %}{
-    mantissa: 2
-}{% endhighlight %}
-				</td>
+				<td>'$0.00'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>1230974</td>
-				<td>
-{% highlight javascript %}{
-    average: true,
-    mantissa: 2,
-    optionalMantissa: true,
-    spaceSeparated: true
-}{% endhighlight %}
-				</td>
+				<td>'($ 0.00 a)'</td>
 				<td></td>
 			</tr>
 			</tbody>
@@ -600,46 +397,22 @@ description: How to format numbers, currencies, etc, and unformat them.
 			<tbody>
 			<tr>
 				<td>100</td>
-				<td>
-{% highlight javascript %}{
-    output: "byte",
-    base: "binary"
-}{% endhighlight %}
-				</td>
+				<td>'0b'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>2048</td>
-				<td>
-{% highlight javascript %}{
-    output: "byte",
-    base: "binary",
-    spaceSeparated: true
-}{% endhighlight %}
-				</td>
+				<td>'0 b'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>7884486213</td>
-				<td>
-{% highlight javascript %}{
-    output: "byte",
-    base: "binary",
-    mantissa: 1
-}{% endhighlight %}
-				</td>
+				<td>'0.0b'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>3467479682787</td>
-				<td>
-{% highlight javascript %}{
-    output: "byte",
-    base: "binary",
-    mantissa: 3,
-    spaceSeparated: true
-}{% endhighlight %}
-				</td>
+				<td>'0.000 b'</td>
 				<td></td>
 			</tr>
 			</tbody>
@@ -659,43 +432,22 @@ description: How to format numbers, currencies, etc, and unformat them.
 			<tbody>
 			<tr>
 				<td>1</td>
-				<td>
-{% highlight javascript %}{
-    output: "percent"
-}{% endhighlight %}
-				</td>
+				<td>'0%'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>0.974878234</td>
-				<td>
-{% highlight javascript %}{
-    output: "percent",
-    mantissa: 4
-}{% endhighlight %}
-				</td>
+				<td>'0.000%'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>-0.43</td>
-				<td>
-{% highlight javascript %}{
-    output: "percent",
-    spaceSeparated: true
-}{% endhighlight %}
-				</td>
+				<td>'0 %'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>0.43</td>
-				<td>
-{% highlight javascript %}{
-    output: "percent",
-    mantissa: 3,
-    negative: "parenthesis",
-    spaceSeparated: true
-}{% endhighlight %}
-				</td>
+				<td>'(0.000 %)'</td>
 				<td></td>
 			</tr>
 			</tbody>
@@ -715,29 +467,17 @@ description: How to format numbers, currencies, etc, and unformat them.
 			<tbody>
 			<tr>
 				<td>25</td>
-				<td>
-{% highlight javascript %}{
-    output: "time"
-}{% endhighlight %}
-				</td>
+				<td>'00:00:00'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>238</td>
-				<td>
-{% highlight javascript %}{
-    output: "time"
-}{% endhighlight %}
-				</td>
+				<td>'00:00:00'</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td>63846</td>
-				<td>
-{% highlight javascript %}{
-    output: "time"
-}{% endhighlight %}
-				</td>
+				<td>'00:00:00'</td>
 				<td></td>
 			</tr>
 			</tbody>
@@ -755,10 +495,10 @@ description: How to format numbers, currencies, etc, and unformat them.
 		Got a formatted string? Use the <code>unformat</code> function to make it useful again.
 	</p>
 
-	{% highlight javascript %}var string = numbro.unformat('($10,000.00)');
+	{% highlight javascript %}var string = numbro().unformat('($10,000.00)');
 // -10000{% endhighlight %}
 
-	<table id="unformat-table" class="table table-striped table-bordered">
+	<table id="unformat-table" class="table table-striped table-bordered demo-table">
 		<thead>
 		<tr>
 			<th>String</th>
@@ -835,13 +575,10 @@ description: How to format numbers, currencies, etc, and unformat them.
 number.format();
 // '1,000'
 
-numbro.setDefaults({
-    thousandSeparated: true,
-    mantissa: 2
-});
+numbro.setDefaults('$0,0.00');
 
 number.format();
-// '1,000.00'{% endhighlight %}
+// '$1,000.00'{% endhighlight %}
 
 	</div>
 
@@ -862,5 +599,7 @@ var zero = number.format('0.0')
 
 	</div>
 </div>
+
+
 
 {% include js/insert-table.html %}

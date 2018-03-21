@@ -1,6 +1,6 @@
 <script>
 	$(function() {
-		$(".demo-table").each(function(index, table) {
+		$("#format .format-table").each(function(index, table) {
 			$(table).find("tr").each(function(index, tr) {
 				if (index === 0) {
 					return;
@@ -8,12 +8,12 @@
 
 				var tds = $(tr).find("td");
 				var number = $(tds[0]).text();
-				var format = $(tds[1]).text().split("'")[1];
+				eval("var format = " + $(tds[1]).text());
 				$(tds[2]).text(numbro(number).format(format));
 			});
 		});
 
-		$("#currency-table").each(function(index, table) {
+		$("#format #currency-table").each(function(index, table) {
 			$(table).find("tr").each(function(index, tr) {
 				if (index === 0) {
 					return;
@@ -22,13 +22,13 @@
 				var tds = $(tr).find("td");
 				var value = $(tds[0]).text();
 				var lang = $(tds[1]).text();
-				numbro.culture(lang);
+				numbro.setLanguage(lang);
 				$(tds[2]).text(numbro(value).formatCurrency());
-				numbro.culture("en-US");
+				numbro.setLanguage("en-US");
 			});
 		});
 
-		$("#currency-table2").each(function(index, table) {
+		$("#format #currency-table2").each(function(index, table) {
 			$(table).find("tr").each(function(index, tr) {
 				if (index === 0) {
 					return;
@@ -37,9 +37,9 @@
 				var tds = $(tr).find("td");
 				var value = $(tds[0]).text();
 				var lang = $(tds[1]).text();
-				numbro.culture(lang);
+				numbro.setLanguage(lang);
 				$(tds[2]).text(numbro(value).formatCurrency("0[.]00"));
-				numbro.culture("en-US");
+				numbro.setLanguage("en-US");
 			});
 		});
 
@@ -52,7 +52,51 @@
 				var tds = $(tr).find("td");
 				var value = $(tds[0]).text().split("'")[1];
 				$(tds[1]).text(".unformat(\"" + value + "\")");
-				$(tds[2]).text(numbro().unformat(value));
+				$(tds[2]).text(numbro.unformat(value));
+				console.log("numbro.unformat(value)", numbro.unformat(value));
+			});
+		});
+
+		$("#old-format .format-table").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var number = $(tds[0]).text();
+				var format = $(tds[1]).text().split("'")[1];
+				$(tds[2]).text(numbro(number).format(format));
+			});
+		});
+
+		$("#old-format #currency-table").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var value = $(tds[0]).text();
+				var lang = $(tds[1]).text();
+				numbro.setLanguage(lang);
+				$(tds[2]).text(numbro(value).formatCurrency());
+				numbro.setLanguage("en-US");
+			});
+		});
+
+		$("#old-format #currency-table2").each(function(index, table) {
+			$(table).find("tr").each(function(index, tr) {
+				if (index === 0) {
+					return;
+				}
+
+				var tds = $(tr).find("td");
+				var value = $(tds[0]).text();
+				var lang = $(tds[1]).text();
+				numbro.setLanguage(lang);
+				$(tds[2]).text(numbro(value).formatCurrency("0[.]00"));
+				numbro.setLanguage("en-US");
 			});
 		});
 	});

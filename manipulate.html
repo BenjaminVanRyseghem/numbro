@@ -2,7 +2,7 @@
 layout: page
 id: manipulate
 title: Manipulate
-description: How to manupulate numbro numbers (not used often, but still useful).
+description: How to manipulate numbro numbers (not used often, but still useful).
 ---
 
 <div id="operations" class="section">
@@ -13,12 +13,10 @@ description: How to manupulate numbro numbers (not used often, but still useful)
 		numbro provides a set of basic operations to apply to numbers.
 	</p>
 
-	{% highlight javascript %}
-var number = numbro(1000);
+	{% highlight javascript %}var number = numbro(1000);
 
 var added = number.add(10);
-// 1010
-	{% endhighlight %}
+// 1010{% endhighlight %}
 
 	<table id="manipulate" class="table table-striped table-bordered demo-table">
 		<thead>
@@ -60,15 +58,13 @@ var added = number.add(10);
 	</p>
 
 
-	{% highlight javascript %}
-var number = numbro(1000);
+	{% highlight javascript %}var number = numbro(1000);
 
 var string = number.format('0,0');
 // '1,000'
 
 var value = number.value();
-// 1000
-	{% endhighlight %}
+// 1000{% endhighlight %}
 
 </div>
 
@@ -80,14 +76,12 @@ var value = number.value();
 	</p>
 
 
-	{% highlight javascript %}
-var number = numbro(10);
+	{% highlight javascript %}var number = numbro(10);
 
 number.set(1000);
 
 var value = number.value();
-// 1000
-	{% endhighlight %}
+// 1000{% endhighlight %}
 
 </div>
 
@@ -99,13 +93,11 @@ var value = number.value();
 	</p>
 
 
-	{% highlight javascript %}
-var number = numbro(1000),
+	{% highlight javascript %}var number = numbro(1000),
 value = 100;
 
 var difference = number.difference(value);
-// 900
-	{% endhighlight %}
+// 900{% endhighlight %}
 
 </div>
 
@@ -118,8 +110,7 @@ var difference = number.difference(value);
 	</p>
 
 
-	{% highlight javascript %}
-var a = numbro(1000);
+	{% highlight javascript %}var a = numbro(1000);
 var b = numbro(a);
 var c = a.clone();
 
@@ -130,8 +121,7 @@ var bVal = b.value();
 // 1000
 
 var cVal = c.add(10).value();
-// 1010
-	{% endhighlight %}
+// 1010{% endhighlight %}
 
 </div>
 

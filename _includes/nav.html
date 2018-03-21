@@ -26,6 +26,12 @@
 				<li><a href="format.html">Format</a></li>
 				{% endif %}
 
+				{% if page.url == "/old-format.html" %}
+				<li class="active"><a href="old-format.html">Old Format <span class="sr-only">(current)</span></a></li>
+				{% else %}
+				<li><a href="old-format.html">Old Format</a></li>
+				{% endif %}
+
 				{% if page.url == "/manipulate.html" %}
 				<li class="active"><a href="manipulate.html">Manipulate <span class="sr-only">(current)</span></a></li>
 				{% else %}

@@ -13,6 +13,10 @@
 
     {% include footer.html %}
 
+  <script>
+	  Object.values(numbro.allLanguages).forEach(function(data) {
+		  numbro.registerLanguage(data);
+	  })
+  </script>
   </body>
-
 </html>

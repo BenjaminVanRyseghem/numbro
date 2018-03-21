@@ -23,25 +23,19 @@ description: Supported languages and how to change the language to use.
     <div id="bower" class="sub-section">
         <h4>Bower</h4>
 
-        {% highlight html %}
-        <script src="./bower_components/numbro/dist/min/languages.min.js"></script>
-        {% endhighlight %}
+        {% highlight html %}<script src="./bower_components/numbro/dist/min/languages.min.js"></script>{% endhighlight %}
     </div>
 
     <div id="node" class="sub-section">
         <h4>Node.js</h4>
 
-        {% highlight html %}
-        <script src="./node_modules/numbro/dist/min/languages.min.js"></script>
-        {% endhighlight %}
+        {% highlight html %}<script src="./node_modules/numbro/dist/min/languages.min.js"></script>{% endhighlight %}
     </div>
 
     <div id="github" class="sub-section">
         <h4>GitHub</h4>
 
-        {% highlight html %}
-        <script src="./numbro/dist/min/languages.min.js"></script>
-        {% endhighlight %}
+        {% highlight html %}<script src="./numbro/dist/min/languages.min.js"></script>{% endhighlight %}
     </div>
 </div>
 
@@ -49,13 +43,13 @@ description: Supported languages and how to change the language to use.
 	<h4>Supported languages</h4>
 
 	<p>
-		The supported languages and cultures a registered following the Microsoft's <a href="//msdn.microsoft.com/en-us/library/ee825488.aspx" target="_blank">Culture Names</a>.
+		The supported languages are registered following the IETF's <a href="//tools.ietf.org/html/bcp47" target="_blank">BCP 47</a>.
 	</p>
 	<table class="table table-striped table-bordered demo-table culture-table">
 		<thead>
 		<tr>
-			<th>Culture</th>
-			<th>Code</th>
+			<th>Language</th>
+			<th>Tag</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -70,37 +64,58 @@ description: Supported languages and how to change the language to use.
 		You can easily define your own language if you can't find what you want in the list of supported languages.
 	</p>
 
-	{% highlight javascript %}
-// define a language
-numbro.language('fr-BE', {
+	{% highlight javascript %}// define a language
+numbro.registerLanguage({
+    languageTag: "fr-BE",
+	languageName: "French (Belgium)",
     delimiters: {
-        thousands: ' ',
-        decimal: ','
+        thousands: " ",
+        decimal: ","
     },
     abbreviations: {
-        thousand: 'k',
-        million: 'm',
-        billion: 'b',
-        trillion: 't'
+        thousand: "k",
+        million: "m",
+        billion: "b",
+        trillion: "t"
     },
-    ordinal : function (number) {
-        return number === 1 ? 'er' : 'ème';
+    ordinal: (number) => {
+        return number === 1 ? "er" : "ème";
     },
     currency: {
-        symbol: '€',
-        position: 'postfix'
+        symbol: "€",
+        position: "postfix",
+        code: "EUR"
     },
-    defaults: {
-        currencyFormat: ',0000 a'
+    currencyFormat: {
+        thousandSeparated: true,
+        totalLength: 4,
+        spaceSeparated: true,
+        average: true
     },
     formats: {
-        fourDigits: '0000 a',
-        fullWithTwoDecimals: ',0.00 $',
-        fullWithTwoDecimalsNoCurrency: ',0.00',
-        fullWithNoDecimals: ',0 $'
+        fourDigits: {
+            totalLength: 4,
+            spaceSeparated: true,
+            average: true
+        },
+        fullWithTwoDecimals: {
+            output: "currency",
+            mantissa: 2,
+            spaceSeparated: true,
+            thousandSeparated: true
+        },
+        fullWithTwoDecimalsNoCurrency: {
+            mantissa: 2,
+            thousandSeparated: true
+        },
+        fullWithNoDecimals: {
+            output: "currency",
+            spaceSeparated: true,
+            thousandSeparated: true,
+            mantissa: 0
+        }
     }
-});
-	{% endhighlight %}
+});{% endhighlight %}
 
     If you lack a language, please help us to improve numbro by submitting a <a href="//github.com/BenjaminVanRyseghem/numbro/issues" target="_blank">pull request</a>.
 </div>
@@ -109,13 +124,12 @@ numbro.language('fr-BE', {
     <h4>Change language</h4>
 
     <p>
-        To change the language to use, you only need to use the <code>culture</code> function with the culture code of the language needed.
+        To change the language to use, you only need to use the <code>setLanguage</code> function with the language tag of the language needed.
     </p>
 
-    {% highlight javascript %}
-// switch between languages
-numbro.culture('fr-BE');
-    {% endhighlight %}
+    {% highlight javascript %}// switch between languages
+numbro.setLanguage('fr-BE');{% endhighlight %}
 </div>
 
-{%  include js/languages.html %}
+{% include js/languages.html %}
+{% include js/version.html %}

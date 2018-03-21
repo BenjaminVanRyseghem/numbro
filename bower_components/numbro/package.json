@@ -1,6 +1,6 @@
 {
   "name": "numbro",
-  "version": "2.0.0",
+  "version": "2.0.5",
   "description": "Format and manipulate numbers.",
   "homepage": "http://numbrojs.com",
   "author": {
@@ -17,7 +17,7 @@
     "money",
     "percentage"
   ],
-  "main": ".dist//numbro.js",
+  "main": "./dist/numbro.min.js",
   "typings": "./numbro.d.ts",
   "engines": {
     "node": "*"
@@ -71,7 +71,7 @@
   "scripts": {
     "prepare": "gulp build",
     "prepublishOnly": "echo \"Are you sure you want to publish a new release with version ${npm_package_version}? (y/n)?\" && read choice && case \"$choice\" in y|Y ) exit 0;; * ) echo \"Abort!\" && exit 1;; esac",
-    "postpublish": "git tag -as ${npm_package_version} -m \"Release version ${npm_package_version}\" && git push --tags",
+    "postpublish": "git tag -as ${npm_package_version} -m \"Release version ${npm_package_version}\" && git push && git push --tags",
     "preversion": "echo \"Use `gulp bump` instead\" && exit 1",
     "test": "gulp test",
     "coverage": "istanbul cover ./node_modules/.bin/jasmine --captureExceptions"

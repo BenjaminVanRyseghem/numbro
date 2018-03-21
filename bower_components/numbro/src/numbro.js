@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-const VERSION = "2.0.0";
+const VERSION = "2.0.5";
 
 const globalState = require("./globalState");
 const validator = require("./validating");
@@ -28,6 +28,7 @@ const loader = require("./loading")(numbro);
 const unformatter = require("./unformatting");
 let formatter = require("./formatting")(numbro);
 let manipulate = require("./manipulating")(numbro);
+const parsing = require("./parsing");
 
 class Numbro {
     constructor(number) {
@@ -39,6 +40,9 @@ class Numbro {
     format(format = {}) { return formatter.format(this, format); }
 
     formatCurrency(format) {
+        if (typeof format === "string") {
+            format = parsing.parseFormat(format);
+        }
         format = formatter.formatOrDefault(format, globalState.currentCurrencyDefaultFormat());
         format.output = "currency";
         return formatter.format(this, format);

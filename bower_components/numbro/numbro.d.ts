@@ -73,6 +73,9 @@ declare namespace numbro {
         thousandSeparated?: boolean;
         negative?: "sign" | "parenthesis";
         forceSign?: boolean;
+        totalLength?: number;
+        spaceSeparated?: boolean;
+        output?: "currency" | "percent" | "byte" | "time" | "ordinal" | "number";
     }
 
     export interface NumbroLanguage {
@@ -88,7 +91,7 @@ declare namespace numbro {
             million: string;
             billion: string;
             trillion: string;
-            spaced: boolean;
+            spaced?: boolean;
         };
 
         ordinal(num: number): string;
@@ -99,15 +102,15 @@ declare namespace numbro {
             code: string;
         };
 
-        defaults: Format;
+        defaults?: Format;
 
         ordinalFormat?: Format;
 
-        byteFormat: Format;
+        byteFormat?: Format;
 
-        percentageFormat: Format;
+        percentageFormat?: Format;
 
-        currencyFormat: Format;
+        currencyFormat?: Format;
 
         formats: {
             fourDigits: Format;

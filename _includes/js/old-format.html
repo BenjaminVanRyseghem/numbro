@@ -45,11 +45,11 @@
 		function initFromURL() {
 			var lang = getURLParameter("lang") || "";
 			var value = getURLParameter("value") || "";
-			var format = JSON.parse(getURLParameter("format") || "\"\"");
+			var format = getURLParameter("format") || "";
 
-			if (lang && value && format) {
+			if(lang && value && format) {
 				$($("#input-numbro").get(0)).val(value);
-				$($("#format-string-numbro").get(0)).val(JSON.stringify(format).slice(1,-1).trim());
+				$($("#format-string-numbro").get(0)).val(format);
 
 				var textarea = $($("#format-result").get(0));
 				numbro.setLanguage(lang);
@@ -64,18 +64,17 @@
 			var selected = select.options[select.selectedIndex];
 			var lang = selected.attributes["data-subtext"].value || "en-US";
 			var value = $($("#input-numbro").get(0)).val() || 12345;
-			var format = $($("#format-string-numbro").get(0)).val() || " mantissa: 2, optionalMantissa: true ";
-			eval("format = {" + format + "};");
+			var format = $($("#format-string-numbro").get(0)).val() || "0[.]00";
 			var textarea = $($("#format-result").get(0));
 			numbro.setLanguage(lang);
 			textarea.val(numbro(value).format(format));
 
-			var queryString = "lang=" + encodeURIComponent(lang) + "&value=" + encodeURIComponent(value) + "&format=" + encodeURIComponent(JSON.stringify(format));
+			var queryString = "lang=" + encodeURIComponent(lang) + "&value=" + encodeURIComponent(value) + "&format=" + encodeURIComponent(format);
 			history && history.replaceState && history.replaceState({
 				lang: lang,
 				value: value,
 				format: format
-			}, "try-me.html", "try-me.html?" + queryString);
+			}, "old-try-me.html", "old-try-me.html?" + queryString);
 
 			return false;
 		});
