@@ -327,5 +327,14 @@ describe("numbro", () => {
             let result = numbro("1000").format({ mantissa: 2 });
             expect(result).toBe("1000.00");
         });
+
+        it("Issue 344", () => {
+            let result = numbro("1000").formatCurrency({
+                currencyPosition: "infix",
+                currencySymbol: "FOO",
+                mantissa: 2
+            });
+            expect(result).toBe("1000FOO00");
+        });
     });
 });

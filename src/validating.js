@@ -41,6 +41,12 @@ const validForceAverageValues = [
     "thousand"
 ];
 
+const validCurrencyPosition = [
+    "prefix",
+    "infix",
+    "postfix"
+];
+
 const validNegativeValues = [
     "sign",
     "parenthesis"
@@ -109,6 +115,11 @@ const validFormat = {
         validValues: validForceAverageValues
     },
     average: "boolean",
+    currencyPosition: {
+        type: "string",
+        validValues: validCurrencyPosition
+    },
+    currencySymbol: "string",
     totalLength: {
         type: "number",
         restrictions: [
