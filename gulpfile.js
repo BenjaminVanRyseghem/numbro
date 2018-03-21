@@ -153,13 +153,31 @@ gulp.task("build:languages", () => {
         }));
 });
 
-gulp.task("build:all-languages", ["build:languages"], (cb) => {
+gulp.task("build:all-languages", ["build:languages"], () => {
     let dir = "./dist";
     fs.readdir(`${dir}/languages`, (_, files) => {
         let langFiles = files
             .filter(file => file.match(/\.js$/))
-            .map(file => `exports["${file.replace(".min.js", "")}"]=require("./languages/${file}");`).join("");
-        fs.writeFile(`${dir}/languages.min.js`, langFiles, cb);
+            .map(file => `exports["${file.replace(".min.js", "")}"]=require("${dir}/languages/${file}");`)
+            .join("");
+        fs.writeFile("./languages.js", langFiles, () => {
+            const babelify = require("babelify");
+            let b = browserify({
+                standalone: "numbro.allLanguages",
+                entries: "./languages.js",
+                debug: true,
+                transform: [babelify]
+            });
+
+            return b.bundle()
+                .pipe(source("languages.min.js"))
+                .pipe(buffer())
+                .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+                .pipe(plugins.uglify())
+                .on("error", plugins.util.log)
+                .pipe(plugins.sourcemaps.write("./"))
+                .pipe(gulp.dest(dir));
+        });
     });
 });
 
