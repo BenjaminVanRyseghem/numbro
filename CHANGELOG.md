@@ -5,7 +5,7 @@
 - Fix #344: Add format option to specify currency symbol position. Thanks @BenjaminVanRyseghem.
 - Fix #343: Mantissa not taken into account when no decimals. Thanks @BenjaminVanRyseghem.
 - Fix #342: fix typing of numbro.languages(). Thanks @ntamas.
-- Fix #334: Update numbro.d.ts. Thanks @ sousarka.
+- Fix #334: Update numbro.d.ts. Thanks @sousarka.
 - Fix #330: Fix language file permissions. Thanks @thomas88.
 
 ### 2.0.5
