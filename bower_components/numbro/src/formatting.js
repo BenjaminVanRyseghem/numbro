@@ -284,13 +284,15 @@ function formatCurrency(instance, providedFormat, state) {
     let decimalSeparator = undefined;
     let space = "";
     let average = !!options.totalLength || !!options.forceAverage || options.average;
+    let position = providedFormat.currencyPosition || currentCurrency.position;
+    let symbol = providedFormat.currencySymbol || currentCurrency.symbol;
 
     if (options.spaceSeparated) {
         space = " ";
     }
 
-    if (currentCurrency.position === "infix") {
-        decimalSeparator = space + currentCurrency.symbol + space;
+    if (position === "infix") {
+        decimalSeparator = space + symbol + space;
     }
 
     let output = formatNumber({
@@ -300,17 +302,17 @@ function formatCurrency(instance, providedFormat, state) {
         decimalSeparator
     });
 
-    if (currentCurrency.position === "prefix") {
+    if (position === "prefix") {
         if (instance._value < 0 && options.negative === "sign") {
-            output = `-${space}${currentCurrency.symbol}${output.slice(1)}`;
+            output = `-${space}${symbol}${output.slice(1)}`;
         } else {
-            output = currentCurrency.symbol + space + output;
+            output = symbol + space + output;
         }
     }
 
-    if (!currentCurrency.position || currentCurrency.position === "postfix") {
+    if (!position || position === "postfix") {
         space = average ? "" : space;
-        output = output + space + currentCurrency.symbol;
+        output = output + space + symbol;
     }
 
     return output;
@@ -685,7 +687,7 @@ function formatNumber({instance, providedFormat, state = globalState, decimalSep
 
     // default when averaging is to chop off decimals
     let mantissaPrecision = totalLength ? -1 : (average && providedFormat.mantissa === undefined ? 0 : options.mantissa);
-    let optionalMantissa = totalLength ? false : options.optionalMantissa;
+    let optionalMantissa = totalLength ? false : (providedFormat.optionalMantissa === undefined ? mantissaPrecision === -1 : options.optionalMantissa);
     let thousandSeparated = options.thousandSeparated;
     let spaceSeparated = options.spaceSeparated;
     let negative = options.negative;

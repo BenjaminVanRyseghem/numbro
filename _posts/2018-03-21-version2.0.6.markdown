@@ -1,0 +1,16 @@
+---
+title:  Release 2.0.6
+author: BenjaminVanRyseghem
+date:   2018-03-21 02:16:00
+---
+
+**numbro 2.0.6** has been released.
+
+- Fix [#344](https://github.com/BenjaminVanRyseghem/numbro/pull/344): Add format option to specify currency symbol position. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+- Fix [#343](https://github.com/BenjaminVanRyseghem/numbro/pull/343): Mantissa not taken into account when no decimals. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+- Fix [#342](https://github.com/BenjaminVanRyseghem/numbro/pull/342): fix typing of numbro.languages(). Thanks [@ntamas](https://github.com/ntamas).
+- Fix [#334](https://github.com/BenjaminVanRyseghem/numbro/pull/334): Update numbro.d.ts. Thanks [@sousarka](https://github.com/sousarka).
+- Fix [#330](https://github.com/BenjaminVanRyseghem/numbro/pull/330): Fix language file permissions. Thanks [@thomas88](https://github.com/thomas88).
+
+
+Enjoy <i class="fa fa-smile-o">

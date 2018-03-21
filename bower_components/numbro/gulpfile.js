@@ -42,7 +42,7 @@ gulp.task("lint", ["lint:js"]);
 
 gulp.task("lint:js", () => {
     return gulp.src(["./src/**/*.js", "./tests/**/*.js", "./languages/**/*.js"])
-        .pipe(plugins.eslint({ rulePaths: ["./eslint_rules"] }))
+        .pipe(plugins.eslint({rulePaths: ["./eslint_rules"]}))
         .pipe(plugins.eslint.format("unix"))
         .pipe(plugins.eslint.failAfterError());
 });
@@ -63,7 +63,7 @@ gulp.task("test:unit", ["pre-test"], () => {
             reporter: new reporters.TerminalReporter()
         }))
         .pipe(plugins.istanbul.writeReports())
-        .pipe(plugins.istanbul.enforceThresholds({ thresholds: { global: 100 } }));
+        .pipe(plugins.istanbul.enforceThresholds({thresholds: {global: 100}}));
 });
 
 gulp.task("test:integration", ["test:integration:node", "test:integration:amd"], () => {});
@@ -119,7 +119,7 @@ gulp.task("build:src:min", () => {
     return b.bundle()
         .pipe(source("numbro.min.js"))
         .pipe(buffer())
-        .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+        .pipe(plugins.sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
         .pipe(plugins.uglify())
         .on("error", plugins.util.log)
@@ -145,7 +145,7 @@ gulp.task("build:languages", () => {
             return b.bundle()
                 .pipe(source(`${baseName}.min${extension}`))
                 .pipe(buffer())
-                .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+                .pipe(plugins.sourcemaps.init({loadMaps: true}))
                 .pipe(plugins.uglify())
                 .on("error", plugins.util.log)
                 .pipe(plugins.sourcemaps.write("./"))
@@ -153,24 +153,24 @@ gulp.task("build:languages", () => {
         }));
 });
 
-gulp.task("build:all-languages", ["build:languages"], (cb) => {
+gulp.task("build:all-languages", ["build:languages"], () => {
     let dir = "./dist";
     fs.readdir(`${dir}/languages`, (_, files) => {
         let langFiles = files
             .filter(file => file.match(/\.js$/))
             .map(file => `exports["${file.replace(".min.js", "")}"]=require("${dir}/languages/${file}");`)
             .join("");
-        fs.writeFile(`./languages.js`, langFiles, () => {
+        fs.writeFile("./languages.js", langFiles, () => {
             const babelify = require("babelify");
             let b = browserify({
-                standalone: `numbro.allLanguages`,
-                entries: `./languages.js`,
+                standalone: "numbro.allLanguages",
+                entries: "./languages.js",
                 debug: true,
                 transform: [babelify]
             });
 
             return b.bundle()
-                .pipe(source(`languages.min.js`))
+                .pipe(source("languages.min.js"))
                 .pipe(buffer())
                 .pipe(plugins.sourcemaps.init({ loadMaps: true }))
                 .pipe(plugins.uglify())
@@ -192,7 +192,7 @@ const referencesToVersion = [
 ];
 
 gulp.task("bump:major", () => {
-    gulp.src(referencesToVersion, { base: "./" })
+    gulp.src(referencesToVersion, {base: "./"})
         .pipe(plugins.bump({
             type: "major",
             global: true
@@ -201,7 +201,7 @@ gulp.task("bump:major", () => {
 });
 
 gulp.task("bump:minor", () => {
-    gulp.src(referencesToVersion, { base: "./" })
+    gulp.src(referencesToVersion, {base: "./"})
         .pipe(plugins.bump({
             type: "minor",
             global: true
@@ -210,7 +210,7 @@ gulp.task("bump:minor", () => {
 });
 
 gulp.task("bump:patch", () => {
-    gulp.src(referencesToVersion, { base: "./" })
+    gulp.src(referencesToVersion, {base: "./"})
         .pipe(plugins.bump({
             type: "patch",
             global: true

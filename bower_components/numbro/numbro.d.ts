@@ -14,7 +14,7 @@ declare namespace numbro {
 
     export function setLanguage(tag: string, fallbackTag ?: string): void;
 
-    export function languages(): Array<NumbroLanguage>;
+    export function languages(): { [tag: string]: NumbroLanguage };
 
     export function languageData(tag ?: string): NumbroLanguage;
 
@@ -28,7 +28,7 @@ declare namespace numbro {
 
     export function loadLanguagesInNode(): void;
 
-    export function unformat(input: string, format?: {} | string): numbro.Numbro;
+    export function unformat(input: string, format?: {} | string): number;
 
     interface Numbro {
         clone(): Numbro;

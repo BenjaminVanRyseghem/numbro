@@ -1,6 +1,18 @@
+### Next
+
+### 2.0.6
+
+- Fix #344: Add format option to specify currency symbol position. Thanks @BenjaminVanRyseghem.
+- Fix #343: Mantissa not taken into account when no decimals. Thanks @BenjaminVanRyseghem.
+- Fix #342: fix typing of numbro.languages(). Thanks @ntamas.
+- Fix #334: Update numbro.d.ts. Thanks @ sousarka.
+- Fix #330: Fix language file permissions. Thanks @thomas88.
+
 ### 2.0.5
 
 - Fix #325: Unable to resolve module `./globalState`. Thanks @BenjaminVanRyseghem.
+- Fix #323: add missing option in typings. Thanks @nicolashenry.
+- Fix #322: "spaced" should be optional in typings. Thanks @nicolashenry.
 
 ### 2.0.4
 
