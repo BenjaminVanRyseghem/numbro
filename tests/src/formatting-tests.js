@@ -2212,7 +2212,12 @@ describe("formatting", () => {
             state.currentDelimiters.and.returnValue({});
             format.average = undefined;
 
-            formatNumber({instance: numbroStub(1), format, state, defaults});
+            formatNumber({
+                instance: numbroStub(1),
+                providedFormat: format,
+                state,
+                defaults
+            });
 
             expect(computeAverage).not.toHaveBeenCalled();
             expect(insertAbbreviation).not.toHaveBeenCalled();

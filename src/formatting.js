@@ -685,7 +685,7 @@ function formatNumber({instance, providedFormat, state = globalState, decimalSep
 
     // default when averaging is to chop off decimals
     let mantissaPrecision = totalLength ? -1 : (average && providedFormat.mantissa === undefined ? 0 : options.mantissa);
-    let optionalMantissa = totalLength ? false : options.optionalMantissa;
+    let optionalMantissa = totalLength ? false : (providedFormat.optionalMantissa === undefined ? mantissaPrecision === -1 : options.optionalMantissa);
     let thousandSeparated = options.thousandSeparated;
     let spaceSeparated = options.spaceSeparated;
     let negative = options.negative;

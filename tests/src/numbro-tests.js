@@ -100,7 +100,7 @@ describe("numbro", () => {
         beforeEach(() => {
             normalizeInput = jasmine.createSpy("normalizeInput");
             Numbro = jasmine.createSpy("Numbro");
-            revert = numbro.__set__({normalizeInput, Numbro});
+            revert = numbro.__set__({ normalizeInput, Numbro });
         });
 
         afterEach(() => {
@@ -321,6 +321,11 @@ describe("numbro", () => {
 
         it("Issue 321", () => {
             numbro("23555.12").formatCurrency("0,0.00");
+        });
+
+        it("Issue 343", () => {
+            let result = numbro("1000").format({ mantissa: 2 });
+            expect(result).toBe("1000.00");
         });
     });
 });
