@@ -62,7 +62,7 @@ declare namespace numbro {
         valueOf(): number;
     }
 
-    interface Format {
+    export interface Format {
         prefix?: number;
         postfix?: number;
         characteristic?: number;
