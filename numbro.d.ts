@@ -70,6 +70,7 @@ declare namespace numbro {
         average?: boolean;
         mantissa?: number;
         optionalMantissa?: boolean;
+        trimMantissa?: boolean;
         thousandSeparated?: boolean;
         negative?: "sign" | "parenthesis";
         forceSign?: boolean;

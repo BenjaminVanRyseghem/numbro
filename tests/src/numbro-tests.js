@@ -336,5 +336,17 @@ describe("numbro", () => {
             });
             expect(result).toBe("1000FOO00");
         });
+
+        it("Issue 358", () => {
+            let options = {
+                mantissa: 4,
+                trimMantissa: true
+            };
+
+            expect(numbro(1.23).format(options)).toBe("1.23");
+            expect(numbro(1.234).format(options)).toBe("1.234");
+            expect(numbro(1.2345).format(options)).toBe("1.2345");
+            expect(numbro(1.23456).format(options)).toBe("1.2346");
+        });
     });
 });

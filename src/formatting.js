@@ -469,15 +469,16 @@ function toFixed(value, precision) {
 }
 
 /**
- * Return the current OUTPUT with a mantissa precions of PRECISION.
+ * Return the current OUTPUT with a mantissa precision of PRECISION.
  *
  * @param {string} output - output being build in the process of formatting
  * @param {number} value - number being currently formatted
  * @param {boolean} optionalMantissa - `true` if the mantissa is omitted when it's only zeroes
  * @param {number} precision - desired precision of the mantissa
+ * @param {boolean} trim - desired precision of the mantissa
  * @return {string}
  */
-function setMantissaPrecision(output, value, optionalMantissa, precision) {
+function setMantissaPrecision(output, value, optionalMantissa, precision, trim) {
     if (precision === -1) {
         return output;
     }
@@ -485,15 +486,20 @@ function setMantissaPrecision(output, value, optionalMantissa, precision) {
     let result = toFixed(value, precision);
     let [currentCharacteristic, currentMantissa = ""] = result.toString().split(".");
 
-    if (currentMantissa.match(/^0+$/) && optionalMantissa) {
+    if (currentMantissa.match(/^0+$/) && (optionalMantissa || trim)) {
         return currentCharacteristic;
+    }
+
+    let hasLeadingZeroes = result.match(/0+$/);
+    if (trim && hasLeadingZeroes) {
+        return result.toString().slice(0, hasLeadingZeroes.index);
     }
 
     return result.toString();
 }
 
 /**
- * Return the current OUTPUT with a characteristic precions of PRECISION.
+ * Return the current OUTPUT with a characteristic precision of PRECISION.
  *
  * @param {string} output - output being build in the process of formatting
  * @param {number} value - number being currently formatted
@@ -688,6 +694,7 @@ function formatNumber({instance, providedFormat, state = globalState, decimalSep
     // default when averaging is to chop off decimals
     let mantissaPrecision = totalLength ? -1 : (average && providedFormat.mantissa === undefined ? 0 : options.mantissa);
     let optionalMantissa = totalLength ? false : (providedFormat.optionalMantissa === undefined ? mantissaPrecision === -1 : options.optionalMantissa);
+    let trimMantissa = options.trimMantissa;
     let thousandSeparated = options.thousandSeparated;
     let spaceSeparated = options.spaceSeparated;
     let negative = options.negative;
@@ -723,7 +730,7 @@ function formatNumber({instance, providedFormat, state = globalState, decimalSep
         abbreviation = data.abbreviation + abbreviation;
     }
 
-    let output = setMantissaPrecision(value.toString(), value, optionalMantissa, mantissaPrecision);
+    let output = setMantissaPrecision(value.toString(), value, optionalMantissa, mantissaPrecision, trimMantissa);
     output = setCharacteristicPrecision(output, value, optionalCharacteristic, characteristicPrecision);
     output = replaceDelimiters(output, value, thousandSeparated, state, decimalSeparator);
 

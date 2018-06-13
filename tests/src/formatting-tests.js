@@ -1839,7 +1839,7 @@ describe("formatting", () => {
             });
         });
 
-        it("gives the correct mantissa length with optional matissa", () => {
+        it("gives the correct mantissa length with optional mantissa", () => {
             let data = [
                 [12, 0, "12"],
                 [12, 1, "12"],
@@ -1855,6 +1855,21 @@ describe("formatting", () => {
 
             data.forEach(([value, precision, expectedResult]) => {
                 let result = setMantissaPrecision(value, value, true, precision);
+                expect(result).toBe(expectedResult);
+            });
+        });
+
+        it("trims the mantissa if the option is passed and the mantissa has leading zeroes", () => {
+            let data = [
+                [12, "12"],
+                [12.3000, "12.3"],
+                [12.0000, "12"],
+                [12.3450, "12.345"],
+                [12.0304050, "12.030405"]
+            ];
+
+            data.forEach(([value, expectedResult]) => {
+                let result = setMantissaPrecision(value, value, false, 10, true);
                 expect(result).toBe(expectedResult);
             });
         });
@@ -2441,6 +2456,18 @@ describe("formatting", () => {
                         undefined
                     ]
                     , "0"
+                ],
+                [
+                    [
+                        12.23, {
+                        mantissa: 5,
+                        trimMantissa: true
+                    },
+                        globalState,
+                        undefined,
+                        undefined
+                    ]
+                    , "12.23"
                 ]
             ];
 

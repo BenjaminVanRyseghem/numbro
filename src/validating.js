@@ -139,6 +139,7 @@ const validFormat = {
         message: "value must be positive"
     },
     optionalMantissa: "boolean",
+    trimMantissa: "boolean",
     optionalCharacteristic: "boolean",
     thousandSeparated: "boolean",
     spaceSeparated: "boolean",
