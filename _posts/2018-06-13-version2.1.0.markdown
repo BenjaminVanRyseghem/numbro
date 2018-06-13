@@ -1,0 +1,16 @@
+---
+title:  Release 2.1.0
+author: BenjaminVanRyseghem
+date:   2018-06-13 16:26:00
+---
+
+**numbro 2.1.0** has been released.
+
+It introduces `trimMantissa` allowing to have a "max mantissa length" experience.
+
+- Fix [#358](https://github.com/BenjaminVanRyseghem/numbro/pull/358): Maximal mantissa. Thanks [@BenjaminVanRyseghem](Benjaminhttps://github.com/VanRyseghem).
+- Fix [#345](https://github.com/BenjaminVanRyseghem/numbro/pull/345): export Format interface. Thanks [@jordydejong](https://github.com/jordydejong).
+- Fix [#348](https://github.com/BenjaminVanRyseghem/numbro/pull/348): fixed currency position for nl-NL. Thanks [@jordydejong](https://github.com/jordydejong).
+
+
+Enjoy <i class="fa fa-smile-o">

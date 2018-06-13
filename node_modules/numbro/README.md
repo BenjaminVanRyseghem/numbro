@@ -36,7 +36,7 @@ Language tags follow the [BCP 47](https://tools.ieft.org/html/bcp47) specificati
 
 ### Language translations will not be merged without unit tests.
 
-See [the english unit tests](https://github.com/BenjaminVanRyseghem/numbro/blob/master/tests/languages/en-GB.js) for an example.
+See [the english unit tests](https://github.com/BenjaminVanRyseghem/numbro/blob/develop/tests/languages/en-GB-tests.js) for an example.
 
 
 # Changelog
