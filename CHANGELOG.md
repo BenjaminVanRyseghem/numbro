@@ -1,5 +1,11 @@
 ### Next
 
+### 2.1.0
+
+- Fix #358: Maximal mantissa. Thanks @BenjaminVanRyseghem.
+- Fix #345: export Format interface. Thanks @jordydejong.
+- Fix #348: fixed currency position for nl-NL. Thanks @jordydejong.
+
 ### 2.0.6
 
 - Fix #344: Add format option to specify currency symbol position. Thanks @BenjaminVanRyseghem.
