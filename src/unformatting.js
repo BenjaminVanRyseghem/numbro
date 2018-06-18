@@ -191,7 +191,7 @@ function unformatValue(inputString, delimiters, currencySymbol = "", ordinal, ze
         return undefined;
     }
 
-    if (!isNaN(+inputString) && typeof inputString === 'number') {
+    if (!isNaN(+inputString) && typeof inputString === "number") {
         return +inputString;
     }
 
