@@ -2468,6 +2468,18 @@ describe("formatting", () => {
                         undefined
                     ]
                     , "12.23"
+                ],
+                [
+                    [
+                        -0.0001, {
+                        mantissa: 1,
+                        thousandSeparated: true
+                    },
+                        globalState,
+                        undefined,
+                        undefined
+                    ]
+                    , "0.0"
                 ]
             ];
 
