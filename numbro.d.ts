@@ -122,4 +122,4 @@ declare namespace numbro {
     }
 }
 
-export = numbro;
+export default numbro;
