@@ -466,7 +466,7 @@ function toFixedLarge(value, precision) {
  * @param {function} round - rounding function to be used
  * @return {string}
  */
-function toFixed(value, precision, round = 'round') {
+function toFixed(value, precision, round = "round") {
     if (value.toString().indexOf("e") !== -1) {
         return toFixedLarge(value, precision);
     }
