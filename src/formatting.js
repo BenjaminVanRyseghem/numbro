@@ -42,7 +42,8 @@ const defaultOptions = {
     thousandSeparated: false,
     spaceSeparated: false,
     negative: "sign",
-    forceSign: false
+    forceSign: false,
+    round: "round"
 };
 
 /**
@@ -458,14 +459,15 @@ function toFixedLarge(value, precision) {
  *
  * @param {number} value - number to precise
  * @param {number} precision - desired length for the mantissa
+ * @param {function} round - rounding function to be used
  * @return {string}
  */
-function toFixed(value, precision) {
+function toFixed(value, precision, round = 'round') {
     if (value.toString().indexOf("e") !== -1) {
         return toFixedLarge(value, precision);
     }
 
-    return (Math.round(+`${value}e+${precision}`) / (Math.pow(10, precision))).toFixed(precision);
+    return (Math[round](+`${value}e+${precision}`) / (Math.pow(10, precision))).toFixed(precision);
 }
 
 /**
@@ -478,12 +480,12 @@ function toFixed(value, precision) {
  * @param {boolean} trim - desired precision of the mantissa
  * @return {string}
  */
-function setMantissaPrecision(output, value, optionalMantissa, precision, trim) {
+function setMantissaPrecision(output, value, optionalMantissa, precision, trim, round) {
     if (precision === -1) {
         return output;
     }
 
-    let result = toFixed(value, precision);
+    let result = toFixed(value, precision, round);
     let [currentCharacteristic, currentMantissa = ""] = result.toString().split(".");
 
     if (currentMantissa.match(/^0+$/) && (optionalMantissa || trim)) {
@@ -700,6 +702,7 @@ function formatNumber({instance, providedFormat, state = globalState, decimalSep
     let negative = options.negative;
     let forceSign = options.forceSign;
     let exponential = options.exponential;
+    let round = options.round;
 
     let abbreviation = "";
 
@@ -730,7 +733,7 @@ function formatNumber({instance, providedFormat, state = globalState, decimalSep
         abbreviation = data.abbreviation + abbreviation;
     }
 
-    let output = setMantissaPrecision(value.toString(), value, optionalMantissa, mantissaPrecision, trimMantissa);
+    let output = setMantissaPrecision(value.toString(), value, optionalMantissa, mantissaPrecision, trimMantissa, round);
     output = setCharacteristicPrecision(output, value, optionalCharacteristic, characteristicPrecision);
     output = replaceDelimiters(output, value, thousandSeparated, state, decimalSeparator);
 

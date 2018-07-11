@@ -348,5 +348,30 @@ describe("numbro", () => {
             expect(numbro(1.2345).format(options)).toBe("1.2345");
             expect(numbro(1.23456).format(options)).toBe("1.2346");
         });
+
+        it("Issue #364", () => {
+            let options = {
+                mantissa: 2,
+                trimMantissa: true
+            };
+
+            expect(numbro(1.23).format(options)).toBe("1.23");
+            expect(numbro(1.234).format(options)).toBe("1.23");
+            expect(numbro(1.235).format(options)).toBe("1.24");
+            expect(numbro(1.236).format(options)).toBe("1.24");
+
+
+            options.round = 'floor';
+            expect(numbro(1.23).format(options)).toBe("1.23");
+            expect(numbro(1.234).format(options)).toBe("1.23");
+            expect(numbro(1.235).format(options)).toBe("1.23");
+            expect(numbro(1.236).format(options)).toBe("1.23");
+
+            options.round = 'ceil';
+            expect(numbro(1.23).format(options)).toBe("1.23");
+            expect(numbro(1.234).format(options)).toBe("1.24");
+            expect(numbro(1.235).format(options)).toBe("1.24");
+            expect(numbro(1.236).format(options)).toBe("1.24");
+        });
     });
 });
