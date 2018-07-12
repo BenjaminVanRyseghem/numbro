@@ -91,12 +91,6 @@ const validBaseValues = [
     "general"
 ];
 
-const validRoundValues = [
-    "round",
-    "ceil",
-    "floor"
-];
-
 const validFormat = {
     output: {
         type: "string",
@@ -146,10 +140,7 @@ const validFormat = {
     },
     optionalMantissa: "boolean",
     trimMantissa: "boolean",
-    round: {
-        type: "string",
-        validValues: validRoundValues
-    },
+    roundingFunction: "function",
     optionalCharacteristic: "boolean",
     thousandSeparated: "boolean",
     spaceSeparated: "boolean",

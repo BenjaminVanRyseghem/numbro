@@ -361,13 +361,13 @@ describe("numbro", () => {
             expect(numbro(1.236).format(options)).toBe("1.24");
 
 
-            options.round = "floor";
+            options.roundingFunction = Math.floor;
             expect(numbro(1.23).format(options)).toBe("1.23");
             expect(numbro(1.234).format(options)).toBe("1.23");
             expect(numbro(1.235).format(options)).toBe("1.23");
             expect(numbro(1.236).format(options)).toBe("1.23");
 
-            options.round = "ceil";
+            options.roundingFunction = Math.ceil;
             expect(numbro(1.23).format(options)).toBe("1.23");
             expect(numbro(1.234).format(options)).toBe("1.24");
             expect(numbro(1.235).format(options)).toBe("1.24");
