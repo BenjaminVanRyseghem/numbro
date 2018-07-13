@@ -241,6 +241,7 @@ state.setLanguage = (tag, fallbackTag = enUS.languageTag) => {
         }
 
         chooseLanguage(matchingLanguageTag);
+        return;
     }
 
     chooseLanguage(tag);
