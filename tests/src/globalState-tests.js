@@ -459,5 +459,11 @@ describe("globalState-tests", () => {
             globalState.setLanguage("fr");
             expect(chooseLanguage).toHaveBeenCalledWith(enUS.languageTag);
         });
+
+        it("set the language without subtag", () => {
+            globalState.setLanguage("en");
+            expect(chooseLanguage).toHaveBeenCalledTimes(1);
+            expect(globalState.currentLanguage()).not.toEqual("en");
+        });
     });
 });
