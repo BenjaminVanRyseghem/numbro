@@ -273,7 +273,12 @@ describe("unformatting", () => {
                 [["3t", {thousands: ",", decimal: "."}], 3000000000000],
 
                 [["foo", {thousands: ".", decimal: ","}], undefined],
-                [["12foo", {thousands: ".", decimal: ","}], undefined]
+                [["12foo", {thousands: ".", decimal: ","}], undefined],
+
+                [[1234, {thousands: ".", decimal: ","}], 1234],
+                [[1.234, {thousands: ".", decimal: ","}], 1.234],
+                [[1.234, {thousands: ",", decimal: "."}], 1.234],
+                [["1.234", {thousands: ".", decimal: ","}], 1234]
             ];
 
             data.forEach(([[input, delimiters, currencySymbol], expectedOutput]) => {
@@ -360,6 +365,7 @@ describe("[unformatting] regression tests", () => {
                 ["($1.23m)", -1230000],
                 ["$ 10,000.00", 10000],
                 ["10,000.123", 10000.123],
+                ["10,000", 10000],
                 ["(0.12345)", -0.12345],
                 // ["((--0.12345))", 0.12345],
                 ["23rd", 23],
