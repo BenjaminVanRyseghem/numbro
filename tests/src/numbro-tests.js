@@ -348,5 +348,15 @@ describe("numbro", () => {
             expect(numbro(1.2345).format(options)).toBe("1.2345");
             expect(numbro(1.23456).format(options)).toBe("1.2346");
         });
+
+        it("Issue 372", () => {
+            let options = {
+                mantissa: 0,
+                trimMantissa: true
+            };
+
+            expect(numbro(200).format(options)).toBe("200");
+            expect(numbro(200.0001).format(options)).toBe("200");
+        });
     });
 });
