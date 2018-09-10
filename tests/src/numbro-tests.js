@@ -348,5 +348,15 @@ describe("numbro", () => {
             expect(numbro(1.2345).format(options)).toBe("1.2345");
             expect(numbro(1.23456).format(options)).toBe("1.2346");
         });
+
+        it("Issue 144", () => {
+            let options = {
+                mantissa: 4,
+                trimMantissa: true
+            };
+
+            expect(numbro(new function() { return 5;}).format(options)).toBe("NaN");
+            expect(numbro("NaN").format(options)).toBe("NaN");
+        });
     });
 });
