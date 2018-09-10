@@ -1,5 +1,8 @@
 ### Next
 
+- Fix #144: Better handling of invalid input types when creating a new numbro string. Thanks @lukejknight.
+- Fix #278: numbro.unformat("NaN") returns undefined. Thanks @lukejknight.
+
 ### 2.1.0
 
 - Fix #358: Maximal mantissa. Thanks @BenjaminVanRyseghem.
