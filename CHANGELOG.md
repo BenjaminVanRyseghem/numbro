@@ -1,5 +1,7 @@
 ### Next
 
+- Fix #372: Truncated numbers with trimMantissa and zero mantissa
+
 ### 2.1.0
 
 - Fix #358: Maximal mantissa. Thanks @BenjaminVanRyseghem.
