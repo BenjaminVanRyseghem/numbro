@@ -22,7 +22,12 @@
 
 const BigNumber = require("bignumber.js");
 
-function(numbro) {
+/**
+* Setup some stuff ...
+* 
+* @param {numbro} numbro - numbro singleton
+**/
+function setup(numbro) {
     if (!numbro.isReportNumberErrors()) {
         BigNumber.config({ ERRORS: false });
     }
@@ -152,6 +157,7 @@ function difference(n, other, numbro) {
 }
 
 module.exports = numbro => ({
+    setup: () => setup(numbro),
     add: (n, other) => add(n, other, numbro),
     subtract: (n, other) => subtract(n, other, numbro),
     multiply: (n, other) => multiply(n, other, numbro),
