@@ -574,10 +574,8 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
     let mantissa = result.split(".")[1];
 
     if (thousandSeparated) {
-        if (value < 0) {
-            // Remove the minus sign
-            characteristic = characteristic.slice(1);
-        }
+        // Remove potential minus sign
+        characteristic = characteristic.replace(/^-/, "");
 
         let indexesToInsertThousandDelimiters = indexesOfGroupSpaces(characteristic.length, thousandsSize);
         indexesToInsertThousandDelimiters.forEach((position, index) => {
