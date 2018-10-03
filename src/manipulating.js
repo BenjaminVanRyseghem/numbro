@@ -29,7 +29,7 @@ const BigNumber = require("bignumber.js");
 **/
 function reportNumberErrors(state) {
     BigNumber.config({ ERRORS: state });
-};
+}
 
 
 /**
@@ -160,5 +160,6 @@ module.exports = numbro => ({
     multiply: (n, other) => multiply(n, other, numbro),
     divide: (n, other) => divide(n, other, numbro),
     set: (n, other) => set(n, other, numbro),
-    difference: (n, other) => difference(n, other, numbro)
+    difference: (n, other) => difference(n, other, numbro),
+    reportNumberErrors: (state) => reportNumberErrors(state)
 });
