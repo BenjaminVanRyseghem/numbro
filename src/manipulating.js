@@ -22,6 +22,10 @@
 
 const BigNumber = require("bignumber.js");
 
+if (!numbro.isReportNumberErrors()) {
+    BigNumber.config({ ERRORS: false });
+}
+
 /**
  * Add a number or a numbro to N.
  *
