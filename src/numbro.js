@@ -33,7 +33,6 @@ const parsing = require("./parsing");
 class Numbro {
     constructor(number) {
         this._value = number;
-        this._reportNumberErrors = true;
     }
 
     clone() { return numbro(this._value); }
@@ -75,17 +74,6 @@ class Numbro {
     value() { return this._value; }
 
     valueOf() { return this._value; }
-
-    reportNumberErrors(state) {
-        if (typeof state === "boolean") {
-            this._reportNumberErrors = state;
-        }
-        this._reportNumberErrors = true;
-    }
-
-    isReportNumberErrors() {
-        return this._reportNumberErrors; 
-    }
 }
 
 /**
@@ -133,7 +121,6 @@ numbro.defaultCurrencyFormat = globalState.currentCurrencyDefaultFormat;
 numbro.validate = validator.validate;
 numbro.loadLanguagesInNode = loader.loadLanguagesInNode;
 numbro.unformat = unformatter.unformat;
-
-manipulate.setup(); // Setup stuff in manipulate
+numbro.reportNumberErrors = manipulate.reportNumberErrors;
 
 module.exports = numbro;
