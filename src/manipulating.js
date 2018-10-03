@@ -26,11 +26,10 @@ const BigNumber = require("bignumber.js");
 * Setup error reporting for BigNumber Lib
 * 
 * @param {numbro} numbro - numbro singleton
-**/
-function reportNumberErrors(state) {
+*/
+function reportNumberErrors(state, numbro) {
     BigNumber.config({ ERRORS: state });
 }
-
 
 /**
  * Add a number or a numbro to N.
@@ -161,5 +160,5 @@ module.exports = numbro => ({
     divide: (n, other) => divide(n, other, numbro),
     set: (n, other) => set(n, other, numbro),
     difference: (n, other) => difference(n, other, numbro),
-    reportNumberErrors: (state) => reportNumberErrors(state)
+    reportNumberErrors: (state) => reportNumberErrors(state, numbro)
 });
