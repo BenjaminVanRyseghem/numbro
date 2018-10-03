@@ -30,8 +30,6 @@ let formatter = require("./formatting")(numbro);
 let manipulate = require("./manipulating")(numbro);
 const parsing = require("./parsing");
 
-manipulate.setup(); // Setup stuff in manipulate
-
 class Numbro {
     constructor(number) {
         this._value = number;
@@ -135,5 +133,7 @@ numbro.defaultCurrencyFormat = globalState.currentCurrencyDefaultFormat;
 numbro.validate = validator.validate;
 numbro.loadLanguagesInNode = loader.loadLanguagesInNode;
 numbro.unformat = unformatter.unformat;
+
+manipulate.setup(); // Setup stuff in manipulate
 
 module.exports = numbro;
