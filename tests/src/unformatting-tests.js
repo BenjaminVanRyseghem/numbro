@@ -56,12 +56,12 @@ describe("unformatting", () => {
             expect(result).toBe(value);
         });
 
-        it("returns undefined if the value is undefined", () => {
+        it("returns NaN if the value is undefined", () => {
             let input = jasmine.createSpy("input");
             unformatValue.and.returnValue(undefined);
 
             let result = unformatting.unformat(input);
-            expect(result).toBe(undefined);
+            expect(result).toBeNaN();
         });
 
         it("unformats time when the input matches a time", () => {
@@ -272,8 +272,8 @@ describe("unformatting", () => {
                 [["3b", {thousands: ",", decimal: "."}], 3000000000],
                 [["3t", {thousands: ",", decimal: "."}], 3000000000000],
 
-                [["foo", {thousands: ".", decimal: ","}], undefined],
-                [["12foo", {thousands: ".", decimal: ","}], undefined]
+                [["foo", {thousands: ".", decimal: ","}], NaN],
+                [["12foo", {thousands: ".", decimal: ","}], NaN]
             ];
 
             data.forEach(([[input, delimiters, currencySymbol], expectedOutput]) => {
@@ -369,8 +369,8 @@ describe("[unformatting] regression tests", () => {
 
                 // Invalid strings which don't represent a number are converted
                 // to undefined.
-                ["", undefined],
-                ["not a number", undefined],
+                ["", NaN],
+                ["not a number", NaN],
 
                 // Pass Through for Numbers
                 [0, 0],
@@ -382,19 +382,17 @@ describe("[unformatting] regression tests", () => {
                 [NaN, NaN],
 
                 // JavaScript values which are neither Number or String are
-                // converted to undefined.
-                [undefined, undefined],
-                [null, undefined],
-                [[], undefined],
-                [{}, undefined]
+                // converted to NaN.
+                [undefined, NaN],
+                [null, NaN],
+                [[], NaN],
+                [{}, NaN]
             ];
 
             data.forEach(([value, expectedOutput]) => {
                 let result = unformatting.unformat(value);
-                if (expectedOutput === undefined) {
-                    expect(result).toBe(expectedOutput);
-                } else if (isNaN(expectedOutput)) {
-                    expect(value).toBeNaN();
+                if (isNaN(expectedOutput)) {
+                    expect(result).toBeNaN();
                 } else {
                     expect(result).toBe(expectedOutput);
                 }

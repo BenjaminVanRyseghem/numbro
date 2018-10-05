@@ -60,7 +60,7 @@ function escapeRegExp(s) {
  * @param {string} zeroFormat - string representing zero
  * @param {*} abbreviations - abbreviations used while generating the inputString
  * @param {NumbroFormat} format - format used while generating the inputString
- * @return {number|undefined}
+ * @return {number}
  */
 function computeUnformattedValue(inputString, delimiters, currencySymbol = "", ordinal, zeroFormat, abbreviations, format) {
     if (!isNaN(+inputString)) {
@@ -100,7 +100,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol = "", o
     let possibleOrdinalValue = parseFloat(inputString);
 
     if (isNaN(possibleOrdinalValue)) {
-        return undefined;
+        return NaN;
     }
 
     let ordinalString = ordinal(possibleOrdinalValue);
@@ -128,7 +128,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol = "", o
 
         stripped = inputString.replace(value, "");
         if (stripped !== inputString) {
-            let factor = undefined;
+            let factor = NaN;
             switch (key) { // eslint-disable-line default-case
                 case "thousand":
                     factor = Math.pow(10, 3);
@@ -147,7 +147,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol = "", o
         }
     }
 
-    return undefined;
+    return NaN;
 }
 
 /**
@@ -184,11 +184,11 @@ function removeFormattingSymbols(inputString, delimiters, currencySymbol = "") {
  * @param {string} zeroFormat - string representing zero
  * @param {*} abbreviations - abbreviations used while generating the inputString
  * @param {NumbroFormat} format - format used while generating the inputString
- * @return {number|undefined}
+ * @return {number}
  */
 function unformatValue(inputString, delimiters, currencySymbol = "", ordinal, zeroFormat, abbreviations, format) {
     if (inputString === "") {
-        return undefined;
+        return NaN;
     }
 
     if (!isNaN(+inputString)) {
@@ -258,31 +258,23 @@ function unformat(inputString, format) {
     // Avoid circular references
     const globalState = require("./globalState");
 
-    let delimiters = globalState.currentDelimiters();
-    let currencySymbol = globalState.currentCurrency().symbol;
-    let ordinal = globalState.currentOrdinal();
-    let zeroFormat = globalState.getZeroFormat();
-    let abbreviations = globalState.currentAbbreviations();
+    const delimiters = globalState.currentDelimiters();
+    const currencySymbol = globalState.currentCurrency().symbol;
+    const ordinal = globalState.currentOrdinal();
+    const zeroFormat = globalState.getZeroFormat();
+    const abbreviations = globalState.currentAbbreviations();
 
-    let value = undefined;
-
-    if (typeof inputString === "string") {
-        if (matchesTime(inputString, delimiters)) {
-            value = unformatTime(inputString);
-        } else {
-            value = unformatValue(inputString, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format);
-        }
-    } else if (typeof inputString === "number") {
-        value = inputString;
-    } else {
-        return undefined;
+    switch (typeof inputString) {
+        case "string":
+            if (matchesTime(inputString, delimiters)) {
+                return unformatTime(inputString);
+            }
+            return unformatValue(inputString, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format);
+        case "number":
+            return inputString;
+        default:
+            return NaN;
     }
-
-    if (value === undefined) {
-        return undefined;
-    }
-
-    return value;
 }
 
 module.exports = {
