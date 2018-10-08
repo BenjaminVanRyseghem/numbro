@@ -36,6 +36,7 @@ describe("[integration node] numbro", () => {
         expect(numbro.validate).toBeTruthy();
         expect(numbro.loadLanguagesInNode).toBeTruthy();
         expect(numbro.unformat).toBeTruthy();
+		expect(numbro.reportNumberErrors).toBeTruthy();
     });
 
     it("has the correct instance API", () => {

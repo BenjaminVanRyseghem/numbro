@@ -23,15 +23,6 @@
 const BigNumber = require("bignumber.js");
 
 /**
-* Setup error reporting for BigNumber Lib
-* 
-* @param {numbro} numbro - numbro singleton
-*/
-function reportNumberErrors(state, numbro) {
-    BigNumber.config({ ERRORS: state });
-}
-
-/**
  * Add a number or a numbro to N.
  *
  * @param {Numbro} n - augend
@@ -49,7 +40,7 @@ function add(n, other, numbro) {
 
     otherValue = new BigNumber(otherValue);
 
-    n._value = value.add(otherValue).toNumber();
+    n._value = value.plus(otherValue).toNumber();
     return n;
 }
 
@@ -153,6 +144,18 @@ function difference(n, other, numbro) {
     return Math.abs(clone._value);
 }
 
+/**
+ * Setup error reporting for BigNumber Lib
+ *
+ * @param {boolean} state - activate / deactivate error reporting
+ */
+function reportNumberErrors (state) {
+    BigNumber.config({ ERRORS: state});
+	BigNumber.DEBUG = state;
+
+	return state;
+}
+
 module.exports = numbro => ({
     add: (n, other) => add(n, other, numbro),
     subtract: (n, other) => subtract(n, other, numbro),
@@ -160,5 +163,5 @@ module.exports = numbro => ({
     divide: (n, other) => divide(n, other, numbro),
     set: (n, other) => set(n, other, numbro),
     difference: (n, other) => difference(n, other, numbro),
-    reportNumberErrors: (state) => reportNumberErrors(state, numbro)
+	reportNumberErrors
 });
