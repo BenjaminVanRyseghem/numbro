@@ -121,5 +121,6 @@ numbro.defaultCurrencyFormat = globalState.currentCurrencyDefaultFormat;
 numbro.validate = validator.validate;
 numbro.loadLanguagesInNode = loader.loadLanguagesInNode;
 numbro.unformat = unformatter.unformat;
+numbro.reportNumberErrors = manipulate.reportNumberErrors;
 
 module.exports = numbro;

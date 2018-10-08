@@ -36,6 +36,8 @@ const plugins = require("gulp-load-plugins")({
     }
 });
 
+const log = require('fancy-log');
+
 gulp.task("default", ["lint", "test"]);
 
 gulp.task("lint", ["lint:js"]);
@@ -102,7 +104,7 @@ gulp.task("build:src", () => {
         .pipe(source("numbro.js"))
         .pipe(buffer())
         // Add transformation tasks to the pipeline here.
-        .on("error", plugins.util.log)
+        .on("error", log)
         .pipe(gulp.dest("./dist"));
 });
 
@@ -122,7 +124,7 @@ gulp.task("build:src:min", () => {
         .pipe(plugins.sourcemaps.init({loadMaps: true}))
         // Add transformation tasks to the pipeline here.
         .pipe(plugins.uglify())
-        .on("error", plugins.util.log)
+        .on("error", log)
         .pipe(plugins.sourcemaps.write("./"))
         .pipe(gulp.dest("./dist"));
 });
@@ -130,7 +132,7 @@ gulp.task("build:src:min", () => {
 gulp.task("build:languages", () => {
     const babelify = require("babelify");
     return gulp.src("./languages/**/*.js")
-        .pipe(plugins.foreach((stream, file) => {
+        .pipe(plugins.flatmap((stream, file) => {
             let fullName = file.history[0];
             let extension = path.extname(fullName);
             let baseName = path.basename(fullName, extension);
@@ -147,7 +149,7 @@ gulp.task("build:languages", () => {
                 .pipe(buffer())
                 .pipe(plugins.sourcemaps.init({loadMaps: true}))
                 .pipe(plugins.uglify())
-                .on("error", plugins.util.log)
+                .on("error", log)
                 .pipe(plugins.sourcemaps.write("./"))
                 .pipe(gulp.dest("./dist/languages/"));
         }));
@@ -174,7 +176,7 @@ gulp.task("build:all-languages", ["build:languages"], () => {
                 .pipe(buffer())
                 .pipe(plugins.sourcemaps.init({ loadMaps: true }))
                 .pipe(plugins.uglify())
-                .on("error", plugins.util.log)
+                .on("error", log)
                 .pipe(plugins.sourcemaps.write("./"))
                 .pipe(gulp.dest(dir));
         });

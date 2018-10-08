@@ -292,4 +292,28 @@ describe("manipulating", () => {
             });
         });
     });
+
+
+    describe("reportNumberErrors", () => {
+        it("works with states", () => {
+            let data = [
+                // [state, expectedOutput]
+                [true, true],
+                [false, false]
+            ];
+
+            data.forEach(([state, expectedOutput]) => {
+                let result = manipulating.reportNumberErrors(state);
+
+				if (!state) {
+					let instance = numbroStub(95687346387453987.453226);
+					let result = manipulating.add(instance, 95687346387453987.453226);
+
+					expect(result._value).toBe(191374692774907970);
+				}
+
+                expect(result).toBe(expectedOutput);
+            });
+        });
+	});
 });
