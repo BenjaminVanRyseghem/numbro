@@ -1,6 +1,11 @@
 ### Next
 
-- Fix #372: Truncated numbers with trimMantissa and zero mantissa
+### 2.1.1
+
+- Fix #372: Truncated numbers with trimMantissa and zero mantissa. Thanks @timfish
+- Fix #367: Fixes duplicate call of chooseLanguage when setting a language without subtag. Thanks @LarsBauer
+- Fix #363: Enable es6 imports when using typescript. Thanks @aralisza
+- Fix #353: Add monthly download to README. Thanks @BenjaminVanRyseghem
 
 ### 2.1.0
 
