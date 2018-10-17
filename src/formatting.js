@@ -473,9 +473,9 @@ function toFixed(value, precision) {
  *
  * @param {string} output - output being build in the process of formatting
  * @param {number} value - number being currently formatted
- * @param {boolean} optionalMantissa - `true` if the mantissa is omitted when it's only zeroes
+ * @param {boolean} optionalMantissa - if `true`, the mantissa is omitted when it's only zeroes
  * @param {number} precision - desired precision of the mantissa
- * @param {boolean} trim - desired precision of the mantissa
+ * @param {boolean} trim - if `true`, trailing zeroes are removed from the mantissa
  * @return {string}
  */
 function setMantissaPrecision(output, value, optionalMantissa, precision, trim) {
