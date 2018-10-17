@@ -490,9 +490,9 @@ function setMantissaPrecision(output, value, optionalMantissa, precision, trim) 
         return currentCharacteristic;
     }
 
-    let hasLeadingZeroes = result.match(/0+$/);
-    if (trim && hasLeadingZeroes) {
-        return result.toString().slice(0, hasLeadingZeroes.index);
+    let hasTrailingZeroes = currentMantissa.match(/0+$/);
+    if (trim && hasTrailingZeroes) {
+        return `${currentCharacteristic}.${currentMantissa.toString().slice(0, hasTrailingZeroes.index)}`;
     }
 
     return result.toString();
