@@ -1,0 +1,15 @@
+---
+title:  Release 2.1.1
+author: BenjaminVanRyseghem
+date:   2018-10-17 15:38:00
+---
+
+**numbro 2.1.1** has been released.
+
+- Fix [#372](https://github.com/BenjaminVanRyseghem/numbro/pull/372): Truncated numbers with trimMantissa and zero mantissa. Thanks [@timfish](https://github.com/timfish).
+- Fix [#367](https://github.com/BenjaminVanRyseghem/numbro/pull/367): Fixes duplicate call of chooseLanguage when setting a language without subtag. Thanks [@LarsBauer](https://github.com/LarsBauer).
+- Fix [#363](https://github.com/BenjaminVanRyseghem/numbro/pull/363): Enable es6 imports when using typescript. Thanks [@aralisza](https://github.com/aralisza).
+- Fix [#353](https://github.com/BenjaminVanRyseghem/numbro/pull/353): Add monthly download to README. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+
+
+Enjoy <i class="fa fa-smile-o">

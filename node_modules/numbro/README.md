@@ -1,5 +1,7 @@
 # [numbro](https://numbrojs.com/)
 
+[![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro)
+
 A javascript library for formatting and manipulating numbers.
 
 [Website and documentation](http://numbrojs.com)
