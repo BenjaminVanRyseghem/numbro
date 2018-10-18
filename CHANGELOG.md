@@ -1,5 +1,7 @@
 ### Next
 
+- Fix #328: Fixed unformat for non standard delimiters
+
 ### 2.1.1
 
 - Fix #372: Truncated numbers with trimMantissa and zero mantissa. Thanks @timfish
