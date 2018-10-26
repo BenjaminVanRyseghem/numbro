@@ -1,3 +1,6 @@
+### Next
+- Fix #392: Small negative numbers get the leading zero incorrectly cut off
+
 ### 2.1.2
 
 - Fix #399: Update dependencies. Thanks @baer
