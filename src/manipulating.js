@@ -40,7 +40,7 @@ function add(n, other, numbro) {
 
     otherValue = new BigNumber(otherValue);
 
-    n._value = value.add(otherValue).toNumber();
+    n._value = value.plus(otherValue).toNumber();
     return n;
 }
 
