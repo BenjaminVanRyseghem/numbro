@@ -35,7 +35,7 @@ describe("manipulating", () => {
     });
 
 
-    describe("add", () => {
+    describe.only("add", () => {
         it("works with numbers", () => {
             let data = [
                 // [value, other, expectedOutput]
