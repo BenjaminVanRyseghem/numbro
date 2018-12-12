@@ -162,6 +162,13 @@ describe("manipulating", () => {
                 expect(result._value).toBe(expectedOutput);
             });
         });
+
+        it("works with repeating decimals", () => {
+            numbroStub.isNumbro.and.returnValue(true);
+            let instance = numbroStub(1/3);
+            let result = manipulating.multiply(instance, numbroStub(1));
+            expect(result._value).toBe(0.3333333333333333);
+        });
     });
 
     describe("divide", () => {
