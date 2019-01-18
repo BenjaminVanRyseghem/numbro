@@ -1,0 +1,13 @@
+---
+title:  Release 2.1.2
+author: BenjaminVanRyseghem
+date:   2019-01-18 18:37:00
+---
+
+**numbro 2.1.2** has been released.
+
+- Fix [#399](https://github.com/BenjaminVanRyseghem/numbro/pull/399): Update dependencies. Thanks [@baer](https://github.com/baer).
+- Fix [#390](https://github.com/BenjaminVanRyseghem/numbro/pull/390): Small changes to doc comments. Thanks [@cnrudd](https://github.com/cnrudd).
+- Fix [#328](https://github.com/BenjaminVanRyseghem/numbro/pull/328): Fixed unformat for non standard delimiters. Thanks [@jkettmann](https://github.com/jkettmann).
+
+Enjoy <i class="fa fa-smile-o">

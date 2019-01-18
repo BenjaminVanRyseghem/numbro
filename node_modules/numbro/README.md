@@ -55,7 +55,7 @@ See [CHANGELOG.md](CHANGELOG.md). For the original project (Numeral.js) changelo
 
 # License
 
-Copyright © 2017 Benjamin Van Ryseghem
+Copyright © 2017-2019 Benjamin Van Ryseghem
 
 Copyright © 2015-2017 Företagsplatsen AB
 
