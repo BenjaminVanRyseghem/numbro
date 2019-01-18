@@ -1,6 +1,6 @@
 ### 2.1.2
 
-- Fix 399: Update dependencies. Thanks @baer
+- Fix #399: Update dependencies. Thanks @baer
 - Fix #390: Small changes to doc comments. Thanks @cnrudd
 - Fix #328: Fixed unformat for non standard delimiters. Thanks @jkettmann
 
