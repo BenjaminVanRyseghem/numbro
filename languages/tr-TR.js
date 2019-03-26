@@ -45,7 +45,7 @@ module.exports = {
         billion: "milyar",
         trillion: "trilyon"
     },
-    ordinal: number => {
+    ordinal: function(number) {
         // special case for zero
         if (number === 0) {
             return "'ıncı";

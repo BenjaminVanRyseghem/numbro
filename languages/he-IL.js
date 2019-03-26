@@ -22,7 +22,9 @@ module.exports = {
         position: "prefix",
         code: "ILS"
     },
-    ordinal: () => "",
+    ordinal: function() {
+        return ""
+    },
     currencyFormat: {
         thousandSeparated: true,
         totalLength: 4,

@@ -17,7 +17,7 @@ module.exports = {
         billion: "G",
         trillion: "T"
     },
-    ordinal: (number) => {
+    ordinal: function(number) {
         return number === 1 ? "er" : "ème";
     },
     spaceSeparated: true,

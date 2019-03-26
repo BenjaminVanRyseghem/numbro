@@ -17,7 +17,7 @@ module.exports = {
         billion: "mrd",
         trillion: "bln"
     },
-    ordinal: (number) => {
+    ordinal: function(number) {
         let remainder = number % 100;
         return (number !== 0 && remainder <= 1 || remainder === 8 || remainder >= 20) ? "ste" : "de";
     },

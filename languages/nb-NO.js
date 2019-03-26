@@ -17,7 +17,9 @@ module.exports = {
         billion: "md",
         trillion: "b"
     },
-    ordinal: () => "",
+    ordinal: function() {
+        return ""
+    },
     currency: {
         symbol: "kr",
         position: "postfix",
