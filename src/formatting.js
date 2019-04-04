@@ -572,10 +572,11 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
     let result = output.toString();
     let characteristic = result.split(".")[0];
     let mantissa = result.split(".")[1];
+    const hasNegativeSign = value < 0 && characteristic.indexOf("-") === 0;
 
     if (thousandSeparated) {
-        if (value < 0) {
-            // Remove the minus sign
+        if (hasNegativeSign) {
+            // Remove the negative sign
             characteristic = characteristic.slice(1);
         }
 
@@ -584,8 +585,8 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
             characteristic = characteristic.slice(0, position + index) + thousandSeparator + characteristic.slice(position + index);
         });
 
-        if (value < 0) {
-            // Add back the minus sign
+        if (hasNegativeSign) {
+            // Add back the negative sign
             characteristic = `-${characteristic}`;
         }
     }
