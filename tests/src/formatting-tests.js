@@ -990,6 +990,22 @@ describe("formatting", () => {
             expect(result).toBe("outputfoo");
         });
 
+        it("adds the sign before the symbol when value > 0 and `forceSign`", () => {
+            let instance = numbroStub(1000);
+            let providedFormat = jasmine.createSpy("providedFormat");
+            let state = jasmine.createSpyObj("state", ["currentCurrencyDefaults", "currentCurrency"]);
+
+            state.currentCurrency.and.returnValue({
+                position: "prefix",
+                spaceSeparated: false,
+                symbol: "$"
+            });
+            providedFormat.forceSign = true;
+            formatNumber.and.returnValue("+output");
+            let result = formatCurrency(instance, providedFormat, state);
+            expect(result).toBe("+$output");
+        });
+
         it("adds the currency symbol afterward with a space when `postfix`", () => {
             let instance = jasmine.createSpy("instance");
             let providedFormat = jasmine.createSpy("providedFormat");
