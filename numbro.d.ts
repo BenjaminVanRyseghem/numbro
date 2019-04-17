@@ -80,7 +80,6 @@ declare namespace numbro {
         trimMantissa?: boolean;
         optionalCharacteristic?: boolean;
         thousandSeparated?: boolean;
-        spaceSeparated?: boolean;
         abbreviations?: {
             thousand?: string;
             million?: string;
@@ -89,6 +88,8 @@ declare namespace numbro {
         };
         negative?: "sign" | "parenthesis";
         forceSign?: boolean;
+        spaceSeparated?: boolean;
+        spaceSeparatedCurrency?: boolean;
         exponential?: boolean;
         prefixSymbol?: boolean;
     }

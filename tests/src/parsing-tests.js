@@ -131,14 +131,16 @@ describe("parsing", () => {
                     "$ ", // eslint-disable-line no-template-curly-in-string
                     {
                         output: "currency",
-                        spaceSeparated: true
+                        spaceSeparated: true,
+                        spaceSeparatedCurrency: true
                     }
                 ],
                 [
                     " $", // eslint-disable-line no-template-curly-in-string
                     {
                         output: "currency",
-                        spaceSeparated: true
+                        spaceSeparated: true,
+                        spaceSeparatedCurrency: true
                     }
                 ],
                 [
@@ -147,7 +149,8 @@ describe("parsing", () => {
                         thousandSeparated: true,
                         output: "currency",
                         totalLength: 4,
-                        spaceSeparated: true
+                        spaceSeparated: true,
+                        spaceSeparatedCurrency: true
                     }
                 ],
                 [
@@ -156,7 +159,8 @@ describe("parsing", () => {
                         thousandSeparated: true,
                         output: "currency",
                         characteristic: 2,
-                        spaceSeparated: true
+                        spaceSeparated: true,
+                        spaceSeparatedCurrency: true
                     }
                 ],
                 [
@@ -166,6 +170,7 @@ describe("parsing", () => {
                         output: "currency",
                         mantissa: 2,
                         spaceSeparated: true,
+                        spaceSeparatedCurrency: true,
                         optionalMantissa: false,
                         optionalCharacteristic: true
                     }
@@ -184,6 +189,7 @@ describe("parsing", () => {
                         output: "currency",
                         mantissa: 2,
                         spaceSeparated: true,
+                        spaceSeparatedCurrency: true,
                         optionalMantissa: true,
                         optionalCharacteristic: true
                     }
@@ -195,6 +201,7 @@ describe("parsing", () => {
                         output: "currency",
                         totalLength: 4,
                         spaceSeparated: true,
+                        spaceSeparatedCurrency: true,
                         optionalMantissa: false,
                         optionalCharacteristic: true
                     }

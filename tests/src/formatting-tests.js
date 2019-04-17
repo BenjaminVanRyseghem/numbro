@@ -935,6 +935,7 @@ describe("formatting", () => {
             });
 
             providedFormat.spaceSeparated = true;
+            providedFormat.spaceSeparatedCurrency = true;
             formatCurrency(instance, providedFormat, state);
 
             expect(formatNumber).toHaveBeenCalledWith({
@@ -968,7 +969,7 @@ describe("formatting", () => {
                 position: "prefix",
                 symbol: "foo"
             });
-            providedFormat.spaceSeparated = true;
+            providedFormat.spaceSeparatedCurrency = true;
             formatNumber.and.returnValue("output");
 
             let result = formatCurrency(instance, providedFormat, state);
@@ -981,7 +982,7 @@ describe("formatting", () => {
             let state = jasmine.createSpyObj("state", ["currentCurrencyDefaults", "currentCurrency"]);
             state.currentCurrency.and.returnValue({
                 position: "postfix",
-                spaceSeparated: false,
+                spaceSeparatedCurrency: false,
                 symbol: "foo"
             });
             formatNumber.and.returnValue("output");
@@ -1014,7 +1015,7 @@ describe("formatting", () => {
                 position: "postfix",
                 symbol: "foo"
             });
-            providedFormat.spaceSeparated = true;
+            providedFormat.spaceSeparatedCurrency = true;
             formatNumber.and.returnValue("output");
 
             let result = formatCurrency(instance, providedFormat, state);

@@ -125,6 +125,7 @@ function parseThousandSeparated(string, result) {
 function parseSpaceSeparated(string, result) {
     if (string.indexOf(" ") !== -1) {
         result.spaceSeparated = true;
+        result.spaceSeparatedCurrency = true;
     }
 }
 

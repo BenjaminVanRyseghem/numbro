@@ -143,6 +143,7 @@ const validFormat = {
     optionalCharacteristic: "boolean",
     thousandSeparated: "boolean",
     spaceSeparated: "boolean",
+    spaceSeparatedCurrency: "boolean",
     abbreviations: validAbbreviations,
     negative: {
         type: "string",
@@ -179,6 +180,7 @@ const validLanguage = {
     },
     abbreviations: validMandatoryAbbreviations,
     spaceSeparated: "boolean",
+    spaceSeparatedCurrency: "boolean",
     ordinal: {
         type: "function",
         mandatory: true

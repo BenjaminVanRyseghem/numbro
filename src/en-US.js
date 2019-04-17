@@ -45,7 +45,8 @@ module.exports = {
     currencyFormat: {
         thousandSeparated: true,
         totalLength: 4,
-        spaceSeparated: true
+        spaceSeparated: true,
+        spaceSeparatedCurrency: true
     },
     formats: {
         fourDigits: {
