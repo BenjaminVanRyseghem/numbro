@@ -41,7 +41,6 @@ const defaultOptions = {
     optionalMantissa: true,
     thousandSeparated: false,
     spaceSeparated: false,
-    spaceSeparatedCurrency: false,
     negative: "sign",
     forceSign: false
 };
@@ -287,8 +286,10 @@ function formatCurrency(instance, providedFormat, state) {
     let average = !!options.totalLength || !!options.forceAverage || options.average;
     let position = providedFormat.currencyPosition || currentCurrency.position;
     let symbol = providedFormat.currencySymbol || currentCurrency.symbol;
+    const spaceSeparatedCurrency = options.spaceSeparatedCurrency !== void 0
+        ? options.spaceSeparatedCurrency : options.spaceSeparated;
 
-    if (options.spaceSeparatedCurrency) {
+    if (spaceSeparatedCurrency) {
         space = " ";
     }
 
