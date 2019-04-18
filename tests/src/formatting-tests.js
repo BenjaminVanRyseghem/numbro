@@ -961,7 +961,23 @@ describe("formatting", () => {
             expect(result).toBe("foooutput");
         });
 
-        it("adds the currency symbol afterward with a space when `prefix`", () => {
+        it("adds the currency symbol afterward when `prefix` and spaceSeparatedCurrency is false", () => {
+            let instance = jasmine.createSpy("instance");
+            let providedFormat = jasmine.createSpy("providedFormat");
+            let state = jasmine.createSpyObj("state", ["currentCurrencyDefaults", "currentCurrency"]);
+            state.currentCurrency.and.returnValue({
+                position: "prefix",
+                spaceSeparated: true,
+                spaceSeparatedCurrency: false,
+                symbol: "foo"
+            });
+            formatNumber.and.returnValue("output");
+
+            let result = formatCurrency(instance, providedFormat, state);
+            expect(result).toBe("foooutput");
+        });
+
+        it("adds the currency symbol afterward with a space when `prefix` and spaceSeparatedCurrency", () => {
             let instance = jasmine.createSpy("instance");
             let providedFormat = jasmine.createSpy("providedFormat");
             let state = jasmine.createSpyObj("state", ["currentCurrencyDefaults", "currentCurrency"]);
@@ -970,6 +986,21 @@ describe("formatting", () => {
                 symbol: "foo"
             });
             providedFormat.spaceSeparatedCurrency = true;
+            formatNumber.and.returnValue("output");
+
+            let result = formatCurrency(instance, providedFormat, state);
+            expect(result).toBe("foo output");
+        });
+
+        it("adds the currency symbol afterward with a space when `prefix`", () => {
+            let instance = jasmine.createSpy("instance");
+            let providedFormat = jasmine.createSpy("providedFormat");
+            let state = jasmine.createSpyObj("state", ["currentCurrencyDefaults", "currentCurrency"]);
+            state.currentCurrency.and.returnValue({
+                position: "prefix",
+                symbol: "foo"
+            });
+            providedFormat.spaceSeparated = true;
             formatNumber.and.returnValue("output");
 
             let result = formatCurrency(instance, providedFormat, state);
