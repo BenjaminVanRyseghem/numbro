@@ -29,6 +29,7 @@ const suffixes = {
     10: "'uncu",
     30: "'uncu",
 
+    40: "'ıncı",
     60: "'ıncı",
     90: "'ıncı"
 };
