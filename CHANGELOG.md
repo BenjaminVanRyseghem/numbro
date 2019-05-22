@@ -1,4 +1,6 @@
 ### Next
+
+- Fix #424: Add ordinal for 40 for tr-TR
 - Fix #392: Small negative numbers get the leading zero incorrectly cut off
 
 ### 2.1.2
