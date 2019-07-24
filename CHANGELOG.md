@@ -1,5 +1,6 @@
 ### Next
 
+- Fix #418: Correct symbol and sign order for formatCurrency when forceSign=true
 - Fix #424: Add ordinal for 40 for tr-TR
 - Fix #392: Small negative numbers get the leading zero incorrectly cut off
 
