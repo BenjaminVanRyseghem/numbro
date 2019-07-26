@@ -3,6 +3,7 @@
 - Fix #418: Correct symbol and sign order for formatCurrency when forceSign=true
 - Fix #424: Add ordinal for 40 for tr-TR
 - Fix #392: Small negative numbers get the leading zero incorrectly cut off
+- Fix #403: Update numbro.d.ts to match the current API of the library
 
 ### 2.1.2
 
