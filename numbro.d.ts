@@ -138,4 +138,4 @@ declare namespace numbro {
     }
 }
 
-export default numbro;
+export = numbro;
