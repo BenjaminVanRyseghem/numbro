@@ -30,15 +30,13 @@ const fs = require("fs");
 const reporters = require("jasmine-reporters");
 const Server = require("karma").Server;
 
+const { series, parallel } = gulp;
+
 const plugins = require("gulp-load-plugins")({
     rename: {
         "gulp-jasmine-phantom-requirejs": "jasminePhantom"
     }
 });
-
-gulp.task("default", ["lint", "test"]);
-
-gulp.task("lint", ["lint:js"]);
 
 gulp.task("lint:js", () => {
     return gulp.src(["./src/**/*.js", "./tests/**/*.js", "./languages/**/*.js"])
@@ -47,46 +45,9 @@ gulp.task("lint:js", () => {
         .pipe(plugins.eslint.failAfterError());
 });
 
-// Tests
-
-gulp.task("pre-test", () => {
-    return gulp.src(["./src/**/*.js", "./languages/**/*.js"])
-        .pipe(plugins.istanbul())
-        .pipe(plugins.istanbul.hookRequire());
-});
-
-gulp.task("test", ["test:unit", "test:integration"], () => {});
-
-gulp.task("test:unit", ["pre-test"], () => {
-    return gulp.src("./tests/**/*.js")
-        .pipe(plugins.jasmine({
-            reporter: new reporters.TerminalReporter()
-        }))
-        .pipe(plugins.istanbul.writeReports())
-        .pipe(plugins.istanbul.enforceThresholds({thresholds: {global: 100}}));
-});
-
-gulp.task("test:integration", ["test:integration:node", "test:integration:amd"], () => {});
-
-gulp.task("test:integration:amd", ["build"], (done) => {
-        new Server({
-            configFile: `${__dirname }/karma.conf.js`,
-            singleRun: true
-        }, done).start();
-    }
-);
-
-gulp.task("test:integration:node", ["build"], () => {
-        return gulp.src("./integrationTests/node/**/*.js")
-            .pipe(plugins.jasmine({
-                reporter: new reporters.TerminalReporter()
-            }));
-    }
-);
+gulp.task("lint", parallel("lint:js"));
 
 // Build
-
-gulp.task("build", ["build:src", "build:src:min", "build:languages", "build:all-languages"]);
 
 gulp.task("build:src", () => {
     const babelify = require("babelify");
@@ -153,7 +114,7 @@ gulp.task("build:languages", () => {
         }));
 });
 
-gulp.task("build:all-languages", ["build:languages"], () => {
+gulp.task("build:all-languages", series("build:languages"), () => {
     let dir = "./dist";
     fs.readdir(`${dir}/languages`, (_, files) => {
         let langFiles = files
@@ -181,6 +142,46 @@ gulp.task("build:all-languages", ["build:languages"], () => {
     });
 });
 
+gulp.task("build", series("build:src", "build:src:min", "build:languages", "build:all-languages"));
+
+// Tests
+
+gulp.task("pre-test", () => {
+    return gulp.src(["./src/**/*.js", "./languages/**/*.js"])
+        .pipe(plugins.istanbul())
+        .pipe(plugins.istanbul.hookRequire());
+});
+
+gulp.task("test:unit", series("pre-test"), () => {
+    return gulp.src("./tests/**/*.js")
+        .pipe(plugins.jasmine({
+            reporter: new reporters.TerminalReporter()
+        }))
+        .pipe(plugins.istanbul.writeReports())
+        .pipe(plugins.istanbul.enforceThresholds({ thresholds: { global: 100 } }));
+});
+
+gulp.task("test:integration:amd", series("build"), (done) => {
+        new Server({
+            configFile: `${__dirname}/karma.conf.js`,
+            singleRun: true
+        }, done).start();
+    }
+);
+
+gulp.task("test:integration:node", series("build"), (cb) => {
+        return gulp.src("./integrationTests/node/**/*.js")
+            .pipe(plugins.jasmine({
+                reporter: new reporters.TerminalReporter()
+            }))
+            .pipe(cb);
+    }
+);
+
+gulp.task("test:integration", parallel("test:integration:node", "test:integration:amd"), () => {});
+
+gulp.task("test", parallel("test:unit", "test:integration"), () => {});
+
 // Bumping
 
 const referencesToVersion = [
@@ -191,7 +192,7 @@ const referencesToVersion = [
 ];
 
 gulp.task("bump:major", () => {
-    gulp.src(referencesToVersion, {base: "./"})
+    return gulp.src(referencesToVersion, {base: "./"})
         .pipe(plugins.bump({
             type: "major",
             global: true
@@ -200,7 +201,7 @@ gulp.task("bump:major", () => {
 });
 
 gulp.task("bump:minor", () => {
-    gulp.src(referencesToVersion, {base: "./"})
+    return gulp.src(referencesToVersion, {base: "./"})
         .pipe(plugins.bump({
             type: "minor",
             global: true
@@ -209,7 +210,7 @@ gulp.task("bump:minor", () => {
 });
 
 gulp.task("bump:patch", () => {
-    gulp.src(referencesToVersion, {base: "./"})
+    return gulp.src(referencesToVersion, {base: "./"})
         .pipe(plugins.bump({
             type: "patch",
             global: true
@@ -219,8 +220,16 @@ gulp.task("bump:patch", () => {
 
 // Clean
 
-gulp.task("clean", ["clean:build"]);
-
 gulp.task("clean:build", (cb) => {
     return del(["dist"], cb);
 });
+
+gulp.task("clean", series("clean:build"));
+
+exports.build = series("build");
+exports["bump:major"] = series("bump:major");
+exports["bump:minor"] = series("bump:minor");
+exports["bump:patch"] = series("bump:patch");
+exports.lint = series("lint");
+exports.test = series("test");
+exports.default = parallel("lint", "test");
