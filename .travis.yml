@@ -15,4 +15,5 @@ before_install:
 
 script:
   - npm install
+  - npm audit
   - gulp
