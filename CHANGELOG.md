@@ -8,6 +8,7 @@
 - Fix #423: No way to have space separated abbreviation and not-separated currency symbol at the same time. Thanks @Osipova
 - Fix #392: Small negative numbers get the leading zero incorrectly cut off. Thanks @Rudd
 - Fix #403: Update numbro.d.ts to match the current API of the library. Thanks @Monck
+- Fix #428: Fix id thousands and decimal separator. Thanks @kukuhyoniatmoko
 
 ### 2.1.2
 
