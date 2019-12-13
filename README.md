@@ -34,7 +34,7 @@ Please submit all pull requests to the `develop` branch.
 
 ### Languages
 
-Language tags follow the [BCP 47](https://tools.ieft.org/html/bcp47) specification.
+Language tags follow the [BCP 47](https://tools.ietf.org/html/bcp47) specification.
 
 ### Language translations will not be merged without unit tests.
 
