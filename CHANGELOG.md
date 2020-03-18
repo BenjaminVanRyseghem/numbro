@@ -1,5 +1,8 @@
 ### Next
 
+### 2.2.0
+
+- Fix dependencies through `npm audit --production`
 - Fix #446: CDNJS in website Relocation. Thanks @pranithan-kang
 - Fix #364: Format Decimal without Rounding. Thanks @shefrancia
 - Fix #414: Fix de-CH thousands separator. Thanks @FrEaKmAn
