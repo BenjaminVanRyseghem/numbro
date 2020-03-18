@@ -6,9 +6,8 @@ services:
   - xvfb
 language: node_js
 node_js:
-  - "6"
-  - "7"
-  - "8"
+  - lts/*
+  - node
 
 before_install:
   - curl --location http://rawgit.com/twolfson/fix-travis-ci/master/lib/install.sh | bash -s
