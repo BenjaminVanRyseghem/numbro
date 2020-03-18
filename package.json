@@ -64,6 +64,7 @@
     "karma-electron": "^6.3.0",
     "karma-jasmine": "^1.1.0",
     "karma-requirejs": "^1.1.0",
+    "lodash.template": "^4.5.0",
     "minimatch": "^3.0.4",
     "requirejs": "^2.3.6",
     "rewire": "^2.5.2",

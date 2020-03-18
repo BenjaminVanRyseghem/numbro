@@ -1,5 +1,7 @@
 ### Next
 
+- Bump `lodash.template` to 4.5.0
+
 ### 2.2.0
 
 - Fix dependencies through `npm audit --production`
