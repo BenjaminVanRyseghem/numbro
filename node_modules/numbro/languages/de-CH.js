@@ -8,7 +8,7 @@
 module.exports = {
     languageTag: "de-CH",
     delimiters: {
-        thousands: "'",
+        thousands: "’",
         decimal: "."
     },
     abbreviations: {

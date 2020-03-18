@@ -1,0 +1,21 @@
+---
+title:  Release 2.2.0
+author: BenjaminVanRyseghem
+date:   2020-03-18 12:19:00
+---
+
+**numbro 2.2.0** has been released.
+
+- Fix dependencies through `npm audit --production`
+- Fix [#446](https://github.com/BenjaminVanRyseghem/numbro/pull/446): CDNJS in website Relocation. Thanks [@pranithan-kang](https://github.com/pranithan-kang).
+- Fix [#364](https://github.com/BenjaminVanRyseghem/numbro/pull/364): Format Decimal without Rounding. Thanks [@shefrancia](https://github.com/shefrancia).
+- Fix [#414](https://github.com/BenjaminVanRyseghem/numbro/pull/414): Fix de-CH thousands separator. Thanks [@FrEaKmAn](https://github.com/FrEaKmAn).
+- Fix [#418](https://github.com/BenjaminVanRyseghem/numbro/pull/418): Correct symbol and sign order for formatCurrency when forceSign=true. Thanks [@adriang133](https://github.com/adriang133).
+- Fix [#424](https://github.com/BenjaminVanRyseghem/numbro/pull/424): Add ordinal for 40 for tr-TR. Thanks [@yatki](https://github.com/yatki).
+- Fix [#423](https://github.com/BenjaminVanRyseghem/numbro/pull/423): No way to have space separated abbreviation and not-separated currency symbol at the same time. Thanks [@Osipova](https://github.com/Osipova).
+- Fix [#392](https://github.com/BenjaminVanRyseghem/numbro/pull/392): Small negative numbers get the leading zero incorrectly cut off. Thanks [@Rudd](https://github.com/Rudd).
+- Fix [#403](https://github.com/BenjaminVanRyseghem/numbro/pull/403): Update numbro.d.ts to match the current API of the library. Thanks [@Monck](https://github.com/Monck).
+- Fix [#428](https://github.com/BenjaminVanRyseghem/numbro/pull/428): Fix id thousands and decimal separator. Thanks [@kukuhyoniatmoko](https://github.com/kukuhyoniatmoko).
+- Fix [#453](https://github.com/BenjaminVanRyseghem/numbro/pull/453): Fix broken BCP47 link. Thanks [@sesam](https://github.com/sesam).
+
+Enjoy <i class="fa fa-smile-o">
