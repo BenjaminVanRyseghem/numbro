@@ -56,6 +56,13 @@ state.languages = () => Object.assign({}, languages);
 state.currentLanguage = () => currentLanguageTag;
 
 /**
+ * Return the current language bytes data
+ *
+ * @return {{}}
+ */
+state.currentBytes = () => currentLanguageData().bytes;
+
+/**
  * Return the current language currency data
  *
  * @return {{}}

@@ -51,6 +51,24 @@ describe("fr-FR", () => {
         });
     });
 
+    it("formats bytes correctly", () => {
+        let data = [
+            [100, { output: "byte", base: "decimal" }, "100o"],
+            [2048, { output: "byte", base: "decimal" }, "2Ko"],
+            [7884486213, { output: "byte", base: "decimal", mantissa: 1 }, "7.3Go"],
+            [3467479682787, { output: "byte", base: "decimal", mantissa: 1 }, "3.154To"],
+            [100, { output: "byte", base: "binary" }, "100o"],
+            [2048, { output: "byte", base: "binary" }, "2Kio"],
+            [7884486213, { output: "byte", base: "binary", mantissa: 1 }, "7.3Gio"],
+            [3467479682787, { output: "byte", base: "binary", mantissa: 1 }, "3.154Tio"]
+        ];
+
+        data.forEach(([input, format, expectedResult]) => {
+            let result = numbro(input).format(format);
+            expect(result).toBe(expectedResult, `Should format bytes correctly ${input} with ${format}`);
+        });
+    });
+
     it("formats percentage correctly", () => {
         let data = [
             [1, "0%", "100%"],
