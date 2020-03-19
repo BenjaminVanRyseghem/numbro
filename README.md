@@ -19,18 +19,7 @@ Develop [![Build Status](https://travis-ci.org/BenjaminVanRyseghem/numbro.svg?br
 
 # Contributing
 
-Please submit all pull requests to the `develop` branch.
-
-1. Fork the library
-
-1. Run `npm install` to install dependencies
-
-1. Add your tests to the files in `/tests`
-
-1. To test your tests, run `npm test`
-
-1. When all your tests are passing, submit a pull request to the `develop` branch.
-
+See the `CONTRIBUTING.md` file for contribution information.
 
 ### Languages
 
