@@ -92,6 +92,7 @@ declare namespace numbro {
         spaceSeparatedCurrency?: boolean;
         exponential?: boolean;
         prefixSymbol?: boolean;
+        roundingFunction?: (num: number) => number;
     }
 
     export interface NumbroLanguage {
@@ -129,6 +130,8 @@ declare namespace numbro {
         percentageFormat?: Format;
 
         currencyFormat?: Format;
+
+        timeDefaults?: Format;
 
         formats: {
             fourDigits: Format;
