@@ -73,7 +73,7 @@ declare namespace numbro {
         forceAverage?: "trillion" | "billion" | "million" | "thousand";
         average?: boolean;
         currencyPosition?: "prefix" | "infix" | "postfix";
-        currencySymbol?: "string";
+        currencySymbol?: string;
         totalLength?: number;
         mantissa?: number;
         optionalMantissa?: boolean;
