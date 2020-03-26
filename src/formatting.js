@@ -538,6 +538,13 @@ function setCharacteristicPrecision(output, value, optionalCharacteristic, preci
         return `${currentCharacteristic.replace("0", "")}.${currentMantissa}`;
     }
 
+    const hasNegativeSign = value < 0 && currentCharacteristic.indexOf("-") === 0;
+    if (hasNegativeSign) {
+            // Remove the negative sign
+            currentCharacteristic = currentCharacteristic.slice(1);
+            result = result.slice(1);
+    }
+
     if (currentCharacteristic.length < precision) {
         let missingZeros = precision - currentCharacteristic.length;
         for (let i = 0; i < missingZeros; i++) {
@@ -545,6 +552,10 @@ function setCharacteristicPrecision(output, value, optionalCharacteristic, preci
         }
     }
 
+    if (hasNegativeSign) {
+        // Add back the minus sign
+        result = `-${result}`;
+    }
     return result.toString();
 }
 
