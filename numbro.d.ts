@@ -9,10 +9,7 @@ declare namespace numbro {
 
     export function language(): string;
 
-    export function registerLanguage(
-        tag: NumbroLanguage,
-        useLanguage?: boolean
-    ): string;
+    export function registerLanguage(tag: NumbroLanguage, useLanguage?: boolean): string;
 
     export function setLanguage(tag: string, fallbackTag?: string): void;
 
