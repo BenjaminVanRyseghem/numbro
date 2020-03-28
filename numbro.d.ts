@@ -3,6 +3,7 @@
 declare function numbro(value?: any): numbro.Numbro;
 
 declare namespace numbro {
+
     export const version: string;
 
     export function isNumbro(value: any): value is Numbro;
