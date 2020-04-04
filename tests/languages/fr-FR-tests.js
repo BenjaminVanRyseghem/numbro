@@ -54,18 +54,18 @@ describe("fr-FR", () => {
     it("formats bytes correctly", () => {
         let data = [
             [100, { output: "byte", base: "decimal" }, "100o"],
-            [2048, { output: "byte", base: "decimal" }, "2Ko"],
-            [7884486213, { output: "byte", base: "decimal", mantissa: 1 }, "7.3Go"],
-            [3467479682787, { output: "byte", base: "decimal", mantissa: 1 }, "3.154To"],
+            [2048, { output: "byte", base: "decimal" }, "2,048Ko"],
+            [7884486213, { output: "byte", base: "decimal", mantissa: 1 }, "7,9Go"],
+            [3467479682787, { output: "byte", base: "decimal", mantissa: 1 }, "3,5To"],
             [100, { output: "byte", base: "binary" }, "100o"],
             [2048, { output: "byte", base: "binary" }, "2Kio"],
-            [7884486213, { output: "byte", base: "binary", mantissa: 1 }, "7.3Gio"],
-            [3467479682787, { output: "byte", base: "binary", mantissa: 1 }, "3.154Tio"]
+            [7884486213, { output: "byte", base: "binary", mantissa: 1 }, "7,3Gio"],
+            [3467479682787, { output: "byte", base: "binary", mantissa: 1 }, "3,2Tio"]
         ];
 
         data.forEach(([input, format, expectedResult]) => {
             let result = numbro(input).format(format);
-            expect(result).toBe(expectedResult, `Should format bytes correctly ${input} with ${format}`);
+            expect(result).toBe(expectedResult, `Should format bytes correctly ${input} with ${format.base}`);
         });
     });
 
