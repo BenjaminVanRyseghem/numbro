@@ -186,6 +186,13 @@ const validLanguage = {
         type: "function",
         mandatory: true
     },
+    bytes: {
+        type: "object",
+        children: {
+            binarySuffixes: "object",
+            decimalSuffixes: "object"
+        }
+    },
     currency: {
         type: "object",
         children: {
