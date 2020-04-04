@@ -114,8 +114,9 @@ gulp.task("build:languages", () => {
         }));
 });
 
-gulp.task("build:all-languages", series("build:languages", () => {
+gulp.task("build:write-languages", (cb) => {
     let dir = "./dist";
+
     fs.readdir(`${dir}/languages`, (_, files) => {
         let langFiles = files
             .filter(file => file.match(/\.js$/))
@@ -137,10 +138,13 @@ gulp.task("build:all-languages", series("build:languages", () => {
                 .pipe(plugins.uglify())
                 .on("error", plugins.util.log)
                 .pipe(plugins.sourcemaps.write("./"))
-                .pipe(gulp.dest(dir));
+                .pipe(gulp.dest(dir))
+                .on("end", cb);
         });
     });
-}));
+});
+
+gulp.task("build:all-languages", series("build:languages", "build:write-languages"));
 
 gulp.task("build", series("build:src", "build:src:min", "build:languages", "build:all-languages"));
 
@@ -152,14 +156,16 @@ gulp.task("pre-test", () => {
         .pipe(plugins.istanbul.hookRequire());
 });
 
-gulp.task("test:unit", series("pre-test", () => {
+gulp.task("test:unit:run", () => {
     return gulp.src("./tests/**/*.js")
         .pipe(plugins.jasmine({
             reporter: new reporters.TerminalReporter()
         }))
         .pipe(plugins.istanbul.writeReports())
         .pipe(plugins.istanbul.enforceThresholds({ thresholds: { global: 100 } }));
-}));
+});
+
+gulp.task("test:unit", series("pre-test", "test:unit:run"));
 
 gulp.task("test:integration:amd", series("build"), (done) => {
         new Server({
