@@ -49,9 +49,7 @@ describe("globalState-tests", () => {
     describe("languages", () => {
         it("returns the all the registered languages", () => {
             let result = globalState.languages();
-            expect(result).toEqual({
-                "en-US": enUS
-            });
+            expect(result["en-US"]).toBe(enUS);
         });
 
         it("returns a copy to avoid spoiling", () => {
@@ -59,9 +57,7 @@ describe("globalState-tests", () => {
             result.foo = 34;
             let newResult = globalState.languages();
 
-            expect(newResult).toEqual({
-                "en-US": enUS
-            });
+            expect(newResult.foo).not.toBe(34);
         });
     });
 
@@ -273,6 +269,10 @@ describe("globalState-tests", () => {
     });
 
     describe("setDefaults", () => {
+        afterAll(() => {
+            globalState.setDefaults({});
+        });
+
         it("parses the format", () => {
             let format = jasmine.createSpy("format");
             spyOn(parsing, "parseFormat");
@@ -395,6 +395,11 @@ describe("globalState-tests", () => {
     });
 
     describe("registerLanguage", () => {
+        afterEach(() => {
+            global.FOO = false;
+            globalState.setLanguage("en-US");
+        });
+
         it("throws an error when the data are not valid", () => {
             let invalidData = jasmine.createSpy("invalidData");
             spyOn(validating, "validateLanguage");
@@ -405,10 +410,10 @@ describe("globalState-tests", () => {
         });
 
         it("doesn't change the current language", () => {
+            global.FOO = true;
             let enGB = {languageTag: "en-GB"};
             spyOn(validating, "validateLanguage");
             validating.validateLanguage.and.returnValue(true);
-
             globalState.registerLanguage(enGB);
 
             let currentLanguage = globalState.currentLanguage();
