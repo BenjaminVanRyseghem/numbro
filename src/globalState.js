@@ -96,7 +96,7 @@ state.currentOrdinal = () => currentLanguageData().ordinal;
 
 /**
  * Return the current formatting defaults.
- * Use first uses the current language default, then fallback to the globally defined defaults.
+ * First use the current language default, then fallback to the globally defined defaults.
  *
  * @return {{}}
  */
@@ -104,7 +104,7 @@ state.currentDefaults = () => Object.assign({}, currentLanguageData().defaults, 
 
 /**
  * Return the ordinal default-format.
- * Use first uses the current language ordinal default, then fallback to the regular defaults.
+ * First use the current language ordinal default, then fallback to the regular defaults.
  *
  * @return {{}}
  */
@@ -112,7 +112,7 @@ state.currentOrdinalDefaultFormat = () => Object.assign({}, state.currentDefault
 
 /**
  * Return the byte default-format.
- * Use first uses the current language byte default, then fallback to the regular defaults.
+ * First use the current language byte default, then fallback to the regular defaults.
  *
  * @return {{}}
  */
@@ -120,7 +120,7 @@ state.currentByteDefaultFormat = () => Object.assign({}, state.currentDefaults()
 
 /**
  * Return the percentage default-format.
- * Use first uses the current language percentage default, then fallback to the regular defaults.
+ * First use the current language percentage default, then fallback to the regular defaults.
  *
  * @return {{}}
  */
@@ -128,7 +128,7 @@ state.currentPercentageDefaultFormat = () => Object.assign({}, state.currentDefa
 
 /**
  * Return the currency default-format.
- * Use first uses the current language currency default, then fallback to the regular defaults.
+ * First use the current language currency default, then fallback to the regular defaults.
  *
  * @return {{}}
  */
@@ -136,7 +136,7 @@ state.currentCurrencyDefaultFormat = () => Object.assign({}, state.currentDefaul
 
 /**
  * Return the time default-format.
- * Use first uses the current language currency default, then fallback to the regular defaults.
+ * First use the current language currency default, then fallback to the regular defaults.
  *
  * @return {{}}
  */
