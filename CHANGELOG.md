@@ -3,6 +3,7 @@
 - Bump `lodash.template` to 4.5.0
 - Fix #359: Add Bytes I18N possibility + French translation
 - Fix #474: Fix Bytes formatting tests and coverage
+- Fix the `currencySymbol` type, by changing it from string literal `"string"` to `string`.
 
 ### 2.2.0
 
