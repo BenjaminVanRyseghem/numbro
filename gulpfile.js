@@ -114,35 +114,42 @@ gulp.task("build:languages", () => {
         }));
 });
 
-gulp.task("build:write-languages", (cb) => {
-    let dir = "./dist";
+function buildLanguages(dir = ".", minify = true) {
+    return (cb) => {
+        fs.readdir(`${dir}/languages`, (_, files) => {
+            let langFiles = files
+                .filter(file => file.match(/\.js$/))
+                .map(file => `exports["${file.replace(".min.js", "")}"]=require("${dir}/languages/${file}");`)
+                .join(minify ? "" : "\n");
+            fs.writeFile("./languages.js", langFiles, () => {
+                const babelify = require("babelify");
+                let b = browserify({
+                    standalone: "numbro.allLanguages",
+                    entries: "./languages.js",
+                    debug: minify,
+                    transform: [minify ? babelify : () => {}]
+                });
 
-    fs.readdir(`${dir}/languages`, (_, files) => {
-        let langFiles = files
-            .filter(file => file.match(/\.js$/))
-            .map(file => `exports["${file.replace(".min.js", "")}"]=require("${dir}/languages/${file}");`)
-            .join("");
-        fs.writeFile("./languages.js", langFiles, () => {
-            const babelify = require("babelify");
-            let b = browserify({
-                standalone: "numbro.allLanguages",
-                entries: "./languages.js",
-                debug: true,
-                transform: [babelify]
+                if (!minify) {
+                    return cb();
+                }
+
+                return b.bundle()
+                    .pipe(source("languages.min.js"))
+                    .pipe(buffer())
+                    .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+                    .pipe(plugins.uglify())
+                    .on("error", plugins.util.log)
+                    .pipe(plugins.sourcemaps.write("./"))
+                    .pipe(gulp.dest(dir))
+                    .on("end", cb);
             });
-
-            return b.bundle()
-                .pipe(source("languages.min.js"))
-                .pipe(buffer())
-                .pipe(plugins.sourcemaps.init({ loadMaps: true }))
-                .pipe(plugins.uglify())
-                .on("error", plugins.util.log)
-                .pipe(plugins.sourcemaps.write("./"))
-                .pipe(gulp.dest(dir))
-                .on("end", cb);
         });
-    });
-});
+    };
+}
+
+gulp.task("build:write-languages", buildLanguages("./dist"));
+gulp.task("build:write-languages-unminified", buildLanguages(".", false));
 
 gulp.task("build:all-languages", series("build:languages", "build:write-languages"));
 
@@ -236,6 +243,7 @@ exports.build = series("build");
 exports["bump:major"] = series("bump:major");
 exports["bump:minor"] = series("bump:minor");
 exports["bump:patch"] = series("bump:patch");
+exports["build:write-languages-unminified"] = series("build:write-languages-unminified");
 exports.lint = series("lint");
 exports.test = series("test");
 exports.default = parallel("lint", "test");
