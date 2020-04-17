@@ -1,4 +1,7 @@
 # [numbro](https://numbrojs.com/)
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-0-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro)
 
@@ -55,3 +58,16 @@ Copyright © 2014 Adam Draper
 Distributed under the MIT license. If you want to know more, see the `LICENSE` file.
 
 The original license file for `Numeral.js` can be found in `LICENSE-Numeraljs`
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<!-- markdownlint-enable -->
+<!-- prettier-ignore-end -->
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
