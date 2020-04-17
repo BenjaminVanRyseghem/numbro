@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "andreialecu",
+      "name": "Andrei Alecu",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/697707?v=4",
+      "profile": "https://github.com/andreialecu",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "numbro",
+  "projectOwner": "BenjaminVanRyseghem",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
