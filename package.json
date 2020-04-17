@@ -74,8 +74,7 @@
     "vinyl-source-stream": "^2.0.0"
   },
   "scripts": {
-    "prepare": "gulp build",
-    "prepublishOnly": "echo \"Are you sure you want to publish a new release with version ${npm_package_version}? (y/n)?\" && read choice && case \"$choice\" in y|Y ) exit 0;; * ) echo \"Abort!\" && exit 1;; esac",
+    "prepublishOnly": "echo \"Are you sure you want to publish a new release with version ${npm_package_version}? (y/n)?\" && read choice && case \"$choice\" in y|Y ) gulp build;; * ) echo \"Abort!\" && exit 1;; esac",
     "postpublish": "git tag -as ${npm_package_version} -m \"Release version ${npm_package_version}\" && git push && git push --tags",
     "preversion": "echo \"Use `gulp bump` instead\" && exit 1",
     "lint": "gulp lint",
