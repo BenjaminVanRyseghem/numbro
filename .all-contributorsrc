@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "rocketedaway",
+      "name": "Randy Wilander",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/6532916?v=4",
+      "profile": "https://github.com/rocketedaway",
+      "contributions": [
+        "code"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "numbro",
+  "projectOwner": "BenjaminVanRyseghem",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
