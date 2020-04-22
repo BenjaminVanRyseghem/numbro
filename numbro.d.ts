@@ -101,7 +101,7 @@ declare namespace numbro {
         delimiters: {
             thousands: string;
             decimal: string;
-            thousandsSize: number;
+            thousandsSize?: number;
         };
 
         abbreviations: {
