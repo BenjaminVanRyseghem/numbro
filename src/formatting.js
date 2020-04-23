@@ -24,14 +24,6 @@ const globalState = require("./globalState");
 const validating = require("./validating");
 const parsing = require("./parsing");
 
-const binarySuffixes = ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"];
-const decimalSuffixes = ["B", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"];
-const bytes = {
-    general: {scale: 1024, suffixes: decimalSuffixes, marker: "bd"},
-    binary: {scale: 1024, suffixes: binarySuffixes, marker: "b"},
-    decimal: {scale: 1000, suffixes: decimalSuffixes, marker: "d"}
-};
-
 const defaultOptions = {
     totalLength: 0,
     characteristic: 0,
@@ -44,6 +36,14 @@ const defaultOptions = {
     negative: "sign",
     forceSign: false,
     roundingFunction: Math.round
+};
+
+const { binarySuffixes, decimalSuffixes } = globalState.currentBytes();
+
+const bytes = {
+    general: {scale: 1024, suffixes: decimalSuffixes, marker: "bd"},
+    binary: {scale: 1024, suffixes: binarySuffixes, marker: "b"},
+    decimal: {scale: 1000, suffixes: decimalSuffixes, marker: "d"}
 };
 
 /**
@@ -194,7 +194,14 @@ function getFormatByteUnits(value, suffixes, scale) {
  */
 function formatByte(instance, providedFormat, state, numbro) {
     let base = providedFormat.base || "binary";
-    let baseInfo = bytes[base];
+    const { binarySuffixes: localBinarySuffixes, decimalSuffixes: localDecimalSuffixes } = state.currentBytes();
+
+    const localBytes = {
+        general: {scale: 1024, suffixes: localDecimalSuffixes, marker: "bd"},
+        binary: {scale: 1024, suffixes: localBinarySuffixes, marker: "b"},
+        decimal: {scale: 1000, suffixes: localDecimalSuffixes, marker: "d"}
+    };
+    let baseInfo = localBytes[base];
 
     let {value, suffix} = getFormatByteUnits(instance._value, baseInfo.suffixes, baseInfo.scale);
     let output = formatNumber({
