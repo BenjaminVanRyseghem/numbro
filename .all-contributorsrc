@@ -487,7 +487,17 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "cornflakeboy",
+      "name": "Tim Schauder",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/36692477?v=4",
+      "profile": "https://github.com/cornflakeboy",
+      "contributions": [
+        "code"
+      ]
     }
   ],
-  "contributorsPerLine": 7
+  "contributorsPerLine": 7,
+  "skipCi": true
 }
