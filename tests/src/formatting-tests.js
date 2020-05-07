@@ -2762,4 +2762,14 @@ describe("formatting", () => {
             });
         });
     });
+
+    describe("Regression", () => {
+        it("Issue 425", () => {
+            let value = -1.2345;
+            let format = ",4 a";
+            let result = formatting.format(numbroStub(value), format);
+
+            expect(result).toEqual("-1.234");
+        });
+    });
 });
