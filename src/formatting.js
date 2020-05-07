@@ -371,8 +371,14 @@ function computeAverage({value, forceAverage, abbreviations, spaceSeparated = fa
     }
 
     if (totalLength) {
+        let isNegative = value < 0;
         let characteristic = value.toString().split(".")[0];
-        mantissaPrecision = Math.max(totalLength - characteristic.length, 0);
+
+        let characteristicLength = isNegative
+            ? characteristic.length - 1
+            : characteristic.length;
+
+        mantissaPrecision = Math.max(totalLength - characteristicLength, 0);
     }
 
     return {value, abbreviation, mantissaPrecision};
