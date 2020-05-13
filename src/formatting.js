@@ -237,10 +237,23 @@ function formatOrdinal(instance, providedFormat, state) {
  * @return {string}
  */
 function formatTime(instance) {
-    let hours = Math.floor(instance._value / 60 / 60);
-    let minutes = Math.floor((instance._value - (hours * 60 * 60)) / 60);
-    let seconds = Math.round(instance._value - (hours * 60 * 60) - (minutes * 60));
-    return `${hours}:${(minutes < 10) ? "0" : ""}${minutes}:${(seconds < 10) ? "0" : ""}${seconds}`;
+    let options = Object.assign({}, defaultOptions, providedFormat);
+    
+    let hours = Math.floor(Math.abs(instance._value) / 60 / 60);
+    let minutes = Math.floor((Math.abs(instance._value) - (hours * 60 * 60)) / 60);
+    let seconds = Math.round(Math.abs(instance._value) - (hours * 60 * 60) - (minutes * 60));
+    
+    let absoluteTime = `${hours}:${(minutes < 10) ? "0" : ""}${minutes}:${(seconds < 10) ? "0" : ""}${seconds}`;
+    
+    if (instance._value < 0 && options.negative === "sign") {
+        return `-${absoluteTime}`;
+    } else if (instance._value < 0 && options.negative === "parenthesis") {
+        return `(${absoluteTime})`;
+    } else if (instance._value > 0 && options.forceSign) {
+        return `+${absoluteTime}`;
+    } else {
+        return absoluteTime;
+    }
 }
 
 /**
