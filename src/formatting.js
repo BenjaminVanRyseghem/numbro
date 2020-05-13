@@ -236,7 +236,7 @@ function formatOrdinal(instance, providedFormat, state) {
  * @param {Numbro} instance - numbro instance to format
  * @return {string}
  */
-function formatTime(instance) {
+function formatTime(instance, providedFormat) {
     let options = Object.assign({}, defaultOptions, providedFormat);
 
     let hours = Math.floor(Math.abs(instance._value) / 60 / 60);
