@@ -250,7 +250,7 @@ function formatTime(instance) {
     } else if (instance._value < 0 && options.negative === "parenthesis") {
         results = `(${results})`;
     } else if (instance._value > 0 && options.forceSign) {
-        results `+${results}`;
+        results = `+${results}`;
     }
 
     return results;
