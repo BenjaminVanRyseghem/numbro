@@ -243,7 +243,7 @@ function formatTime(instance, providedFormat) {
     let minutes = Math.floor((Math.abs(instance._value) - (hours * 60 * 60)) / 60);
     let seconds = Math.round(Math.abs(instance._value) - (hours * 60 * 60) - (minutes * 60));
 
-    let results = `${hours}:${(minutes < 10) ? "0" : ""}${minutes}:${(seconds < 10) ? "0" : ""}${seconds}`
+    let results = `${hours}:${(minutes < 10) ? "0" : ""}${minutes}:${(seconds < 10) ? "0" : ""}${seconds}`;
 
     if (instance._value < 0 && options.negative === "sign") {
         results = `-${results}`;
