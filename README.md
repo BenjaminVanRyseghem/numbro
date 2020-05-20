@@ -1,6 +1,6 @@
 # [numbro](https://numbrojs.com/)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-55-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-56-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro)
@@ -137,6 +137,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://damiencassou.seasidehosting.st"><img src="https://avatars1.githubusercontent.com/u/217543?v=4" width="100px;" alt=""/><br /><sub><b>Damien Cassou</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/commits?author=DamienCassou" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/cornflakeboy"><img src="https://avatars1.githubusercontent.com/u/36692477?v=4" width="100px;" alt=""/><br /><sub><b>Tim Schauder</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/commits?author=cornflakeboy" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/jarnovanleeuwen"><img src="https://avatars1.githubusercontent.com/u/1358997?v=4" width="100px;" alt=""/><br /><sub><b>Jarno van Leeuwen</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/commits?author=jarnovanleeuwen" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/bhartidengada"><img src="https://avatars2.githubusercontent.com/u/62098434?v=4" width="100px;" alt=""/><br /><sub><b>bhartidengada</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/commits?author=bhartidengada" title="Code">💻</a></td>
   </tr>
 </table>
 
