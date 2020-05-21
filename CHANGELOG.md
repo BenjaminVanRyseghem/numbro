@@ -5,6 +5,7 @@
 - Fix #359: Add Bytes I18N possibility + French translation
 - Fix #474: Fix Bytes formatting tests and coverage
 - Fix #425: Fix interpretation of totalLength with negative numbers. Thanks @DamienCassou
+- Fix #546: Format issue with average. Thanks @BenjaminVanRyseghem
 
 ### 2.2.0
 

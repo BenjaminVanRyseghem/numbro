@@ -2761,6 +2761,21 @@ describe("formatting", () => {
                 });
             });
         });
+
+        describe("Regression", () => {
+            it("Issue 546", () => {
+                let formatNumber = formattingModule.__get__("formatNumber");
+                let result = formatNumber({
+                    instance: numbroStub(999999),
+                    providedFormat: {
+                        average: true
+                    },
+                    state: globalState
+                });
+
+                expect(result).toBe("1m");
+            });
+        });
     });
 
     describe("Regression", () => {

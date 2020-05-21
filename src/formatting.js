@@ -24,6 +24,13 @@ const globalState = require("./globalState");
 const validating = require("./validating");
 const parsing = require("./parsing");
 
+const powers = {
+    trillion: Math.pow(10, 12),
+    billion: Math.pow(10, 9),
+    million: Math.pow(10, 6),
+    thousand: Math.pow(10, 3)
+};
+
 const defaultOptions = {
     totalLength: 0,
     characteristic: 0,
@@ -41,9 +48,9 @@ const defaultOptions = {
 const { binarySuffixes, decimalSuffixes } = globalState.currentBytes();
 
 const bytes = {
-    general: {scale: 1024, suffixes: decimalSuffixes, marker: "bd"},
-    binary: {scale: 1024, suffixes: binarySuffixes, marker: "b"},
-    decimal: {scale: 1000, suffixes: decimalSuffixes, marker: "d"}
+    general: { scale: 1024, suffixes: decimalSuffixes, marker: "bd" },
+    binary: { scale: 1024, suffixes: binarySuffixes, marker: "b" },
+    decimal: { scale: 1000, suffixes: decimalSuffixes, marker: "d" }
 };
 
 /**
@@ -180,7 +187,7 @@ function getFormatByteUnits(value, suffixes, scale) {
         }
     }
 
-    return {value, suffix};
+    return { value, suffix };
 }
 
 /**
@@ -197,13 +204,13 @@ function formatByte(instance, providedFormat, state, numbro) {
     const { binarySuffixes: localBinarySuffixes, decimalSuffixes: localDecimalSuffixes } = state.currentBytes();
 
     const localBytes = {
-        general: {scale: 1024, suffixes: localDecimalSuffixes, marker: "bd"},
-        binary: {scale: 1024, suffixes: localBinarySuffixes, marker: "b"},
-        decimal: {scale: 1000, suffixes: localDecimalSuffixes, marker: "d"}
+        general: { scale: 1024, suffixes: localDecimalSuffixes, marker: "bd" },
+        binary: { scale: 1024, suffixes: localBinarySuffixes, marker: "b" },
+        decimal: { scale: 1000, suffixes: localDecimalSuffixes, marker: "d" }
     };
     let baseInfo = localBytes[base];
 
-    let {value, suffix} = getFormatByteUnits(instance._value, baseInfo.suffixes, baseInfo.scale);
+    let { value, suffix } = getFormatByteUnits(instance._value, baseInfo.suffixes, baseInfo.scale);
     let output = formatNumber({
         instance: numbro(value),
         providedFormat,
@@ -339,29 +346,35 @@ function formatCurrency(instance, providedFormat, state) {
  * @param {{}} abbreviations - part of the language specification
  * @param {boolean} spaceSeparated - `true` if a space must be inserted between the value and the abbreviation
  * @param {number} [totalLength] - total length of the output including the characteristic and the mantissa
+ * @param {function} roundingFunction - function used to round numbers
  * @return {{value: number, abbreviation: string, mantissaPrecision: number}}
  */
-function computeAverage({value, forceAverage, abbreviations, spaceSeparated = false, totalLength = 0}) {
+function computeAverage({ value, forceAverage, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round }) {
     let abbreviation = "";
     let abs = Math.abs(value);
     let mantissaPrecision = -1;
 
-    if ((abs >= Math.pow(10, 12) && !forceAverage) || (forceAverage === "trillion")) {
-        // trillion
-        abbreviation = abbreviations.trillion;
-        value = value / Math.pow(10, 12);
-    } else if ((abs < Math.pow(10, 12) && abs >= Math.pow(10, 9) && !forceAverage) || (forceAverage === "billion")) {
-        // billion
-        abbreviation = abbreviations.billion;
-        value = value / Math.pow(10, 9);
-    } else if ((abs < Math.pow(10, 9) && abs >= Math.pow(10, 6) && !forceAverage) || (forceAverage === "million")) {
-        // million
-        abbreviation = abbreviations.million;
-        value = value / Math.pow(10, 6);
-    } else if ((abs < Math.pow(10, 6) && abs >= Math.pow(10, 3) && !forceAverage) || (forceAverage === "thousand")) {
-        // thousand
-        abbreviation = abbreviations.thousand;
-        value = value / Math.pow(10, 3);
+    if (forceAverage && abbreviations[forceAverage] && powers[forceAverage]) {
+        abbreviation = abbreviations[forceAverage];
+        value = value / powers[forceAverage];
+    } else {
+        if (abs >= powers.trillion || roundingFunction(abs / powers.trillion) === 1) {
+            // trillion
+            abbreviation = abbreviations.trillion;
+            value = value / powers.trillion;
+        } else if (abs < powers.trillion && abs >= powers.billion || roundingFunction(abs / powers.billion) === 1) {
+            // billion
+            abbreviation = abbreviations.billion;
+            value = value / powers.billion;
+        } else if (abs < powers.billion && abs >= powers.million || roundingFunction(abs / powers.million) === 1) {
+            // million
+            abbreviation = abbreviations.million;
+            value = value / powers.million;
+        } else if (abs < powers.million && abs >= powers.thousand || roundingFunction(abs / powers.thousand) === 1) {
+            // thousand
+            abbreviation = abbreviations.thousand;
+            value = value / powers.thousand;
+        }
     }
 
     let optionalSpace = spaceSeparated ? " " : "";
@@ -381,7 +394,7 @@ function computeAverage({value, forceAverage, abbreviations, spaceSeparated = fa
         mantissaPrecision = Math.max(totalLength - characteristicLength, 0);
     }
 
-    return {value, abbreviation, mantissaPrecision};
+    return { value, abbreviation, mantissaPrecision };
 }
 
 /**
@@ -391,7 +404,7 @@ function computeAverage({value, forceAverage, abbreviations, spaceSeparated = fa
  * @param {number} [characteristicPrecision] - optional characteristic length
  * @return {{value: number, abbreviation: string}}
  */
-function computeExponential({value, characteristicPrecision = 0}) {
+function computeExponential({ value, characteristicPrecision = 0 }) {
     let [numberString, exponential] = value.toExponential().split("e");
     let number = +numberString;
 
@@ -703,7 +716,7 @@ function insertPostfix(output, postfix) {
  * @param {{}} defaults - Set of default values used for formatting
  * @return {string}
  */
-function formatNumber({instance, providedFormat, state = globalState, decimalSeparator, defaults = state.currentDefaults()}) {
+function formatNumber({ instance, providedFormat, state = globalState, decimalSeparator, defaults = state.currentDefaults() }) {
     let value = instance._value;
 
     if (value === 0 && state.hasZeroFormat()) {
@@ -740,7 +753,8 @@ function formatNumber({instance, providedFormat, state = globalState, decimalSep
             value,
             forceAverage,
             abbreviations: state.currentAbbreviations(),
-            spaceSeparated: spaceSeparated,
+            spaceSeparated,
+            roundingFunction,
             totalLength
         });
 
