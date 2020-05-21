@@ -1,6 +1,6 @@
 # [numbro](https://numbrojs.com/)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-57-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-58-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro)
@@ -141,6 +141,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
   </tr>
   <tr>
     <td align="center"><a href="https://github.com/Isha-Sharma"><img src="https://avatars0.githubusercontent.com/u/24851175?v=4" width="100px;" alt=""/><br /><sub><b>Isha Sharma</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/issues?q=author%3AIsha-Sharma" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/daissi"><img src="https://avatars0.githubusercontent.com/u/9595274?v=4" width="100px;" alt=""/><br /><sub><b>Dylan Aïssi</b></sub></a><br /><a href="#ideas-daissi" title="Ideas, Planning, & Feedback">🤔</a></td>
   </tr>
 </table>
 
