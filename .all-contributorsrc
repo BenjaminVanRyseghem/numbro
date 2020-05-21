@@ -514,6 +514,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Isha-Sharma",
+      "name": "Isha Sharma",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/24851175?v=4",
+      "profile": "https://github.com/Isha-Sharma",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
