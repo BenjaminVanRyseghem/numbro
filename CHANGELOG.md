@@ -1,10 +1,11 @@
 ### Next
 
-- Bump `lodash.template` to 4.5.0
-- Fix TypeScript return type definition of `Format.currencySymbol`
-- Fix #359: Add Bytes I18N possibility + French translation
-- Fix #474: Fix Bytes formatting tests and coverage
+- Bump `lodash.template` to 4.5.0. Thanks @BenjaminVanRyseghem
+- Fix TypeScript return type definition of `Format.currencySymbol`. Thanks @jarnovanleeuwen
+- Fix #359: Add Bytes I18N possibility + French translation. Thanks @T0nio
+- Fix #474: Fix Bytes formatting tests and coverage. Thanks @austingreco
 - Fix #425: Fix interpretation of totalLength with negative numbers. Thanks @DamienCassou
+- Fix #462: Fix negative number format issue. Thanks @bhartibdengada
 - Fix #546: Format issue with average. Thanks @BenjaminVanRyseghem
 
 ### 2.2.0
@@ -20,7 +21,6 @@
 - Fix #403: Update numbro.d.ts to match the current API of the library. Thanks @Monck
 - Fix #428: Fix id thousands and decimal separator. Thanks @kukuhyoniatmoko
 - Fix #453: Fix broken BCP47 link. Thanks @sesam
-- Fix #462: Fix negative number format issue @bhartibdengada
 
 ### 2.1.2
 
