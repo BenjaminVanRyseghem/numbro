@@ -114,42 +114,46 @@ gulp.task("build:languages", () => {
         }));
 });
 
-function buildLanguages(dir = ".", minify = true) {
-    return (cb) => {
-        fs.readdir(`${dir}/languages`, (_, files) => {
-            let langFiles = files
-                .filter(file => file.match(/\.js$/))
-                .map(file => `exports["${file.replace(".min.js", "")}"]=require("${dir}/languages/${file}");`)
-                .join(minify ? "" : "\n");
-            fs.writeFile("./languages.js", langFiles, () => {
-                const babelify = require("babelify");
-                let b = browserify({
-                    standalone: "numbro.allLanguages",
-                    entries: "./languages.js",
-                    debug: minify,
-                    transform: [minify ? babelify : () => {}]
-                });
-
-                if (!minify) {
-                    return cb();
-                }
-
-                return b.bundle()
-                    .pipe(source("languages.min.js"))
-                    .pipe(buffer())
-                    .pipe(plugins.sourcemaps.init({ loadMaps: true }))
-                    .pipe(plugins.uglify())
-                    .on("error", plugins.util.log)
-                    .pipe(plugins.sourcemaps.write("./"))
-                    .pipe(gulp.dest(dir))
-                    .on("end", cb);
-            });
-        });
-    };
+function writeLanguagesUnminified(cb) {
+    fs.readdir("./languages", (_, files) => {
+        let langFiles = files
+            .filter(file => file.match(/\.js$/))
+            .map(file => `exports["${file.replace(".js", "")}"] = ${JSON.stringify(require(`./languages/${file}`), null, 4)};`)
+            .join("\n");
+        fs.writeFile("./languages.unmin.js", langFiles, cb);
+    });
 }
 
-gulp.task("build:write-languages", buildLanguages("./dist"));
-gulp.task("build:write-languages-unminified", buildLanguages(".", false));
+function writeLanguages(cb) {
+    fs.readdir("./dist/languages", (_, files) => {
+        let langFiles = files
+            .filter(file => file.match(/\.js$/))
+            .map(file => `exports["${file.replace(".min.js", "")}"]=require("./dist/languages/${file}");`)
+            .join("");
+        fs.writeFile("./languages.js", langFiles, () => {
+            const babelify = require("babelify");
+            let b = browserify({
+                standalone: "numbro.allLanguages",
+                entries: "./languages.js",
+                debug: true,
+                transform: [babelify]
+            });
+
+            return b.bundle()
+                .pipe(source("languages.min.js"))
+                .pipe(buffer())
+                .pipe(plugins.sourcemaps.init({ loadMaps: true }))
+                .pipe(plugins.uglify())
+                .on("error", plugins.util.log)
+                .pipe(plugins.sourcemaps.write("./"))
+                .pipe(gulp.dest("./dist"))
+                .on("end", cb);
+        });
+    });
+}
+
+gulp.task("build:write-languages", writeLanguages);
+gulp.task("build:write-languages-unminified", writeLanguagesUnminified);
 
 gulp.task("build:all-languages", series("build:languages", "build:write-languages"));
 

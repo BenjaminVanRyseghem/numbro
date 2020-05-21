@@ -31,3 +31,4 @@ coverage/
 /yarn.lock
 dist/
 /languages.js
+/languages.unmin.js
