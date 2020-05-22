@@ -1,5 +1,6 @@
 ### Next
 
+- Fix the return type of unformat
 - Bump `lodash.template` to 4.5.0. Thanks @BenjaminVanRyseghem
 - Fix TypeScript return type definition of `Format.currencySymbol`. Thanks @jarnovanleeuwen
 - Fix #359: Add Bytes I18N possibility + French translation. Thanks @T0nio
