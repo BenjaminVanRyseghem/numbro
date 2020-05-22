@@ -30,7 +30,7 @@ declare namespace numbro {
 
     export function loadLanguagesInNode(): void;
 
-    export function unformat(input: string, format?: Format | string): number;
+    export function unformat(input: string, format?: Format | string): number | undefined;
 
     interface Numbro {
         clone(): Numbro;
