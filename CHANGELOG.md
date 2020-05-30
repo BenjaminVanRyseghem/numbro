@@ -7,6 +7,7 @@
 - Fix #425: Fix interpretation of totalLength with negative numbers. Thanks @DamienCassou
 - Fix #462: Fix negative number format issue. Thanks @bhartibdengada
 - Fix #546: Format issue with average. Thanks @BenjaminVanRyseghem
+- Fix #383: BigNumber Issue - new BigNumber() number type has more than 15 significant digits. Thanks @BenjaminVanRyseghem
 
 ### 2.2.0
 
