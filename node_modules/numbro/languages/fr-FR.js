@@ -20,6 +20,10 @@ module.exports = {
     ordinal: (number) => {
         return number === 1 ? "er" : "ème";
     },
+    bytes: {
+        binarySuffixes: ["o", "Kio", "Mio", "Gio", "Tio", "Pio", "Eio", "Zio", "Yio"],
+        decimalSuffixes: ["o", "Ko", "Mo", "Go", "To", "Po", "Eo", "Zo", "Yo"]
+    },
     currency: {
         symbol: "€",
         position: "postfix",

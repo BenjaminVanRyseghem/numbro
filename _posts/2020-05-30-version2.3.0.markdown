@@ -1,0 +1,18 @@
+---
+title:  Release 2.3.0
+author: BenjaminVanRyseghem
+date:   2020-05-30 12:19:00
+---
+
+**numbro 2.3.0** has been released.
+
+- Bump `lodash.template` to 4.5.0. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+- Fix TypeScript return type definition of `Format.currencySymbol`. Thanks [@jarnovanleeuwen](https://github.com/jarnovanleeuwen).
+- Fix [#359](https://github.com/BenjaminVanRyseghem/numbro/issues/359): Add Bytes I18N possibility + French translation. Thanks [@T0nio](https://github.com/T0nio).
+- Fix [#474](https://github.com/BenjaminVanRyseghem/numbro/issues/474): Fix Bytes formatting tests and coverage. Thanks [@austingreco](https://github.com/austingreco).
+- Fix [#425](https://github.com/BenjaminVanRyseghem/numbro/issues/425): Fix interpretation of totalLength with negative numbers. Thanks [@DamienCassou](https://github.com/DamienCassou).
+- Fix [#462](https://github.com/BenjaminVanRyseghem/numbro/issues/462): Fix negative number format issue. Thanks [@bhartibdengada](https://github.com/bhartibdengada).
+- Fix [#546](https://github.com/BenjaminVanRyseghem/numbro/issues/546): Format issue with average. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+- Fix [#383](https://github.com/BenjaminVanRyseghem/numbro/issues/383): BigNumber Issue - new BigNumber() number type has more than 15 significant digits. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+
+Enjoy <i class="fa fa-smile-o">
