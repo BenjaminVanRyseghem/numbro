@@ -304,6 +304,10 @@ function formatCurrency(instance, providedFormat, state) {
     const spaceSeparatedCurrency = options.spaceSeparatedCurrency !== void 0
         ? options.spaceSeparatedCurrency : options.spaceSeparated;
 
+    if (providedFormat.lowPrecision === undefined) {
+        providedFormat.lowPrecision = false;
+    }
+
     if (spaceSeparatedCurrency) {
         space = " ";
     }
@@ -343,13 +347,14 @@ function formatCurrency(instance, providedFormat, state) {
  *
  * @param {number} value - value to compute
  * @param {string} [forceAverage] - forced unit used to compute
+ * @param {boolean} [lowPrecision=true] - reduce average precision
  * @param {{}} abbreviations - part of the language specification
  * @param {boolean} spaceSeparated - `true` if a space must be inserted between the value and the abbreviation
  * @param {number} [totalLength] - total length of the output including the characteristic and the mantissa
  * @param {function} roundingFunction - function used to round numbers
  * @return {{value: number, abbreviation: string, mantissaPrecision: number}}
  */
-function computeAverage({ value, forceAverage, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round }) {
+function computeAverage({ value, forceAverage, lowPrecision = true, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round }) {
     let abbreviation = "";
     let abs = Math.abs(value);
     let mantissaPrecision = -1;
@@ -358,19 +363,19 @@ function computeAverage({ value, forceAverage, abbreviations, spaceSeparated = f
         abbreviation = abbreviations[forceAverage];
         value = value / powers[forceAverage];
     } else {
-        if (abs >= powers.trillion || roundingFunction(abs / powers.trillion) === 1) {
+        if (abs >= powers.trillion || (lowPrecision && roundingFunction(abs / powers.trillion) === 1)) {
             // trillion
             abbreviation = abbreviations.trillion;
             value = value / powers.trillion;
-        } else if (abs < powers.trillion && abs >= powers.billion || roundingFunction(abs / powers.billion) === 1) {
+        } else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
             // billion
             abbreviation = abbreviations.billion;
             value = value / powers.billion;
-        } else if (abs < powers.billion && abs >= powers.million || roundingFunction(abs / powers.million) === 1) {
+        } else if (abs < powers.billion && abs >= powers.million || (lowPrecision && roundingFunction(abs / powers.million) === 1)) {
             // million
             abbreviation = abbreviations.million;
             value = value / powers.million;
-        } else if (abs < powers.million && abs >= powers.thousand || roundingFunction(abs / powers.thousand) === 1) {
+        } else if (abs < powers.million && abs >= powers.thousand || (lowPrecision && roundingFunction(abs / powers.thousand) === 1)) {
             // thousand
             abbreviation = abbreviations.thousand;
             value = value / powers.thousand;
@@ -733,6 +738,7 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
     let characteristicPrecision = totalLength ? 0 : options.characteristic;
     let optionalCharacteristic = options.optionalCharacteristic;
     let forceAverage = options.forceAverage;
+    let lowPrecision = options.lowPrecision;
     let average = !!totalLength || !!forceAverage || options.average;
 
     // default when averaging is to chop off decimals
@@ -747,11 +753,11 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
     let roundingFunction = options.roundingFunction;
 
     let abbreviation = "";
-
     if (average) {
         let data = computeAverage({
             value,
             forceAverage,
+            lowPrecision,
             abbreviations: state.currentAbbreviations(),
             spaceSeparated,
             roundingFunction,

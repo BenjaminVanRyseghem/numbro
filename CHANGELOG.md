@@ -1,5 +1,7 @@
 ### Next
 
+- Introduce `lowPrecision` to tweak precision when computing average value. Thanks @BenjaminVanRyseghem
+
 ### 2.3.0
 
 - Bump `lodash.template` to 4.5.0. Thanks @BenjaminVanRyseghem

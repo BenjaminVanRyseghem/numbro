@@ -115,6 +115,11 @@ const validFormat = {
         validValues: validForceAverageValues
     },
     average: "boolean",
+    lowPrecision: {
+        type: "boolean",
+        restriction: (number, format) => format.average === true,
+        message: "`lowPrecision` must be provided only when the option `average` is set"
+    },
     currencyPosition: {
         type: "string",
         validValues: validCurrencyPosition

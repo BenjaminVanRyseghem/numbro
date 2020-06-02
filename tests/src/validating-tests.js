@@ -150,6 +150,13 @@ describe("validatingSpec", () => {
                         output: "currency"
                     },
                     "[Validate format] prefixSymbol invalid value: `prefixSymbol` can be provided only when the output is `percent`"
+                ],
+                [
+                    {
+                        average: false,
+                        lowPrecision: true
+                    },
+                    "[Validate format] lowPrecision invalid value: `lowPrecision` must be provided only when the option `average` is set"
                 ]
             ];
 

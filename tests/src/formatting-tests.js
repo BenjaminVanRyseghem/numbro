@@ -802,6 +802,21 @@ describe("formatting", () => {
             expect(ordinalFn).toHaveBeenCalledWith(value);
             expect(result).toMatch(/nd$/);
         });
+
+        it("keeps `lowPrecision` untouched", () => {
+            let instance = jasmine.createSpy("instance");
+            let providedFormat = jasmine.createSpy("providedFormat");
+            let ordinalFn = jasmine.createSpy("ordinalFn").and.returnValue("nd");
+            let state = jasmine.createSpyObj("state", ["currentOrdinal", "currentAbbreviations", "currentOrdinalDefaults"]);
+            state.currentOrdinal.and.returnValue(ordinalFn);
+            state.currentAbbreviations.and.returnValue({});
+
+            providedFormat.average = true;
+            providedFormat.lowPrecision = undefined;
+
+            formatOrdinal(instance, providedFormat, state);
+            expect(formatNumber.calls.argsFor(0)[0].providedFormat.lowPrecision).toBe(undefined);
+        });
     });
 
     describe("formatTime", () => {
@@ -1073,6 +1088,34 @@ describe("formatting", () => {
 
             let result = formatCurrency(instance, providedFormat, state);
             expect(result).toBe("output foo");
+        });
+
+        it("set `lowPrecision` to false when not provided", () => {
+            let instance = jasmine.createSpy("instance");
+            let providedFormat = jasmine.createSpy("providedFormat");
+            let state = jasmine.createSpyObj("state", ["currentCurrencyDefaults", "currentCurrency"]);
+            state.currentCurrency.and.returnValue({
+                position: "postfix",
+                symbol: "foo"
+            });
+            providedFormat.average = true;
+            providedFormat.lowPrecision = undefined;
+            formatCurrency(instance, providedFormat, state);
+            expect(formatNumber.calls.argsFor(0)[0].providedFormat.lowPrecision).toBe(false);
+        });
+
+        it("keeps `lowPrecision` untouched when provided", () => {
+            let instance = jasmine.createSpy("instance");
+            let providedFormat = jasmine.createSpy("providedFormat");
+            let state = jasmine.createSpyObj("state", ["currentCurrencyDefaults", "currentCurrency"]);
+            state.currentCurrency.and.returnValue({
+                position: "postfix",
+                symbol: "foo"
+            });
+            providedFormat.average = true;
+            providedFormat.lowPrecision = true;
+            formatCurrency(instance, providedFormat, state);
+            expect(formatNumber.calls.argsFor(0)[0].providedFormat.lowPrecision).toBe(true);
         });
     });
 
@@ -2768,7 +2811,19 @@ describe("formatting", () => {
                 let result = formatNumber({
                     instance: numbroStub(999999),
                     providedFormat: {
-                        average: true
+                        average: true,
+                        lowPrecision: false
+                    },
+                    state: globalState
+                });
+
+                expect(result).toBe("1000k");
+
+                result = formatNumber({
+                    instance: numbroStub(999999),
+                    providedFormat: {
+                        average: true,
+                        lowPrecision: true
                     },
                     state: globalState
                 });
