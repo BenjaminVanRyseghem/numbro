@@ -20,7 +20,7 @@
  * SOFTWARE.
  */
 
-const VERSION = "2.3.0";
+const VERSION = "2.3.1";
 
 const globalState = require("./globalState");
 const validator = require("./validating");
