@@ -1,0 +1,12 @@
+---
+title:  Release 2.3.1
+author: BenjaminVanRyseghem
+date:   2020-06-17 19:40:00
+---
+
+**numbro 2.3.1** has been released.
+
+- Introduce lowPrecision to tweak precision when computing average value. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+- Fix [#411](https://github.com/BenjaminVanRyseghem/numbro/issues/411): spaceSeparated is not working for bytes. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem).
+
+Enjoy <i class="fa fa-smile-o">
