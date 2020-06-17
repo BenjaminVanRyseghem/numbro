@@ -201,6 +201,8 @@ function getFormatByteUnits(value, suffixes, scale) {
  */
 function formatByte(instance, providedFormat, state, numbro) {
     let base = providedFormat.base || "binary";
+    let options = Object.assign({}, defaultOptions, providedFormat);
+
     const { binarySuffixes: localBinarySuffixes, decimalSuffixes: localDecimalSuffixes } = state.currentBytes();
 
     const localBytes = {
@@ -211,14 +213,15 @@ function formatByte(instance, providedFormat, state, numbro) {
     let baseInfo = localBytes[base];
 
     let { value, suffix } = getFormatByteUnits(instance._value, baseInfo.suffixes, baseInfo.scale);
+
     let output = formatNumber({
         instance: numbro(value),
         providedFormat,
         state,
         defaults: state.currentByteDefaultFormat()
     });
-    let abbreviations = state.currentAbbreviations();
-    return `${output}${abbreviations.spaced ? " " : ""}${suffix}`;
+
+    return `${output}${options.spaceSeparated ? " " : ""}${suffix}`;
 }
 
 /**

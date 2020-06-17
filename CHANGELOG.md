@@ -1,6 +1,7 @@
 ### Next
 
 - Introduce `lowPrecision` to tweak precision when computing average value. Thanks @BenjaminVanRyseghem
+- Fix #411: spaceSeparated is not working for bytes. Thanks @BenjaminVanRyseghem
 
 ### 2.3.0
 

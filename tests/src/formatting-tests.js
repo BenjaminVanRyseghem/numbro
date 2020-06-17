@@ -462,31 +462,37 @@ describe("formatting", () => {
                 expect(getFormatByteUnits).toHaveBeenCalledWith(value, bytes.binary.suffixes, bytes.binary.scale);
             });
 
-            it("separates the suffix with a space when `spaced` flag is true", () => {
+            it("separates the suffix with a space when `spaceSeparated` flag is true", () => {
                 let instance = jasmine.createSpy("instance");
                 let state = jasmine.createSpyObj("state", ["currentByteDefaultFormat", "currentAbbreviations", "currentBytes"]);
-                state.currentAbbreviations.and.returnValue({spaced: true});
+                let format = {
+                    spaceSeparated: true
+                };
+                state.currentAbbreviations.and.returnValue({});
                 state.currentBytes.and.returnValue({
                     binarySuffixes: bytes.binary.suffixes
                 });
                 getFormatByteUnits.and.returnValue({suffix: "B"});
                 formatNumber.and.returnValue("2");
 
-                let result = formatByte(instance, {}, state, numbroStub);
+                let result = formatByte(instance, format, state, numbroStub);
                 expect(result).toMatch(/ /);
             });
 
-            it("does not separate the suffix with a space when `spaced` flag is false", () => {
+            it("does not separate the suffix with a space when `spaceSeparated` flag is false", () => {
                 let instance = jasmine.createSpy("instance");
                 let state = jasmine.createSpyObj("state", ["currentByteDefaultFormat", "currentAbbreviations", "currentBytes"]);
-                state.currentAbbreviations.and.returnValue({spaced: false});
+                let format = {
+                    spaceSeparated: false
+                };
+                state.currentAbbreviations.and.returnValue({});
                 state.currentBytes.and.returnValue({
                     binarySuffixes: bytes.binary.suffixes
                 });
                 getFormatByteUnits.and.returnValue({suffix: "B"});
                 formatNumber.and.returnValue("2");
 
-                let result = formatByte(instance, {}, state, numbroStub);
+                let result = formatByte(instance, format, state, numbroStub);
                 expect(result).not.toMatch(/ /);
             });
 
@@ -765,15 +771,14 @@ describe("formatting", () => {
             expect(result).toMatch(/ /);
         });
 
-        it("does not separate the suffix with a space when `spaced` flag is false", () => {
+        it("does not separate the suffix with a space when `spaceSeparated` flag is false", () => {
             let value = jasmine.createSpy("value");
             let providedFormat = jasmine.createSpy("providedFormat");
             let ordinalFn = jasmine.createSpy("ordinalFn").and.returnValue("nd");
 
             let state = jasmine.createSpyObj("state", ["currentOrdinal", "currentAbbreviations", "currentOrdinalDefaults"]);
             state.currentOrdinal.and.returnValue(ordinalFn);
-            state.currentAbbreviations.and.returnValue({spaced: false});
-
+            providedFormat.spaceSeparated = false;
             formatNumber.and.returnValue("2");
 
             let instance = numbroStub(value);
@@ -869,7 +874,7 @@ describe("formatting", () => {
             });
         });
 
-        it("separates the percent sign with a space when `spaced` flag is true", () => {
+        it("separates the percent sign with a space when `spaceSeparated` flag is true", () => {
             let value = jasmine.createSpy("value");
             let providedFormat = jasmine.createSpy("providedFormat");
             let instance = numbroStub(value);
@@ -886,18 +891,19 @@ describe("formatting", () => {
             expect(result).toMatch(/ /);
         });
 
-        it("does not separate the percent sign with a space when `spaced` flag is false", () => {
+        it("does not separate the percent sign with a space when `spaceSeparated` flag is false", () => {
             let value = jasmine.createSpy("value");
             let providedFormat = jasmine.createSpy("providedFormat");
             let instance = numbroStub(value);
             let state = jasmine.createSpyObj("state", ["currentAbbreviations", "currentPercentageDefaults"]);
-            state.currentAbbreviations.and.returnValue({spaced: false});
+            state.currentAbbreviations.and.returnValue({});
 
             let result = formatPercentage(instance, providedFormat, state, numbroStub);
 
             expect(result).not.toMatch(/ /);
 
             providedFormat.prefixSymbol = true;
+            providedFormat.spaceSeparated = false;
             result = formatPercentage(instance, providedFormat, state, numbroStub);
 
             expect(result).not.toMatch(/ /);
@@ -2840,6 +2846,19 @@ describe("formatting", () => {
             let result = formatting.format(numbroStub(value), format);
 
             expect(result).toEqual("-1.234");
+        });
+
+        it("Issue 411", () => {
+            let value = 2000;
+            let format = {
+                spaceSeparated: true,
+                output: "byte",
+                base: "decimal",
+                mantissa: 1
+            };
+            let result = formatting.format(numbroStub(value), format);
+
+            expect(result).toEqual("2.0 KB");
         });
     });
 });
