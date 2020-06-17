@@ -541,6 +541,15 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "RichColours",
+      "name": "RichColours",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/13033494?v=4",
+      "profile": "https://github.com/RichColours",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
