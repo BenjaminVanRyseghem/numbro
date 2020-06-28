@@ -505,7 +505,11 @@ function toFixed(value, precision, roundingFunction = Math.round) {
         return toFixedLarge(value, precision);
     }
 
-    return (roundingFunction(+`${value}e+${precision}`) / (Math.pow(10, precision))).toFixed(precision);
+    const isNegative = Number(`${value}e+${precision}`) < 0;
+    return `${isNegative ? "-" : ""}${(
+        roundingFunction(Math.abs(+`${value}e+${precision}`)) /
+        Math.pow(10, precision)
+    ).toFixed(precision)}`;
 }
 
 /**

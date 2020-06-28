@@ -2676,6 +2676,9 @@ describe("formatting", () => {
 
             it("formats numbers", () => {
                 let data = [
+                    [-0.435, "0,0.00", "-0.44"],
+                    [-0.435, {thousandSeparated: true, mantissa: 2}, "-0.44"],
+                    [-0.435, {thousandSeparated: true, negative: "parenthesis", mantissa: 2}, "(0.44)"],
                     [0, "+0", "0"],
                     [10000, "0,0.0000", "10,000.0000"],
                     // [10000.23, "0,0", "10,000"],
@@ -2845,7 +2848,7 @@ describe("formatting", () => {
             let format = ",4 a";
             let result = formatting.format(numbroStub(value), format);
 
-            expect(result).toEqual("-1.234");
+            expect(result).toEqual("-1.235");
         });
 
         it("Issue 411", () => {
