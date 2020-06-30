@@ -1,5 +1,7 @@
 ### Next
 
+- Fixed error in rounding negative numbers, such as - 0.435 formatted as - 0.44 instead of - 0.43. Thanks @xiaosu12138
+
 ### 2.3.1
 
 - Introduce `lowPrecision` to tweak precision when computing average value. Thanks @BenjaminVanRyseghem
