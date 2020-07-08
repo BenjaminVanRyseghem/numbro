@@ -1009,6 +1009,15 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "seedy",
+      "name": "seedy",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/3367393?v=4",
+      "profile": "https://github.com/seedy",
+      "contributions": [
+        "bug"
+      ]
     }
   ],
   "contributorsPerLine": 7,
