@@ -1,5 +1,7 @@
 ### Next
 
+- Fix #558: missing object `bytes` for language en-GB. Thanks @BenjaminVanRyseghem
+
 ### 2.3.1
 
 - Introduce `lowPrecision` to tweak precision when computing average value. Thanks @BenjaminVanRyseghem
