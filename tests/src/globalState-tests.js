@@ -166,14 +166,27 @@ describe("globalState-tests", () => {
     describe("currentByteDefaults", () => {
         let languages = undefined;
         let revert = undefined;
+        let currentLanguageData = undefined;
 
         beforeEach(() => {
             languages = {"en-US": Object.assign({}, enUS)};
-            revert = globalState.__set__({languages});
+            currentLanguageData = jasmine.createSpy("currentLanguageData");
+            let realFn = globalState.__get__("currentLanguageData");
+            currentLanguageData.and.callFake(realFn);
+            revert = globalState.__set__({
+                languages,
+                currentLanguageData
+            });
         });
 
         afterEach(() => {
             revert();
+        });
+
+        it("returns empty bytes if not provided by the language", () => {
+            currentLanguageData.and.returnValue({});
+            let result = globalState.currentBytes();
+            expect(result).toEqual({});
         });
 
         it("returns the byte defaults for the current language", () => {

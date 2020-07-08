@@ -60,7 +60,7 @@ state.currentLanguage = () => currentLanguageTag;
  *
  * @return {{}}
  */
-state.currentBytes = () => currentLanguageData().bytes;
+state.currentBytes = () => currentLanguageData().bytes || {};
 
 /**
  * Return the current language currency data

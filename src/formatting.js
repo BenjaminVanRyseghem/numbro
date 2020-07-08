@@ -206,9 +206,9 @@ function formatByte(instance, providedFormat, state, numbro) {
     const { binarySuffixes: localBinarySuffixes, decimalSuffixes: localDecimalSuffixes } = state.currentBytes();
 
     const localBytes = {
-        general: { scale: 1024, suffixes: localDecimalSuffixes, marker: "bd" },
-        binary: { scale: 1024, suffixes: localBinarySuffixes, marker: "b" },
-        decimal: { scale: 1000, suffixes: localDecimalSuffixes, marker: "d" }
+        general: { scale: 1024, suffixes: localDecimalSuffixes || decimalSuffixes, marker: "bd" },
+        binary: { scale: 1024, suffixes: localBinarySuffixes || binarySuffixes, marker: "b" },
+        decimal: { scale: 1000, suffixes: localDecimalSuffixes || decimalSuffixes, marker: "d" }
     };
     let baseInfo = localBytes[base];
 
