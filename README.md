@@ -1,6 +1,6 @@
 # [numbro](https://numbrojs.com/)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-112-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-113-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 [![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro)
@@ -210,6 +210,9 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
     <td align="center"><a href="http://cnanney.com"><img src="https://avatars0.githubusercontent.com/u/195134?v=4" width="100px;" alt=""/><br /><sub><b>Chris Nanney</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/commits?author=cnanney" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/rWilander"><img src="https://avatars1.githubusercontent.com/u/3803745?v=4" width="100px;" alt=""/><br /><sub><b>rWilander</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/commits?author=rWilander" title="Code">💻</a></td>
     <td align="center"><a href="https://github.com/seedy"><img src="https://avatars3.githubusercontent.com/u/3367393?v=4" width="100px;" alt=""/><br /><sub><b>seedy</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/issues?q=author%3Aseedy" title="Bug reports">🐛</a></td>
+  </tr>
+  <tr>
+    <td align="center"><a href="https://github.com/OvidiuBan"><img src="https://avatars3.githubusercontent.com/u/11694812?v=4" width="100px;" alt=""/><br /><sub><b>OvidiuBan</b></sub></a><br /><a href="https://github.com/BenjaminVanRyseghem/numbro/issues?q=author%3AOvidiuBan" title="Bug reports">🐛</a></td>
   </tr>
 </table>
 
