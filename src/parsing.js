@@ -177,6 +177,19 @@ function parseMantissa(string, result) {
 }
 
 /**
+ * Parse the format STRING looking for a trimmed mantissa. Append it to RESULT when found.
+ *
+ * @param {string} string - format
+ * @param {NumbroFormat} result - Result accumulator
+ */
+function parseTrimMantissa(string, result) {
+    const mantissa = string.split(".")[1];
+    if (mantissa) {
+        result.trimMantissa = mantissa.indexOf("[") !== -1;
+    }
+}
+
+/**
  * Parse the format STRING looking for the average value. Append it to RESULT when found.
  *
  * @param {string} string - format
@@ -287,6 +300,7 @@ function parseFormat(string, result = {}) {
     parseForceAverage(string, result);
     parseMantissa(string, result);
     parseOptionalMantissa(string, result);
+    parseTrimMantissa(string, result);
     parseThousandSeparated(string, result);
     parseSpaceSeparated(string, result);
     parseNegative(string, result);

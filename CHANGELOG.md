@@ -3,6 +3,7 @@
 - Fix fr abbreviation. Thanks @BenjaminVanRyseghem
 - Fix #558: validate(0) return false. Thanks @BenjaminVanRyseghem
 - Fix #558: missing object `bytes` for language en-GB. Thanks @BenjaminVanRyseghem
+- Allow `trimMantissa` hint in string format. Thanks @lexanth
 
 ### 2.3.1
 
