@@ -36,6 +36,7 @@ describe("parsing", () => {
         let parseAverage = undefined;
         let parseForceAverage = undefined;
         let parseOptionalMantissa = undefined;
+        let parseTrimMantissa = undefined;
         let parseOptionalCharacteristic = undefined;
         let parseNegative = undefined;
         let parseForceSign = undefined;
@@ -53,6 +54,7 @@ describe("parsing", () => {
             parseAverage = jasmine.createSpy("parseAverage");
             parseForceAverage = jasmine.createSpy("parseForceAverage");
             parseOptionalMantissa = jasmine.createSpy("parseOptionalMantissa");
+            parseTrimMantissa = jasmine.createSpy("parseTrimMantissa");
             parseOptionalCharacteristic = jasmine.createSpy("parseOptionalCharacteristic");
             parseNegative = jasmine.createSpy("parseNegative");
             parseForceSign = jasmine.createSpy("parseForceSign");
@@ -67,6 +69,7 @@ describe("parsing", () => {
                 parseCharacteristic,
                 parseMantissa,
                 parseOptionalMantissa,
+                parseTrimMantissa,
                 parseOptionalCharacteristic,
                 parseAverage,
                 parseForceAverage,
@@ -169,6 +172,7 @@ describe("parsing", () => {
                         thousandSeparated: true,
                         output: "currency",
                         mantissa: 2,
+                        trimMantissa: false,
                         spaceSeparated: true,
                         spaceSeparatedCurrency: true,
                         optionalMantissa: false,
@@ -191,7 +195,21 @@ describe("parsing", () => {
                         spaceSeparated: true,
                         spaceSeparatedCurrency: true,
                         optionalMantissa: true,
-                        optionalCharacteristic: true
+                        optionalCharacteristic: true,
+                        trimMantissa: false
+                    }
+                ],
+                [
+                    ",[.][00] $",
+                    {
+                        thousandSeparated: true,
+                        output: "currency",
+                        mantissa: 2,
+                        spaceSeparated: true,
+                        spaceSeparatedCurrency: true,
+                        optionalMantissa: true,
+                        optionalCharacteristic: true,
+                        trimMantissa: true
                     }
                 ],
                 [
@@ -203,6 +221,7 @@ describe("parsing", () => {
                         spaceSeparated: true,
                         spaceSeparatedCurrency: true,
                         optionalMantissa: false,
+                        trimMantissa: false,
                         optionalCharacteristic: true
                     }
                 ],

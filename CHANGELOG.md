@@ -1,6 +1,7 @@
 ### Next
 
 - Fix #558: missing object `bytes` for language en-GB. Thanks @BenjaminVanRyseghem
+- Allow `trimMantissa` hint in string format. Thanks @lexanth
 
 ### 2.3.1
 
