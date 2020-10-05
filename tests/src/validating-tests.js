@@ -23,6 +23,7 @@
 const rewire = require("rewire");
 const validating = rewire("../../src/validating");
 const unformatting = require("../../src/unformatting");
+const numbro = require("../../src/numbro");
 
 describe("validatingSpec", () => {
     describe("validate", () => {
@@ -307,4 +308,9 @@ describe("validatingSpec", () => {
         });
     });
 
+    describe("Regression", () => {
+        it("Issue 541", () => {
+            expect(numbro.validate(0, {})).toBe(true);
+        });
+    });
 });
