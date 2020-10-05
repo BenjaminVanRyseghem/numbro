@@ -13,9 +13,9 @@ module.exports = {
     },
     abbreviations: {
         thousand: "k",
-        million: "m",
-        billion: "b",
-        trillion: "t"
+        million: "M",
+        billion: "Mrd",
+        trillion: "billion"
     },
     ordinal: (number) => {
         return number === 1 ? "er" : "ème";
