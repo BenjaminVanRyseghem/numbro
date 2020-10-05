@@ -260,7 +260,7 @@ function validate(input, format) {
 function validateInput(input) {
     let value = unformatter.unformat(input);
 
-    return !!value;
+    return value !== undefined;
 }
 
 /**
