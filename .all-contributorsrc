@@ -1027,6 +1027,16 @@
       "contributions": [
         "bug"
       ]
+    },
+    {
+      "login": "lexanth",
+      "name": "Alex Anthony",
+      "avatar_url": "https://avatars0.githubusercontent.com/u/1242475?v=4",
+      "profile": "https://github.com/lexanth",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
