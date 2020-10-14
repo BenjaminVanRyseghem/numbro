@@ -150,6 +150,7 @@ const validFormat = {
     thousandSeparated: "boolean",
     spaceSeparated: "boolean",
     spaceSeparatedCurrency: "boolean",
+    spaceSeparatedAbbreviation: "boolean",
     abbreviations: validAbbreviations,
     negative: {
         type: "string",

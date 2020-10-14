@@ -90,6 +90,7 @@ declare namespace numbro {
         forceSign?: boolean;
         spaceSeparated?: boolean;
         spaceSeparatedCurrency?: boolean;
+        spaceSeparatedAbbreviation?: boolean;
         exponential?: boolean;
         prefixSymbol?: boolean;
         roundingFunction?: (num: number) => number;
