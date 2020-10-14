@@ -42,7 +42,8 @@ const defaultOptions = {
     spaceSeparated: false,
     negative: "sign",
     forceSign: false,
-    roundingFunction: Math.round
+    roundingFunction: Math.round,
+    spaceSeparatedAbbreviation: false
 };
 
 const { binarySuffixes, decimalSuffixes } = globalState.currentBytes();
@@ -337,7 +338,7 @@ function formatCurrency(instance, providedFormat, state) {
     }
 
     if (!position || position === "postfix") {
-        space = average ? "" : space;
+        space = !options.spaceSeparatedAbbreviation && average ? "" : space;
         output = output + space + symbol;
     }
 

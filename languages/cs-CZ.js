@@ -31,6 +31,7 @@ module.exports = {
         totalLength: 4,
         spaceSeparated: true,
         spaceSeparatedCurrency: true,
+        spaceSeparatedAbbreviation: true,
         average: true
     },
     formats: {
