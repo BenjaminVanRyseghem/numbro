@@ -126,6 +126,10 @@ function parseSpaceSeparated(string, result) {
     if (string.indexOf(" ") !== -1) {
         result.spaceSeparated = true;
         result.spaceSeparatedCurrency = true;
+
+        if (result.average || result.forceAverage) {
+            result.spaceSeparatedAbbreviation = true;
+        }
     }
 }
 

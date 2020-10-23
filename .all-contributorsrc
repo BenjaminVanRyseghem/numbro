@@ -1037,6 +1037,16 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "marvec",
+      "name": "Martin Večeřa",
+      "avatar_url": "https://avatars3.githubusercontent.com/u/625319?v=4",
+      "profile": "http://martin.vecerovi.com",
+      "contributions": [
+        "bug",
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
