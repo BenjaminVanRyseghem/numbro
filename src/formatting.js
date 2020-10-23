@@ -19,6 +19,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
  * SOFTWARE.
  */
+const BN = require("bignumber.js");
 
 const globalState = require("./globalState");
 const validating = require("./validating");
@@ -31,6 +32,8 @@ const powers = {
     thousand: Math.pow(10, 3)
 };
 
+const defaultRoundingFunction = n => new BN(n).toFixed(0);
+
 const defaultOptions = {
     totalLength: 0,
     characteristic: 0,
@@ -42,7 +45,7 @@ const defaultOptions = {
     spaceSeparated: false,
     negative: "sign",
     forceSign: false,
-    roundingFunction: Math.round
+    roundingFunction: defaultRoundingFunction
 };
 
 const { binarySuffixes, decimalSuffixes } = globalState.currentBytes();
@@ -128,7 +131,7 @@ function formatNumbro(instance, providedFormat, numbro) {
  */
 function getDecimalByteUnit(instance) {
     let data = bytes.decimal;
-    return getFormatByteUnits(instance._value, data.suffixes, data.scale).suffix;
+    return getFormatByteUnits(BN(instance._value), data.suffixes, data.scale).suffix;
 }
 
 /**
@@ -140,7 +143,7 @@ function getDecimalByteUnit(instance) {
  */
 function getBinaryByteUnit(instance) {
     let data = bytes.binary;
-    return getFormatByteUnits(instance._value, data.suffixes, data.scale).suffix;
+    return getFormatByteUnits(BN(instance._value), data.suffixes, data.scale).suffix;
 }
 
 /**
@@ -152,37 +155,37 @@ function getBinaryByteUnit(instance) {
  */
 function getByteUnit(instance) {
     let data = bytes.general;
-    return getFormatByteUnits(instance._value, data.suffixes, data.scale).suffix;
+    return getFormatByteUnits(BN(instance._value), data.suffixes, data.scale).suffix;
 }
 
 /**
  * Return the value and the suffix computed in byte.
  * It uses the SUFFIXES and the SCALE provided.
  *
- * @param {number} value - Number to format
+ * @param {BigNumber} value - Number to format
  * @param {[String]} suffixes - List of suffixes
  * @param {number} scale - Number in-between two units
- * @return {{value: Number, suffix: String}}
+ * @return {{value: BigNumber, suffix: String}}
  */
 function getFormatByteUnits(value, suffixes, scale) {
     let suffix = suffixes[0];
-    let abs = Math.abs(value);
+    let abs = BN(value).abs();
 
-    if (abs >= scale) {
+    if (abs.gte(scale)) {
         for (let power = 1; power < suffixes.length; ++power) {
             let min = Math.pow(scale, power);
             let max = Math.pow(scale, power + 1);
 
-            if (abs >= min && abs < max) {
+            if (abs.gte(min) && abs.lt(max)) {
                 suffix = suffixes[power];
-                value = value / min;
+                value = value.div(min);
                 break;
             }
         }
 
         // values greater than or equal to [scale] YB never set the suffix
         if (suffix === suffixes[0]) {
-            value = value / Math.pow(scale, suffixes.length - 1);
+            value = value.div(Math.pow(scale, suffixes.length - 1));
             suffix = suffixes[suffixes.length - 1];
         }
     }
@@ -212,10 +215,10 @@ function formatByte(instance, providedFormat, state, numbro) {
     };
     let baseInfo = localBytes[base];
 
-    let { value, suffix } = getFormatByteUnits(instance._value, baseInfo.suffixes, baseInfo.scale);
+    let { value, suffix } = getFormatByteUnits(BN(instance._value), baseInfo.suffixes, baseInfo.scale);
 
     let output = formatNumber({
-        instance: numbro(value),
+        instance: numbro(value ? value.toString() : value),
         providedFormat,
         state,
         defaults: state.currentByteDefaultFormat()
@@ -274,7 +277,7 @@ function formatPercentage(instance, providedFormat, state, numbro) {
     let prefixSymbol = providedFormat.prefixSymbol;
 
     let output = formatNumber({
-        instance: numbro(instance._value * 100),
+        instance: numbro(BN(instance._value).times(100)),
         providedFormat,
         state
     });
@@ -297,6 +300,7 @@ function formatPercentage(instance, providedFormat, state, numbro) {
  * @return {string}
  */
 function formatCurrency(instance, providedFormat, state) {
+    const value = BN(instance._value);
     const currentCurrency = state.currentCurrency();
     let options = Object.assign({}, defaultOptions, providedFormat);
     let decimalSeparator = undefined;
@@ -327,9 +331,9 @@ function formatCurrency(instance, providedFormat, state) {
     });
 
     if (position === "prefix") {
-        if (instance._value < 0 && options.negative === "sign") {
+        if (value.lt(0) && options.negative === "sign") {
             output = `-${space}${symbol}${output.slice(1)}`;
-        } else if (instance._value > 0 && options.forceSign) {
+        } else if (value.gt(0) && options.forceSign) {
             output = `+${space}${symbol}${output.slice(1)}`;
         } else {
             output = symbol + space + output;
@@ -348,40 +352,40 @@ function formatCurrency(instance, providedFormat, state) {
  * Compute the average value out of VALUE.
  * The other parameters are computation options.
  *
- * @param {number} value - value to compute
+ * @param {BigNumber} value - value to compute
  * @param {string} [forceAverage] - forced unit used to compute
  * @param {boolean} [lowPrecision=true] - reduce average precision
  * @param {{}} abbreviations - part of the language specification
  * @param {boolean} spaceSeparated - `true` if a space must be inserted between the value and the abbreviation
  * @param {number} [totalLength] - total length of the output including the characteristic and the mantissa
  * @param {function} roundingFunction - function used to round numbers
- * @return {{value: number, abbreviation: string, mantissaPrecision: number}}
+ * @return {{value: BigNumber, abbreviation: string, mantissaPrecision: number}}
  */
-function computeAverage({ value, forceAverage, lowPrecision = true, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round }) {
+function computeAverage({ value, forceAverage, lowPrecision = true, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = defaultRoundingFunction}) {
     let abbreviation = "";
-    let abs = Math.abs(value);
+    let abs = BN(value).absoluteValue();
     let mantissaPrecision = -1;
 
     if (forceAverage && abbreviations[forceAverage] && powers[forceAverage]) {
         abbreviation = abbreviations[forceAverage];
-        value = value / powers[forceAverage];
+        value = value.div(powers[forceAverage]);
     } else {
-        if (abs >= powers.trillion || (lowPrecision && roundingFunction(abs / powers.trillion) === 1)) {
+        if (abs.gte(powers.trillion) || (lowPrecision && roundingFunction(BN(abs).div(powers.trillion)) === "1")) {
             // trillion
             abbreviation = abbreviations.trillion;
-            value = value / powers.trillion;
-        } else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
+            value = value.div(powers.trillion);
+        } else if (abs.lt(powers.trillion) && abs.gte(powers.billion) || (lowPrecision && roundingFunction(BN(abs).div(powers.billion)) === "1")) {
             // billion
             abbreviation = abbreviations.billion;
-            value = value / powers.billion;
-        } else if (abs < powers.billion && abs >= powers.million || (lowPrecision && roundingFunction(abs / powers.million) === 1)) {
+            value = value.div(powers.billion);
+        } else if (abs.lt(powers.billion) && abs.gte(powers.million) || (lowPrecision && roundingFunction(BN(abs).div(powers.million)) === "1")) {
             // million
             abbreviation = abbreviations.million;
-            value = value / powers.million;
-        } else if (abs < powers.million && abs >= powers.thousand || (lowPrecision && roundingFunction(abs / powers.thousand) === 1)) {
+            value = value.div(powers.million);
+        } else if (abs.lt(powers.million) && abs.gte(powers.thousand) || (lowPrecision && roundingFunction(BN(abs).div(powers.thousand)) === "1")) {
             // thousand
             abbreviation = abbreviations.thousand;
-            value = value / powers.thousand;
+            value = value.div(powers.thousand);
         }
     }
 
@@ -392,7 +396,7 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
     }
 
     if (totalLength) {
-        let isNegative = value < 0;
+        let isNegative = value.lt(0);
         let characteristic = value.toString().split(".")[0];
 
         let characteristicLength = isNegative
@@ -408,13 +412,13 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
 /**
  * Compute an exponential form for VALUE, taking into account CHARACTERISTIC
  * if provided.
- * @param {number} value - value to compute
+ * @param {BigNumber} value - value to compute
  * @param {number} [characteristicPrecision] - optional characteristic length
- * @return {{value: number, abbreviation: string}}
+ * @return {{value: BigNumber, abbreviation: string}}
  */
 function computeExponential({ value, characteristicPrecision = 0 }) {
     let [numberString, exponential] = value.toExponential().split("e");
-    let number = +numberString;
+    let number = BN(numberString);
 
     if (!characteristicPrecision) {
         return {
@@ -426,7 +430,7 @@ function computeExponential({ value, characteristicPrecision = 0 }) {
     let characteristicLength = 1; // see `toExponential`
 
     if (characteristicLength < characteristicPrecision) {
-        number = number * Math.pow(10, characteristicPrecision - characteristicLength);
+        number = number.times(Math.pow(10, characteristicPrecision - characteristicLength));
         exponential = +exponential - (characteristicPrecision - characteristicLength);
         exponential = exponential >= 0 ? `+${exponential}` : exponential;
     }
@@ -456,7 +460,7 @@ function zeroes(number) {
  * Return a string representing VALUE with a PRECISION-long mantissa.
  * This method is for large/small numbers only (a.k.a. including a "e").
  *
- * @param {number} value - number to precise
+ * @param {BigNumber} value - number to precise
  * @param {number} precision - desired length for the mantissa
  * @return {string}
  */
@@ -495,30 +499,30 @@ function toFixedLarge(value, precision) {
 /**
  * Return a string representing VALUE with a PRECISION-long mantissa.
  *
- * @param {number} value - number to precise
+ * @param {BigNumber} value - number to precise
  * @param {number} precision - desired length for the mantissa
  * @param {function} roundingFunction - rounding function to be used
  * @return {string}
  */
-function toFixed(value, precision, roundingFunction = Math.round) {
+function toFixed(value, precision, roundingFunction = defaultRoundingFunction) {
     if (value.toString().indexOf("e") !== -1) {
         return toFixedLarge(value, precision);
     }
 
-    return (roundingFunction(+`${value}e+${precision}`) / (Math.pow(10, precision))).toFixed(precision);
+    return BN(roundingFunction(BN(`${value.toFixed()}e+${precision}`))).div((Math.pow(10, precision))).toFixed(precision);
 }
 
 /**
  * Return the current OUTPUT with a mantissa precision of PRECISION.
  *
  * @param {string} output - output being build in the process of formatting
- * @param {number} value - number being currently formatted
+ * @param {BigNumber} value - number being currently formatted
  * @param {boolean} optionalMantissa - if `true`, the mantissa is omitted when it's only zeroes
  * @param {number} precision - desired precision of the mantissa
  * @param {boolean} trim - if `true`, trailing zeroes are removed from the mantissa
  * @return {string}
  */
-function setMantissaPrecision(output, value, optionalMantissa, precision, trim, roundingFunction) {
+function setMantissaPrecision(output, value, optionalMantissa, precision, trim, roundingFunction = defaultRoundingFunction) {
     if (precision === -1) {
         return output;
     }
@@ -542,7 +546,7 @@ function setMantissaPrecision(output, value, optionalMantissa, precision, trim, 
  * Return the current OUTPUT with a characteristic precision of PRECISION.
  *
  * @param {string} output - output being build in the process of formatting
- * @param {number} value - number being currently formatted
+ * @param {BigNumber} value - number being currently formatted
  * @param {boolean} optionalCharacteristic - `true` if the characteristic is omitted when it's only zeroes
  * @param {number} precision - desired precision of the characteristic
  * @return {string}
@@ -559,7 +563,7 @@ function setCharacteristicPrecision(output, value, optionalCharacteristic, preci
         return `${currentCharacteristic.replace("0", "")}.${currentMantissa}`;
     }
 
-    const hasNegativeSign = value < 0 && currentCharacteristic.indexOf("-") === 0;
+    const hasNegativeSign = value.isLessThan(0) && currentCharacteristic.indexOf("-") === 0;
     if (hasNegativeSign) {
             // Remove the negative sign
             currentCharacteristic = currentCharacteristic.slice(1);
@@ -608,7 +612,7 @@ function indexesOfGroupSpaces(totalLength, groupSize) {
  * separators.
  *
  * @param {string} output - output being build in the process of formatting
- * @param {number} value - number being currently formatted
+ * @param {BigNumber} value - number being currently formatted
  * @param {boolean} thousandSeparated - `true` if the characteristic must be separated
  * @param {globalState} state - shared state of the library
  * @param {string} decimalSeparator - string to use as decimal separator
@@ -623,7 +627,7 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
     let result = output.toString();
     let characteristic = result.split(".")[0];
     let mantissa = result.split(".")[1];
-    const hasNegativeSign = value < 0 && characteristic.indexOf("-") === 0;
+    const hasNegativeSign = value.isLessThan(0) && characteristic.indexOf("-") === 0;
 
     if (thousandSeparated) {
         if (hasNegativeSign) {
@@ -666,20 +670,20 @@ function insertAbbreviation(output, abbreviation) {
  * If the value is negative but still output as 0, the negative sign is removed.
  *
  * @param {string} output - output being build in the process of formatting
- * @param {number} value - number being currently formatted
+ * @param {BigNumber} value - number being currently formatted
  * @param {string} negative - flag for the negative form ("sign" or "parenthesis")
  * @return {*}
  */
 function insertSign(output, value, negative) {
-    if (value === 0) {
+    if (value.isEqualTo(0)) {
         return output;
     }
 
-    if (+output === 0) {
+    if (BN(output).isEqualTo(0)) {
         return output.replace("-", "");
     }
 
-    if (value > 0) {
+    if (value.gt(0)) {
         return `+${output}`;
     }
 
@@ -725,13 +729,13 @@ function insertPostfix(output, postfix) {
  * @return {string}
  */
 function formatNumber({ instance, providedFormat, state = globalState, decimalSeparator, defaults = state.currentDefaults() }) {
-    let value = instance._value;
+    let value = new BN(instance._value);
 
-    if (value === 0 && state.hasZeroFormat()) {
+    if (value.isZero() && state.hasZeroFormat()) {
         return state.getZeroFormat();
     }
 
-    if (!isFinite(value)) {
+    if (!value.isFinite()) {
         return value.toString();
     }
 
@@ -793,7 +797,7 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
         output = insertAbbreviation(output, abbreviation);
     }
 
-    if (forceSign || value < 0) {
+    if (forceSign || value.lt(0)) {
         output = insertSign(output, value, negative);
     }
 

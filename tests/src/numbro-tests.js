@@ -109,9 +109,9 @@ describe("numbro", () => {
 
         it("normalizes the input", () => {
             let input = jasmine.createSpy("input");
-            numbro(input);
+            numbro(input, true);
 
-            expect(normalizeInput).toHaveBeenCalledWith(input);
+            expect(normalizeInput).toHaveBeenCalledWith(input, true);
         });
 
         it("creates an instance of Numbro", () => {
@@ -308,9 +308,9 @@ describe("numbro", () => {
                 let normalizedInput = jasmine.createSpy("normalizedInput");
                 normalizeInput.and.returnValue(normalizedInput);
 
-                instance.set(input);
+                instance.set(input, true);
 
-                expect(normalizeInput).toHaveBeenCalledWith(input);
+                expect(normalizeInput).toHaveBeenCalledWith(input, true);
                 expect(set).toHaveBeenCalledWith(instance, normalizedInput);
             });
         });

@@ -22,6 +22,7 @@
 
 const VERSION = "2.3.1";
 
+const BigNumber = require("bignumber.js");
 const globalState = require("./globalState");
 const validator = require("./validating");
 const loader = require("./loading")(numbro);
@@ -69,7 +70,7 @@ class Numbro {
 
     divide(other) { return manipulate.divide(this, other); }
 
-    set(input) { return manipulate.set(this, normalizeInput(input)); }
+    set(input, isNormalize) { return manipulate.set(this, normalizeInput(input, isNormalize)); }
 
     value() { return this._value; }
 
@@ -80,14 +81,17 @@ class Numbro {
  * Make its best to convert input into a number.
  *
  * @param {numbro|string|number} input - Input to convert
+ * @param {boolean} isNormalize - isNormalize
  * @return {number}
  */
-function normalizeInput(input) {
+function normalizeInput(input, isNormalize = true) {
     let result = input;
     if (numbro.isNumbro(input)) {
         result = input._value;
-    } else if (typeof input === "string") {
+    } else if (typeof input === "string" && isNormalize) {
         result = numbro.unformat(input);
+    } else if (input instanceof BigNumber) {
+        result = input.toString();
     } else if (isNaN(input)) {
         result = NaN;
     }
@@ -95,8 +99,8 @@ function normalizeInput(input) {
     return result;
 }
 
-function numbro(input) {
-    return new Numbro(normalizeInput(input));
+function numbro(input, isNormalize) {
+    return new Numbro(normalizeInput(input, isNormalize));
 }
 
 numbro.version = VERSION;
