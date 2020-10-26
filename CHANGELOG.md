@@ -1,5 +1,7 @@
 ### Next
 
+### 2.3.2
+
 - Fix fr abbreviation. Thanks @BenjaminVanRyseghem
 - Fix #558: validate(0) return false. Thanks @BenjaminVanRyseghem
 - Fix #558: missing object `bytes` for language en-GB. Thanks @BenjaminVanRyseghem
