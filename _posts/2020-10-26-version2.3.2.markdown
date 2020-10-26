@@ -1,0 +1,15 @@
+---
+title:  Release 2.3.2
+author: BenjaminVanRyseghem
+date:   2020-10-26 09:04:00
+---
+
+**numbro 2.3.2** has been released.
+
+- Fix fr abbreviation. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem)
+- Fix [#541](https://github.com/BenjaminVanRyseghem/numbro/issues/541): validate(0) return false. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem)
+- Fix [#558](https://github.com/BenjaminVanRyseghem/numbro/issues/558): missing object `bytes` for language en-GB. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem)
+- Allow `trimMantissa` hint in string format. Thanks [@lexanth](https://github.com/lexanth)
+- Fix #577: allow space between abbreviations and postfix currency symbols. Thanks [@marvec](https://github.com/marvec)
+
+Enjoy <i class="fa fa-smile-o">
