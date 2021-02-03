@@ -4,6 +4,7 @@
 
 ### 2.3.1
 
+- Fix #569: Fix issue with en-IE currency. Thanks @Blackbaud-WesGabbard
 - Introduce `lowPrecision` to tweak precision when computing average value. Thanks @BenjaminVanRyseghem
 - Fix #411: spaceSeparated is not working for bytes. Thanks @BenjaminVanRyseghem
 
