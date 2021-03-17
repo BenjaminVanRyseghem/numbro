@@ -15,9 +15,9 @@ module.exports = {
     },
     abbreviations: {
         thousand: "k",
-        million: "m",
-        billion: "b",
-        trillion: "t"
+        million: "Mi",
+        billion: "Ma",
+        trillion: "Bi"
     },
     ordinal: function() {
         return ".";
