@@ -80,7 +80,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol = "", o
 
     for (let i = 0; i < allSuffixes.length; i++) {
         let suffix = allSuffixes[i];
-        stripped = inputString.replace(suffix.key, "");
+        stripped = inputString.replace(RegExp(`([0-9 ])(${suffix.key})$`), "$1");
 
         if (stripped !== inputString) {
             return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format) * suffix.factor;
