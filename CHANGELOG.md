@@ -1,5 +1,7 @@
 ### Next
 
+- Fix German abbreviations Thanks @chaosflaws
+
 ### 2.3.2
 
 - Fix fr abbreviation. Thanks @BenjaminVanRyseghem
