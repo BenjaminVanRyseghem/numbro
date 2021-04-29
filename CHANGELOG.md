@@ -1,5 +1,6 @@
 ### Next
 
+- Fix #597: Fix issue with en-IE currency. Thanks @Blackbaud-WesGabbard
 - Fix German abbreviations Thanks @chaosflaws
 
 ### 2.3.2
