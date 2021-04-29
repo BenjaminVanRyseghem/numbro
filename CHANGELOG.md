@@ -1,5 +1,6 @@
 ### Next
 
+- Fix #597: Fix issue with en-IE currency. Thanks @Blackbaud-WesGabbard
 - Fix German abbreviations Thanks @chaosflaws
 - Fix Hebrew words for million and billion Thanks @amire80
 - Fix #604: add `lowPrecision` to typescript definitions Thanks @fullaive
