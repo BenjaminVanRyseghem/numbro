@@ -47,17 +47,17 @@ declare namespace numbro {
 
         byteUnits(): string;
 
-        difference(value: number): number;
+        difference(value: number | Numbro): number;
 
-        add(value: number): this;
+        add(value: number | Numbro): this;
 
-        subtract(value: number): this;
+        subtract(value: number | Numbro): this;
 
-        multiply(value: number): this;
+        multiply(value: number | Numbro): this;
 
-        divide(value: number): this;
+        divide(value: number | Numbro): this;
 
-        set(value: number): this;
+        set(value: number | Numbro): this;
 
         value(): number;
 
