@@ -13,8 +13,8 @@ module.exports = {
     },
     abbreviations: {
         thousand: "אלף",
-        million: "מליון",
-        billion: "בליון",
+        million: "מיליון",
+        billion: "מיליארד",
         trillion: "טריליון"
     },
     currency: {

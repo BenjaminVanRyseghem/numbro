@@ -1,6 +1,7 @@
 ### Next
 
 - Fix German abbreviations Thanks @chaosflaws
+- Fix Hebrew words for million and billion Thanks @amire80
 
 ### 2.3.2
 
