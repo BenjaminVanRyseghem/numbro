@@ -1,6 +1,7 @@
 ### Next
 
 - Fix German abbreviations Thanks @chaosflaws
+- Fix Typescript definitions for the manipulation methods. Thanks @fabiob
 
 ### 2.3.2
 
