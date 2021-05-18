@@ -1047,6 +1047,15 @@
         "bug",
         "code"
       ]
+    },
+    {
+      "login": "amire80",
+      "name": "Amir E. Aharoni",
+      "avatar_url": "https://avatars.githubusercontent.com/u/346271?v=4",
+      "profile": "http://aharoni.wordpress.com",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
