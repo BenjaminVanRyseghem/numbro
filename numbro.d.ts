@@ -93,6 +93,7 @@ declare namespace numbro {
         spaceSeparatedAbbreviation?: boolean;
         exponential?: boolean;
         prefixSymbol?: boolean;
+        lowPrecision?: boolean;
         roundingFunction?: (num: number) => number;
     }
 
