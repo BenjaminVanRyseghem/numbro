@@ -2,6 +2,7 @@
 
 - Fix German abbreviations Thanks @chaosflaws
 - Fix Hebrew words for million and billion Thanks @amire80
+- Fix #604: add `lowPrecision` to typescript definitions Thanks @fullaive
 
 ### 2.3.2
 
