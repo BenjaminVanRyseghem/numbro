@@ -20,6 +20,7 @@
  * SOFTWARE.
  */
 
+const BN = require("bignumber.js");
 const rewire = require("rewire");
 const validating = require("../../src/validating");
 const parsing = require("../../src/parsing");
@@ -96,7 +97,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, precision, expectedOutput]) => {
-                let result = toFixed(value, precision);
+                let result = toFixed(BN(value), precision);
                 expect(result).toBe(expectedOutput);
             });
         });
@@ -128,7 +129,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, precision, expectedOutput]) => {
-                let result = toFixedLarge(value, precision);
+                let result = toFixedLarge(BN(value), precision);
                 expect(result).toBe(expectedOutput);
             });
         });
@@ -411,7 +412,7 @@ describe("formatting", () => {
 
                 formatByte(instance, format, state, numbroStub);
 
-                expect(getFormatByteUnits).toHaveBeenCalledWith(value, bytes.general.suffixes, bytes.general.scale);
+                expect(getFormatByteUnits).toHaveBeenCalledWith(BN(value), bytes.general.suffixes, bytes.general.scale);
             });
 
             it("calls getFormatByteUnits with the binary byte suffixes when the base is `binary`", () => {
@@ -427,7 +428,7 @@ describe("formatting", () => {
 
                 formatByte(n, format, state, numbroStub);
 
-                expect(getFormatByteUnits).toHaveBeenCalledWith(value, bytes.binary.suffixes, bytes.binary.scale);
+                expect(getFormatByteUnits).toHaveBeenCalledWith(BN(value), bytes.binary.suffixes, bytes.binary.scale);
             });
 
             it("calls getFormatByteUnits with the decimal byte suffixes when the base is `decimal`", () => {
@@ -443,7 +444,7 @@ describe("formatting", () => {
 
                 formatByte(n, format, state, numbroStub);
 
-                expect(getFormatByteUnits).toHaveBeenCalledWith(value, bytes.decimal.suffixes, bytes.decimal.scale);
+                expect(getFormatByteUnits).toHaveBeenCalledWith(BN(value), bytes.decimal.suffixes, bytes.decimal.scale);
             });
 
             it("calls getFormatByteUnits with the binary byte suffixes by default", () => {
@@ -459,7 +460,7 @@ describe("formatting", () => {
 
                 formatByte(n, format, state, numbroStub);
 
-                expect(getFormatByteUnits).toHaveBeenCalledWith(value, bytes.binary.suffixes, bytes.binary.scale);
+                expect(getFormatByteUnits).toHaveBeenCalledWith(BN(value), bytes.binary.suffixes, bytes.binary.scale);
             });
 
             it("separates the suffix with a space when `spaceSeparated` flag is true", () => {
@@ -653,16 +654,16 @@ describe("formatting", () => {
             it("computes binary byte units correctly", () => {
                 let data = [
                     // [value, result]
-                    [Math.pow(2, 10), {value: 1, suffix: "KiB"}],
-                    [2 * Math.pow(2, 10), {value: 2, suffix: "KiB"}],
-                    [Math.pow(2, 20), {value: 1, suffix: "MiB"}],
-                    [Math.pow(2, 30), {value: 1, suffix: "GiB"}],
-                    [Math.pow(2, 40), {value: 1, suffix: "TiB"}]
+                    [Math.pow(2, 10), {value: "1", suffix: "KiB"}],
+                    [2 * Math.pow(2, 10), {value: "2", suffix: "KiB"}],
+                    [Math.pow(2, 20), {value: "1", suffix: "MiB"}],
+                    [Math.pow(2, 30), {value: "1", suffix: "GiB"}],
+                    [Math.pow(2, 40), {value: "1", suffix: "TiB"}]
                 ];
 
                 data.forEach(([number, expectedOutput]) => {
-                    let {value, suffix} = getFormatByteUnits(number, bytes.binary.suffixes, bytes.binary.scale);
-                    expect(value).toBe(expectedOutput.value);
+                    let {value, suffix} = getFormatByteUnits(BN(number), bytes.binary.suffixes, bytes.binary.scale);
+                    expect(value.toString()).toBe(expectedOutput.value);
                     expect(suffix).toBe(expectedOutput.suffix);
                 });
             });
@@ -670,16 +671,16 @@ describe("formatting", () => {
             it("computes byte units correctly", () => {
                 let data = [
                     // [value, result]
-                    [Math.pow(2, 10), {value: 1, suffix: "KB"}],
-                    [2 * Math.pow(2, 10), {value: 2, suffix: "KB"}],
-                    [Math.pow(2, 20), {value: 1, suffix: "MB"}],
-                    [Math.pow(2, 30), {value: 1, suffix: "GB"}],
-                    [Math.pow(2, 40), {value: 1, suffix: "TB"}]
+                    [Math.pow(2, 10), {value: "1", suffix: "KB"}],
+                    [2 * Math.pow(2, 10), {value: "2", suffix: "KB"}],
+                    [Math.pow(2, 20), {value: "1", suffix: "MB"}],
+                    [Math.pow(2, 30), {value: "1", suffix: "GB"}],
+                    [Math.pow(2, 40), {value: "1", suffix: "TB"}]
                 ];
 
                 data.forEach(([number, expectedOutput]) => {
-                    let {value, suffix} = getFormatByteUnits(number, bytes.general.suffixes, bytes.general.scale);
-                    expect(value).toBe(expectedOutput.value);
+                    let {value, suffix} = getFormatByteUnits(BN(number), bytes.general.suffixes, bytes.general.scale);
+                    expect(value.toFixed()).toEqual(expectedOutput.value);
                     expect(suffix).toBe(expectedOutput.suffix);
                 });
             });
@@ -687,16 +688,16 @@ describe("formatting", () => {
             it("computes decimal byte units correctly", () => {
                 let data = [
                     // [[value, format], result]
-                    [Math.pow(10, 3), {value: 1, suffix: "KB"}],
-                    [2 * Math.pow(10, 3), {value: 2, suffix: "KB"}],
-                    [Math.pow(10, 6), {value: 1, suffix: "MB"}],
-                    [Math.pow(10, 9), {value: 1, suffix: "GB"}],
-                    [Math.pow(10, 12), {value: 1, suffix: "TB"}]
+                    [Math.pow(10, 3), {value: "1", suffix: "KB"}],
+                    [2 * Math.pow(10, 3), {value: "2", suffix: "KB"}],
+                    [Math.pow(10, 6), {value: "1", suffix: "MB"}],
+                    [Math.pow(10, 9), {value: "1", suffix: "GB"}],
+                    [Math.pow(10, 12), {value: "1", suffix: "TB"}]
                 ];
 
                 data.forEach(([number, expectedOutput]) => {
-                    let {value, suffix} = getFormatByteUnits(number, bytes.decimal.suffixes, bytes.decimal.scale);
-                    expect(value).toBe(expectedOutput.value);
+                    let {value, suffix} = getFormatByteUnits(BN(number), bytes.decimal.suffixes, bytes.decimal.scale);
+                    expect(value.toString()).toBe(expectedOutput.value);
                     expect(suffix).toBe(expectedOutput.suffix);
                 });
             });
@@ -1288,8 +1289,9 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, expectedResult]) => {
-                let result = computeAverage({value, abbreviations});
-                expect(result).toEqual(expectedResult);
+                let _value = BN(value);
+                let result = computeAverage({value: _value, abbreviations});
+                expect(result.value.toString()).toEqual(String(expectedResult.value));
             });
         });
 
@@ -1449,12 +1451,13 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, expectedResult]) => {
+                let _value = new BN(value);
                 let result = computeAverage({
-                    value,
+                    value: _value,
                     abbreviations,
                     spaceSeparated: true
                 });
-                expect(result).toEqual(expectedResult);
+                expect(result.value.toString()).toEqual(String(expectedResult.value));
             });
         });
 
@@ -1542,12 +1545,13 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, expectedResult]) => {
+                let _value = new BN(value);
                 let result = computeAverage({
-                    value,
+                    value: _value,
                     forceAverage: "thousand",
                     abbreviations
                 });
-                expect(result).toEqual(expectedResult);
+                expect(result.value.toString()).toEqual(String(expectedResult.value));
             });
         });
 
@@ -1635,12 +1639,13 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, expectedResult]) => {
+                let _value = BN(value);
                 let result = computeAverage({
-                    value,
+                    value: _value,
                     forceAverage: "million",
                     abbreviations
                 });
-                expect(result).toEqual(expectedResult);
+                expect(result.value.toString()).toEqual(String(expectedResult.value));
             });
         });
 
@@ -1728,12 +1733,13 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, expectedResult]) => {
+                let _value = BN(value);
                 let result = computeAverage({
-                    value,
+                    value: _value,
                     forceAverage: "billion",
                     abbreviations
                 });
-                expect(result).toEqual(expectedResult);
+                expect(result.value.toString()).toEqual(String(expectedResult.value));
             });
         });
 
@@ -1821,12 +1827,13 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, expectedResult]) => {
+                let _value = BN(value);
                 let result = computeAverage({
-                    value,
+                    value: _value,
                     forceAverage: "trillion",
                     abbreviations
                 });
-                expect(result).toEqual(expectedResult);
+                expect(result.value.toString()).toEqual(String(expectedResult.value));
             });
         });
 
@@ -1914,12 +1921,13 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, totalLength, expectedResult]) => {
+                let _value = BN(value);
                 let result = computeAverage({
-                    value,
+                    value: _value,
                     abbreviations,
                     totalLength
                 });
-                expect(result).toEqual(expectedResult);
+                expect(result.value.toString()).toEqual(String(expectedResult.value));
             });
         });
     });
@@ -1933,7 +1941,7 @@ describe("formatting", () => {
 
         it("returns the value if the precision is `-1`", () => {
             let value = jasmine.createSpy("value");
-            let result = setMantissaPrecision(value, value, undefined, -1);
+            let result = setMantissaPrecision(value, BN(value), undefined, -1);
 
             expect(result).toBe(value);
         });
@@ -1953,7 +1961,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, precision, expectedResult]) => {
-                let result = setMantissaPrecision(value, value, undefined, precision);
+                let result = setMantissaPrecision(value, BN(value), undefined, precision);
                 expect(result).toBe(expectedResult);
             });
         });
@@ -1973,7 +1981,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, precision, expectedResult]) => {
-                let result = setMantissaPrecision(value, value, true, precision);
+                let result = setMantissaPrecision(value, BN(value), true, precision);
                 expect(result).toBe(expectedResult);
             });
         });
@@ -1988,7 +1996,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, expectedResult]) => {
-                let result = setMantissaPrecision(value, value, false, 10, true);
+                let result = setMantissaPrecision(value, BN(value), false, 10, true);
                 expect(result).toBe(expectedResult);
             });
         });
@@ -2016,7 +2024,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([value, precision, expectedResult]) => {
-                let result = setCharacteristicPrecision(value, value, false, precision);
+                let result = setCharacteristicPrecision(value, BN(value), false, precision);
                 expect(result).toBe(expectedResult);
             });
         });
@@ -2090,7 +2098,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([input, {thousandSeparated}, decimalSeparator, expectedValue]) => {
-                let result = replaceDelimiters(input, parseInt(input, 10), thousandSeparated, state, decimalSeparator);
+                let result = replaceDelimiters(input, BN(input), thousandSeparated, state, decimalSeparator);
                 expect(result).toBe(expectedValue);
             });
         });
@@ -2108,7 +2116,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([input, {thousandSeparated}, decimalSeparator, expectedValue]) => {
-                let result = replaceDelimiters(input, parseInt(input, 10), thousandSeparated, state, decimalSeparator);
+                let result = replaceDelimiters(input, BN(input), thousandSeparated, state, decimalSeparator);
                 expect(result).toBe(expectedValue);
             });
         });
@@ -2126,7 +2134,7 @@ describe("formatting", () => {
             ];
 
             data.forEach(([input, expectedValue]) => {
-                let result = replaceDelimiters(input, parseInt(input, 10), false, state);
+                let result = replaceDelimiters(input, BN(input), false, state);
                 expect(result).toBe(expectedValue);
             });
         });
@@ -2156,28 +2164,28 @@ describe("formatting", () => {
         });
 
         it("appends `+` to positive numbers", () => {
-            let result = insertSign("foo", 24);
+            let result = insertSign("foo", BN(24));
             expect(result).toBe("+foo");
         });
 
         it("doesn't append `+` to 0", () => {
-            let result = insertSign("foo", 0);
+            let result = insertSign("foo", BN(0));
             expect(result).toBe("foo");
         });
 
         it("removes the sign for small number that output as 0", () => {
-            let result = insertSign("0.00", -0.0000001);
+            let result = insertSign("0.00", BN(-0.0000001));
             expect(result).toBe("0.00");
         });
 
         // We assume the minus sign comes from the fact that the value is negative. Might be a bit too naïve.
         it("does nothing to negative value with `sign` flag", () => {
-            let result = insertSign("-foo", -4, "sign");
+            let result = insertSign("-foo", BN(-4), "sign");
             expect(result).toBe("-foo");
         });
 
         it("add parenthesis to negative value with `parenthesis` flag", () => {
-            let result = insertSign("-foo", -4, "parenthesis");
+            let result = insertSign("-foo", BN(-4), "parenthesis");
             expect(result).toBe("(foo)");
         });
     });
@@ -2303,7 +2311,7 @@ describe("formatting", () => {
             let defaults = jasmine.createSpy("defaults");
             let state = jasmine.createSpyObj("state", ["hasZeroFormat", "currentDelimiters", "currentAbbreviations"]);
             state.currentDelimiters.and.returnValue({});
-            computeAverage.and.returnValue({value: 0});
+            computeAverage.and.returnValue({value: BN(0)});
 
             format.average = false;
             format.totalLength = 3;
@@ -2324,7 +2332,7 @@ describe("formatting", () => {
             let defaults = jasmine.createSpy("defaults");
             let state = jasmine.createSpyObj("state", ["hasZeroFormat", "currentDelimiters", "currentAbbreviations"]);
             state.currentDelimiters.and.returnValue({});
-            computeAverage.and.returnValue({value: 0});
+            computeAverage.and.returnValue({value: BN(0)});
 
             format.average = true;
 
@@ -2713,6 +2721,7 @@ describe("formatting", () => {
                     [100, "0o", "100th"],
                     [3124213.12341234, "0.*", "3124213.12341234"],
                     [3124213.12341234, ",0.*", "3,124,213.12341234"],
+                    ["9999999999999999999.999999999999", ",0.*", "9,999,999,999,999,999,999.999999999999"],
 
                     // decimal format on an integer (see issue #199)
                     [-40, "#.*", "-40"],
@@ -2847,7 +2856,7 @@ describe("formatting", () => {
             let format = ",4 a";
             let result = formatting.format(numbroStub(value), format);
 
-            expect(result).toEqual("-1.234");
+            expect(result).toEqual("-1.235");
         });
 
         it("Issue 411", () => {
@@ -2861,6 +2870,16 @@ describe("formatting", () => {
             let result = formatting.format(numbroStub(value), format);
 
             expect(result).toEqual("2.0 KB");
+        });
+    });
+
+    describe("Bignumber for string", () => {
+        it("999999999999.9999999", () => {
+            let value = "99999999999999999999.9999999";
+            let format = "0,0";
+            let result = formatting.format(numbroStub(value), format);
+
+            expect(result).toEqual("99,999,999,999,999,999,999.9999999");
         });
     });
 });
