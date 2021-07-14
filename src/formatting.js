@@ -758,11 +758,13 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
 
     let abbreviation = "";
     if (average) {
+        const abbreviations = Object.assign({}, state.currentAbbreviations(), options.abbreviations);
+
         let data = computeAverage({
             value,
             forceAverage,
             lowPrecision,
-            abbreviations: state.currentAbbreviations(),
+            abbreviations,
             spaceSeparated,
             roundingFunction,
             totalLength

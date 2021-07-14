@@ -2339,6 +2339,39 @@ describe("formatting", () => {
             expect(insertAbbreviation).toHaveBeenCalled();
         });
 
+        it("calls `computeAverage` with correct abbreviations when the `abbreviations` and the `average` is provided", () => {
+            const currentAbbreviations = {
+                thousand: "k",
+                million: "m",
+                billion: "b",
+                trillion: "t"
+            };
+
+            let format = jasmine.createSpy("format");
+            let defaults = jasmine.createSpy("defaults");
+            let state = jasmine.createSpyObj("state", ["hasZeroFormat", "currentDelimiters", "currentAbbreviations"]);
+            state.currentDelimiters.and.returnValue({});
+            state.currentAbbreviations.and.returnValue(currentAbbreviations);
+            computeAverage.and.returnValue({value: 0});
+
+            format.average = true;
+            format.abbreviations = {
+                billion: "B"
+            };
+
+            const params = {
+                instance: numbroStub(1),
+                providedFormat: format,
+                state,
+                defaults
+            };
+
+            formatNumber(params);
+
+            expect(computeAverage.calls.argsFor(0)[0].abbreviations)
+                .toEqual(Object.assign({}, currentAbbreviations, { billion: "B" }));
+        });
+
         it("doesn't call `computeAverage` when the `average` flag is not provided", () => {
             let format = jasmine.createSpy("format");
             let defaults = jasmine.createSpy("defaults");
