@@ -1,5 +1,7 @@
 ### Next
 
+### 2.3.3
+
 - Fix #597: Fix issue with en-IE currency. Thanks @Blackbaud-WesGabbard
 - Fix German abbreviations Thanks @chaosflaws
 - Fix Hebrew words for million and billion Thanks @amire80
