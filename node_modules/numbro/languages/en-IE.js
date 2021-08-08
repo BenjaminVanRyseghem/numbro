@@ -23,6 +23,7 @@ module.exports = {
     },
     currency: {
         symbol: "€",
+        position: "prefix",
         code: "EUR"
     }
 };
