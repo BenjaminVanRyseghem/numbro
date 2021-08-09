@@ -1,5 +1,7 @@
 ### Next
 
+- Fix providedFormat pollution. Thanks @BenjaminVanRyseghem
+
 ### 2.3.3
 
 - Fix #597: Fix issue with en-IE currency. Thanks @Blackbaud-WesGabbard

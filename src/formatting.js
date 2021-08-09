@@ -299,17 +299,18 @@ function formatPercentage(instance, providedFormat, state, numbro) {
  */
 function formatCurrency(instance, providedFormat, state) {
     const currentCurrency = state.currentCurrency();
-    let options = Object.assign({}, defaultOptions, providedFormat);
+    let clonedFormat = Object.assign({}, providedFormat);
+    let options = Object.assign({}, defaultOptions, clonedFormat);
     let decimalSeparator = undefined;
     let space = "";
     let average = !!options.totalLength || !!options.forceAverage || options.average;
-    let position = providedFormat.currencyPosition || currentCurrency.position;
-    let symbol = providedFormat.currencySymbol || currentCurrency.symbol;
+    let position = clonedFormat.currencyPosition || currentCurrency.position;
+    let symbol = clonedFormat.currencySymbol || currentCurrency.symbol;
     const spaceSeparatedCurrency = options.spaceSeparatedCurrency !== void 0
         ? options.spaceSeparatedCurrency : options.spaceSeparated;
 
-    if (providedFormat.lowPrecision === undefined) {
-        providedFormat.lowPrecision = false;
+    if (clonedFormat.lowPrecision === undefined) {
+        clonedFormat.lowPrecision = false;
     }
 
     if (spaceSeparatedCurrency) {
@@ -322,7 +323,7 @@ function formatCurrency(instance, providedFormat, state) {
 
     let output = formatNumber({
         instance,
-        providedFormat,
+        clonedFormat,
         state,
         decimalSeparator
     });
