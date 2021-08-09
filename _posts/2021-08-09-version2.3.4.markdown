@@ -1,0 +1,11 @@
+---
+title:  Release 2.3.4
+author: BenjaminVanRyseghem
+date:   2020-08-09 09:56:00
+---
+
+**numbro 2.3.4** has been released.
+
+- Fix providedFormat pollution. Thanks [@BenjaminVanRyseghem](https://github.com/BenjaminVanRyseghem)
+
+Enjoy <i class="fa fa-smile-o">
