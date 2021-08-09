@@ -1,5 +1,9 @@
 ### Next
 
+### 2.3.5
+
+- Fix broken release. Thanks @BenjaminVanRyseghem
+
 ### 2.3.4
 
 - Fix providedFormat pollution. Thanks @BenjaminVanRyseghem
