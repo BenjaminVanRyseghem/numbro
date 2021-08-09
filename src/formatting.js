@@ -323,7 +323,7 @@ function formatCurrency(instance, providedFormat, state) {
 
     let output = formatNumber({
         instance,
-        clonedFormat,
+        providedFormat: clonedFormat,
         state,
         decimalSeparator
     });

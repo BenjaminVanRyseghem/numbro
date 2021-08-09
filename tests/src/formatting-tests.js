@@ -962,7 +962,7 @@ describe("formatting", () => {
 
             expect(formatNumber).toHaveBeenCalledWith({
                 instance: jasmine.anything(),
-                providedFormat,
+                providedFormat: jasmine.objectContaining(Object.assign({}, providedFormat)),
                 state,
                 decimalSeparator: "foo"
             });
@@ -983,7 +983,7 @@ describe("formatting", () => {
 
             expect(formatNumber).toHaveBeenCalledWith({
                 instance: jasmine.anything(),
-                providedFormat,
+                providedFormat: jasmine.objectContaining(Object.assign({}, providedFormat)),
                 state,
                 decimalSeparator: " foo "
             });
