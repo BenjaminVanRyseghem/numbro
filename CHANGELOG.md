@@ -1,5 +1,7 @@
 ### Next
 
+### 2.3.4
+
 - Fix providedFormat pollution. Thanks @BenjaminVanRyseghem
 
 ### 2.3.3
