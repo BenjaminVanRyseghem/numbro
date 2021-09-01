@@ -63,6 +63,10 @@ function escapeRegExp(s) {
  * @return {number|undefined}
  */
 function computeUnformattedValue(inputString, delimiters, currencySymbol = "", ordinal, zeroFormat, abbreviations, format) {
+    if (inputString === "") {
+        return undefined;
+    }
+
     if (!isNaN(+inputString)) {
         return +inputString;
     }

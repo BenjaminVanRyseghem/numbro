@@ -1,5 +1,7 @@
 ### Next
 
+- Fix #618: Fix for `$` being unformatted to `0` instead of `undefined`. Thanks @Kanna727
+
 ### 2.3.5
 
 - Fix broken release. Thanks @BenjaminVanRyseghem
