@@ -23,6 +23,7 @@
 const globalState = require("./globalState");
 const validating = require("./validating");
 const parsing = require("./parsing");
+const BigNumber = require("bignumber.js");
 
 const powers = {
     trillion: Math.pow(10, 12),
@@ -507,7 +508,8 @@ function toFixed(value, precision, roundingFunction = Math.round) {
         return toFixedLarge(value, precision);
     }
 
-    return (roundingFunction(+`${value}e+${precision}`) / (Math.pow(10, precision))).toFixed(precision);
+    const n = new BigNumber(roundingFunction(+`${value}e+${precision}`) / (Math.pow(10, precision)));
+    return n.toFixed(precision);
 }
 
 /**
