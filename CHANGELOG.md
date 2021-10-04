@@ -1,5 +1,7 @@
 ### Next
 
+- Fix #507: mantissa precision produces wrong results for certain numbers. Thanks @swissmanu
+
 ### 2.3.5
 
 - Fix broken release. Thanks @BenjaminVanRyseghem
