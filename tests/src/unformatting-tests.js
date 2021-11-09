@@ -273,7 +273,8 @@ describe("unformatting", () => {
                 [["3t", {thousands: ",", decimal: "."}], 3000000000000],
 
                 [["foo", {thousands: ".", decimal: ","}], undefined],
-                [["12foo", {thousands: ".", decimal: ","}], undefined]
+                [["12foo", {thousands: ".", decimal: ","}], undefined],
+                [["$", {thousands: ",", decimal: "."}], undefined]
             ];
 
             data.forEach(([[input, delimiters, currencySymbol], expectedOutput]) => {

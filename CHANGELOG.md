@@ -1,5 +1,6 @@
 ### Next
 
+- Fix #618: Fix for `$` being unformatted to `0` instead of `undefined`. Thanks @Kanna727
 - Fix #507: mantissa precision produces wrong results for certain numbers. Thanks @swissmanu
 
 ### 2.3.5
