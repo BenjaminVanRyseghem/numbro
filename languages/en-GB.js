@@ -29,20 +29,20 @@ module.exports = {
     currencyFormat: {
         thousandSeparated: true,
         totalLength: 4,
-        spaceSeparated: true,
-        spaceSeparatedCurrency: true,
+        spaceSeparated: false,
+        spaceSeparatedCurrency: false,
         average: true
     },
     formats: {
         fourDigits: {
             totalLength: 4,
-            spaceSeparated: true,
+            spaceSeparated: false,
             average: true
         },
         fullWithTwoDecimals: {
             output: "currency",
             thousandSeparated: true,
-            spaceSeparated: true,
+            spaceSeparated: false,
             mantissa: 2
         },
         fullWithTwoDecimalsNoCurrency: {
@@ -52,7 +52,7 @@ module.exports = {
         fullWithNoDecimals: {
             output: "currency",
             thousandSeparated: true,
-            spaceSeparated: true,
+            spaceSeparated: false,
             mantissa: 0
         }
     }
