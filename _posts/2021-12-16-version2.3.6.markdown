@@ -1,0 +1,13 @@
+---
+title:  Release 2.3.6
+author: BenjaminVanRyseghem
+date:   2021-12-16 12:25:00
+---
+
+**numbro 2.3.6** has been released.
+
+- Fix spacing issue with en-GB currency. Thanks [@DamienCassou](https://github.com/DamienCassou)
+- Fix [#507](https://github.com/BenjaminVanRyseghem/numbro/issues/507): mantissa precision produces wrong results for certain numbers.
+  Thanks [@swissmanu](https://github.com/swissmanu)
+
+Enjoy <i class="fa fa-smile-o">

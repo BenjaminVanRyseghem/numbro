@@ -1,12 +1,12 @@
 ---
 title:  Release 2.3.3
 author: BenjaminVanRyseghem
-date:   2020-08-08 09:53:00
+date:   2021-08-08 09:53:00
 ---
 
 **numbro 2.3.3** has been released.
 
-- Fix #597: Fix issue with en-IE currency. Thanks [@Blackbaud-WesGabbard](https://github.com/Blackbaud-WesGabbard)
+- Fix [#597](https://github.com/BenjaminVanRyseghem/numbro/issues/597): Fix issue with en-IE currency. Thanks [@Blackbaud-WesGabbard](https://github.com/Blackbaud-WesGabbard)
 - Fix German abbreviations Thanks [@chaosflaws](https://github.com/chaosflaws)
 - Fix Hebrew words for million and billion Thanks [@amire80](https://github.com/amire80)
 - Fix #604: add `lowPrecision` to typescript definitions Thanks [@fullaive](https://github.com/fullaive)
