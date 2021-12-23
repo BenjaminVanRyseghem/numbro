@@ -738,6 +738,9 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
     if (!isFinite(value)) {
         return value.toString();
     }
+    if (isNaN(value)) {
+        return "ERROR!";
+    }
 
     let options = Object.assign({}, defaultOptions, defaults, providedFormat);
 

@@ -32,12 +32,20 @@ const parsing = require("./parsing");
 
 class Numbro {
     constructor(number) {
-        this._value = number;
+        if (isNAN(number)) {
+            this._value = 0;
+            console.log("Expected Number but got " + number + " instead!");
+            return;
+        } else {
+            this._value = number;
+        }
     }
 
     clone() { return numbro(this._value); }
 
-    format(format = {}) { return formatter.format(this, format); }
+    format(format = {}) {
+        return formatter.format(this, format);
+    }
 
     formatCurrency(format) {
         if (typeof format === "string") {
@@ -53,11 +61,11 @@ class Numbro {
         return formatter.format(this, format);
     }
 
-    binaryByteUnits() { return formatter.getBinaryByteUnit(this);}
+    binaryByteUnits() { return formatter.getBinaryByteUnit(this); }
 
-    decimalByteUnits() { return formatter.getDecimalByteUnit(this);}
+    decimalByteUnits() { return formatter.getDecimalByteUnit(this); }
 
-    byteUnits() { return formatter.getByteUnit(this);}
+    byteUnits() { return formatter.getByteUnit(this); }
 
     difference(other) { return manipulate.difference(this, other); }
 
@@ -101,7 +109,7 @@ function numbro(input) {
 
 numbro.version = VERSION;
 
-numbro.isNumbro = function(object) {
+numbro.isNumbro = function (object) {
     return object instanceof Numbro;
 };
 
