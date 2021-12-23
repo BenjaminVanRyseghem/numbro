@@ -348,6 +348,14 @@ describe("[unformatting] regression tests", () => {
 
         it("works", () => {
             let data = [
+                ["0:0:60", undefined],
+                ["0:60:0", undefined],
+                ["24:0:0", undefined],
+                ["-1:0:0", undefined],
+                ["0:-1:0", undefined],
+                ["0:0:-1", undefined],
+                ["0:0:0", 0],
+                ["23:59:59", 86399],
                 ["2:23:57", 8637],
                 ["-76%", -0.76],
                 ["100B", 100],

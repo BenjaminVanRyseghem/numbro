@@ -224,7 +224,7 @@ function matchesTime(inputString, delimiters) {
     let minutes = +segments[1];
     let seconds = +segments[2];
 
-    return !isNaN(hours) && !isNaN(minutes) && !isNaN(seconds);
+    return !(isNaN(hours) || isNaN(minutes) || isNaN(seconds) || hours < 0 || hours >= 24 || minutes < 0 || minutes >= 60 || seconds < 0 || seconds >= 60);
 }
 
 /**
