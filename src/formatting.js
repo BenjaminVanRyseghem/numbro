@@ -256,10 +256,16 @@ function formatOrdinal(instance, providedFormat, state) {
  * @return {string}
  */
 function formatTime(instance) {
-    let hours = Math.floor(instance._value / 60 / 60);
-    let minutes = Math.floor((instance._value - (hours * 60 * 60)) / 60);
-    let seconds = Math.round(instance._value - (hours * 60 * 60) - (minutes * 60));
-    return `${hours}:${(minutes < 10) ? "0" : ""}${minutes}:${(seconds < 10) ? "0" : ""}${seconds}`;
+  let isNegative = false
+  if (instance < 0){
+    isNegative = true
+    instance = -1 * instance
+  }
+  let hours = Math.floor(instance / 60 / 60);
+  let minutes = Math.floor((instance - (hours * 60 * 60)) / 60);
+  let seconds = Math.round(instance - (hours * 60 * 60) - (minutes * 60));
+  let res = `${hours}:${(minutes < 10) ? "0" : ""}${minutes}:${(seconds < 10) ? "0" : ""}${seconds}`;
+  return isNegative ? '-' + res : res;
 }
 
 /**
