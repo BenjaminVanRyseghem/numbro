@@ -824,6 +824,12 @@ function formatOrDefault(providedFormat, defaultFormat) {
     return providedFormat;
 }
 
+function round(num, format) {
+    pow = format.replace('%', '').split('.')[1].length
+    ans =  Math.round((num + Number.EPSILON) * (10 ** pow)) / (10 ** pow)
+    return ans.toFixed(pow) + '%'
+}
+
 module.exports = (numbro) => ({
     format: (...args) => format(...args, numbro),
     getByteUnit: (...args) => getByteUnit(...args, numbro),
