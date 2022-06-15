@@ -8,15 +8,15 @@
 
 module.exports = {
     languageTag: "en-IN",
-    delimiters:{
-        thousands:',',
-        decimal:'.',
-        thousandsSize:2
+    delimiters: {
+        thousands: ",",
+        decimal: ".",
+        thousandsSize: 2
     },
-    abbreviations:{
-        thousand:'k',
-        lakh:'\u004c', //L
-        crore:'\u0043\u0072' //Cr
+    abbreviations: {
+        thousand: "k",
+        lakh: "\u004c", //L
+        crore: "\u0043\u0072" //Cr
     },
     ordinal: number => {
         let b = number % 10;
@@ -57,4 +57,4 @@ module.exports = {
             mantissa: 0
         }
     }
-}
+};
