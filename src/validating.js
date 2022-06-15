@@ -59,7 +59,7 @@ const validMandatoryAbbreviations = {
     children: {
         thousand: {
             type: "string",
-            mandatory: false
+            mandatory: true
         },
         lakh: {
             type: "string",

@@ -673,8 +673,8 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
                 indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x)=> x-1); // In en-IN, separate thousands by 2 places at a time and shift the positions to left by 1
             }
             else {
-                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x)=> x-1); // // Separate thousands by 2 places at a time and shift the positions to left by 1
-                indexesToInsertThousandDelimiters.shift(); // Drop the separator at the position-0 i.e. the separator shifted before the number 
+                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x)=> x-1); // // Separate thousands by 2 places at a time and shift the positions to left by 1
+                indexesToInsertThousandDelimiters.shift(); // Drop the separator at the position-0 i.e. the separator shifted before the number if the total length is odd
             }
         }
 
