@@ -89,9 +89,9 @@ const validAbbreviations = {
     type: "object",
     children: {
         thousand: "string",
-        lakh:"string",
+        lakh: "string",
         million: "string",
-        crore:"string",
+        crore: "string",
         billion: "string",
         trillion: "string"
     }

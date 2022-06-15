@@ -28,9 +28,9 @@ const BigNumber = require("bignumber.js");
 const powers = {
     trillion: Math.pow(10, 12),
     billion: Math.pow(10, 9),
-    crore: Math.pow(10,7),
+    crore: Math.pow(10, 7),
     million: Math.pow(10, 6),
-    lakh: Math.pow(10,5),
+    lakh: Math.pow(10, 5),
     thousand: Math.pow(10, 3)
 };
 
@@ -370,14 +370,14 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
     if (forceAverage && abbreviations[forceAverage] && powers[forceAverage]) {
         abbreviation = abbreviations[forceAverage];
         value = value / powers[forceAverage];
-    } 
-    else if(Object.keys(abbreviations).length === 3) {
+    }
+    else if (Object.keys(abbreviations).length === 3) {
         if (abs >= powers.crore || (lowPrecision && roundingFunction(abs / powers.crore) === 1)){
             // crore
             abbreviation = abbreviations.crore;
             value = value / powers.crore;
 
-        } else if(abs < powers.crore && abs >= powers.lakh || (lowPrecision && roundingFunction(abs / powers.lakh) === 1)) {
+        } else if (abs < powers.crore && abs >= powers.lakh || (lowPrecision && roundingFunction(abs / powers.lakh) === 1)) {
             // lakh
             abbreviation = abbreviations.lakh;
             value = value / powers.lakh;
@@ -393,8 +393,8 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
             // trillion
             abbreviation = abbreviations.trillion;
             value = value / powers.trillion;
-            
-        } else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
+        }
+        else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
             // billion
             abbreviation = abbreviations.billion;
             value = value / powers.billion;
@@ -411,7 +411,6 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
 
         }
     }
-    
 
     let optionalSpace = spaceSeparated ? " " : "";
 
@@ -628,7 +627,6 @@ function indexesOfGroupSpaces(totalLength, groupSize) {
         }
         counter++;
     }
-    
     return result;
 }
 
@@ -661,19 +659,19 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
         }
 
         let indexesToInsertThousandDelimiters = indexesOfGroupSpaces(characteristic.length, thousandsSize);
-        let currentLanguage =  "";
-        try{
+        let currentLanguage = "";
+        try {
             currentLanguage = state.currentLanguage();
         }
-        catch(e){
+        catch (e){
             "pass";
         }
-        if(currentLanguage === "en-IN"){
-            if(characteristic.length%2 === 0) {
-                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x)=> x-1); // In en-IN, separate thousands by 2 places at a time and shift the positions to left by 1
+        if (currentLanguage === "en-IN"){
+            if (characteristic.length%2 === 0) {
+                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x) => x-1); // In en-IN, separate thousands by 2 places at a time and shift the positions to left by 1
             }
             else {
-                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x)=> x-1); // // Separate thousands by 2 places at a time and shift the positions to left by 1
+                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x) => x-1); // // Separate thousands by 2 places at a time and shift the positions to left by 1
                 indexesToInsertThousandDelimiters.shift(); // Drop the separator at the position-0 i.e. the separator shifted before the number if the total length is odd
             }
         }
@@ -810,7 +808,7 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
             abbreviations: state.currentAbbreviations(),
             spaceSeparated,
             roundingFunction,
-            totalLength,
+            totalLength
         });
 
         value = data.value;
