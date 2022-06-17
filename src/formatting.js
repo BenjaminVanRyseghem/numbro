@@ -371,7 +371,7 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
         abbreviation = abbreviations[forceAverage];
         value = value / powers[forceAverage];
     }
-    else if (Object.keys(abbreviations).length === 3) {
+    else if (Object.keys(abbreviations).length === 3) { //Conditional check subject to change, currently checking if only three abbr. are present in the language
         if (abs >= powers.crore || (lowPrecision && roundingFunction(abs / powers.crore) === 1)){
             // crore
             abbreviation = abbreviations.crore;
@@ -665,14 +665,14 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
         }
         catch (e){
             "pass";
+            // console.log(e.name + ": " + e.message + ": "+ e.fileName + ": "+ e.lineNumber);
         }
+
         if (currentLanguage === "en-IN"){
-            if (characteristic.length%2 === 0) {
-                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x) => x-1); // In en-IN, separate thousands by 2 places at a time and shift the positions to left by 1
-            }
-            else {
-                indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((x) => x-1); // // Separate thousands by 2 places at a time and shift the positions to left by 1
-                indexesToInsertThousandDelimiters.shift(); // Drop the separator at the position-0 i.e. the separator shifted before the number if the total length is odd
+            indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((separatorPosition) => separatorPosition-1); // Separate thousands by 2 places at a time and shift the positions to left by 1
+
+            if (characteristic.length%2 !== 0) { //Length of the number is odd
+                indexesToInsertThousandDelimiters.shift(); // Drop the separator at the position-0 i.e. the separator shifted before the number
             }
         }
 
