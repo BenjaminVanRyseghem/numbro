@@ -1,6 +1,9 @@
 ### Next
+
 ### 2.3.7
- - Added en-IN localization.  
+
+- Added en-IN localization. Thanks @Kathiresan S
+
 ### 2.3.6
 
 - Fix spacing issue with en-GB currency. Thanks @DamienCassou
@@ -220,17 +223,16 @@
 
 - Introduce new API functions:
 
-    - setCulture
-    - culture
-    - cultureData
-    - cultures
-
+  - setCulture
+  - culture
+  - cultureData
+  - cultures
 - Deprecate API functions:
 
-    - setLanguage
-    - language
-    - languageData
-    - languages
+  - setLanguage
+  - language
+  - languageData
+  - languages
 
 Those deprecated functions will be removed in version 2.0.0
 
@@ -324,6 +326,6 @@ Those deprecated functions will be removed in version 2.0.0
 
 Fork `numeraljs` v1.5.3, renaming everything to `numbro`
 
-----
+---
 
 _For changes before `numbro` forked [`numeral-js`](https://github.com/adamwdraper/Numeral-js), see [CHANGELOG-Numeraljs.md](CHANGELOG-Numeraljs.md)._
