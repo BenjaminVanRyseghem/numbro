@@ -2,7 +2,7 @@
 
 ### 2.3.7
 
-- Added en-IN localization. Thanks @Kathiresan S
+- Added en-IN localization. Thanks @theY2Kbug
 
 ### 2.3.6
 
