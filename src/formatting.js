@@ -669,10 +669,10 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
         }
 
         if (currentLanguage === "en-IN"){
-            indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((separatorPosition) => separatorPosition-1); // Separate thousands by 2 places at a time and shift the positions to left by 1
+            indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((separatorPosition) => separatorPosition-1); // Separate thousands by 2 places at a time and shift all the separator indexes to left by 1
 
-            if (characteristic.length%2 !== 0) { //Length of the number is odd
-                indexesToInsertThousandDelimiters.shift(); // Drop the separator at the position-0 i.e. the separator shifted before the number
+            if (characteristic.length%2 !== 0) { //If the length of the number is odd, then there is a separator at position-0
+                indexesToInsertThousandDelimiters.shift(); // Drop the separator at position-0 i.e. the separator shifted before the number
             }
         }
 
