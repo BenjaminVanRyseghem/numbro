@@ -21,6 +21,7 @@ module.exports = {
     },
     currency: {
         symbol: "Rp",
-        code: "IDR"
+        code: "IDR",
+        position: "prefix"
     }
 };
