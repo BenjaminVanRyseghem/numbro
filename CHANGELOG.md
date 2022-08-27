@@ -1,5 +1,7 @@
 ### Next
 
+- Fix Indonesian currency (Rp) position. 
+
 ### 2.3.6
 
 - Fix spacing issue with en-GB currency. Thanks @DamienCassou
