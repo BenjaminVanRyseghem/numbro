@@ -805,12 +805,11 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
 }
 
 /**
- * If FORMAT is non-null and not just an output, return FORMAT.
- * Return DEFAULTFORMAT otherwise.
- *
- * @param providedFormat
- * @param defaultFormat
- * @param correctFloatFormat
+ * It will fix the floating point format 
+ * Return the correct decimal display of number for the given minimum and maximum length
+ * @param {number} num - The number you want to fix the format.
+ * @param {number} min - The minimum number of decimal
+ * @param {number} max - The maximum number of decimal
  */
 
 function fixFloatingfFormat(num, min, max) {
@@ -824,6 +823,15 @@ function fixFloatingfFormat(num, min, max) {
     return num.toFixed(dec_num)
 }
 
+/**
+ * If FORMAT is non-null and not just an output, return FORMAT.
+ * Return DEFAULTFORMAT otherwise.
+ *
+ * @param providedFormat
+ * @param defaultFormat
+ * 
+ */
+
 function formatOrDefault(providedFormat, defaultFormat) {
     if (!providedFormat) {
         return defaultFormat;
@@ -836,6 +844,8 @@ function formatOrDefault(providedFormat, defaultFormat) {
 
     return providedFormat;
 }
+
+
 
 module.exports = (numbro) => ({
     format: (...args) => format(...args, numbro),
