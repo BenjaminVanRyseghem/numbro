@@ -810,7 +810,20 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
  *
  * @param providedFormat
  * @param defaultFormat
+ * @param correctFloatFormat
  */
+
+function fixFloatingfFormat(num, min, max) {
+    dec_str = num.toString().split('.')[1]
+    dec_num = dec_str.length
+    if (dec_num < min) {
+        dec_num = min
+    } else if (dec_num > max) {
+        dec_num = max
+    };
+    return num.toFixed(dec_num)
+}
+
 function formatOrDefault(providedFormat, defaultFormat) {
     if (!providedFormat) {
         return defaultFormat;
