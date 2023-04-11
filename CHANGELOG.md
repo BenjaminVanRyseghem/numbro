@@ -1,5 +1,7 @@
 ### Next
 
+- Added ca (Catalan) localization.
+
 ### 2.3.6
 
 - Fix spacing issue with en-GB currency. Thanks @DamienCassou
