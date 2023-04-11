@@ -17,15 +17,11 @@ module.exports = {
         trillion: "t"
     },
     ordinal: (number) => {
-        if (isNaN(number) || number < 1) {
-            return number;
-          }
-          const suffix = (number === 11 || number === 12 || number === 13) ? 'è' :
-            (number % 10 === 1) ? 'r' :
-            (number % 10 === 2) ? 'n' :
-            (number % 10 === 3) ? 'r' :
-            'è';
-          return number + suffix;
+        if (number >= 5) {
+            return "è";
+        }
+        let b = number % 10;
+        return (b === 1 | b === 3) ? "r" : (b === 2) ? "n" : (b === 4) ? "t" : "è";
     },
     currency: {
         symbol: "€",
