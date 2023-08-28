@@ -92,6 +92,6 @@
     "dist"
   ],
   "dependencies": {
-    "bignumber.js": "^8.1.1"
+    "bignumber.js": "^8 || ^9"
   }
 }
