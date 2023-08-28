@@ -1,0 +1,15 @@
+version: 2
+registries:
+updates:
+  - package-ecosystem: "npm"
+    directory: "/"
+    registries: "*"
+    open-pull-requests-limit: 1000 # we don't want to limit PRs
+    schedule:
+      interval: "weekly" # runs once a week
+      day: "sunday"
+      time: "19:00"
+      timezone: "Europe/Paris"
+    labels:
+      - "dependencies"  # default dependabot label
+      - "javascript"    # default dependabot label
