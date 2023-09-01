@@ -61,7 +61,7 @@
     "jasmine": "^3.5.0",
     "jasmine-core": "^2.8.0",
     "jasmine-reporters": "^2.3.2",
-    "js-yaml": "^3.13.1",
+    "js-yaml": "^4.1.0",
     "karma": "^6.3.4",
     "karma-electron": "^6.3.0",
     "karma-jasmine": "^1.1.0",
