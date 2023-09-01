@@ -69,7 +69,7 @@
     "lodash.template": "^4.5.0",
     "minimatch": "^3.0.4",
     "requirejs": "^2.3.6",
-    "rewire": "^2.5.2",
+    "rewire": "^7.0.0",
     "uglify-js": "^3.6.4",
     "vinyl-buffer": "^1.0.1",
     "vinyl-source-stream": "^2.0.0"
