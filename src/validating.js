@@ -37,7 +37,9 @@ const validOutputValues = [
 const validForceAverageValues = [
     "trillion",
     "billion",
+    "crore",
     "million",
+    "lakh",
     "thousand"
 ];
 
@@ -59,17 +61,25 @@ const validMandatoryAbbreviations = {
             type: "string",
             mandatory: true
         },
+        lakh: {
+            type: "string",
+            mandatory: false
+        },
         million: {
             type: "string",
-            mandatory: true
+            mandatory: false
+        },
+        crore: {
+            type: "string",
+            mandatory: false
         },
         billion: {
             type: "string",
-            mandatory: true
+            mandatory: false
         },
         trillion: {
             type: "string",
-            mandatory: true
+            mandatory: false
         }
     },
     mandatory: true
@@ -79,7 +89,9 @@ const validAbbreviations = {
     type: "object",
     children: {
         thousand: "string",
+        lakh: "string",
         million: "string",
+        crore: "string",
         billion: "string",
         trillion: "string"
     }
