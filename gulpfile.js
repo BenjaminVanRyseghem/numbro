@@ -39,15 +39,6 @@ const plugins = require("gulp-load-plugins")({
     }
 });
 
-gulp.task("lint:js", () => {
-    return gulp.src(["./src/**/*.js", "./tests/**/*.js", "./languages/**/*.js"])
-        .pipe(plugins.eslint({ rulePaths: ["./eslint_rules"] }))
-        .pipe(plugins.eslint.format("unix"))
-        .pipe(plugins.eslint.failAfterError());
-});
-
-gulp.task("lint", parallel("lint:js"));
-
 // Build
 
 gulp.task("build:src", () => {
@@ -210,6 +201,5 @@ gulp.task("clean", series("clean:build"));
 
 exports.build = series("build");
 exports["build:write-languages-unminified"] = series("build:write-languages-unminified");
-exports.lint = series("lint");
 exports.test = series("test");
-exports.default = parallel("lint", "test");
+exports.default = parallel("test");
