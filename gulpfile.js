@@ -21,7 +21,6 @@
  */
 
 const gulp = require("gulp");
-const del = require("del");
 const browserify = require("browserify");
 const source = require("vinyl-source-stream");
 const buffer = require("vinyl-buffer");
@@ -30,7 +29,9 @@ const fs = require("fs");
 const reporters = require("jasmine-reporters");
 const Server = require("karma").Server;
 
-const { series, parallel } = gulp;
+const {series, parallel} = gulp;
+
+const {deleteAsync} = import("del")
 
 const plugins = require("gulp-load-plugins")({
     rename: {
@@ -238,7 +239,7 @@ gulp.task("bump:patch", () => {
 // Clean
 
 gulp.task("clean:build", (cb) => {
-    return del(["dist"], cb);
+    return deleteAsync(["dist"], cb);
 });
 
 gulp.task("clean", series("clean:build"));
