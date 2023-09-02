@@ -415,7 +415,7 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
  * @param {number} [characteristicPrecision] - optional characteristic length
  * @return {{value: number, abbreviation: string}}
  */
-function computeExponential({ value, characteristicPrecision = 0 }) {
+function computeExponential({ value, characteristicPrecision }) {
     let [numberString, exponential] = value.toExponential().split("e");
     let number = +numberString;
 
