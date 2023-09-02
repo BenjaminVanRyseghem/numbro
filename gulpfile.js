@@ -31,8 +31,6 @@ const Server = require("karma").Server;
 
 const {series, parallel} = gulp;
 
-const {deleteAsync} = import("del")
-
 const plugins = require("gulp-load-plugins")({
     rename: {
         "gulp-jasmine-phantom-requirejs": "jasminePhantom"
@@ -190,14 +188,6 @@ gulp.task("test:integration:node", series("build"), (cb) => {
 gulp.task("test:integration", parallel("test:integration:node", "test:integration:amd"), () => {});
 
 gulp.task("test", parallel("test:unit", "test:integration"), () => {});
-
-// Clean
-
-gulp.task("clean:build", (cb) => {
-    return deleteAsync(["dist"], cb);
-});
-
-gulp.task("clean", series("clean:build"));
 
 exports.build = series("build");
 exports["build:write-languages-unminified"] = series("build:write-languages-unminified");
