@@ -66,6 +66,7 @@ module.exports = {
         "keyword-spacing": [error, {"before": true}],
         "linebreak-style": [error, "unix"],
         "no-confusing-arrow": error,
+        "no-console": error,
         "no-else-return": error,
         "no-eval": error,
         "no-implied-eval": error,

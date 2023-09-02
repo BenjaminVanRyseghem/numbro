@@ -131,7 +131,7 @@ describe("parsing", () => {
                     }
                 ],
                 [
-                    "$ ", // eslint-disable-line no-template-curly-in-string
+                    "$ ",
                     {
                         output: "currency",
                         spaceSeparated: true,
@@ -139,7 +139,7 @@ describe("parsing", () => {
                     }
                 ],
                 [
-                    " $", // eslint-disable-line no-template-curly-in-string
+                    " $",
                     {
                         output: "currency",
                         spaceSeparated: true,
