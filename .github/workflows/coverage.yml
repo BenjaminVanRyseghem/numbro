@@ -1,0 +1,41 @@
+name: Coverage
+on:
+  pull_request:
+    branches: [ develop ]
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [ 16.x, 18.x, 20.x ]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Install
+        run: npm install
+
+      - name: Instrument coverage
+        run: npm run coverage:instrument
+
+      - name: Check coverage
+        run: npm run coverage:check
+
+      - name: Check coverage
+        if: failure()
+        run: npm run coverage:report
+
+      - name: Exporting report
+        uses: actions/upload-artifact@v3
+        if: failure()
+        with:
+          name: coverage
+          path: |
+            ./coverage
+          if-no-files-found: ignore

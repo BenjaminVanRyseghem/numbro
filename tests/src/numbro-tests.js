@@ -193,6 +193,13 @@ describe("numbro", () => {
             expect(formatterFormat).toHaveBeenCalledWith(instance, format);
         });
 
+
+        it("format with no options", () => {
+            instance.format();
+
+            expect(formatterFormat).toHaveBeenCalledWith(instance, {});
+        });
+
         it("formatCurrency", () => {
             let format = jasmine.createSpy("format");
             formatOrDefault.and.returnValue(format);
@@ -215,6 +222,12 @@ describe("numbro", () => {
 
             expect(format.output).toBe("time");
             expect(formatterFormat).toHaveBeenCalledWith(instance, format);
+        });
+
+        it("formatTime with no options", () => {
+            instance.formatTime();
+
+            expect(formatterFormat).toHaveBeenCalledWith(instance, {output: "time"});
         });
 
         it("getBinaryByteUnit", () => {
