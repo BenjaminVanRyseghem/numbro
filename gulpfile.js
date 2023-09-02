@@ -200,42 +200,6 @@ gulp.task("test:integration", parallel("test:integration:node", "test:integratio
 
 gulp.task("test", parallel("test:unit", "test:integration"), () => {});
 
-// Bumping
-
-const referencesToVersion = [
-    "./package.json",
-    "./bower.json",
-    "./component.json",
-    "./src/numbro.js"
-];
-
-gulp.task("bump:major", () => {
-    return gulp.src(referencesToVersion, { base: "./" })
-        .pipe(plugins.bump({
-            type: "major",
-            global: true
-        }))
-        .pipe(gulp.dest("./"));
-});
-
-gulp.task("bump:minor", () => {
-    return gulp.src(referencesToVersion, { base: "./" })
-        .pipe(plugins.bump({
-            type: "minor",
-            global: true
-        }))
-        .pipe(gulp.dest("./"));
-});
-
-gulp.task("bump:patch", () => {
-    return gulp.src(referencesToVersion, { base: "./" })
-        .pipe(plugins.bump({
-            type: "patch",
-            global: true
-        }))
-        .pipe(gulp.dest("./"));
-});
-
 // Clean
 
 gulp.task("clean:build", (cb) => {
@@ -245,9 +209,6 @@ gulp.task("clean:build", (cb) => {
 gulp.task("clean", series("clean:build"));
 
 exports.build = series("build");
-exports["bump:major"] = series("bump:major");
-exports["bump:minor"] = series("bump:minor");
-exports["bump:patch"] = series("bump:patch");
 exports["build:write-languages-unminified"] = series("build:write-languages-unminified");
 exports.lint = series("lint");
 exports.test = series("test");

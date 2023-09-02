@@ -38,13 +38,13 @@
     "auto-load": "^3.0.4",
     "babelify": "^10.0.0",
     "browserify": "^17.0.0",
+    "bump-regex": "^4.1.0",
     "del": "^7.1.0",
     "electron": "^26.1.0",
     "eslint": "^8.48.0",
     "eslint-plugin-jasmine": "^4.1.3",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
-    "gulp-bump": "^3.1.3",
     "gulp-concat": "^2.6.1",
     "gulp-confirm": "^1.0.8",
     "gulp-eslint": "^6.0.0",
@@ -77,10 +77,13 @@
   "scripts": {
     "prepublishOnly": "echo \"Are you sure you want to publish a new release with version ${npm_package_version}? (y/n)?\" && read choice && case \"$choice\" in y|Y ) gulp build;; * ) echo \"Abort!\" && exit 1;; esac",
     "postpublish": "git tag -as ${npm_package_version} -m \"Release version ${npm_package_version}\" && git push && git push --tags",
-    "preversion": "echo \"Use `gulp bump` instead\" && exit 1",
+    "preversion": "echo \"Use `bump:xxx` instead\" && exit 1",
     "lint": "gulp lint",
     "test": "gulp test",
-    "coverage": "istanbul cover ./node_modules/.bin/jasmine --captureExceptions"
+    "coverage": "istanbul cover ./node_modules/.bin/jasmine --captureExceptions",
+    "bump:major": "node ./toolchain/bump.js major",
+    "bump:minor": "node ./toolchain/bump.js minor",
+    "bump:patch": "node ./toolchain/bump.js patch"
   },
   "files": [
     "LICENSE",
