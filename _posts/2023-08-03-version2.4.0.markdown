@@ -1,0 +1,11 @@
+---
+title:  Release 2.4.0
+author: BenjaminVanRyseghem
+date:   2023-08-03 12:25:00
+---
+
+**numbro 2.4.0** has been released.
+
+- Update all dependencies, fixing a BigNumber issue as well.
+
+Enjoy <i class="fa fa-smile-o">
