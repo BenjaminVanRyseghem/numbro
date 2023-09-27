@@ -10,13 +10,13 @@ declare namespace numbro {
 
     export function language(): string;
 
-    export function registerLanguage(tag: NumbroLanguage, useLanguage ?: boolean): string;
+    export function registerLanguage(tag: NumbroLanguage, useLanguage?: boolean): string;
 
-    export function setLanguage(tag: string, fallbackTag ?: string): void;
+    export function setLanguage(tag: string, fallbackTag?: string): void;
 
     export function languages(): { [tag: string]: NumbroLanguage };
 
-    export function languageData(tag ?: string): NumbroLanguage;
+    export function languageData(tag?: string): NumbroLanguage;
 
     export function zeroFormat(newFormat: string): void;
 
@@ -144,4 +144,4 @@ declare namespace numbro {
     }
 }
 
-export default numbro;
+export = numbro;
