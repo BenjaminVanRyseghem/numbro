@@ -330,9 +330,9 @@ function formatCurrency(instance, providedFormat, state) {
     });
 
     if (position === "prefix") {
-        if (instance._value < 0 && options.negative === "sign") {
+        if (instance._value < 0 && output[0] === '-' && options.negative === "sign") {
             output = `-${space}${symbol}${output.slice(1)}`;
-        } else if (instance._value > 0 && options.forceSign) {
+        } else if (instance._value > 0 && output[0] === '+' && options.forceSign) {
             output = `+${space}${symbol}${output.slice(1)}`;
         } else {
             output = symbol + space + output;
