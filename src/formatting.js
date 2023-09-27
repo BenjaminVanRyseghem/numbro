@@ -824,6 +824,10 @@ function formatOrDefault(providedFormat, defaultFormat) {
     return providedFormat;
 }
 
+function precise(num, significant) {
+    return num.toPrecision(significant);
+}
+
 module.exports = (numbro) => ({
     format: (...args) => format(...args, numbro),
     getByteUnit: (...args) => getByteUnit(...args, numbro),
