@@ -266,6 +266,9 @@ function unformat(inputString, format) {
         if (matchesTime(inputString, delimiters)) {
             value = unformatTime(inputString);
         } else {
+            if (currencySymobol && inputString.indexOf(' ') >= 0 && inputString.includes('-')){
+                inputString = inputString.replace(/\s/g, '');
+            }
             value = unformatValue(inputString, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format);
         }
     } else if (typeof inputString === "number") {
