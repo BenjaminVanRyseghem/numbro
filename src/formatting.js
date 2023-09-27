@@ -824,6 +824,17 @@ function formatOrDefault(providedFormat, defaultFormat) {
     return providedFormat;
 }
 
+function correctFloatFormat(num, min, max) {
+    dec_str = num.toString().split('.')[1]
+    dec_num = dec_str.length
+    if (dec_num < min) {
+        dec_num = min
+    } else if (dec_num > max) {
+        dec_num = max
+    };
+    return num.toFixed(dec_num)
+}
+
 module.exports = (numbro) => ({
     format: (...args) => format(...args, numbro),
     getByteUnit: (...args) => getByteUnit(...args, numbro),
