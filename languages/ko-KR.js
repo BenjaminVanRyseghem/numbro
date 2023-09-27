@@ -1,4 +1,4 @@
-﻿/*!
+/*!
  * numbro.js language configuration
  * language : Korean
  * author (numbro.js Version): Randy Wilander : https://github.com/rocketedaway
