@@ -22,7 +22,7 @@
 
 const path = require("path");
 const fs = require("fs");
-const minimatch = require("minimatch");
+const {minimatch} = require("minimatch");
 
 const MESSAGE = "No test file found for \"{{file}}\", expecting \"{{testFile}}\" to exists.";
 const LOADING_MESSAGE = "A test file should load its matching source file (\"{{file}}\").";

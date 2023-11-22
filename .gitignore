@@ -32,3 +32,4 @@ coverage/
 dist/
 /languages.js
 /languages.unmin.js
+.nyc_output/

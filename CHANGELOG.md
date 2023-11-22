@@ -1,5 +1,10 @@
 ### Next
 
+### 2.4.0
+
+- Update a ton of dependencies. Thanks @BenjaminVanRyseghem
+- Update the tool-chain. Thanks @BenjaminVanRyseghem
+
 ### 2.3.6
 
 - Fix spacing issue with en-GB currency. Thanks @DamienCassou
