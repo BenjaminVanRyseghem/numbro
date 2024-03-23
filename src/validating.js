@@ -174,7 +174,7 @@ const validLanguage = {
         restriction: (tag) => {
             return tag.match(bcp47RegExp);
         },
-        message: "the language tag must follow the BCP 47 specification (see https://tools.ieft.org/html/bcp47)"
+        message: "the language tag must follow the BCP 47 specification (see https://tools.ietf.org/html/bcp47)"
     },
     delimiters: {
         type: "object",
