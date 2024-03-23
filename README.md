@@ -1,14 +1,13 @@
 # [numbro](https://numbrojs.com/)
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-117-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-117-orange.svg?style=flat-square)](#contributors-) [![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro) ![GitHub Sponsor](https://img.shields.io/github/sponsors/BenjaminVanRyseghem?label=Sponsor&logo=GitHub)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
-
-[![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro)
+<!-- [![Monthly download](https://img.shields.io/npm/dm/numbro.svg?style=flat-square)](https://www.npmjs.com/package/numbro) -->
+<!-- [![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/BenjaminVanRyseghem) -->
 
 A javascript library for formatting and manipulating numbers.
 
 [Website and documentation](http://numbrojs.com)
-
 
 # Travis Build Status
 
@@ -226,3 +225,11 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
 <!-- ALL-CONTRIBUTORS-LIST:END -->
 
 This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+# Funding
+
+If you want to give me a hand, you can consider buying me a ko-fi, or becoming a sponsor.
+
+[![](https://img.shields.io/static/v1?label=Sponsor&message=%E2%9D%A4&logo=GitHub&color=%23fe8e86)](https://github.com/sponsors/BenjaminVanRyseghem)
+
+[![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/C0C5VUX6Y)
