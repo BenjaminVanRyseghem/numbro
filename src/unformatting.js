@@ -133,8 +133,14 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol, ordina
                 case "thousand":
                     factor = Math.pow(10, 3);
                     break;
+                case "lakh":
+                    factor = Math.pow(10, 5);
+                    break;
                 case "million":
                     factor = Math.pow(10, 6);
+                    break;
+                case "crore":
+                    factor = Math.pow(10, 7);
                     break;
                 case "billion":
                     factor = Math.pow(10, 9);

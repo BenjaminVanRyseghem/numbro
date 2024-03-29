@@ -28,7 +28,9 @@ const BigNumber = require("bignumber.js");
 const powers = {
     trillion: Math.pow(10, 12),
     billion: Math.pow(10, 9),
+    crore: Math.pow(10, 7),
     million: Math.pow(10, 6),
+    lakh: Math.pow(10, 5),
     thousand: Math.pow(10, 3)
 };
 
@@ -368,23 +370,45 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
     if (forceAverage && abbreviations[forceAverage] && powers[forceAverage]) {
         abbreviation = abbreviations[forceAverage];
         value = value / powers[forceAverage];
-    } else {
+    }
+    else if (Object.keys(abbreviations).length === 3) { //Conditional check subject to change, currently checking if only three abbr. are present in the language
+        if (abs >= powers.crore || (lowPrecision && roundingFunction(abs / powers.crore) === 1)){
+            // crore
+            abbreviation = abbreviations.crore;
+            value = value / powers.crore;
+
+        } else if (abs < powers.crore && abs >= powers.lakh || (lowPrecision && roundingFunction(abs / powers.lakh) === 1)) {
+            // lakh
+            abbreviation = abbreviations.lakh;
+            value = value / powers.lakh;
+
+        } else {
+            // thousand
+            abbreviation = abbreviations.thousand;
+            value = value / powers.thousand;
+        }
+    }
+    else {
         if (abs >= powers.trillion || (lowPrecision && roundingFunction(abs / powers.trillion) === 1)) {
             // trillion
             abbreviation = abbreviations.trillion;
             value = value / powers.trillion;
-        } else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
+        }
+        else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
             // billion
             abbreviation = abbreviations.billion;
             value = value / powers.billion;
+
         } else if (abs < powers.billion && abs >= powers.million || (lowPrecision && roundingFunction(abs / powers.million) === 1)) {
             // million
             abbreviation = abbreviations.million;
             value = value / powers.million;
+
         } else if (abs < powers.million && abs >= powers.thousand || (lowPrecision && roundingFunction(abs / powers.thousand) === 1)) {
             // thousand
             abbreviation = abbreviations.thousand;
             value = value / powers.thousand;
+
         }
     }
 
@@ -603,7 +627,6 @@ function indexesOfGroupSpaces(totalLength, groupSize) {
         }
         counter++;
     }
-
     return result;
 }
 
@@ -636,6 +659,23 @@ function replaceDelimiters(output, value, thousandSeparated, state, decimalSepar
         }
 
         let indexesToInsertThousandDelimiters = indexesOfGroupSpaces(characteristic.length, thousandsSize);
+        let currentLanguage = "";
+        try {
+            currentLanguage = state.currentLanguage();
+        }
+        catch (e){
+            "pass";
+            // console.log(e.name + ": " + e.message + ": "+ e.fileName + ": "+ e.lineNumber);
+        }
+
+        if (currentLanguage === "en-IN"){
+            indexesToInsertThousandDelimiters = indexesToInsertThousandDelimiters.map((separatorPosition) => separatorPosition-1); // Separate thousands by 2 places at a time and shift all the separator indexes to left by 1
+
+            if (characteristic.length%2 !== 0) { //If the length of the number is odd, then there is a separator at position-0
+                indexesToInsertThousandDelimiters.shift(); // Drop the separator at position-0 i.e. the separator shifted before the number
+            }
+        }
+
         indexesToInsertThousandDelimiters.forEach((position, index) => {
             characteristic = characteristic.slice(0, position + index) + thousandSeparator + characteristic.slice(position + index);
         });
