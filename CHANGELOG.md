@@ -1,8 +1,15 @@
 ### Next
 
-### 2.3.7
+### 2.5.0
 
 - Added en-IN localization. Thanks @theY2Kbug
+
+
+### 2.4.0
+
+- Update a ton of dependencies. Thanks @BenjaminVanRyseghem
+- Update the tool-chain. Thanks @BenjaminVanRyseghem
+
 
 ### 2.3.6
 

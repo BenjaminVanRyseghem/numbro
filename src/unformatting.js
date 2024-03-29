@@ -62,7 +62,7 @@ function escapeRegExp(s) {
  * @param {NumbroFormat} format - format used while generating the inputString
  * @return {number|undefined}
  */
-function computeUnformattedValue(inputString, delimiters, currencySymbol = "", ordinal, zeroFormat, abbreviations, format) {
+function computeUnformattedValue(inputString, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format) {
     if (!isNaN(+inputString)) {
         return +inputString;
     }
@@ -164,7 +164,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol = "", o
  * @param {string} [currencySymbol] - symbol used for currency while generating the inputString
  * @return {string}
  */
-function removeFormattingSymbols(inputString, delimiters, currencySymbol = "") {
+function removeFormattingSymbols(inputString, delimiters, currencySymbol) {
     // Currency
 
     let stripped = inputString.replace(currencySymbol, "");
