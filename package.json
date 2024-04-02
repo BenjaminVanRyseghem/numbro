@@ -18,6 +18,7 @@
     "percentage"
   ],
   "main": "./dist/numbro.min.js",
+  "browser": "./dist/es/numbro.js",
   "typings": "./numbro.d.ts",
   "engines": {
     "node": "*"

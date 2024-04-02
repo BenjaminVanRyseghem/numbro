@@ -55,6 +55,11 @@ export default async () => {
 					plugins: [terser()],
 					name: "numbro"
 				},
+				{
+					file: path.resolve(outputFolder, "es", "numbro.js"),
+					format: "es",
+					name: "numbro"
+				},
 			],
 			plugins,
 		},
@@ -72,6 +77,11 @@ export default async () => {
 						plugins: [terser()],
 						name: `numbro.${baseName}`
 					},
+					{
+						file: path.resolve(outputFolder, "es", "languages", `${baseName}.js`),
+						format: "es",
+						name: `numbro.${baseName}`
+					},
 				],
 				plugins,
 			};
@@ -84,6 +94,11 @@ export default async () => {
 					format: "umd",
 					sourcemap: true,
 					plugins: [terser()],
+					name: `numbro.allLanguages`
+				},
+				{
+					file: path.resolve(outputFolder, "es", "languages.js"),
+					format: "es",
 					name: `numbro.allLanguages`
 				},
 			],
