@@ -1,0 +1,17 @@
+---
+title:  Release 2.4.0
+author: BenjaminVanRyseghem
+date:   2023-08-03 12:25:00
+---
+
+**numbro 2.5.0** has been released.
+
+* Bump rollup-plugin-license from 3.0.1 to 3.1.0 by @dependabot
+  in [716](https://github.com/BenjaminVanRyseghem/numbro/pull/716)
+* Bump rollup from 3.28.1 to 3.29.1 by @dependabot in [718](https://github.com/BenjaminVanRyseghem/numbro/pull/718)
+* Bump eslint from 8.48.0 to 8.49.0 by @dependabot in [717](https://github.com/BenjaminVanRyseghem/numbro/pull/717)
+* Add ES output to rollup configuration by @DamienCassou in [756](https://github.com/BenjaminVanRyseghem/numbro/pull/756)
+
+**Full Changelog**: [2.4.0...2.5.0](https://github.com/BenjaminVanRyseghem/numbro/compare/2.4.0...2.5.0)
+
+Enjoy <i class="fa fa-smile-o">
