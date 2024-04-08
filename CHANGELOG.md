@@ -1,5 +1,9 @@
 ### Next
 
+### 2.5.0
+
+- Fix #755: export EcmaScript modules in dist/es/. Thanks @DamienCassou
+
 ### 2.4.0
 
 - Update a ton of dependencies. Thanks @BenjaminVanRyseghem
