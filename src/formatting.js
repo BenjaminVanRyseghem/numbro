@@ -360,7 +360,7 @@ function formatCurrency(instance, providedFormat, state) {
  * @param {function} roundingFunction - function used to round numbers
  * @return {{value: number, abbreviation: string, mantissaPrecision: number}}
  */
-function computeAverage({ value, forceAverage, lowPrecision = true, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round }) {
+function computeAverage({ value, average, forceAverage, lowPrecision = true, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round }) {
     let abbreviation = "";
     let abs = Math.abs(value);
     let mantissaPrecision = -1;
@@ -368,7 +368,7 @@ function computeAverage({ value, forceAverage, lowPrecision = true, abbreviation
     if (forceAverage && abbreviations[forceAverage] && powers[forceAverage]) {
         abbreviation = abbreviations[forceAverage];
         value = value / powers[forceAverage];
-    } else {
+    } else if (average || forceAverage || !totalLength || abs >= Math.pow(10, totalLength)) {
         if (abs >= powers.trillion || (lowPrecision && roundingFunction(abs / powers.trillion) === 1)) {
             // trillion
             abbreviation = abbreviations.trillion;
@@ -565,9 +565,9 @@ function setCharacteristicPrecision(output, value, optionalCharacteristic, preci
 
     const hasNegativeSign = value < 0 && currentCharacteristic.indexOf("-") === 0;
     if (hasNegativeSign) {
-            // Remove the negative sign
-            currentCharacteristic = currentCharacteristic.slice(1);
-            result = result.slice(1);
+        // Remove the negative sign
+        currentCharacteristic = currentCharacteristic.slice(1);
+        result = result.slice(1);
     }
 
     if (currentCharacteristic.length < precision) {
@@ -763,6 +763,7 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
     if (average) {
         let data = computeAverage({
             value,
+            average: options.average,
             forceAverage,
             lowPrecision,
             abbreviations: state.currentAbbreviations(),
