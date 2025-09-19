@@ -34,7 +34,7 @@ describe("validatingSpec", () => {
         beforeEach(() => {
             validateInput = jasmine.createSpy("validateInput");
             validateFormat = jasmine.createSpy("validateFormat");
-            revert = validating.__set__({ validateFormat, validateInput });
+            revert = validating.__set__({validateFormat, validateInput});
         });
 
         afterEach(() => {
@@ -79,7 +79,7 @@ describe("validatingSpec", () => {
         beforeEach(() => {
             error = jasmine.createSpy("error");
             revert = validating.__set__({
-                console: { error }
+                console: {error}
             });
         });
 
@@ -90,9 +90,9 @@ describe("validatingSpec", () => {
         it("validates valid formats", () => {
             let data = [
                 // format
-                { prefix: "foo" },
-                { mantissa: 3 },
-                { totalLength: 3 }
+                {prefix: "foo"},
+                {mantissa: 3},
+                {totalLength: 3}
             ];
 
             data.forEach((format) => {
@@ -176,7 +176,7 @@ describe("validatingSpec", () => {
         beforeEach(() => {
             error = jasmine.createSpy("error");
             revert = validating.__set__({
-                console: { error }
+                console: {error}
             });
         });
 
@@ -290,7 +290,7 @@ describe("validatingSpec", () => {
                         },
                         ordinal: () => "",
                         currency: {},
-                        currencyFormat: { bar: 2 }
+                        currencyFormat: {bar: 2}
                     },
                     "[Validate currencyFormat] Invalid key: bar"
                 ],
@@ -305,7 +305,7 @@ describe("validatingSpec", () => {
                             trillion: ""
                         },
                         ordinal: () => "",
-                        currency: { symbol: 2 }
+                        currency: {symbol: 2}
                     },
                     "[Validate currency] symbol type mismatched: \"string\" expected, \"number\" provided"
                 ],
