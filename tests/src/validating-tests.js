@@ -198,7 +198,30 @@ describe("validatingSpec", () => {
                     },
                     ordinal: () => "",
                     currency: {}
-                }
+                },
+                {
+                    languageTag: "fr-FR-x-franc",
+                    delimiters: {},
+                    abbreviations: {
+                        thousand: "",
+                        million: "",
+                        billion: "",
+                        trillion: ""
+                    },
+                    ordinal: () => "",
+                    currency: {}
+                },
+                {
+                    languageTag: "en-US-u-islamcal",
+                    delimiters: {},
+                    abbreviations: {
+                        thousand: "",
+                        million: "",
+                        billion: "", trillion: ""
+                    },
+                    ordinal: () => "",
+                    currency: {}
+                },
             ];
 
             data.forEach((format) => {
@@ -285,6 +308,21 @@ describe("validatingSpec", () => {
                         currency: {symbol: 2}
                     },
                     "[Validate currency] symbol type mismatched: \"string\" expected, \"number\" provided"
+                ],
+                [
+                    {
+                        languageTag: "x",
+                        delimiters: {},
+                        abbreviations: {
+                            thousand: "",
+                            million: "",
+                            billion: "",
+                            trillion: ""
+                        },
+                        ordinal: () => "",
+                        currency: {}
+                    },
+                    "[Validate language] languageTag invalid value: the language tag must follow the BCP 47 specification (see https://tools.ieft.org/html/bcp47)"
                 ]
             ];
 

@@ -1,5 +1,9 @@
 ### Next
 
+## [Unreleased]
+
+- Fix #678: fixed languageTag validation to follow BCP47 ABNF syntax. Thanks @bitGatito
+
 ### 2.5.0
 
 - Fix #755: export EcmaScript modules in dist/es/. Thanks @DamienCassou
