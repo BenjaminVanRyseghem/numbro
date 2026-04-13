@@ -1,13 +1,12 @@
 /*!
  * numbro.js language configuration
  * language : Chinese traditional
- * locale: Macau
- * author : Tim McIntosh (StayinFront NZ)
+ * locale: Hong Kong
  * author : Hijiri Umemoto https://github.com/7m4gmh
  */
 
 module.exports = {
-    languageTag: "zh-MO",
+    languageTag: "zh-HK",
     delimiters: {
         thousands: ",",
         decimal: "."
@@ -35,7 +34,7 @@ module.exports = {
     currency: {
         symbol: "圓",
         position: "postfix",
-        alternates: ["澳門元", "MOP", "元"],
-        code: "MOP"
+           alternates: ["港元", "HK$", "元", "$"],
+           code: "HKD"
     }
 };

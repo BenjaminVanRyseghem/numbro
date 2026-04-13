@@ -62,7 +62,7 @@ function escapeRegExp(s) {
  * @param {NumbroFormat} format - format used while generating the inputString
  * @return {number|undefined}
  */
-function computeUnformattedValue(inputString, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format) {
+function computeUnformattedValue(inputString, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, abbreviationUnits, format) {
     if (!isNaN(+inputString)) {
         return +inputString;
     }
@@ -73,7 +73,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol, ordina
     let newInput = inputString.replace(/(^[^(]*)\((.*)\)([^)]*$)/, "$1$2$3");
 
     if (newInput !== inputString) {
-        return -1 * computeUnformattedValue(newInput, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format);
+        return -1 * computeUnformattedValue(newInput, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, abbreviationUnits, format);
     }
 
     // Byte
@@ -83,7 +83,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol, ordina
         stripped = inputString.replace(RegExp(`([0-9 ])(${suffix.key})$`), "$1");
 
         if (stripped !== inputString) {
-            return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format) * suffix.factor;
+            return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, abbreviationUnits, format) * suffix.factor;
         }
     }
 
@@ -92,7 +92,7 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol, ordina
     stripped = inputString.replace("%", "");
 
     if (stripped !== inputString) {
-        return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format) / 100;
+        return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, abbreviationUnits, format) / 100;
     }
 
     // Ordinal
@@ -108,18 +108,21 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol, ordina
         stripped = inputString.replace(new RegExp(`${escapeRegExp(ordinalString)}$`), "");
 
         if (stripped !== inputString) {
-            return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format);
+            return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, abbreviationUnits, format);
         }
     }
 
     // Average
 
     let inversedAbbreviations = {};
+    // `abbreviations` here is expected to be the displayAbbreviations mapping
     Object.keys(abbreviations).forEach((key) => {
         inversedAbbreviations[abbreviations[key]] = key;
     });
 
-    let abbreviationValues = Object.keys(inversedAbbreviations).sort().reverse();
+    // Prefer longer display tokens first (e.g. '百萬' before '萬') to avoid
+    // premature partial matches when multiple tokens share suffixes.
+    let abbreviationValues = Object.keys(inversedAbbreviations).sort((a, b) => b.length - a.length);
     let numberOfAbbreviations = abbreviationValues.length;
 
     for (let i = 0; i < numberOfAbbreviations; i++) {
@@ -129,21 +132,26 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol, ordina
         stripped = inputString.replace(value, "");
         if (stripped !== inputString) {
             let factor = undefined;
-            switch (key) { // eslint-disable-line default-case
-                case "thousand":
-                    factor = Math.pow(10, 3);
-                    break;
-                case "million":
-                    factor = Math.pow(10, 6);
-                    break;
-                case "billion":
-                    factor = Math.pow(10, 9);
-                    break;
-                case "trillion":
-                    factor = Math.pow(10, 12);
-                    break;
+            if (abbreviationUnits && abbreviationUnits[key]) {
+                factor = abbreviationUnits[key];
+            } else {
+                // fallback to default short-scale
+                switch (key) { // eslint-disable-line default-case
+                    case "thousand":
+                        factor = Math.pow(10, 3);
+                        break;
+                    case "million":
+                        factor = Math.pow(10, 6);
+                        break;
+                    case "billion":
+                        factor = Math.pow(10, 9);
+                        break;
+                    case "trillion":
+                        factor = Math.pow(10, 12);
+                        break;
+                }
             }
-            return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format) * factor;
+            return computeUnformattedValue(stripped, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, abbreviationUnits, format) * factor;
         }
     }
 
@@ -159,16 +167,26 @@ function computeUnformattedValue(inputString, delimiters, currencySymbol, ordina
  * @return {string}
  */
 function removeFormattingSymbols(inputString, delimiters, currencySymbol) {
-    // Currency
+    // Currency: currencySymbol may be a string or an array of strings
+    let stripped = inputString;
+    // Normalize to array, remove falsy entries, and prefer longest tokens first
+    const symbols = (Array.isArray(currencySymbol) ? currencySymbol.slice() : [currencySymbol])
+        .filter(Boolean)
+        .sort((a, b) => b.length - a.length);
 
-    let stripped = inputString.replace(currencySymbol, "");
+    symbols.forEach((sym) => {
+        try {
+            stripped = stripped.replace(new RegExp(escapeRegExp(sym), "g"), "");
+        } catch (e) {
+            // fallback to simple replace
+            stripped = stripped.split(sym).join("");
+        }
+    });
 
     // Thousand separators
-
     stripped = stripped.replace(new RegExp(`([0-9])${escapeRegExp(delimiters.thousands)}([0-9])`, "g"), "$1$2");
 
     // Decimal
-
     stripped = stripped.replace(delimiters.decimal, ".");
 
     return stripped;
@@ -186,7 +204,7 @@ function removeFormattingSymbols(inputString, delimiters, currencySymbol) {
  * @param {NumbroFormat} format - format used while generating the inputString
  * @return {number|undefined}
  */
-function unformatValue(inputString, delimiters, currencySymbol = "", ordinal, zeroFormat, abbreviations, format) {
+function unformatValue(inputString, delimiters, currencySymbol = "", ordinal, zeroFormat, abbreviations, abbreviationUnits, format) {
     if (inputString === "") {
         return undefined;
     }
@@ -198,7 +216,13 @@ function unformatValue(inputString, delimiters, currencySymbol = "", ordinal, ze
     }
 
     let value = removeFormattingSymbols(inputString, delimiters, currencySymbol);
-    return computeUnformattedValue(value, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format);
+    // abbreviations param is expected to be the language's displayAbbreviations
+    // Obtain the units mapping from globalState when available via a caller.
+    // If the caller passed abbreviations coming from globalState.currentDisplayAbbreviations,
+    // the caller (unformat) will provide the abbreviationUnits as well.
+    // For backward compatibility, default to undefined here; the top-level
+    // `unformat` will pass abbreviationUnits.
+    return computeUnformattedValue(value, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, abbreviationUnits, format);
 }
 
 /**
@@ -255,10 +279,34 @@ function unformat(inputString, format) {
     const globalState = require("./globalState");
 
     let delimiters = globalState.currentDelimiters();
-    let currencySymbol = globalState.currentCurrency().symbol;
+    const currencyData = globalState.currentCurrency();
+    // build a list of possible currency tokens to strip (symbol, alternates, code)
+    let currencySymbols = [];
+    if (currencyData) {
+        if (currencyData.symbol) { currencySymbols.push(currencyData.symbol); }
+        if (currencyData.alternates && Array.isArray(currencyData.alternates)) {
+            currencySymbols = currencySymbols.concat(currencyData.alternates.filter(Boolean));
+        }
+        if (currencyData.code) { currencySymbols.push(currencyData.code); }
+    }
     let ordinal = globalState.currentOrdinal();
     let zeroFormat = globalState.getZeroFormat();
-    let abbreviations = globalState.currentAbbreviations();
+    const scheme = (globalState && globalState.currentAbbreviationScheme) ? globalState.currentAbbreviationScheme() : "short-scale";
+    // When the language uses the default short-scale, keep legacy behaviour:
+    // use `currentAbbreviations()` for display and no custom units.
+    // Start from legacy abbreviations so we continue to recognize
+    // strings like "千", "百万" etc. When a non-short-scale scheme
+    // is active, merge the language's CJK displayAbbreviations so that
+    // both legacy and CJK tokens are recognized by `unformat`.
+    let legacyAbbreviations = globalState.currentAbbreviations();
+    let displayAbbreviations = legacyAbbreviations;
+    let abbreviationUnits = undefined;
+    if (scheme && scheme !== "short-scale") {
+        const cjkDisplay = globalState.currentDisplayAbbreviations();
+        // Merge: keep legacy keys but allow CJK display tokens to be present
+        displayAbbreviations = Object.assign({}, legacyAbbreviations, cjkDisplay);
+        abbreviationUnits = globalState.currentAbbreviationUnits();
+    }
 
     let value = undefined;
 
@@ -266,7 +314,7 @@ function unformat(inputString, format) {
         if (matchesTime(inputString, delimiters)) {
             value = unformatTime(inputString);
         } else {
-            value = unformatValue(inputString, delimiters, currencySymbol, ordinal, zeroFormat, abbreviations, format);
+            value = unformatValue(inputString, delimiters, currencySymbols, ordinal, zeroFormat, displayAbbreviations, abbreviationUnits, format);
         }
     } else if (typeof inputString === "number") {
         value = inputString;

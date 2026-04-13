@@ -3,6 +3,7 @@
  * language : Japanese
  * locale: Japan
  * author : teppeis : https://github.com/teppeis
+ * author : Hijiri Umemoto https://github.com/7m4gmh
  */
 
 module.exports = {
@@ -17,12 +18,24 @@ module.exports = {
         billion: "十億",
         trillion: "兆"
     },
+    abbreviationScheme: "cjk",
+    abbreviationUnits: {
+        man: 1e4,
+        oku: 1e8,
+        cho: 1e12
+    },
+    displayAbbreviations: {
+        man: "万",
+        oku: "億",
+        cho: "兆"
+    },
     ordinal: function() {
         return ".";
     },
     currency: {
-        symbol: "¥",
-        position: "prefix",
+        symbol: "円",
+        position: "postfix",
+        alternates: ["Yen", "¥"],
         code: "JPY"
     },
     currencyFormat: {

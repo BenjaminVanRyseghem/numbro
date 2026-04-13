@@ -3,6 +3,7 @@
  * language : simplified chinese
  * locale : China
  * author : badplum : https://github.com/badplum
+ * author : Hijiri Umemoto https://github.com/7m4gmh
  */
 
 module.exports = {
@@ -17,12 +18,24 @@ module.exports = {
         billion: "十亿",
         trillion: "兆"
     },
+    abbreviationScheme: "cjk",
+    abbreviationUnits: {
+        man: 1e4,
+        oku: 1e8,
+        cho: 1e12
+    },
+    displayAbbreviations: {
+        man: "万",
+        oku: "亿",
+        cho: "兆"
+    },
     ordinal: function() {
         return ".";
     },
     currency: {
-        symbol: "¥",
-        position: "prefix",
+        symbol: "元",
+        position: "postfix",
+        alternates: ["人民元", "人民币", "円", "¥"],
         code: "CNY"
     },
     currencyFormat: {

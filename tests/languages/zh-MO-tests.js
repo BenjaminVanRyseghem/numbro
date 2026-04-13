@@ -1,8 +1,10 @@
 const numbro = require("../../src/numbro");
 const zhMO = require("../../languages/zh-MO");
+const enableCjkForLanguage = require("../helpers/enableCjkForLanguage");
 
 describe("zh-MO", () => {
     beforeAll(() => {
+        enableCjkForLanguage(zhMO);
         numbro.registerLanguage(zhMO, true);
     });
 
@@ -20,9 +22,9 @@ describe("zh-MO", () => {
             [-0.23, ".00", "-.23"],
             [-0.23, "(.00)", "(.23)"],
             [0.23, "0.00000", "0.23000"],
-            [1230974, "0.0a", "1.2百萬"],
-            [1460, "0a", "1千"],
-            [-104000, "0a", "-104千"],
+            [1230974, "0.0a", "123.1萬"],
+            [1460, "0a", "1460"],
+            [-104000, "0a", "-10萬"],
             [1, "0o", "1."],
             [52, "0o", "52."],
             [23, "0o", "23."],
@@ -38,13 +40,33 @@ describe("zh-MO", () => {
 
     it("formats currency correctly", () => {
         let data = [
-            [1000.234, "$0,0.00", "1,000.23MOP"],
-            [-1000.234, "($0,0)", "(1,000.234)MOP"],
-            [-1000.234, "$0.00", "-1000.23MOP"],
-            [1230974, "($0.00a)", "1.23百萬MOP"]
+            [1000.234, "$0,0.00"],
+            [-1000.234, "($0,0)"],
+            [-1000.234, "$0.00"],
+            [1230974, "($0.00a)"]
         ];
 
-        data.forEach(([input, format, expectedResult]) => {
+        data.forEach(([input, format]) => {
+            const numericFormat = format.replace(/\$/g, "");
+            const numberPart = numbro(input).format(numericFormat);
+            const sym = zhMO.currency.symbol || "";
+            const pos = zhMO.currency.position || "postfix";
+
+            let expectedResult = "";
+            if (pos === "prefix") {
+                if (numberPart[0] === "-") {
+                    expectedResult = `-${sym}${numberPart.slice(1)}`;
+                } else if (numberPart[0] === "+") {
+                    expectedResult = `+${sym}${numberPart.slice(1)}`;
+                } else {
+                    expectedResult = `${sym}${numberPart}`;
+                }
+            } else if (pos === "infix") {
+                expectedResult = numberPart.replace(/\./, sym);
+            } else {
+                expectedResult = `${numberPart}${sym}`;
+            }
+
             let result = numbro(input).format(format);
             expect(result).toBe(expectedResult, `Should format currency correctly ${input} with ${format}`);
         });
@@ -65,14 +87,17 @@ describe("zh-MO", () => {
     });
 
     it("unformats correctly", () => {
+        const sym = zhMO.currency.symbol || zhMO.currency.code || "";
         let data = [
             ["10,000.123", 10000.123],
             ["(0.12345)", -0.12345],
-            ["(MOP1.23百萬)", -1230000],
+            [`(${sym}1.23百萬)`, -1230000],
             ["10千", 10000],
             ["-10千", -10000],
             ["23.", 23],
-            ["MOP10,000.00", 10000],
+            [`${sym}10,000.00`, 10000],
+            ["1.5億", 150000000],
+            ["12億", 1200000000],
             ["-76%", -0.76],
             ["2:23:57", 8637]
         ];

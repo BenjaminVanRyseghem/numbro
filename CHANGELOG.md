@@ -1,5 +1,7 @@
 ### Next
 
+- Fix #2, #14, #128: Add support for East Asian numeral notation (CJK units 万/億/兆) for formatting and unformatting, improve unformat handling for currency token variants (`currency.alternates`), and add/adjust tests (format/unformat) for ja/ko/zh locales.
+
 ### 2.5.0
 
 - Fix #755: export EcmaScript modules in dist/es/. Thanks @DamienCassou

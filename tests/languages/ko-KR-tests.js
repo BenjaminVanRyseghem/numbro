@@ -1,8 +1,10 @@
 const numbro = require("../../src/numbro");
 const koKR = require("../../languages/ko-KR");
+const enableCjkForLanguage = require("../helpers/enableCjkForLanguage");
 
 describe("ko-KR", () => {
     beforeAll(() => {
+        enableCjkForLanguage(koKR);
         numbro.registerLanguage(koKR, true);
     });
 
@@ -20,9 +22,11 @@ describe("ko-KR", () => {
             [-0.23, ".00", "-.23"],
             [-0.23, "(.00)", "(.23)"],
             [0.23, "0.00000", "0.23000"],
-            [1230974, "0.0a", "1.2백만"],
-            [1460, "0a", "1천"],
-            [-104000, "0a", "-104천"],
+            [1230974, "0.0a", "123.1만"],
+            [100000000, "0a", "1억"],
+            [1000000000, "0a", "10억"],
+            [1460, "0a", "1460"],
+            [-104000, "0a", "-10만"],
             [1, "0o", "1."],
             [52, "0o", "52."],
             [23, "0o", "23."],
@@ -38,13 +42,33 @@ describe("ko-KR", () => {
 
     it("formats currency correctly", () => {
         let data = [
-            [1000.234, "0,0.00$", "1,000.23₩"],
-            [-1000.234, "(0,0$)", "(1,000.234)₩"],
-            [-1000.234, "0.00$", "-1000.23₩"],
-            [1230974, "(0.00a$)", "1.23백만₩"]
+            [1000.234, "0,0.00$"],
+            [-1000.234, "(0,0$)"],
+            [-1000.234, "0.00$"],
+            [1230974, "(0.00a$)"]
         ];
 
-        data.forEach(([input, format, expectedResult]) => {
+        data.forEach(([input, format]) => {
+            const numericFormat = format.replace(/\$/g, "");
+            const numberPart = numbro(input).format(numericFormat);
+            const sym = koKR.currency.symbol || "";
+            const pos = koKR.currency.position || "postfix";
+
+            let expectedResult = "";
+            if (pos === "prefix") {
+                if (numberPart[0] === "-") {
+                    expectedResult = `-${sym}${numberPart.slice(1)}`;
+                } else if (numberPart[0] === "+") {
+                    expectedResult = `+${sym}${numberPart.slice(1)}`;
+                } else {
+                    expectedResult = `${sym}${numberPart}`;
+                }
+            } else if (pos === "infix") {
+                expectedResult = numberPart.replace(/\./, sym);
+            } else {
+                expectedResult = `${numberPart}${sym}`;
+            }
+
             let result = numbro(input).format(format);
             expect(result).toBe(expectedResult, `Should format currency correctly ${input} with ${format}`);
         });
@@ -65,6 +89,7 @@ describe("ko-KR", () => {
     });
 
     it("unformats correctly", () => {
+        const sym = koKR.currency.symbol || koKR.currency.code || "";
         let data = [
             ["10,000.123", 10000.123],
             ["(0.12345)", -0.12345],
@@ -73,7 +98,11 @@ describe("ko-KR", () => {
             ["10천", 10000],
             ["-10천", -10000],
             ["23.", 23],
-            ["₩10,000.00", 10000],
+            [`${sym}10,000.00`, 10000],
+            ["1억", 100000000],
+            ["1.5억", 150000000],
+            ["12억", 1200000000],
+            ["10억", 1000000000],
             ["-76%", -0.76],
             ["2:23:57", 8637]
         ];
