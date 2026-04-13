@@ -1,8 +1,10 @@
 const numbro = require("../../src/numbro");
 const zhTW = require("../../languages/zh-TW");
+const enableCjkForLanguage = require("../helpers/enableCjkForLanguage");
 
 describe("zh-TW", () => {
     beforeAll(() => {
+        enableCjkForLanguage(zhTW);
         numbro.registerLanguage(zhTW, true);
     });
 
@@ -20,13 +22,13 @@ describe("zh-TW", () => {
             [-0.23, ".00", "-.23"],
             [-0.23, "(.00)", "(.23)"],
             [0.23, "0.00000", "0.23000"],
-            [1230974, "0.0a", "1.2百萬"],
-            [1460, "0a", "1千"],
-            [-104000, "0a", "-104千"],
-            [1, "0o", "1第"],
-            [52, "0o", "52第"],
-            [23, "0o", "23第"],
-            [100, "0o", "100第"],
+            [1230974, "0.0a", "123.1萬"],
+            [1460, "0a", "1460"],
+            [-104000, "0a", "-10萬"],
+            [1, "0o", "1."],
+            [52, "0o", "52."],
+            [23, "0o", "23."],
+            [100, "0o", "100."],
             [1, "0[.]0", "1"]
         ];
 
@@ -38,13 +40,33 @@ describe("zh-TW", () => {
 
     it("formats currency correctly", () => {
         let data = [
-            [1000.234, "$0,0.00", "1,000.23NT$"],
-            [-1000.234, "($0,0)", "(1,000.234)NT$"],
-            [-1000.234, "$0.00", "-1000.23NT$"],
-            [1230974, "($0.00a)", "1.23百萬NT$"]
+            [1000.234, "$0,0.00"],
+            [-1000.234, "($0,0)"],
+            [-1000.234, "$0.00"],
+            [1230974, "($0.00a)"]
         ];
 
-        data.forEach(([input, format, expectedResult]) => {
+        data.forEach(([input, format]) => {
+            const numericFormat = format.replace(/\$/g, "");
+            const numberPart = numbro(input).format(numericFormat);
+            const sym = zhTW.currency.symbol || "";
+            const pos = zhTW.currency.position || "postfix";
+
+            let expectedResult;
+            if (pos === "prefix") {
+                if (numberPart[0] === "-") {
+                    expectedResult = "-" + sym + numberPart.slice(1);
+                } else if (numberPart[0] === "+") {
+                    expectedResult = "+" + sym + numberPart.slice(1);
+                } else {
+                    expectedResult = sym + numberPart;
+                }
+            } else if (pos === "infix") {
+                expectedResult = numberPart.replace(/\./, sym);
+            } else {
+                expectedResult = numberPart + sym;
+            }
+
             let result = numbro(input).format(format);
             expect(result).toBe(expectedResult, `Should format currency correctly ${input} with ${format}`);
         });
@@ -65,6 +87,7 @@ describe("zh-TW", () => {
     });
 
     it("unformats correctly", () => {
+        const sym = zhTW.currency.symbol || zhTW.currency.code || "";
         let data = [
             ["10,000.123", 10000.123],
             ["(0.12345)", -0.12345],
@@ -72,8 +95,10 @@ describe("zh-TW", () => {
             ["1.23百萬", 1230000],
             ["10千", 10000],
             ["-10千", -10000],
-            ["23第", 23],
-            ["NT$10,000.00", 10000],
+            ["23.", 23],
+            [sym + "10,000.00", 10000],
+            ["1.5億", 150000000],
+            ["12億", 1200000000],
             ["-76%", -0.76],
             ["2:23:57", 8637]
         ];

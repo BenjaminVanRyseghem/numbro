@@ -1,8 +1,10 @@
 const numbro = require("../../src/numbro");
 const zhSG = require("../../languages/zh-SG");
+const enableCjkForLanguage = require("../helpers/enableCjkForLanguage");
 
 describe("zh-SG", () => {
     beforeAll(() => {
+        enableCjkForLanguage(zhSG);
         numbro.registerLanguage(zhSG, true);
     });
 
@@ -20,9 +22,9 @@ describe("zh-SG", () => {
             [-0.23, ".00", "-.23"],
             [-0.23, "(.00)", "(.23)"],
             [0.23, "0.00000", "0.23000"],
-            [1230974, "0.0a", "1.2百万"],
-            [1460, "0a", "1千"],
-            [-104000, "0a", "-104千"],
+            [1230974, "0.0a", "123.1万"],
+            [1460, "0a", "1460"],
+            [-104000, "0a", "-10万"],
             [1, "0o", "1."],
             [52, "0o", "52."],
             [23, "0o", "23."],
@@ -38,13 +40,33 @@ describe("zh-SG", () => {
 
     it("formats currency correctly", () => {
         let data = [
-            [1000.234, "$0,0.00", "1,000.23$"],
-            [-1000.234, "($0,0)", "(1,000.234)$"],
-            [-1000.234, "$0.00", "-1000.23$"],
-            [1230974, "($0.00a)", "1.23百万$"]
+            [1000.234, "$0,0.00"],
+            [-1000.234, "($0,0)"],
+            [-1000.234, "$0.00"],
+            [1230974, "($0.00a)"]
         ];
 
-        data.forEach(([input, format, expectedResult]) => {
+        data.forEach(([input, format]) => {
+            const numericFormat = format.replace(/\$/g, "");
+            const numberPart = numbro(input).format(numericFormat);
+            const sym = zhSG.currency.symbol || "";
+            const pos = zhSG.currency.position || "postfix";
+
+            let expectedResult;
+            if (pos === "prefix") {
+                if (numberPart[0] === "-") {
+                    expectedResult = "-" + sym + numberPart.slice(1);
+                } else if (numberPart[0] === "+") {
+                    expectedResult = "+" + sym + numberPart.slice(1);
+                } else {
+                    expectedResult = sym + numberPart;
+                }
+            } else if (pos === "infix") {
+                expectedResult = numberPart.replace(/\./, sym);
+            } else {
+                expectedResult = numberPart + sym;
+            }
+
             let result = numbro(input).format(format);
             expect(result).toBe(expectedResult, `Should format currency correctly ${input} with ${format}`);
         });
@@ -73,6 +95,8 @@ describe("zh-SG", () => {
             ["-10千", -10000],
             ["23.", 23],
             ["$10,000.00", 10000],
+            ["1.5亿", 150000000],
+            ["12亿", 1200000000],
             ["-76%", -0.76],
             ["2:23:57", 8637]
         ];

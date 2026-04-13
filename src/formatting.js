@@ -360,31 +360,60 @@ function formatCurrency(instance, providedFormat, state) {
  * @param {function} roundingFunction - function used to round numbers
  * @return {{value: number, abbreviation: string, mantissaPrecision: number}}
  */
-function computeAverage({ value, forceAverage, lowPrecision = true, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round }) {
+function computeAverage({ value, forceAverage, lowPrecision = true, abbreviations, spaceSeparated = false, totalLength = 0, roundingFunction = Math.round, abbreviationUnits, displayAbbreviations }) {
     let abbreviation = "";
     let abs = Math.abs(value);
     let mantissaPrecision = -1;
+    // Use language-specific abbreviation units when available, falling back
+    // to the default short-scale `powers` mapping.
+    if (abbreviationUnits) {
+        // Use explicit mapping provided by caller (language-specific scheme)
+        const units = abbreviationUnits;
+        const labels = displayAbbreviations || abbreviations || ((globalState && globalState.currentDisplayAbbreviations) ? globalState.currentDisplayAbbreviations() : {});
 
-    if (forceAverage && abbreviations[forceAverage] && powers[forceAverage]) {
-        abbreviation = abbreviations[forceAverage];
-        value = value / powers[forceAverage];
+        if (forceAverage && units[forceAverage] && labels[forceAverage]) {
+            abbreviation = labels[forceAverage];
+            value = value / units[forceAverage];
+        } else {
+            const keys = Object.keys(units).sort((a, b) => units[b] - units[a]);
+            for (let i = 0; i < keys.length; i++) {
+                const key = keys[i];
+                const unitValue = units[key];
+                if (unitValue === undefined) {
+                    continue;
+                }
+
+                if (abs >= unitValue || (lowPrecision && roundingFunction(abs / unitValue) === 1)) {
+                    abbreviation = labels[key] || "";
+                    value = value / unitValue;
+                    break;
+                }
+            }
+        }
     } else {
-        if (abs >= powers.trillion || (lowPrecision && roundingFunction(abs / powers.trillion) === 1)) {
-            // trillion
-            abbreviation = abbreviations.trillion;
-            value = value / powers.trillion;
-        } else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
-            // billion
-            abbreviation = abbreviations.billion;
-            value = value / powers.billion;
-        } else if (abs < powers.billion && abs >= powers.million || (lowPrecision && roundingFunction(abs / powers.million) === 1)) {
-            // million
-            abbreviation = abbreviations.million;
-            value = value / powers.million;
-        } else if (abs < powers.million && abs >= powers.thousand || (lowPrecision && roundingFunction(abs / powers.thousand) === 1)) {
-            // thousand
-            abbreviation = abbreviations.thousand;
-            value = value / powers.thousand;
+        // Legacy behaviour: short-scale using fixed powers mapping and the
+        // provided `abbreviations` labels.
+        if (forceAverage && abbreviations[forceAverage] && powers[forceAverage]) {
+            abbreviation = abbreviations[forceAverage];
+            value = value / powers[forceAverage];
+        } else {
+            if (abs >= powers.trillion || (lowPrecision && roundingFunction(abs / powers.trillion) === 1)) {
+                // trillion
+                abbreviation = abbreviations.trillion;
+                value = value / powers.trillion;
+            } else if (abs < powers.trillion && abs >= powers.billion || (lowPrecision && roundingFunction(abs / powers.billion) === 1)) {
+                // billion
+                abbreviation = abbreviations.billion;
+                value = value / powers.billion;
+            } else if (abs < powers.billion && abs >= powers.million || (lowPrecision && roundingFunction(abs / powers.million) === 1)) {
+                // million
+                abbreviation = abbreviations.million;
+                value = value / powers.million;
+            } else if (abs < powers.million && abs >= powers.thousand || (lowPrecision && roundingFunction(abs / powers.thousand) === 1)) {
+                // thousand
+                abbreviation = abbreviations.thousand;
+                value = value / powers.thousand;
+            }
         }
     }
 
@@ -761,7 +790,11 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
 
     let abbreviation = "";
     if (average) {
-        let data = computeAverage({
+        // Provide language-specific units/labels only when the language declares
+        // a non-default abbreviation scheme. This keeps short-scale behaviour
+        // as the default and avoids breaking existing locales.
+        const scheme = (state && state.currentAbbreviationScheme) ? state.currentAbbreviationScheme() : "short-scale";
+        const computeArgs = {
             value,
             forceAverage,
             lowPrecision,
@@ -769,7 +802,13 @@ function formatNumber({ instance, providedFormat, state = globalState, decimalSe
             spaceSeparated,
             roundingFunction,
             totalLength
-        });
+        };
+        if (scheme && scheme !== "short-scale") {
+            computeArgs.abbreviationUnits = state.currentAbbreviationUnits();
+            computeArgs.displayAbbreviations = state.currentDisplayAbbreviations();
+        }
+
+        let data = computeAverage(computeArgs);
 
         value = data.value;
         abbreviation += data.abbreviation;

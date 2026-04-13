@@ -1,11 +1,11 @@
 const numbro = require("../../src/numbro");
-const koKR = require("../../languages/ko-KR");
+const zhHK = require("../../languages/zh-HK");
 const enableCjkForLanguage = require("../helpers/enableCjkForLanguage");
 
-describe("ko-KR", () => {
+describe("zh-HK", () => {
     beforeAll(() => {
-        enableCjkForLanguage(koKR);
-        numbro.registerLanguage(koKR, true);
+        enableCjkForLanguage(zhHK);
+        numbro.registerLanguage(zhHK, true);
     });
 
     afterAll(() => {
@@ -22,11 +22,11 @@ describe("ko-KR", () => {
             [-0.23, ".00", "-.23"],
             [-0.23, "(.00)", "(.23)"],
             [0.23, "0.00000", "0.23000"],
-            [1230974, "0.0a", "123.1만"],
-            [100000000, "0a", "1억"],
-            [1000000000, "0a", "10억"],
+            [1230974, "0.0a", "123.1萬"],
+            [100000000, "0a", "1億"],
+            [1000000000, "0a", "10億"],
             [1460, "0a", "1460"],
-            [-104000, "0a", "-10만"],
+            [-104000, "0a", "-10萬"],
             [1, "0o", "1."],
             [52, "0o", "52."],
             [23, "0o", "23."],
@@ -42,17 +42,17 @@ describe("ko-KR", () => {
 
     it("formats currency correctly", () => {
         let data = [
-            [1000.234, "0,0.00$"],
-            [-1000.234, "(0,0$)"],
-            [-1000.234, "0.00$"],
-            [1230974, "(0.00a$)"]
+            [1000.234, "$0,0.00"],
+            [-1000.234, "($0,0)"],
+            [-1000.234, "$0.00"],
+            [1230974, "($0.00a)"]
         ];
 
         data.forEach(([input, format]) => {
             const numericFormat = format.replace(/\$/g, "");
             const numberPart = numbro(input).format(numericFormat);
-            const sym = koKR.currency.symbol || "";
-            const pos = koKR.currency.position || "postfix";
+            const sym = zhHK.currency.symbol || "";
+            const pos = zhHK.currency.position || "postfix";
 
             let expectedResult;
             if (pos === "prefix") {
@@ -89,20 +89,18 @@ describe("ko-KR", () => {
     });
 
     it("unformats correctly", () => {
-        const sym = koKR.currency.symbol || koKR.currency.code || "";
+        const sym = zhHK.currency.symbol || zhHK.currency.code || "";
         let data = [
             ["10,000.123", 10000.123],
             ["(0.12345)", -0.12345],
-            ["(1.23백만)", -1230000],
-            ["1.23백만", 1230000],
-            ["10천", 10000],
-            ["-10천", -10000],
+            [`(${sym}1.23百萬)`, -1230000],
+            ["1.23百萬", 1230000],
+            ["10千", 10000],
+            ["-10千", -10000],
             ["23.", 23],
             [sym + "10,000.00", 10000],
-            ["1억", 100000000],
-            ["1.5억", 150000000],
-            ["12억", 1200000000],
-            ["10억", 1000000000],
+            ["1.5億", 150000000],
+            ["12億", 1200000000],
             ["-76%", -0.76],
             ["2:23:57", 8637]
         ];

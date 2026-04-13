@@ -33,6 +33,13 @@ let zeroFormat = null;
 
 let globalDefaults = {};
 
+const defaultAbbreviationUnits = {
+    thousand: Math.pow(10, 3),
+    million: Math.pow(10, 6),
+    billion: Math.pow(10, 9),
+    trillion: Math.pow(10, 12)
+};
+
 function chooseLanguage(tag) { currentLanguageTag = tag; }
 
 function currentLanguageData() { return languages[currentLanguageTag]; }
@@ -89,6 +96,24 @@ state.currentDelimiters = () => currentLanguageData().delimiters;
  * @return {function}
  */
 state.currentOrdinal = () => currentLanguageData().ordinal;
+
+/**
+ * Return the current abbreviation scheme name for the language
+ * (eg: 'short-scale' or 'cjk').
+ */
+state.currentAbbreviationScheme = () => currentLanguageData().abbreviationScheme || "short-scale";
+
+/**
+ * Return the abbreviation units mapping for the current language.
+ * Falls back to the default short-scale units when not defined.
+ */
+state.currentAbbreviationUnits = () => currentLanguageData().abbreviationUnits || defaultAbbreviationUnits;
+
+/**
+ * Return the display abbreviations mapping for the current language.
+ * Falls back to the legacy `abbreviations` object when not defined.
+ */
+state.currentDisplayAbbreviations = () => currentLanguageData().displayAbbreviations || currentLanguageData().abbreviations;
 
 //
 // Defaults

@@ -176,6 +176,7 @@ const validLanguage = {
         },
         message: "the language tag must follow the BCP 47 specification (see https://tools.ieft.org/html/bcp47)"
     },
+    author: "string",
     delimiters: {
         type: "object",
         children: {
@@ -186,6 +187,9 @@ const validLanguage = {
         mandatory: true
     },
     abbreviations: validMandatoryAbbreviations,
+    abbreviationScheme: "string",
+    abbreviationUnits: "object",
+    displayAbbreviations: "object",
     spaceSeparated: "boolean",
     spaceSeparatedCurrency: "boolean",
     ordinal: {
@@ -204,6 +208,7 @@ const validLanguage = {
         children: {
             symbol: "string",
             position: "string",
+            alternates: "object",
             code: "string"
         },
         mandatory: true
