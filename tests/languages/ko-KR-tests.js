@@ -54,19 +54,19 @@ describe("ko-KR", () => {
             const sym = koKR.currency.symbol || "";
             const pos = koKR.currency.position || "postfix";
 
-            let expectedResult;
+            let expectedResult = "";
             if (pos === "prefix") {
                 if (numberPart[0] === "-") {
-                    expectedResult = "-" + sym + numberPart.slice(1);
+                    expectedResult = `-${sym}${numberPart.slice(1)}`;
                 } else if (numberPart[0] === "+") {
-                    expectedResult = "+" + sym + numberPart.slice(1);
+                    expectedResult = `+${sym}${numberPart.slice(1)}`;
                 } else {
-                    expectedResult = sym + numberPart;
+                    expectedResult = `${sym}${numberPart}`;
                 }
             } else if (pos === "infix") {
                 expectedResult = numberPart.replace(/\./, sym);
             } else {
-                expectedResult = numberPart + sym;
+                expectedResult = `${numberPart}${sym}`;
             }
 
             let result = numbro(input).format(format);
@@ -98,7 +98,7 @@ describe("ko-KR", () => {
             ["10천", 10000],
             ["-10천", -10000],
             ["23.", 23],
-            [sym + "10,000.00", 10000],
+            [`${sym}10,000.00`, 10000],
             ["1억", 100000000],
             ["1.5억", 150000000],
             ["12억", 1200000000],

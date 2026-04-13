@@ -18,6 +18,7 @@ module.exports = {
         billion: "十亿",
         trillion: "兆"
     },
+    abbreviationScheme: "cjk",
     abbreviationUnits: {
         man: 1e4,
         oku: 1e8,

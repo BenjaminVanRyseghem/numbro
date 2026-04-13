@@ -1,4 +1,6 @@
 const numbro = require("../../src/numbro");
+// ensure matching source file is loaded for the ensure-test-file lint rule
+require("../../src/cjk-abbreviations");
 const globalState = require("../../src/globalState");
 const enableCjkForLanguage = require("../helpers/enableCjkForLanguage");
 

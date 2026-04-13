@@ -52,19 +52,19 @@ describe("zh-TW", () => {
             const sym = zhTW.currency.symbol || "";
             const pos = zhTW.currency.position || "postfix";
 
-            let expectedResult;
+            let expectedResult = "";
             if (pos === "prefix") {
                 if (numberPart[0] === "-") {
-                    expectedResult = "-" + sym + numberPart.slice(1);
+                    expectedResult = `-${sym}${numberPart.slice(1)}`;
                 } else if (numberPart[0] === "+") {
-                    expectedResult = "+" + sym + numberPart.slice(1);
+                    expectedResult = `+${sym}${numberPart.slice(1)}`;
                 } else {
-                    expectedResult = sym + numberPart;
+                    expectedResult = `${sym}${numberPart}`;
                 }
             } else if (pos === "infix") {
                 expectedResult = numberPart.replace(/\./, sym);
             } else {
-                expectedResult = numberPart + sym;
+                expectedResult = `${numberPart}${sym}`;
             }
 
             let result = numbro(input).format(format);
@@ -96,7 +96,7 @@ describe("zh-TW", () => {
             ["10千", 10000],
             ["-10千", -10000],
             ["23.", 23],
-            [sym + "10,000.00", 10000],
+            [`${sym}10,000.00`, 10000],
             ["1.5億", 150000000],
             ["12億", 1200000000],
             ["-76%", -0.76],

@@ -3,7 +3,7 @@
  * language : Korean
  * author (numbro.js Version): Randy Wilander : https://github.com/rocketedaway
  * author (numeral.js Version) : Rich Daley : https://github.com/pedantic-git
- * author : hijiri Umemoto https://github.com/7m4gmh
+ * author : Hijiri Umemoto https://github.com/7m4gmh
  */
 
 module.exports = {
@@ -18,6 +18,7 @@ module.exports = {
         billion: "십억",
         trillion: "일조"
     },
+    abbreviationScheme: "cjk",
     abbreviationUnits: {
         man: 1e4,
         oku: 1e8,
@@ -34,7 +35,7 @@ module.exports = {
     currency: {
         symbol: "원",
         position: "postfix",
-        alternates: ["Won","₩"],
-        code: "KPW"
+        alternates: ["Won", "₩"],
+        code: "KRW"
     }
 };
