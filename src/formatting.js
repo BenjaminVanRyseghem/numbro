@@ -508,7 +508,9 @@ function toFixed(value, precision, roundingFunction = Math.round) {
         return toFixedLarge(value, precision);
     }
 
-    const n = new BigNumber(roundingFunction(+`${value}e+${precision}`) / (Math.pow(10, precision)));
+    const power = new BigNumber(10).pow(precision);
+    const rounded = roundingFunction(new BigNumber(value).times(power).toNumber());
+    const n = new BigNumber(rounded).div(power);
     return n.toFixed(precision);
 }
 

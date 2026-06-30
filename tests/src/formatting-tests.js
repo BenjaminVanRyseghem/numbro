@@ -105,6 +105,16 @@ describe("formatting", () => {
             toFixed(1e+23, 2);
             expect(toFixedLarge).toHaveBeenCalledWith(1e+23, 2);
         });
+
+        it("keeps the integer part of a large value invariant to the requested mantissa", () => {
+            let value = 9.999999e20;
+
+            for (let precision = 0; precision <= 6; precision++) {
+                let result = toFixed(value, precision);
+                let integerPart = result.split(".")[0];
+                expect(integerPart).toBe("999999900000000000000");
+            }
+        });
     });
 
     describe("toFixedLarge", () => {
